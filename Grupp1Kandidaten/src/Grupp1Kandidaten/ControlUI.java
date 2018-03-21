@@ -5,7 +5,6 @@ public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
     
-    
     /**
      * Creates new form ControlUI
      */
@@ -25,8 +24,9 @@ public class ControlUI extends javax.swing.JFrame {
                 
     }
         public void appendStatus(String s)
-     {
-        
+    {
+        statusuppdTextArea.append(s+"\n");
+        statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
  
        private void myinitComponents()
