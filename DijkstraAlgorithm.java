@@ -7,7 +7,7 @@ package lastmileauto2;
 
 /**
  *
- * @author Erik Torstensson
+ * @author Sims Hejsson
  */
 import java.util.ArrayList;
 import java.util.Collections;
