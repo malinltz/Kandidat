@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 /**
  *
- * @author clary35
  */
 public class DataStore {
 
