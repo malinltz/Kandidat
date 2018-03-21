@@ -24,6 +24,10 @@ public class ControlUI extends javax.swing.JFrame {
          statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
                 
     }
+        public void appendStatus(String s)
+     {
+        
+    }
  
        private void myinitComponents()
        {

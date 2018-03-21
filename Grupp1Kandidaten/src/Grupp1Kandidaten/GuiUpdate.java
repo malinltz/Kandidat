@@ -37,9 +37,9 @@ if (ds.updateUIflag == true) {
             while (i <= 20) {
                 Thread.sleep(sleepTime / 20);
                 cui.appendStatus("Jag är tråd GuiUpdate! För " + i + ":te gången");
-                ds.robotX= ds.robotX- 10;
+                ds.robotX = ds.robotX- 10;
                 cui.repaint();
-                i++;
+                i++; 
                 
             } 
             }
