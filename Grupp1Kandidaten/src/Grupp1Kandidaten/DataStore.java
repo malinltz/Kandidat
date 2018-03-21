@@ -17,7 +17,7 @@ public class DataStore {
     int[] arcEnd;
     int[] arcCost;
     boolean networkRead;
-
+    boolean updateUIflag;
     
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data
@@ -30,6 +30,7 @@ public class DataStore {
         arcCost = new int[1000];
         
         networkRead = false;
+        updateUIflag = false;
 
     }
 
