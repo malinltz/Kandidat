@@ -4,7 +4,7 @@ package Grupp1Kandidaten;
  *
  */
 public class LastMileAuto {
-
+    
     DataStore ds;
     ControlUI cui;
     
@@ -18,9 +18,10 @@ public class LastMileAuto {
         /*
          * This sets the file path and read network text file. Adjust for your needs.
          */
-        ds.setFileName("/Users/malinlilliecreutz/Desktop/streets.txt");
+        ds.setFileName("streets.txt");
         ds.readNet();
 
+        
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore
          */
