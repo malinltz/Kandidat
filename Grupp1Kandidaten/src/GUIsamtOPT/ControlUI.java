@@ -1,10 +1,9 @@
-package GUIsamtOpt;
+package Grupp1Kandidaten;
 
 
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
-    ControlUI cui;
     
     /**
      * Creates new form ControlUI
@@ -23,14 +22,14 @@ public class ControlUI extends javax.swing.JFrame {
          statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
          statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
                 
-    } 
+    }
         public void appendStatus(String s)
     {
         statusuppdTextArea.append(s+"\n");
         statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
  
-       public void myinitComponents()
+       private void myinitComponents()
        {
 
         jPanelMap = new MapPanel(ds);
@@ -89,7 +88,7 @@ public class ControlUI extends javax.swing.JFrame {
         uppdTextArea.setText("Uppdragslista i realtid:");
         jScrollPane2.setViewportView(uppdTextArea);
 
-        startStopp.setForeground(java.awt.Color.green);
+        startStopp.setBackground(java.awt.Color.green);
         startStopp.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         startStopp.setText("Start");
         startStopp.addActionListener(new java.awt.event.ActionListener() {
@@ -385,8 +384,6 @@ public class ControlUI extends javax.swing.JFrame {
        if (startStopp.getText().equals("Start")) {
           startStopp.setText("Stop");
           startStopp.setForeground(new java.awt.Color(255, 0, 0));
-          GuiUpdate r1 = new GuiUpdate(ds, cui);
-          r1.run();
           
        } else if (startStopp.getText().equals("Stop")) {
           startStopp.setText("Start");
@@ -401,6 +398,7 @@ public class ControlUI extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
 
     
     

@@ -1,4 +1,4 @@
-package GUIsamtOpt;
+package Grupp1Kandidaten;
 
 
 public class ControlUI extends javax.swing.JFrame {
@@ -23,7 +23,7 @@ public class ControlUI extends javax.swing.JFrame {
          statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
          statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
                 
-    } 
+    }
         public void appendStatus(String s)
     {
         statusuppdTextArea.append(s+"\n");
