@@ -15,10 +15,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPanrop {
-    
-HTTPanrop http ;
+ 
+    int plats;
+    int scenario;
+    int 
 
     public static void main(String[] args) {
+        
         try {
             
             
@@ -29,6 +32,7 @@ HTTPanrop http ;
             URL urlobjekt = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
             System.out.println("\nAnropar: " + url);
+            
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
 
@@ -46,13 +50,26 @@ HTTPanrop http ;
     } 
 } 
 
-//public listaplatser() {}
+public void listaplatser()
+{
+    String lista = "http://tnk111.n7.se/listaplatser.php";
+    URL urllista = new URL(lista);
+ return lista
+}
 
-//public listauppdrag(){}
+public listauppdrag(plats){
 
-//public tauppdrag() {}
+listauppdrag.php
 
-//public aterstall() {}
+public tauppdrag( plats, id, passagerare, grupp){
+
+
+}
+
+public aterstall(scenario){
+
+
+}
 
        
 
