@@ -32,9 +32,9 @@ public class LastMileAuto {
          //Thread t1 = new Thread(r1);
          //t1.start();
          
-        // GuiUpdate g1 = new GuiUpdate(ds, cui);
-        // Thread t2 = new Thread(g1);
-        // t2.start();
+        GuiUpdate g1 = new GuiUpdate(ds, cui);
+        Thread t2 = new Thread(g1);
+        t2.start();
          
           OptPlan op = new OptPlan(ds);
           op.createPlan();
