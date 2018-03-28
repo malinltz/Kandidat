@@ -15,12 +15,17 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPanrop {
+    
+HTTPanrop http ;
 
     public static void main(String[] args) {
         try {
+            
+            
             HTTPanrop http = new HTTPanrop();
-            String url = "http://tnk111.n7.se/putmessage.php?\n"
-                    + "groupid=1&messagetype=2&message=test";
+            
+            
+            String url = "http://tnk111.n7.se/aterstall.php?scenario=1";
             URL urlobjekt = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -38,5 +43,19 @@ public class HTTPanrop {
         } catch (Exception e) {
             System.out.print(e.toString());
         }
-    }
-}
+    } 
+} 
+
+//public listaplatser() {}
+
+//public listauppdrag(){}
+
+//public tauppdrag() {}
+
+//public aterstall() {}
+
+       
+
+//http://tnk111.n7.se/listaplatser.php?scenario=1 
+
+//http://tnk111.n7.se/aterstall.php?scenario=1
