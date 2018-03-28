@@ -1,3 +1,4 @@
+/*
 package Bluetooth;
 
 import java.io.*;
@@ -26,3 +27,4 @@ public class Receiver {
         }
     }
 }
+*/
