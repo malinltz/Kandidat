@@ -5,20 +5,46 @@
  */
 package HTTP;
 
-/**
- *
+ /*
  * @author malinlilliecreutz
  */
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPanrop {
- 
-    int plats;
-    int scenario;
-    int 
+    double plats;
+    double scenario;
+    int id; // heltal
+    double passagerare;
+    int grupp; 
+    
+    Public Listaplatser() //listar alla platser som finns att aka till
+{
+    String lista = "http://tnk111.n7.se/listaplatser.php";
+    URL urllista = new URL(lista);
+ return lista; // anger först det antal upphämtningsplatser som finnsdefinierade.
+}
+
+Public Listauppdrag(String plats) //listar alla uppdrag som kommer att finnas på kartan
+{
+
+String listauppdraghttp://tnk111.n7.se/listauppdrag.php
+
+public Tauppdrag( int plats, int id, int passagerare, int grupp) // listar alla uppdrag som tas upp på kartan
+{
+
+
+}
+
+public Aterstall(int scenario) // återställer allt till noll så AGVn är redo för ett nytt uppdrag. 
+{
+
+
+}
+    
 
     public static void main(String[] args) {
         
@@ -50,29 +76,8 @@ public class HTTPanrop {
     } 
 } 
 
-public void listaplatser()
-{
-    String lista = "http://tnk111.n7.se/listaplatser.php";
-    URL urllista = new URL(lista);
- return lista
-}
-
-public listauppdrag(plats){
-
-listauppdrag.php
-
-public tauppdrag( plats, id, passagerare, grupp){
 
 
-}
-
-public aterstall(scenario){
-
-
-}
 
        
-
-//http://tnk111.n7.se/listaplatser.php?scenario=1 
-
-//http://tnk111.n7.se/aterstall.php?scenario=1
+//http://tnk111.n7.se/getmessage.php?messagetype=2 http för kommunikation mellan företagsgrupperna.
