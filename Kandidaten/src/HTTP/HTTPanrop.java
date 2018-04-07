@@ -20,18 +20,21 @@ public class HTTPanrop {
     int id; // heltal
     double passagerare;
     int grupp; 
-    
-    Public Listaplatser() //listar alla platser som finns att aka till
+ 
+    }
+            
+  Public HTTPanrop Listaplatser() //listar alla platser som finns att aka till
 {
     String lista = "http://tnk111.n7.se/listaplatser.php";
     URL urllista = new URL(lista);
  return lista; // anger först det antal upphämtningsplatser som finnsdefinierade.
 }
 
-Public Listauppdrag(String plats) //listar alla uppdrag som kommer att finnas på kartan
+Public HTTPanrop Listauppdrag(double plats) //listar alla uppdrag som kommer att finnas på kartan
 {
 
 String listauppdraghttp://tnk111.n7.se/listauppdrag.php
+}
 
 public Tauppdrag( int plats, int id, int passagerare, int grupp) // listar alla uppdrag som tas upp på kartan
 {
@@ -45,7 +48,6 @@ public Aterstall(int scenario) // återställer allt till noll så AGVn är redo
 
 }
     
-
     public static void main(String[] args) {
         
         try {
