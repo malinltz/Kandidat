@@ -5,62 +5,69 @@
  */
 package HTTP;
 
- /*
+/*
  * @author malinlilliecreutz
  */
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPanrop {
+
     double plats;
     double scenario;
     int id; // heltal
     double passagerare;
-    int grupp; 
- 
-    }
-            
-  Public HTTPanrop Listaplatser() //listar alla platser som finns att aka till
-{
-    String lista = "http://tnk111.n7.se/listaplatser.php";
-    URL urllista = new URL(lista);
- return lista; // anger först det antal upphämtningsplatser som finnsdefinierade.
-}
+    int gruppid; // säger vilken grupp det är
 
-Public HTTPanrop Listauppdrag(double plats) //listar alla uppdrag som kommer att finnas på kartan
-{
-
-String listauppdraghttp://tnk111.n7.se/listauppdrag.php
-}
-
-public Tauppdrag( int plats, int id, int passagerare, int grupp) // listar alla uppdrag som tas upp på kartan
-{
-
-
-}
-
-public Aterstall(int scenario) // återställer allt till noll så AGVn är redo för ett nytt uppdrag. 
-{
-
-
-}
     
+
+ 
+
+    Public HTTPanrop
+
+    Listauppdrag(double plats) //listar alla uppdrag som kommer att finnas på kartan
+    {
+
+        String listauppdraghttp
+    
+
+    
+
+    ://tnk111.n7.se/listauppdrag.php
+}
+
+public Tauppdrag(int plats, int id, int passagerare, int grupp) // listar alla uppdrag som tas upp på kartan
+    {
+
+    }
+
+    public Aterstall(int scenario) // återställer allt till noll så AGVn är redo för ett nytt uppdrag. 
+    {
+
+    }
+
     public static void main(String[] args) {
         
+    public String Listaplatser() //listar alla platser som finns att aka till
+    {
+        String lista = "http://tnk111.n7.se/listaplatser.php";
+        URL urllista = new URL(lista);
+        return lista; // anger först det antal upphämtningsplatser som finnsdefinierade.
+    }
+        
         try {
-            
-            
+
             HTTPanrop http = new HTTPanrop();
-            
-            
-            String url = "http://tnk111.n7.se/aterstall.php?scenario=1";
+
+            String url = "http://tnk111.n7.se";
             URL urlobjekt = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
             System.out.println("\nAnropar: " + url);
-            
+            anslutning.setRequestMethod("GET"); // ny kod
+          ;
+
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
 
@@ -75,7 +82,7 @@ public Aterstall(int scenario) // återställer allt till noll så AGVn är redo
         } catch (Exception e) {
             System.out.print(e.toString());
         }
-    } 
+    }
 } 
 
 
