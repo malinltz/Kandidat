@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package HTTP;
 
-/*
- * @author malinlilliecreutz
- */
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -43,10 +37,11 @@ public class HTTPanrop {
             System.out.println(inkommande_samlat.toString());
            // return lista; // anger först det antal upphämtningsplatser som finnsdefinierade.
 
-        } catch (Exception lista) 
+        } catch (Exception lista) {
             System.out.print(lista.toString());
 
-        } 
+        }
+    } 
         //På de efterföljande raderna i svaret listas platsens namn (A, B etc) och 
         //två nod-nummer separerade med komma som svarar mot den länk gatunätet där platsen finns fysiskt. 
         //Platsens namn och nod-numren separeras med ett semikolon
@@ -59,8 +54,8 @@ public class HTTPanrop {
             // får göras hur många gånger som helst men inte längre än en second. 
             HTTPanrop http = new HTTPanrop();
             String listauppdrag = "http://tnk111.n7.se/listauppdrag.php";
-            URL listauppdag = new URL(listauppdrag);
-            HttpURLConnection anslutning = (HttpURLConnection) listauppdrag.openConnection();
+            URL urllistauppdrag = new URL(listauppdrag);
+            HttpURLConnection anslutning = (HttpURLConnection) urllistauppdrag.openConnection();
             System.out.println("\nAnropar: " + listauppdrag);
 
             int mottagen_status = anslutning.getResponseCode();
@@ -73,11 +68,11 @@ public class HTTPanrop {
             }
             inkommande.close();
             System.out.println(inkommande_samlat.toString());
-            return listauppdrag;
+           
 
-        } catch (Exeption listauppdrag) 
-            System.out.print(listauppdrag.toString(); // 
-
+        } catch (Exception listauppdrag) {
+            System.out.print(listauppdrag.toString()); // 
+        }
         }
 
     
@@ -88,8 +83,8 @@ public class HTTPanrop {
 
             HTTPanrop http = new HTTPanrop();
             String tauppdrag = "http://tnk111.n7.se/listauppdrag.php";
-            URL tauppdrag = new URL(tauppdrag);
-            HttpURLConnection anslutning = (HttpURLConnection) tauppdrag.openConnection();
+            URL urltauppdrag = new URL(tauppdrag);
+            HttpURLConnection anslutning = (HttpURLConnection) urltauppdrag.openConnection();
             System.out.println("\nAnropar: " + tauppdrag);
 
             int mottagen_status = anslutning.getResponseCode();
@@ -102,12 +97,12 @@ public class HTTPanrop {
             }
             inkommande.close();
             System.out.println(inkommande_samlat.toString());
-            return tauppdrag;
+            
 
-        } catch (Exeption listauppdrag) 
+        } catch (Exception listauppdrag) {
             System.out.print(listauppdrag.toString());
-         
         }
+    
 
     public void Aterstall(int scenario) // återställer allt till noll så AGVn är redo för ett nytt uppdrag. 
     {
@@ -116,8 +111,8 @@ public class HTTPanrop {
             // får göras hur många gånger som helst men inte längre än en second. 
             HTTPanrop http = new HTTPanrop();
             String aterstall = "http://tnk111.n7.se/listauppdrag.php";
-            URL aterstall = new URL(aterstall);
-            HttpURLConnection anslutning = (HttpURLConnection) aterstall.openConnection();
+            URL urlaterstall = new URL(aterstall);
+            HttpURLConnection anslutning = (HttpURLConnection) urlaterstall.openConnection();
             System.out.println("\nAnropar: " + aterstall);
 
             int mottagen_status = anslutning.getResponseCode();
@@ -130,13 +125,12 @@ public class HTTPanrop {
             }
             inkommande.close();
             System.out.println(inkommande_samlat.toString());
-            return aterstall;
 
-        } catch (Exeption listauppdrag) 
+        } catch (Exception aterstall) {
             System.out.print(aterstall.toString());
         }
+    }
 
-     
 
     public static void main(String[] args) {
 
