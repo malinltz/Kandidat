@@ -1,5 +1,5 @@
 
-package HTTP;
+package KTS3G1;
 
 
 import java.io.BufferedReader;

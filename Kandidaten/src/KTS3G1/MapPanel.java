@@ -1,4 +1,4 @@
-package GUIsamtOpt;
+package KTS3G1;
 
 import java.awt.Color;
 import java.awt.Font;
