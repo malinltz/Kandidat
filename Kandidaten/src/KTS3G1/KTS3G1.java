@@ -39,7 +39,7 @@ public class KTS3G1 {
          * Initialize and show the GUI. The constructor gets access to the DataStore
          */
         
-        cui = new ControlUI(ds,tm);
+        cui = new ControlUI(ds);
         cui.setVisible(true);
         cui.showStatus();
         
