@@ -1,14 +1,16 @@
-
 package KTS3G1;
-
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HTTPanrop implements Runnable{
-/*
+public class HTTPanrop {
+
+    private String message;
+    private String url;
+
+    /*
     double plats;
     double scenario;
     int id; // heltal
@@ -137,17 +139,18 @@ public class HTTPanrop implements Runnable{
             System.out.print(aterstall.toString());
         }
     }
-*/
+     */
+    public String HTTPanrop(String URL) {
 
-    public void run() {
+        url = URL;
 
         try {
 
-            String url = "http://tnk111.n7.se";
+           // String url = "http://tnk111.n7.se";
             URL urlobjekt = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
             System.out.println("\nAnropar: " + url);
-            anslutning.setRequestMethod("GET"); // ny kod
+            // anslutning.setRequestMethod("GET"); // ny kod
             ;
 
             int mottagen_status = anslutning.getResponseCode();
@@ -161,11 +164,21 @@ public class HTTPanrop implements Runnable{
             }
             inkommande.close();
             System.out.println(inkommande_samlat.toString());
+            message = inkommande_samlat.toString();
+            System.out.println("hej");
         } catch (Exception e) {
             System.out.print(e.toString());
+            
         }
+        return url;
+        
+    }
+
+    public String newmesssage() {
+        return message;
     }
 }
+
 
 //http://tnk111.n7.se/getmessage.php?messagetype=2 http för kommunikation mellan företagsgrupperna.
 // get and post parametrar

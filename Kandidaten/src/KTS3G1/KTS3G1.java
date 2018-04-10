@@ -7,7 +7,7 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-   Transmitter tm; 
+  // Transmitter tm; 
    // Transceiver tc; 
   //  Mirror mi;
  //   Reciver re; 
@@ -18,11 +18,12 @@ public class KTS3G1 {
         //Bn = "B827EB003082";
         //Cn = "22";
 
-       tm = new Transmitter();
+     //  tm = new Transmitter();
       //  re = new Reciver();
        
-
-       HTTPanrop http = new HTTPanrop();
+       // = "http://tnk111.n7.se";
+       http = new HTTPanrop();
+       http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 
         /*
          * Initialize the DataStore call where all "global" data will be stored

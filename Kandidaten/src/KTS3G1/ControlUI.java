@@ -17,7 +17,7 @@ public class ControlUI extends javax.swing.JFrame {
       //  this.tm=tm;
         
         myinitComponents();
-        setTitle("Last Mile Auto");
+        setTitle("Grupp 1");
     }
 
     public void showStatus(){
