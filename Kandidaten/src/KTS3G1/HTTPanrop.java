@@ -1,5 +1,5 @@
 
-package HTTP;
+package KTS3G1;
 
 
 import java.io.BufferedReader;
@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HTTPanrop {
-
+public class HTTPanrop implements Runnable{
+/*
     double plats;
     double scenario;
     int id; // heltal
@@ -137,13 +137,11 @@ public class HTTPanrop {
             System.out.print(aterstall.toString());
         }
     }
+*/
 
-
-    public static void main(String[] args) {
+    public void run() {
 
         try {
-
-            HTTPanrop http = new HTTPanrop();
 
             String url = "http://tnk111.n7.se";
             URL urlobjekt = new URL(url);

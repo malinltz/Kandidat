@@ -1,14 +1,28 @@
-package GUIsamtOpt;
+package KTS3G1;
 
 /**
  *
  */
-public class LastMileAuto {
+public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
+   // Transmitter tm; 
+   // Transceiver tc; 
+  //  Mirror mi;
+ //   Reciver re; 
+    HTTPanrop http; 
     
-    LastMileAuto(){
+    KTS3G1(){ 
+ 
+        //Bn = "B827EB003082";
+        //Cn = "22";
+
+      //  tm = new Transmitter();
+      //  re = new Reciver();
+       
+
+       HTTPanrop http = new HTTPanrop();
 
         /*
          * Initialize the DataStore call where all "global" data will be stored
@@ -50,6 +64,6 @@ public class LastMileAuto {
          * All that is done here is to make an instance of the RobotControl class,
          * and thereby, call the RobotControl constructor.
         */
-        LastMileAuto x = new LastMileAuto();
+        KTS3G1 x = new KTS3G1();
     }
 }

@@ -1,4 +1,4 @@
-package GUIsamtOpt;
+package KTS3G1;
 
 
 public class ControlUI extends javax.swing.JFrame {
