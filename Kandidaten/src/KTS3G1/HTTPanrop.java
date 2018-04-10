@@ -9,6 +9,9 @@ public class HTTPanrop {
 
     private String message;
     private String url;
+    private DijkstraAlgorithm DA;
+    
+    
 
     /*
     double plats;
@@ -177,6 +180,8 @@ public class HTTPanrop {
     public String newmesssage() {
         return message;
     }
+    public String newj(){
+            return DA.getPath();}
 }
 
 

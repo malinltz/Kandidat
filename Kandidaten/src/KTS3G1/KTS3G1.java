@@ -15,13 +15,9 @@ public class KTS3G1 {
     
     KTS3G1(){ 
  
-        //Bn = "B827EB003082";
-        //Cn = "22";
+     //tm = new Transmitter();
+     //re = new Reciver()
 
-     //  tm = new Transmitter();
-      //  re = new Reciver();
-       
-       // = "http://tnk111.n7.se";
        http = new HTTPanrop();
        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 
