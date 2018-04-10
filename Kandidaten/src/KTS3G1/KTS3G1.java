@@ -7,7 +7,7 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-   // Transmitter tm; 
+   Transmitter tm; 
    // Transceiver tc; 
   //  Mirror mi;
  //   Reciver re; 
@@ -18,7 +18,7 @@ public class KTS3G1 {
         //Bn = "B827EB003082";
         //Cn = "22";
 
-      //  tm = new Transmitter();
+       tm = new Transmitter();
       //  re = new Reciver();
        
 
@@ -38,7 +38,8 @@ public class KTS3G1 {
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore
          */
-        cui = new ControlUI(ds);
+        
+        cui = new ControlUI(ds,tm);
         cui.setVisible(true);
         cui.showStatus();
         
