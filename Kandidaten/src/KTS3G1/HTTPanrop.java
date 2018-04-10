@@ -4,16 +4,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+import java.io.DataOutputStream;
+
 
 public class HTTPanrop {
 
     private String message;
     private String url;
-    private DijkstraAlgorithm DA;
-    
-    
+    private String urlupp;
+    public OptPlan OP;
+    public DataStore ds;
 
-    /*
+   /*
     double plats;
     double scenario;
     int id; // heltal
@@ -144,9 +147,10 @@ public class HTTPanrop {
     }
      */
     public String HTTPanrop(String URL) {
-
+        
         url = URL;
-
+        OP = new OptPlan(ds);
+     
         try {
 
            // String url = "http://tnk111.n7.se";
@@ -173,16 +177,66 @@ public class HTTPanrop {
             System.out.print(e.toString());
             
         }
-        return url;
-        
+        return url; 
     }
+    
+    public void HTTPkontact(String URL){
+            url = URL;
+            OP = new OptPlan(ds);
+            
+            try
+            {
+		URL urlobjekt = new URL(url);
+		HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
+
+		//add reuqest header
+		anslutning.setRequestMethod("POST");
+		//con.setRequestProperty("User-Agent", USER_AGENT);
+		//con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+ 
+		String urlParameters = "putmessage.php?groupid=1&messagetype=2&message=test";
+		
+		// Send post request
+		anslutning.setDoOutput(true);
+                
+		DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
+		wr.writeBytes(urlParameters);
+		wr.flush();
+		wr.close();
+
+		int responseCode = anslutning.getResponseCode();
+		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("Post parameters : " + urlParameters);
+		System.out.println("Response Code : " + responseCode);
+
+		BufferedReader in = new BufferedReader(
+		        new InputStreamReader(anslutning.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+                System.out.println(response.toString());
+                message = response.toString();
+		in.close();
+            }catch(Exception e){
+		
+		//print result
+		System.out.println(e.toString());
+            }
+           // return url;
+	
+}
+
 
     public String newmesssage() {
         return message;
     }
-    public String newj(){
-            return DA.getPath();}
+  
+    
 }
+ 
 
 
 //http://tnk111.n7.se/getmessage.php?messagetype=2 http för kommunikation mellan företagsgrupperna.

@@ -5,11 +5,10 @@
  */
 package KTS3G1;
 
-
-/**
- *
+/*
  * @author malinlilliecreutz
  */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

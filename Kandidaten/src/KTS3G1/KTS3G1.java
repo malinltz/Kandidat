@@ -12,6 +12,7 @@ public class KTS3G1 {
   //  Mirror mi;
  //   Reciver re; 
     HTTPanrop http; 
+   
     
     KTS3G1(){ 
  
@@ -20,7 +21,7 @@ public class KTS3G1 {
 
        http = new HTTPanrop();
        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
-
+       http.HTTPkontact("http://tnk111.n7.se");
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */

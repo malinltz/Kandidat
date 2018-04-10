@@ -12,8 +12,8 @@ package KTS3G1;
  */
 public class Vertex {
     
-    final private String id;
-    final private String name;
+    final public String id;
+    final public String name;
 
 
     public Vertex(String id, String name) {
