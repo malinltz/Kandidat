@@ -21,7 +21,8 @@ public class HTTPanrop {
     double passagerare;
     int gruppid = 1; // säger vilken grupp det är
     double messagetype;
-
+    int points; // poäng för varje 
+    
     public void Listaplatser() //listar alla platser som finns att aka till
     {
         try {
@@ -79,6 +80,12 @@ public class HTTPanrop {
             System.out.print(listauppdrag.toString(); // 
 
         }
+        //Först presenteras antalet uppdrag som finns tillgängliga, därutöver en lista som anger id-nummer;
+        //destination vilken anges som två nod-nummer separerade med kommatecken; 
+        //antal passagerare i uppdraget; om passagerarna kan tänka sig att samåka eller inte (1 indikerar att samåkning är möjlig,
+        //0 indikerar att personerna i uppdraget inte kan samåka med andra uppdrag); och en poäng, för varje uppdrag. 
+        //Varje uppdrag avgränsas på en ny rad, och varje element på raden avgränsas med ett semikolon.
+        //Uppdragets poäng kan ses som den ”intäkt” som fås när uppdraget genomförs
 
     
 
