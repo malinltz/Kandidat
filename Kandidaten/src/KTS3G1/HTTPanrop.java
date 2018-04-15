@@ -172,7 +172,7 @@ public class HTTPanrop {
             inkommande.close();
             System.out.println(inkommande_samlat.toString());
             message = inkommande_samlat.toString();
-            System.out.println("hej");
+          
         } catch (Exception e) {
             System.out.print(e.toString());
             
@@ -229,7 +229,7 @@ public class HTTPanrop {
 	
 }
 
-
+ 
     public String newmesssage() {
         return message;
     }

@@ -25,6 +25,7 @@ public class OptPlan {
         for (int i = 0; i < ds.arcs; i++) {
             Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
             edges.add(lane);
+          
         }
         
         Graph graph = new Graph(nodes, edges);
