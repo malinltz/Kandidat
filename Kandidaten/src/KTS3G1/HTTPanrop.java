@@ -89,10 +89,16 @@ public class HTTPanrop {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
+<<<<<<< HEAD
                 in.close();
                 utmessage = response.toString();
                 System.out.println(utmessage );
 		
+=======
+                System.out.println(response.toString());
+                //message = response.toString();
+		in.close();
+>>>>>>> 4e3aa34152f3eb67c823b88af2bdf418c3bd52fa
             }catch(Exception e){
 		
 		//print result
@@ -103,9 +109,17 @@ public class HTTPanrop {
 }
 
  
+<<<<<<< HEAD
  //   public String newmesssage() {
    //   return message;
   //  }
+=======
+    public String newmesssage() {
+        
+        
+        return message;
+    }
+>>>>>>> 4e3aa34152f3eb67c823b88af2bdf418c3bd52fa
   
     
 }

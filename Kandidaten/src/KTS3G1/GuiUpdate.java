@@ -21,14 +21,14 @@ public class GuiUpdate implements Runnable {
     public void run() {
         
         try {
-            cui.appendStatus("GuiUpdate startar och kommer att köra i " + sleepTime + " millisekunder.");
+            cui.appendStatus("GuiUpdate startar och kör i " + sleepTime + " ms.");
 
             int i = 1;
             if (ds.updateUIflag == true) {
 
                 while (i <= 50) {
                     Thread.sleep(sleepTime / 20);
-                    cui.appendStatus("Jag är tråd GuiUpdate! För " + i + ":te gången");
+                    cui.appendStatus("För " + i + ":te gången");
                     ds.robotX = ds.robotX - 10;
                     cui.repaint();
                     i++;
