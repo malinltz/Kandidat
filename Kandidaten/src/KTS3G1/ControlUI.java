@@ -26,13 +26,13 @@ public class ControlUI extends javax.swing.JFrame {
     public void showStatus(){
         //System.out.println("Nodes: "+ds.nodes);
         //System.out.println("Arcs: "+ds.arcs);
-         statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
+         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
         // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
     } 
         public void appendStatus(String s){
             
         statusuppdTextArea.append(s+"\n");
-        statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+       // statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
         
         void setUppdrag(String c) {
