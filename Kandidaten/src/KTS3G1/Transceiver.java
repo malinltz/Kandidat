@@ -1,5 +1,5 @@
 package KTS3G1;
-
+/*
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
@@ -47,6 +47,7 @@ public class Transceiver implements Runnable{
     }
         
     }
+/*
 
 /*      HA KVAR IFALL ATT!
     public static void
