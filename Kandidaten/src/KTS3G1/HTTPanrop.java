@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 public class HTTPanrop {
 
     private String message;
+    private String paragraph;
     private String url;
     private String utmessage;
     public OptPlan OP;
@@ -47,7 +48,7 @@ public class HTTPanrop {
             String[] paras = message.split(";");
 
             for (int i = 0; i < paras.length; i++) {
-                String paragraph = paras[i];
+                 paragraph = paras[i];
                 System.out.println("Parametrar: " + paragraph);
             }
 

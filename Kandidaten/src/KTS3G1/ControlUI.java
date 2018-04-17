@@ -23,21 +23,22 @@ public class ControlUI extends javax.swing.JFrame {
     
     String uppdragslista = "";
 
-    public void showStatus(){
+    public void showStatus(String p){
         //System.out.println("Nodes: "+ds.nodes);
         //System.out.println("Arcs: "+ds.arcs);
          //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
         // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
+        jTextArea2.append(p+"\n");
     } 
         public void appendStatus(String s){
             
         statusuppdTextArea.append(s+"\n");
-       // statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+        //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
         
         void setUppdrag(String c) {
-        uppdragslista = uppdragslista + c + "\n";
-        jTextArea2.setText(uppdragslista);
+        //uppdragslista = uppdragslista + c + "\n";
+      //  jTextArea2.setText(uppdragslista);
         //jScrollPane1.
     }
         
@@ -486,7 +487,7 @@ public class ControlUI extends javax.swing.JFrame {
         
         cui = new ControlUI(ds);
         cui.setVisible(true);
-        cui.showStatus();
+        //cui.showStatus();
         RobotRead p1 = new RobotRead(ds,cui);
         Thread t1 = new Thread(p1);
         GuiUpdate p2 = new GuiUpdate(ds,cui);

@@ -43,15 +43,9 @@ public class KTS3G1 {
         
         cui = new ControlUI(ds);
         cui.setVisible(true);
-        cui.showStatus();
-        cui.appendStatus(http.newmesssage());
+        cui.showStatus(http.newmesssage());
         
-        //Test för att ändra uppdragslistan.
-        int i = 0;
-        while (i <= 40) {
-            cui.setUppdrag("" + 1 + i);
-            i++;
-        }
+        
         
         // RobotRead r1 = new RobotRead(ds, cui);
          //Thread t1 = new Thread(r1);
@@ -61,8 +55,8 @@ public class KTS3G1 {
         Thread t2 = new Thread(g1);
         t2.start();
          
-          OptPlan op = new OptPlan(ds);
-          op.createPlan();
+        OptPlan op = new OptPlan(ds);
+        op.createPlan();
    
         
        
