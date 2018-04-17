@@ -153,7 +153,7 @@ public class HTTPanrop {
      
         try {
 
-           // String url = "http://tnk111.n7.se";
+            //String url = "http://tnk111.n7.se";
             URL urlobjekt = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -236,9 +236,3 @@ public class HTTPanrop {
   
     
 }
- 
-
-
-//http://tnk111.n7.se/getmessage.php?messagetype=2 http för kommunikation mellan företagsgrupperna.
-// get and post parametrar
-// gruppid = 1 
