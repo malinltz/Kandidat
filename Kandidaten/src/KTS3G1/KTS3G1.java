@@ -32,6 +32,7 @@ public class KTS3G1 {
          */
         ds.setFileName("streets.txt");
         ds.readNet();
+       
 
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore
@@ -40,6 +41,13 @@ public class KTS3G1 {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         cui.showStatus();
+        
+        //Test för att ändra uppdragslistan.
+        int i = 0;
+        while (i <= 40) {
+            cui.setUppdrag("" + 1 + i);
+            i++;
+        }
         
         // RobotRead r1 = new RobotRead(ds, cui);
          //Thread t1 = new Thread(r1);
