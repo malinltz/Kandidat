@@ -72,7 +72,7 @@ public class HTTPanrop {
             //con.setRequestProperty("User-Agent", USER_AGENT);
             //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = "putmessage.php?groupid=1&messagetype=2&message=test";
+            String urlParameters = "putmessage.php?groupid=1&messagetype=2&message=hej";
 
             // Send post request
             anslutning.setDoOutput(true);

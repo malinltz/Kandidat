@@ -8,11 +8,13 @@ public class RobotRead implements Runnable {
     private static Random generator = new Random();
     private ControlUI cui;
     private DataStore ds;
+    private OptPlan op;
 
-    public RobotRead(DataStore ds, ControlUI cui) {
+    public RobotRead(DataStore ds, ControlUI cui, OptPlan op) {
 
         this.cui = cui;
         this.ds = ds;
+        this.op = op;
         sleepTime = generator.nextInt(20000);
 
     }
