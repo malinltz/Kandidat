@@ -218,7 +218,7 @@ public class HTTPanrop {
 			response.append(inputLine);
 		}
                 System.out.println(response.toString());
-                message = response.toString();
+                //message = response.toString();
 		in.close();
             }catch(Exception e){
 		

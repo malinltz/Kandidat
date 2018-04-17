@@ -22,6 +22,8 @@ public class KTS3G1 {
        http = new HTTPanrop();
        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
        http.HTTPkontact("http://tnk111.n7.se");
+       
+       
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -41,6 +43,7 @@ public class KTS3G1 {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         cui.showStatus();
+        cui.appendStatus(http.newmesssage());
         
         //Test för att ändra uppdragslistan.
         int i = 0;

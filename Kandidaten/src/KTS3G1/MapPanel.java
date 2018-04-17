@@ -61,7 +61,7 @@ public class MapPanel extends JPanel {
                 g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 
-                System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
+                //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 
                 
                 // System.out.println("Arc "+i+": "+ds.arcStart[i]+" "+ds.arcEnd[i]);
