@@ -8,7 +8,7 @@ public class KTS3G1 {
     DataStore ds;
     ControlUI cui;
   // Transmitter tm; 
-   Transceiver tc; 
+   //Transceiver tc; 
   //  Mirror mi;
  //   Reciver re; 
     HTTPanrop http; 
@@ -54,9 +54,9 @@ public class KTS3G1 {
    
         
        
-        Transceiver p1 = new Transceiver(tc,cui); 
-        Thread t3 = new Thread(p1);
-        t3.start();
+        //Transceiver p1 = new Transceiver(tc,cui); 
+        //Thread t3 = new Thread(p1);
+        //t3.start();
         
     }
     

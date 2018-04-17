@@ -36,13 +36,14 @@ public class ControlUI extends javax.swing.JFrame {
        public void myinitComponents()
        {
 
+            jPanelMap = new MapPanel(ds);
+           
         jTextField5 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jPanelMap = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         statusuppdTextArea = new javax.swing.JTextArea();
         startPosition = new javax.swing.JButton();
