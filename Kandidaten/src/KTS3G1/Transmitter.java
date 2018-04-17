@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.io.*;
@@ -21,3 +21,4 @@ catch
 (Exception e) {  System.out.print(e.toString());   }
     }
 }
+*/
