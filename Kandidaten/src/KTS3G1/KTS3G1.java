@@ -20,6 +20,7 @@ public class KTS3G1 {
      //re = new Reciver()
 
        http = new HTTPanrop();
+      
        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
        http.HTTPkontact("http://tnk111.n7.se");
        
