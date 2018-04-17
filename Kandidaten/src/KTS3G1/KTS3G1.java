@@ -23,7 +23,8 @@ public class KTS3G1 {
        http = new HTTPanrop();
       
        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
-       http.HTTPkontact("http://tnk111.n7.se");
+       http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
+       http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
        
        
         /*
