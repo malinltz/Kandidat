@@ -26,6 +26,8 @@ public class GuiUpdate implements Runnable {
             //cui.appendStatus("GuiUpdate startar och kör i " + sleepTime + " ms.");
             
             int i = 0;
+            
+          
 
                 while (i < op.shortestPathList.length) {
                     Thread.sleep(sleepTime);

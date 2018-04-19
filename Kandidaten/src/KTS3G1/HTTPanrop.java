@@ -107,6 +107,7 @@ public class HTTPanrop {
 
             for (int i = 0; i < paras.length; i++) {
                 paragraph = paras[i];
+             
                 System.out.println("Parametrar: " + paragraph);
 
             }
