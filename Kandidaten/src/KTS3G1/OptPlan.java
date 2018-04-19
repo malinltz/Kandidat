@@ -10,7 +10,7 @@ public class OptPlan {
     private DataStore ds;
     private int start = 40;
     private int slut = 70;
-    private int[] shortestPathList = new int[1000];
+    public int[] shortestPathList = new int[1000];
 
     public OptPlan(DataStore ds) {
         this.ds = ds;
@@ -41,7 +41,8 @@ public class OptPlan {
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-            //System.out.println(path.get(i));
+            //System.out.println(path.get(i)+"TJOJO"); //FUNKAR
+            System.out.println(shortestPathList[i]+"bajs"); //FUNKAR
         }
 
         // Arcs in the shortest path
@@ -51,15 +52,16 @@ public class OptPlan {
                         && ds.arcEnd[j]
                         == Integer.parseInt(path.get(i + 1).getId())) {
 
-                    System.out.println("Arc: " + j);
+                    //System.out.println("Arc: " + j);
                     ds.arcColor[j]=1;
                 }
             }
         }
     }
     public int[] getIndex(){
-        
+         //System.out.println(shortestPathList+"bajs"); //FUNKAR
         return shortestPathList;
+        
     } 
 }
     
