@@ -15,7 +15,7 @@ public class GuiUpdate implements Runnable {
         this.cui = cui;
         this.ds = ds;
         this.op = op;
-        sleepTime = generator.nextInt(20000);
+        //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
 
@@ -35,7 +35,7 @@ public class GuiUpdate implements Runnable {
                     ds.robotX = (int) ds.robotX - ds.nodeX[op.shortestPathList[i] - 1];
                     ds.robotY = (int) ds.robotY - ds.nodeY[op.shortestPathList[i] - 1];
                     cui.repaint();
-                   // System.out.println(op.shortestPathList[i]);
+                   //System.out.println(op.shortestPathList[i]);
                    // System.out.println(ds.nodeX);
                     i++;
                 }
@@ -44,4 +44,7 @@ public class GuiUpdate implements Runnable {
         }
         //cui.appendStatus("GuiUpdate är nu klar!");
         }
+    
+    
+    
 }
