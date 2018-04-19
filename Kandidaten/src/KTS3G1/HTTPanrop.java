@@ -91,7 +91,7 @@ public class HTTPanrop {
             System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(anslutning.getInputStream()));
+            new InputStreamReader(anslutning.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 

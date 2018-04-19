@@ -26,7 +26,7 @@ public class MapPanel extends JPanel {
         int x1, y1;
         int x2, y2;
 
-        final int circlesize = 7;
+        final int circlesize = 8;
         final int ysize = 350;
         final int xsize = 700;
 
@@ -46,6 +46,8 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
+              //  g.drawString(String.valueOf(ds.nodeX[i]));
+               // g.drawString(String.valueOf(ds.nodeY[i]));
             }
 
             // Draw arcs
@@ -58,8 +60,8 @@ public class MapPanel extends JPanel {
                 //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-                g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+                //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
+               // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 
                 
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);

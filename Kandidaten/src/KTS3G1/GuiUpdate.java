@@ -30,7 +30,7 @@ public class GuiUpdate implements Runnable {
             int i = 0;
             if (ds.updateUIflag == true) {
 
-                while (i <= list.length) {
+                while (i <= list.length-1) {
                     Thread.sleep(sleepTime);
                     //cui.appendStatus("För " + i + ":te gången");
                     ds.robotX = (int) ds.robotX - ds.nodeX[list[i] - 1];
