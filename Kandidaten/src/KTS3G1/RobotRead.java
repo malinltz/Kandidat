@@ -1,6 +1,7 @@
 package KTS3G1;
 
 import java.util.Random;
+import java.util.List;
 
 public class RobotRead implements Runnable {
 
@@ -9,6 +10,8 @@ public class RobotRead implements Runnable {
     private ControlUI cui;
     private DataStore ds;
     private OptPlan op;
+    public String rutt;
+   
 
     public RobotRead(DataStore ds, ControlUI cui, OptPlan op) {
 
@@ -44,4 +47,12 @@ public class RobotRead implements Runnable {
         cui.appendStatus("RobotRead är nu klar!");
 
     }
+    
+    public void rutt(){}
+    
+    
+    public String gorutt(){
+        
+        
+    return rutt;}
 }

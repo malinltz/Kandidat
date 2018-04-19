@@ -1,6 +1,6 @@
 package KTS3G1;
 
-
+/*
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;

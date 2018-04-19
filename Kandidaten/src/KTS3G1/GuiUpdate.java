@@ -45,6 +45,13 @@ public class GuiUpdate implements Runnable {
         //cui.appendStatus("GuiUpdate är nu klar!");
         }
     
+    public void rutt()
+    {
+    
+    
+    
+    
+    }
     
     
 }
