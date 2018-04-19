@@ -8,7 +8,7 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    private int start = 10;
+    private int start = 40;
     private int slut = 70;
     private int[] shortestPathList = new int[1000];
 

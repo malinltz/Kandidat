@@ -97,8 +97,8 @@ public class DataStore {
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 
-            robotX = nodeX[70];
-            robotY = nodeY[70];
+            robotX = nodeX[0];
+            robotY = nodeY[0];
 
         } catch (Exception e) {
             // TODO Auto-generated catch block

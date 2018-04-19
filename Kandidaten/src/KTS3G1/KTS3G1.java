@@ -52,14 +52,14 @@ public class KTS3G1 {
         // RobotRead r1 = new RobotRead(ds, cui);
          //Thread t1 = new Thread(r1);
          //t1.start();
-         
-        //GuiUpdate g1 = new GuiUpdate(ds, cui, op);
-       // Thread t2 = new Thread(g1);
-        //t2.start();
+        
          
         OptPlan op = new OptPlan(ds);
         op.createPlan();
-   
+
+        GuiUpdate g1 = new GuiUpdate(ds, cui, op);
+        Thread t2 = new Thread(g1);
+        t2.start();
         
        
         //Transceiver p1 = new Transceiver(tc,cui); 
