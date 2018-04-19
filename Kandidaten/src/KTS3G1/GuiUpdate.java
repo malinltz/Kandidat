@@ -24,21 +24,22 @@ public class GuiUpdate implements Runnable {
         
         try {
             //cui.appendStatus("GuiUpdate startar och kör i " + sleepTime + " ms.");
-
-            int[] list = op.getIndex();
             
             int i = 0;
-            if (ds.updateUIflag == true) {
+            
+          
 
-                while (i <= list.length-1) {
+                while (i < op.shortestPathList.length) {
                     Thread.sleep(sleepTime);
                     //cui.appendStatus("För " + i + ":te gången");
-                    ds.robotX = (int) ds.robotX - ds.nodeX[list[i] - 1];
-                    ds.robotY = (int) ds.robotY - ds.nodeY[list[i] - 1];
+                    ds.robotX = (int) ds.robotX - ds.nodeX[op.shortestPathList[i] - 1];
+                    ds.robotY = (int) ds.robotY - ds.nodeY[op.shortestPathList[i] - 1];
                     cui.repaint();
+                   // System.out.println(op.shortestPathList[i]);
+                   // System.out.println(ds.nodeX);
                     i++;
                 }
-            }
+            
         } catch (InterruptedException exception) {
         }
         //cui.appendStatus("GuiUpdate är nu klar!");
