@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 /**
- *
+
  */
 public class DataStore {
 
@@ -92,6 +92,7 @@ public class DataStore {
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
                 arcCost[i] = Integer.parseInt(sline[2].trim());
 
+                
             }
 
             networkRead = true;  // Indicate that all network data is in place in the DataStore
@@ -100,6 +101,7 @@ public class DataStore {
             robotX = nodeX[0];
             robotY = nodeY[0];
 
+            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

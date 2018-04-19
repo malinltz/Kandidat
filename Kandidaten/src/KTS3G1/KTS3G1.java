@@ -37,6 +37,7 @@ public class KTS3G1 {
          */
         ds.setFileName("streets.txt");
         ds.readNet();
+        //ds.nodeX
        
 
         /*

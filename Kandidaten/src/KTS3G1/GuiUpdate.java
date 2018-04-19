@@ -15,7 +15,7 @@ public class GuiUpdate implements Runnable {
         this.cui = cui;
         this.ds = ds;
         this.op = op;
-        //sleepTime = generator.nextInt(20000);
+        sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
 
