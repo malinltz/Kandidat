@@ -77,10 +77,12 @@ public class DataStore {
                 nodeX[i] = Double.parseDouble(sline[1].trim());
                 nodeY[i] = Double.parseDouble(sline[2].trim());
             }
-
+            for (int i=0; i< nodes; i++)
+            {
             // Debug printout: print data for node 1
-            System.out.println("Node 1: " + nodeX[0] + " " + nodeY[0]);
-
+            System.out.println("Node: " + nodeX[i] + " " + nodeY[i]);
+            //System.out.println("Node 2: " + nodeX[1] + " " + nodeY[1]);
+            }
             // Read arc list as start node number, end node number
             for (int i = 0; i < arcs; i++) {
                 line = scanner.nextLine();
