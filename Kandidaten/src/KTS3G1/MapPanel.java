@@ -54,17 +54,17 @@ public class MapPanel extends JPanel {
                 y1 = (int) (ds.nodeY[ds.arcStart[i] - 1] * yscale);
                 x2 = (int) (ds.nodeX[ds.arcEnd[i] - 1] * xscale);
                 y2 = (int) (ds.nodeY[ds.arcEnd[i] - 1] * yscale);
+                
+                //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-             
-
                 g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 
+                
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 
                 
-                // System.out.println("Arc "+i+": "+ds.arcStart[i]+" "+ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
                 } else {

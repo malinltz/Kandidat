@@ -8,6 +8,9 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
+    private int start = 10;
+    private int slut = 70;
+    private int[] shortestPathList = new int[1000];
 
     public OptPlan(DataStore ds) {
         this.ds = ds;
@@ -32,13 +35,13 @@ public class OptPlan {
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         
         // Compute shortest path
-        dijkstra.execute(nodes.get(60));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(70));
+        dijkstra.execute(nodes.get(start));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut));
         
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
-
-            System.out.println(path.get(i));
+            shortestPathList[i] = Integer.parseInt(path.get(i).getId());
+            //System.out.println(path.get(i));
         }
 
         // Arcs in the shortest path
@@ -54,6 +57,10 @@ public class OptPlan {
             }
         }
     }
+    public int[] getIndex(){
+        
+        return shortestPathList;
+    } 
 }
     
 

@@ -6,6 +6,7 @@ public class ControlUI extends javax.swing.JFrame {
     DataStore ds;
     ControlUI cui;
     HTTPanrop http; 
+    OptPlan op;
     //Transmitter tm;
     
     /**
@@ -488,9 +489,9 @@ public class ControlUI extends javax.swing.JFrame {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         //cui.showStatus();
-        RobotRead p1 = new RobotRead(ds,cui);
+        RobotRead p1 = new RobotRead(ds,cui,op);
         Thread t1 = new Thread(p1);
-        GuiUpdate p2 = new GuiUpdate(ds,cui);
+        GuiUpdate p2 = new GuiUpdate(ds,cui,op);
         Thread t2 = new Thread(p2);
         System.out.println("Startar 1 trådar...");
         t1.start();t2.start(); 
@@ -505,7 +506,7 @@ public class ControlUI extends javax.swing.JFrame {
        if (startStopp.getText().equals("Start")) {
           startStopp.setText("Stop");
           startStopp.setForeground(new java.awt.Color(255, 0, 0));
-          GuiUpdate r1 = new GuiUpdate(ds, cui);
+          GuiUpdate r1 = new GuiUpdate(ds, cui,op);
           r1.run();
           
        } else if (startStopp.getText().equals("Stop")) {
