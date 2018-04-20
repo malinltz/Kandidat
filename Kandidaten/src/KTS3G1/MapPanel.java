@@ -46,8 +46,14 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
-                g.drawString(String.valueOf(ds.nodeX[i]), x, y);
-                g.drawString(String.valueOf(ds.nodeY[i]), x, y);
+               
+                //Ritar ut nodnamn (enbart y-noder just nu)
+                
+                String ritaNoder = String.valueOf(ds.nodNamn[i]);
+                String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
+                g.drawString(ritaRiktigaNoder,x,y);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+                
             }
 
             // Draw arcs

@@ -11,12 +11,22 @@ public class KTS3G1 {
     OptPlan op;
     RobotRutt RR;
 
+
     Transceiver tc; 
+
+    //Transceiver tc; 
+    //Reciver re; 
+    //String badress; 
+
+
+    //Transceiver tc; 
+
   //  Reciver re; 
 
     //Transceiver tc; 
     //Reciver re; 
     String badress; 
+
 
 
     KTS3G1() {
