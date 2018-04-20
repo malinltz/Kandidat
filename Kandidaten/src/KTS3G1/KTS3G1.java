@@ -11,12 +11,22 @@ public class KTS3G1 {
     OptPlan op;
     RobotRutt RR;
 
+
+    Transceiver tc; 
+
     //Transceiver tc; 
+    //Reciver re; 
+    //String badress; 
+
+
+    //Transceiver tc; 
+
   //  Reciver re; 
 
     //Transceiver tc; 
     //Reciver re; 
     String badress; 
+
 
 
     KTS3G1() {
@@ -70,6 +80,15 @@ public class KTS3G1 {
         t1.start();
 
 
+        while(cui.anslut == true){
+        Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();
+
+    }
+ 
+        
+ 
     }
 
     /**
