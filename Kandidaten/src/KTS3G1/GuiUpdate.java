@@ -50,9 +50,7 @@ public class GuiUpdate implements Runnable {
     public void Gui()
     {
     
-    
-    
-    
+        
     }
     
     

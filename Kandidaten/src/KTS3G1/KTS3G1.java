@@ -37,10 +37,14 @@ public class KTS3G1 {
 
        
         http = new HTTPanrop();
+        http.URL.toString();
        // cui.bluetoothAdress(badress);
-        http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
+       // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
         http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
+        
+      
+      //  http.getutmesssage();
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -71,18 +75,22 @@ public class KTS3G1 {
         Thread t4 = new Thread(p2);
         t4.start();
         */
-
-
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
         t1.start();
 
-//        while(cui.anslut == true){
-//        Transceiver p1 = new Transceiver(cui); 
-//        Thread t3 = new Thread(p1);
-//        t3.start();
-//
-//    }
+
+
+
+        while(cui.anslut == true){
+        Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();
+
+    }
+ 
+        
+ 
 
     }
 
