@@ -29,11 +29,13 @@ public class GuiUpdate implements Runnable {
             
           
 
-                while (i < op.shortestPathList.length) {
+                while (i < op.shortestPathList.length-1) {
                     Thread.sleep(sleepTime);
                     //cui.appendStatus("För " + i + ":te gången");
-                    ds.robotX = (int) ds.robotX - ds.nodeX[op.shortestPathList[i] - 1];
-                    ds.robotY = (int) ds.robotY - ds.nodeY[op.shortestPathList[i] - 1];
+                    ds.robotX = (int) ds.nodeX[op.shortestPathList[i] - 1];
+                    ds.robotY = (int) ds.nodeY[op.shortestPathList[i] - 1];
+                    System.out.println(ds.robotX);
+                    System.out.println(ds.robotX);
                     cui.repaint();
                    //System.out.println(op.shortestPathList[i]);
                    // System.out.println(ds.nodeX);
