@@ -1,5 +1,5 @@
 package KTS3G1;
-import java.util.Scanner;
+import java.awt.event.ActionListener;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -44,8 +44,7 @@ public class ControlUI extends javax.swing.JFrame {
     }
     
     void bluetoothAdress(String b) {
-        
-        
+       
     }
 
     public void myinitComponents() {
@@ -526,13 +525,13 @@ public class ControlUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+public static String blueAdress;
+
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-        Scanner scan = new Scanner(System.in);
-        String text = scan.nextLine();
-        
-             
-        
+        ActionListener lyssnar = null; 
+        blueAdress = jTextField7.getText();
+        jTextField7.addActionListener(lyssnar);
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 

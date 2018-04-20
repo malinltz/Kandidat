@@ -10,9 +10,20 @@ public class KTS3G1 {
     HTTPanrop http; 
     OptPlan op;
     RobotRutt RR;
+
     //Transceiver tc; 
     //Reciver re; 
     //String badress; 
+
+
+    //Transceiver tc; 
+  //  Reciver re; 
+
+    //Transceiver tc; 
+    //Reciver re; 
+    String badress; 
+
+
 
     KTS3G1() {
         
@@ -85,5 +96,7 @@ public class KTS3G1 {
          * and thereby, call the RobotControl constructor.
          */
         KTS3G1 x = new KTS3G1();
+     
+   
     }
 }

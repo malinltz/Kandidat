@@ -1,5 +1,5 @@
 package KTS3G1;
-
+/*
 import java.util.Random;
 import java.util.List;
 
@@ -51,24 +51,63 @@ public class RobotRutt implements Runnable {
 
     }
 
-//    public void rutt() {
-//    
-//    for (int i = 0; i < ds.nodes ;i ++) 
-//        
-//        for (ds.nodeX[list[i]]< ds.nodeX[list[i+11])
-//        {
-//            if (rutt= "m") //nästa höger
-//            if(rutt= "z") //lyssnar 
-//            if (rutt= "n")//nästa vänster
-//            if (rutt= "o")//stanna för passagerare
-//            if (rutt= "p")//nollställ alla instruktioner
-//           }
-//        
-//        }
-    
 
+    public void rutt() {
+    
+    for (int i = 0; i < ds.nodes ;i ++) 
+        
+        for (ds.nodeX[list[i]]< ds.nodeX[list[i+11])
+        {
+            if (rutt= "m") //nästa höger
+            if(rutt= "z") //lyssnar 
+            if (rutt= "n")//nästa vänster
+            if (rutt= "o")//stanna för passagerare
+            if (rutt= "p")//nollställ alla instruktioner
+           }
+        
+        }
+
+    public void rutt() {
+    
+    for (int i = 0; i < ds.nodes ;i ++) 
+        
+        if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]) //varför 11?
+        {
+            if (rutt== "m") //nästa höger
+            {}
+            if(rutt== "z") //lyssnar 
+            {}
+            if (rutt== "n")//nästa vänster
+            {}
+            if (rutt== "o")//stanna för passagerare
+            {}
+            if (rutt== "p")//nollställ alla instruktioner
+            {}
+           }
+    
+    else if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]{
+         if (rutt== "m") //nästa höger
+            {}
+            if(rutt== "z") //lyssnar 
+            {}
+            if (rutt== "n")//nästa vänster
+            {}
+            if (rutt== "o")//stanna för passagerare
+            {}
+            if (rutt== "p")//nollställ alla instruktioner
+            {}
+    }        
+        }
+    
+     for (int i = 0; i < ds.nodeY ;i ++) {}
+  
+  
+  
+  
+  
     public String gorutt() {
 
         return rutt;
     }
 }
+*/
