@@ -42,6 +42,11 @@ public class ControlUI extends javax.swing.JFrame {
         //  jTextArea2.setText(uppdragslista);
         //jScrollPane1.
     }
+    
+    void bluetoothAdress(String b) {
+        
+        
+    }
 
     public void myinitComponents() {
 

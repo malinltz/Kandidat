@@ -10,16 +10,19 @@ public class KTS3G1 {
     HTTPanrop http; 
     OptPlan op;
     RobotRutt RR;
+    Transceiver tc; 
+    Reciver re; 
+    String badress; 
 
     KTS3G1() {
-
+        
         //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
 
-
+       
         http = new HTTPanrop();
-   
+        cui.bluetoothAdress(badress);
         http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
         http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
