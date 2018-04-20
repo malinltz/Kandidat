@@ -7,10 +7,8 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-  // Transmitter tm; 
-   //Transceiver tc; 
-  //  Mirror mi;
- //   Reciver re; 
+    //Transceiver tc; 
+    //Reciver re; 
     HTTPanrop http; 
     OptPlan op;
    
@@ -47,26 +45,16 @@ public class KTS3G1 {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         cui.showStatus(http.newmesssage());
-        
-        
-        
-        // RobotRead r1 = new RobotRead(ds, cui);
-         //Thread t1 = new Thread(r1);
-         //t1.start();
-        
-         
-        OptPlan op = new OptPlan(ds);
-        op.createPlan();
 
-        GuiUpdate g1 = new GuiUpdate(ds, cui, op);
-        Thread t2 = new Thread(g1);
-        t2.start();
-        
        
-        //Transceiver p1 = new Transceiver(tc,cui); 
-        //Thread t3 = new Thread(p1);
-        //t3.start();
-        
+        /*Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();
+       
+        Reciver p2 = new Reciver(tc,cui); 
+        Thread t4 = new Thread(p2);
+        t4.start();
+        */
     }
     
     /**
