@@ -52,13 +52,13 @@ public class RobotRutt implements Runnable {
 
     }
     
-    public void rutt(){}
-       for (int i = 0; i < ds.nodes; i++) {
-            Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
-            nodes.add(location);
-    
-    public String gorutt(){
+    //public void rutt(){}
+   //    for (int i = 0; i < ds.nodes; i++) {
+           // Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
+          //  nodes.add(location);
+    //
+  //  public String gorutt(){
         
         
-    return rutt;}
+   // return rutt;}
 }

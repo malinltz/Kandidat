@@ -1,12 +1,12 @@
 package KTS3G1;
-
+import java.util.Scanner;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
     ControlUI cui;
     HTTPanrop http;
     OptPlan op;
-    //Transmitter tm;
+    //Transceiver tc;
 
     /**
      * Creates new form ControlUI
@@ -145,11 +145,11 @@ public class ControlUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Kontakt med AGV:");
 
-        jTextField6.setEditable(false);
+        jTextField6.setEditable(true);
 
         jLabel7.setText("Bluetoothkanal");
 
-        jTextField7.setEditable(false);
+        jTextField7.setEditable(true);
 
         jLabel8.setText("Bluetoothadress");
 
@@ -369,6 +369,11 @@ public class ControlUI extends javax.swing.JFrame {
         jLabel7.setText("Bluetoothkanal");
 
         jTextField7.setEditable(false);
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Bluetoothadress");
 
@@ -391,8 +396,8 @@ public class ControlUI extends javax.swing.JFrame {
                         .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(startStopp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(startStopp, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -448,9 +453,7 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addGap(25, 25, 25)
                                 .addComponent(startStopp, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(startPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8))
+                                .addComponent(startPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel3)
@@ -460,6 +463,8 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -480,22 +485,7 @@ public class ControlUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
-        // TODO add your handling code here:
 
-        cui = new ControlUI(ds);
-        cui.setVisible(true);
-        //cui.showStatus();
-        RobotRutt p1 = new RobotRutt(ds, cui, op);
-        Thread t1 = new Thread(p1);
-        GuiUpdate p2 = new GuiUpdate(ds, cui, op);
-        Thread t2 = new Thread(p2);
-        System.out.println("Startar 1 trådar...");
-        t1.start();
-        t2.start();
-
-        System.out.println("Trådar startade, main avslutas");
-        OptPlan op = new OptPlan(ds);
-        op.createPlan();
     }//GEN-LAST:event_startPositionActionPerformed
 
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -503,8 +493,19 @@ public class ControlUI extends javax.swing.JFrame {
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
+
+  
             GuiUpdate r1 = new GuiUpdate(ds, cui, op);
+            Thread t2 = new Thread(r1);
             r1.run();
+            OptPlan op = new OptPlan(ds);
+            op.createPlan();
+            
+            RobotRutt r2 = new RobotRutt(ds, cui, op);
+            Thread t1 = new Thread(r2);
+            t1.start();
+            
+
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -519,6 +520,15 @@ public class ControlUI extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+        Scanner scan = new Scanner(System.in);
+        String text = scan.nextLine();
+        
+             
+        
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
