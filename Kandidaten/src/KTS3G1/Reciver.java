@@ -1,13 +1,15 @@
-package KTS3G1;
 /*
+package KTS3G1;
+
+
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
 
-public class Reciver implements Runnable {
+public class Receiver implements Runnable {
     private ControlUI cui;
     
-      public Reciver(ControlUI cui) {
+      public Receiver(ControlUI cui) {
        
         this.cui = cui; 
         
@@ -32,7 +34,11 @@ public class Reciver implements Runnable {
             System.err.print(e.toString());
         }
     }
+
   /*  public static void
+
+   public static void
+
             main(String args[]) {
         try {
  
@@ -51,5 +57,5 @@ public class Reciver implements Runnable {
         } catch (IOException e) {
             System.err.print(e.toString());
         }
-    }*/
+    }
 

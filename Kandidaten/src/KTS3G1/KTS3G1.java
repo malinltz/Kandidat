@@ -7,24 +7,22 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-    // Transmitter tm; 
-    //Transceiver tc; 
-    //  Mirror mi;
-    //   Reciver re; 
-    HTTPanrop http;
+    HTTPanrop http; 
     OptPlan op;
     RobotRutt RR;
 
     KTS3G1() {
+
         //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
-        http = new HTTPanrop();
 
+
+        http = new HTTPanrop();
+   
         http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
         http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
-
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -45,6 +43,18 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.showStatus(http.newmesssage());
 
+
+       
+        /*Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();
+       
+        Reciver p2 = new Reciver(tc,cui); 
+        Thread t4 = new Thread(p2);
+        t4.start();
+        */
+
+
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
         t1.start();
@@ -52,10 +62,14 @@ public class KTS3G1 {
         //Transceiver p1 = new Transceiver(cui); 
         //Thread t3 = new Thread(p1);
         //t3.start();
+
         
          //Reciver p2 = new Reciver(tc,cui); 
         //Thread t4 = new Thread(p2);
         //t4.start();
+
+
+
     }
 
     /**
