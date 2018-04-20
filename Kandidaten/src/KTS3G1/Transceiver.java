@@ -77,4 +77,3 @@ public class Transceiver implements Runnable{
             System.out.print(e.toString());
         }
     }
-*/

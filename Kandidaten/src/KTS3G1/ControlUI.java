@@ -491,13 +491,13 @@ public class ControlUI extends javax.swing.JFrame {
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
     }//GEN-LAST:event_startPositionActionPerformed
-
+public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
-
+            anslut = true;
   
             GuiUpdate r1 = new GuiUpdate(ds, cui, op);
             Thread t2 = new Thread(r1);
