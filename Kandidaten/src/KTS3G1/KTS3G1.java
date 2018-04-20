@@ -12,7 +12,7 @@ public class KTS3G1 {
     RobotRutt RR;
 
 
-    Transceiver tc; 
+    //Transceiver tc; 
 
     //Transceiver tc; 
     //Reciver re; 
@@ -36,8 +36,8 @@ public class KTS3G1 {
         //re = new Reciver()
 
        
-        http = new HTTPanrop();
-        http.URL.toString();
+       // http = new HTTPanrop();
+       // http.URL.toString();
        // cui.bluetoothAdress(badress);
        // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
         http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
@@ -79,6 +79,10 @@ public class KTS3G1 {
         Thread t1 = new Thread(r1);
         t1.start();
 
+    HTTPanrop h2 = new HTTPanrop(ds, op);
+    Thread t4 = new Thread(h2);
+     t4.start();
+
 
         while(cui.anslut == true){
         Transceiver p1 = new Transceiver(cui); 
@@ -89,6 +93,7 @@ public class KTS3G1 {
  
         
  
+
     }
 
     /**

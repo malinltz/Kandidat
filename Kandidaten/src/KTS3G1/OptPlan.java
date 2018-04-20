@@ -44,6 +44,7 @@ public class OptPlan {
             //System.out.println(path.get(i)+"TJOJO"); //FUNKAR
             //System.out.println(shortestPathList[i]+"bajs"); //FUNKAR
         }
+        
 
         // Arcs in the shortest path
         for (int i = 0; i < path.size() - 1; i++) {

@@ -14,16 +14,24 @@ public class HTTPanrop implements Runnable {
     private String paragraph;
     private String url;
     private String utmessage;
-    public OptPlan OP;
+    public OptPlan op;
     public DataStore ds;
     private String gruppmessage;
     public String URL;
+     private int sleepTime;
 
+ public HTTPanrop(DataStore ds,  OptPlan op) {
+      //  this.cui = cui;
+        this.ds = ds;
+        this.op = op;
+        //sleepTime = generator.nextInt(20000);
+        sleepTime = 1000; //1000 millisekunder
+    }
     
     public void run(){
 
         url = URL;
-        OP = new OptPlan(ds);
+        op = new OptPlan(ds);
 
         try {
 
@@ -65,7 +73,7 @@ public class HTTPanrop implements Runnable {
 
     public String HTTPkontact(String URL) {
         url = URL;
-        OP = new OptPlan(ds);
+       op = new OptPlan(ds);
 
         try {
             URL urlobjekt = new URL(url);
@@ -124,8 +132,8 @@ public class HTTPanrop implements Runnable {
 
     public String HTTPuppdrag(String URL) {
 
-        url = URL;
-        OP = new OptPlan(ds);
+       url = URL;
+       op = new OptPlan(ds);
 
         try {
 

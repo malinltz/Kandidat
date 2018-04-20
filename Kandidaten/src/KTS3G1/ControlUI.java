@@ -499,12 +499,13 @@ public boolean anslut = false;
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
   
-            GuiUpdate r1 = new GuiUpdate(ds, cui, op);
-            Thread t2 = new Thread(r1);
-            r1.run();
             OptPlan op = new OptPlan(ds);
             op.createPlan();
             
+            GuiUpdate r1 = new GuiUpdate(ds, cui, op);
+            Thread t2 = new Thread(r1);
+            t2.run();
+          
             RobotRutt r2 = new RobotRutt(ds, cui, op);
             Thread t1 = new Thread(r2);
             t1.start();

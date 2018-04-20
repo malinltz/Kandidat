@@ -78,6 +78,7 @@ public class MapPanel extends JPanel {
                 g.drawLine(x1, height - y1, x2, height - y2);
             }
 
+            //Ritar ut roboten
             int x3 = (int) (ds.robotX * yscale);
             int y3 = (int) (ds.robotY * xscale);
             g.setColor(RED_COLOR);
