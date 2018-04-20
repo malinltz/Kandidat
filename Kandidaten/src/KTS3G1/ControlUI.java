@@ -486,7 +486,8 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
-    
+
+
     }//GEN-LAST:event_startPositionActionPerformed
 
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -494,6 +495,8 @@ public class ControlUI extends javax.swing.JFrame {
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
+
+  
             GuiUpdate r1 = new GuiUpdate(ds, cui, op);
             Thread t2 = new Thread(r1);
             r1.run();
@@ -504,6 +507,7 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t1 = new Thread(r2);
             t1.start();
             
+
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");

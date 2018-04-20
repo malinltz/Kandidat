@@ -1,5 +1,6 @@
-package KTS3G1;
 /*
+package KTS3G1;
+
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -11,8 +12,8 @@ public class Receiver implements Runnable {
       public Receiver(ControlUI cui) {
        
         this.cui = cui; 
-  
-
+        
+     
     }
     public void run(){
          try {
@@ -33,7 +34,11 @@ public class Receiver implements Runnable {
             System.err.print(e.toString());
         }
     }
+
+    public static void
+
    public static void
+
             main(String args[]) {
         try {
  
