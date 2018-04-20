@@ -485,7 +485,7 @@ public class ControlUI extends javax.swing.JFrame {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         //cui.showStatus();
-        RobotRead p1 = new RobotRead(ds, cui, op);
+        RobotRutt p1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(p1);
         GuiUpdate p2 = new GuiUpdate(ds, cui, op);
         Thread t2 = new Thread(p2);
