@@ -1,6 +1,5 @@
 package KTS3G1;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -530,11 +529,9 @@ public static String blueAdress;
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-
         ActionListener lyssnar = null; 
         blueAdress = jTextField7.getText();
         jTextField7.addActionListener(lyssnar);
- 
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 
