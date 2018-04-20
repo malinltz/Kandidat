@@ -10,8 +10,14 @@ public class KTS3G1 {
     HTTPanrop http; 
     OptPlan op;
     RobotRutt RR;
+
     //Transceiver tc; 
   //  Reciver re; 
+
+    //Transceiver tc; 
+    //Reciver re; 
+    String badress; 
+
 
     KTS3G1() {
         
@@ -19,7 +25,7 @@ public class KTS3G1 {
         //tm = new Transmitter();
         //re = new Reciver()
 
-        String badress; 
+       
         http = new HTTPanrop();
        // cui.bluetoothAdress(badress);
         http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
@@ -84,5 +90,7 @@ public class KTS3G1 {
          * and thereby, call the RobotControl constructor.
          */
         KTS3G1 x = new KTS3G1();
+     
+   
     }
 }

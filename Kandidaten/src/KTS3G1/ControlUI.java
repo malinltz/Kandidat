@@ -45,8 +45,7 @@ public class ControlUI extends javax.swing.JFrame {
     }
     
     void bluetoothAdress(String b) {
-        
-        
+       
     }
 
     public void myinitComponents() {
@@ -492,8 +491,6 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
-
-
     }//GEN-LAST:event_startPositionActionPerformed
 
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -509,7 +506,7 @@ public class ControlUI extends javax.swing.JFrame {
             OptPlan op = new OptPlan(ds);
             op.createPlan();
             
-            RobotRead r2 = new RobotRead(ds, cui, op);
+            RobotRutt r2 = new RobotRutt(ds, cui, op);
             Thread t1 = new Thread(r2);
             t1.start();
             
@@ -529,15 +526,15 @@ public class ControlUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+public static String blueAdress;
+
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
 
         ActionListener lyssnar = null; 
-        String adress = jTextField7.getText();
+        blueAdress = jTextField7.getText();
         jTextField7.addActionListener(lyssnar);
-        System.out.println(adress);
-             
-        
+ 
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 

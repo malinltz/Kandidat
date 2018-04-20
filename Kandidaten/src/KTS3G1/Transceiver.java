@@ -47,7 +47,7 @@ public class Transceiver implements Runnable{
     }
         
     }
-/*
+
 
 /*      HA KVAR IFALL ATT!
     public static void
