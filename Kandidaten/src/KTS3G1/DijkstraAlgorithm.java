@@ -46,6 +46,7 @@ public class DijkstraAlgorithm {
             settledNodes.add(node);
             unSettledNodes.remove(node);
             findMinimalDistances(node);
+            
         }
     }
 
@@ -133,3 +134,4 @@ public class DijkstraAlgorithm {
     }
 }
 
+//kolla om vi behöver redigera denna

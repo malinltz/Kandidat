@@ -3,7 +3,7 @@ package KTS3G1;
 import java.util.Random;
 import java.util.List;
 
-public class RobotRead implements Runnable {
+public class RobotRutt implements Runnable {
 
     private int sleepTime;
     private static Random generator = new Random();
@@ -13,7 +13,7 @@ public class RobotRead implements Runnable {
     public String rutt;
    
 
-    public RobotRead(DataStore ds, ControlUI cui, OptPlan op) {
+    public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
         this.cui = cui;
         this.ds = ds;
@@ -26,16 +26,16 @@ public class RobotRead implements Runnable {
     public void run() {
         try {
 
-            cui.appendStatus("RobotRead kommer att köra i " + sleepTime + "millisekunder.");
+            cui.appendStatus("Jag heter Wall-E kommer att köra i " + sleepTime + "millisekunder.");
             int i = 1;
             while (i < 10) {
                 Thread.sleep(sleepTime / 10);
-                cui.appendStatus("Jag är tråd RobotRead! För " + i + ":te gången.");
+                cui.appendStatus("Jag är Wall-E! För " + i + ":te gången.");
                 i++;
 
                 while (i <= 20) {
                     Thread.sleep(sleepTime / 10);
-                    cui.appendStatus("Jag är tråd RobotRead! För " + i + ":te gången.");
+                    cui.appendStatus("Jag är Wall-E ! För " + i + ":te gången.");
                     ds.updateUIflag = true;
                     i++;
 
@@ -44,7 +44,7 @@ public class RobotRead implements Runnable {
 
         } catch (InterruptedException exception) {
         }
-        cui.appendStatus("RobotRead är nu klar!");
+        cui.appendStatus("Wall-E är nu klar!");
 
     }
     

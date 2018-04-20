@@ -1,5 +1,6 @@
 package KTS3G1;
 /*
+
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
@@ -32,7 +33,7 @@ public class Receiver implements Runnable {
             System.err.print(e.toString());
         }
     }
-  /*  public static void
+   public static void
             main(String args[]) {
         try {
  
@@ -51,5 +52,5 @@ public class Receiver implements Runnable {
         } catch (IOException e) {
             System.err.print(e.toString());
         }
-    }*/
+    }
 
