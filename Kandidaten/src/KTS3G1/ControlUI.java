@@ -1,4 +1,5 @@
 package KTS3G1;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 public class ControlUI extends javax.swing.JFrame {
 
@@ -530,9 +531,11 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-        Scanner scan = new Scanner(System.in);
-        String text = scan.nextLine();
-        
+
+        ActionListener lyssnar = null; 
+        String adress = jTextField7.getText();
+        jTextField7.addActionListener(lyssnar);
+        System.out.println(adress);
              
         
     }//GEN-LAST:event_jTextField7ActionPerformed
