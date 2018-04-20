@@ -16,7 +16,7 @@ public class KTS3G1 {
     RobotRutt RR;
 
     KTS3G1() {
-
+        //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
         http = new HTTPanrop();
@@ -49,16 +49,13 @@ public class KTS3G1 {
         Thread t1 = new Thread(r1);
         t1.start();
 
-        OptPlan op = new OptPlan(ds);
-        op.createPlan();
-
-        GuiUpdate g1 = new GuiUpdate(ds, cui, op);
-        Thread t2 = new Thread(g1);
-        t2.start();
-
-        //Transceiver p1 = new Transceiver(tc,cui); 
+        //Transceiver p1 = new Transceiver(cui); 
         //Thread t3 = new Thread(p1);
         //t3.start();
+        
+         //Reciver p2 = new Reciver(tc,cui); 
+        //Thread t4 = new Thread(p2);
+        //t4.start();
     }
 
     /**

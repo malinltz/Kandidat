@@ -482,20 +482,7 @@ public class ControlUI extends javax.swing.JFrame {
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
         // TODO add your handling code here:
 
-        cui = new ControlUI(ds);
-        cui.setVisible(true);
-        //cui.showStatus();
-        RobotRead p1 = new RobotRead(ds, cui, op);
-        Thread t1 = new Thread(p1);
-        GuiUpdate p2 = new GuiUpdate(ds, cui, op);
-        Thread t2 = new Thread(p2);
-        System.out.println("Startar 1 trådar...");
-        t1.start();
-        t2.start();
-
-        System.out.println("Trådar startade, main avslutas");
-        OptPlan op = new OptPlan(ds);
-        op.createPlan();
+        
     }//GEN-LAST:event_startPositionActionPerformed
 
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -503,8 +490,19 @@ public class ControlUI extends javax.swing.JFrame {
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
-            GuiUpdate r1 = new GuiUpdate(ds, cui, op);
-            r1.run();
+           
+            
+        cui = new ControlUI(ds);
+        cui.setVisible(true);
+        //cui.showStatus();
+        RobotRead p1 = new RobotRead(ds, cui, op);
+        Thread t1 = new Thread(p1);
+        GuiUpdate p2 = new GuiUpdate(ds, cui, op);
+        Thread t2 = new Thread(p2);
+        t1.start();
+        t2.start();
+        OptPlan op = new OptPlan(ds);
+        op.createPlan();
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
