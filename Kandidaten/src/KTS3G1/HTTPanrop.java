@@ -8,7 +8,7 @@ import java.util.List;
 import java.io.DataOutputStream;
 import java.util.regex.Pattern;
 
-public class HTTPanrop {
+public class HTTPanrop implements Runnable {
 
     private String message;
     private String paragraph;
@@ -17,8 +17,10 @@ public class HTTPanrop {
     public OptPlan OP;
     public DataStore ds;
     private String gruppmessage;
+    public String URL;
 
-    public String HTTPanrop(String URL) {
+    
+    public void run(){
 
         url = URL;
         OP = new OptPlan(ds);
@@ -57,8 +59,8 @@ public class HTTPanrop {
         } catch (Exception e) {
             System.out.print(e.toString());
 
-        }
-        return message;
+       }
+       // return message;
     }
 
     public String HTTPkontact(String URL) {
