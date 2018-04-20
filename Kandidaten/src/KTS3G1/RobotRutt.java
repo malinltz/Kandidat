@@ -13,7 +13,6 @@ public class RobotRutt implements Runnable {
     public String rutt;
     public int[] list;
     public int go;
-   
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
@@ -29,7 +28,7 @@ public class RobotRutt implements Runnable {
     public void run() {
         try {
 
-          list = op.getIndex();
+            list = op.getIndex();
             cui.appendStatus("Jag heter Wall-E och kommer att köra i " + sleepTime + "millisekunder.");
             int i = 1;
             while (i < 10) {
@@ -51,14 +50,25 @@ public class RobotRutt implements Runnable {
         cui.appendStatus("Wall-E är nu klar!");
 
     }
+
+    public void rutt() {
     
-    //public void rutt(){}
-   //    for (int i = 0; i < ds.nodes; i++) {
-           // Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
-          //  nodes.add(location);
-    //
-  //  public String gorutt(){
+    for (int i = 0; i < ds.nodes ;i ++) 
         
+        for (ds.nodeX[list[i]]< ds.nodeX[list[i+11])
+        {
+            if (rutt= "m") //nästa höger
+            if(rutt= "z") //lyssnar 
+            if (rutt= "n")//nästa vänster
+            if (rutt= "o")//stanna för passagerare
+            if (rutt= "p")//nollställ alla instruktioner
+           }
         
-   // return rutt;}
+        }
+    
+
+    public String gorutt() {
+
+        return rutt;
+    }
 }
