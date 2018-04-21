@@ -8,19 +8,30 @@ import java.util.List;
 import java.io.DataOutputStream;
 import java.util.regex.Pattern;
 
-public class HTTPanrop {
+public class HTTPanrop implements Runnable {
 
     private String message;
     private String paragraph;
     private String url;
     private String utmessage;
-    public OptPlan OP;
+    public OptPlan op;
     public DataStore ds;
+    private String gruppmessage;
+    public String URL;
+     private int sleepTime;
 
-    public String HTTPanrop(String URL) {
+ public HTTPanrop(DataStore ds,  OptPlan op) {
+      //  this.cui = cui;
+        this.ds = ds;
+        this.op = op;
+        //sleepTime = generator.nextInt(20000);
+        sleepTime = 1000; //1000 millisekunder
+    }
+    
+    public void run(){
 
         url = URL;
-        OP = new OptPlan(ds);
+        op = new OptPlan(ds);
 
         try {
 
@@ -45,23 +56,24 @@ public class HTTPanrop {
             message = inkommande_samlat.toString();
             System.out.println(message);
 
-            String[] paras = message.split(";");
+            String[] paras = message.split(" ");
 
             for (int i = 0; i < paras.length; i++) {
-                 paragraph = paras[i];
+
+                paragraph = paras[i];
                 System.out.println("Parametrar: " + paragraph);
             }
 
         } catch (Exception e) {
             System.out.print(e.toString());
 
-        }
-        return message;
+       }
+       // return message;
     }
 
     public String HTTPkontact(String URL) {
         url = URL;
-        OP = new OptPlan(ds);
+       op = new OptPlan(ds);
 
         try {
             URL urlobjekt = new URL(url);
@@ -72,7 +84,8 @@ public class HTTPanrop {
             //con.setRequestProperty("User-Agent", USER_AGENT);
             //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = "putmessage.php?groupid=1&messagetype=2&message=test";
+
+            String urlParameters = message;
 
             // Send post request
             anslutning.setDoOutput(true);
@@ -88,7 +101,7 @@ public class HTTPanrop {
             System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
-                    new InputStreamReader(anslutning.getInputStream()));
+            new InputStreamReader(anslutning.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
@@ -100,6 +113,14 @@ public class HTTPanrop {
             utmessage = response.toString();
             System.out.println(utmessage);
 
+            String[] paras = utmessage.split(";" + "");
+
+            for (int i = 0; i < paras.length; i++) {
+                paragraph = paras[i];
+             
+                System.out.println("Parametrar: " + paragraph);
+
+            }
         } catch (Exception e) {
 
             //print result
@@ -108,6 +129,46 @@ public class HTTPanrop {
         return utmessage;
 
     }
+
+    public String HTTPuppdrag(String URL) {
+
+       url = URL;
+       op = new OptPlan(ds);
+
+        try {
+
+            URL urlobjekt = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
+            System.out.println("\nAnropar: " + url);
+
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text;
+            StringBuffer inkommande_samlat = new StringBuffer();
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+            }
+
+            inkommande.close();
+            gruppmessage = inkommande_samlat.toString();
+            System.out.println(gruppmessage);
+
+            String[] paras = gruppmessage.split(";" + "");
+
+            for (int i = 0; i < paras.length; i++) {
+                paragraph = paras[i];
+                System.out.println("Parametrar: " + paragraph);
+            }
+//
+        } catch (Exception e) {
+            System.out.print(e.toString());
+
+        }
+        return gruppmessage;
+    }
+    
 
     public String newmesssage() {
 
@@ -119,4 +180,8 @@ public class HTTPanrop {
         return utmessage;
     }
 
+    public String gruppmessages() {
+
+        return gruppmessage;
+    }
 }

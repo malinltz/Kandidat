@@ -1,10 +1,11 @@
 package KTS3G1;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
+
  */
 public class DataStore {
 
@@ -13,6 +14,7 @@ public class DataStore {
     int arcs;
     double[] nodeX;
     double[] nodeY;
+    double[] nodNamn;
     int[] arcStart;
     int[] arcEnd;
     int[] arcCost;
@@ -29,6 +31,7 @@ public class DataStore {
         arcs = 0;
         nodeX = new double[1000];
         nodeY = new double[1000];
+        nodNamn = new double[1000];
         arcStart = new int[1000];
         arcEnd = new int[1000];
         arcCost = new int[1000];
@@ -73,14 +76,23 @@ public class DataStore {
             for (int i = 0; i < nodes; i++) {
                 line = scanner.nextLine();
                 //split space separated data on line
+
                 sline = line.split(" ");
+
+                nodNamn[i] = Double.parseDouble(sline[0].trim());
                 nodeX[i] = Double.parseDouble(sline[1].trim());
                 nodeY[i] = Double.parseDouble(sline[2].trim());
+                
+                
+                //System.out.println(nodeX[i]+" X");
+                //System.out.println(nodeY[i]+" Y");
             }
-
+            for (int i=0; i< nodes; i++)
+            {
             // Debug printout: print data for node 1
-            System.out.println("Node 1: " + nodeX[0] + " " + nodeY[0]);
-
+            //System.out.println("Node: " + nodeX[i] + " " + nodeY[i]);
+            //System.out.println("Node 2: " + nodeX[1] + " " + nodeY[1]);
+            }
             // Read arc list as start node number, end node number
             for (int i = 0; i < arcs; i++) {
                 line = scanner.nextLine();
@@ -90,14 +102,16 @@ public class DataStore {
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
                 arcCost[i] = Integer.parseInt(sline[2].trim());
 
+                
             }
 
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 
-            robotX = nodeX[70];
-            robotY = nodeY[70];
+            robotX = nodeX[0];
+            robotY = nodeY[0];
 
+            
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

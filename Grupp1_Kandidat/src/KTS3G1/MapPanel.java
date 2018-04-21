@@ -26,7 +26,7 @@ public class MapPanel extends JPanel {
         int x1, y1;
         int x2, y2;
 
-        final int circlesize = 7;
+        final int circlesize = 8;
         final int ysize = 350;
         final int xsize = 700;
 
@@ -46,6 +46,14 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
+               
+                //Ritar ut nodnamn (enbart y-noder just nu)
+                
+                String ritaNoder = String.valueOf(ds.nodNamn[i]);
+                String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
+                g.drawString(ritaRiktigaNoder,x,y);
+                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+                
             }
 
             // Draw arcs
@@ -54,17 +62,14 @@ public class MapPanel extends JPanel {
                 y1 = (int) (ds.nodeY[ds.arcStart[i] - 1] * yscale);
                 x2 = (int) (ds.nodeX[ds.arcEnd[i] - 1] * xscale);
                 y2 = (int) (ds.nodeY[ds.arcEnd[i] - 1] * yscale);
+
+                //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-             
-
-                g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+                //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
+                // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
-                
-                
-                // System.out.println("Arc "+i+": "+ds.arcStart[i]+" "+ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
                 } else {
@@ -73,11 +78,12 @@ public class MapPanel extends JPanel {
                 g.drawLine(x1, height - y1, x2, height - y2);
             }
 
+            //Ritar ut roboten
             int x3 = (int) (ds.robotX * yscale);
             int y3 = (int) (ds.robotY * xscale);
             g.setColor(RED_COLOR);
-            g.drawOval(x3 - ((circlesize + 10)/ 2), height - y3 - ((circlesize + 10)) / 2, circlesize + 10, circlesize + 10);
- 
-            }
+            g.drawOval(x3 - ((circlesize + 10) / 2), height - y3 - ((circlesize + 10)) / 2, circlesize + 10, circlesize + 10);
+
+        }
     }// end paintComponent
 }
