@@ -1,5 +1,5 @@
 package KTS3G1;
-/*
+
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
@@ -8,18 +8,21 @@ import java.lang.*;
 
 public class Transceiver implements Runnable{
    
-        private  Transceiver tc;
+    
         private ControlUI cui;
         
-    public Transceiver(Transceiver tc,ControlUI cui) {
-        this.tc = tc;
+    public Transceiver(ControlUI cui) {
+
         this.cui = cui; 
 
     }
+
        public void run (){
         try {
            cui.appendStatus("Ansluter till AGV");
+           // btspp://201410149018:1
             StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
+            System.out.print("Ansluter till: " + cui.bAdress());
             PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
             BufferedReader bluetooth_in
@@ -45,7 +48,7 @@ public class Transceiver implements Runnable{
             
         }
     }
-        
+       
     }
 
 

@@ -498,18 +498,6 @@ public boolean anslut = false;
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
-  
-            OptPlan op = new OptPlan(ds);
-            op.createPlan();
-            
-            GuiUpdate r1 = new GuiUpdate(ds, cui, op);
-            Thread t2 = new Thread(r1);
-            t2.run();
-          
-            RobotRutt r2 = new RobotRutt(ds, cui, op);
-            Thread t1 = new Thread(r2);
-            t1.start();
-            
 
 
         } else if (startStopp.getText().equals("Stop")) {
@@ -527,14 +515,16 @@ public boolean anslut = false;
     }//GEN-LAST:event_jTextField3ActionPerformed
 
 public static String blueAdress;
+public String bAdress(){
+    return jTextField7.getText();
+}
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
         ActionListener lyssnar = null; 
-        blueAdress = jTextField7.getText();
-        blueAdress = blueAdress.replace(":", "");
-        jTextField7.addActionListener(lyssnar);
-           
+      //  blueAdress = jTextField7.getText();
+      //  blueAdress = blueAdress.replace(":", "");
+       // jTextField7.addActionListener(lyssnar);
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 
