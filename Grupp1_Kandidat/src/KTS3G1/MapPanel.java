@@ -37,6 +37,12 @@ public class MapPanel extends JPanel {
             int width = getWidth();
             double xscale = 1.0 * width / xsize;
             double yscale = 1.0 * height / ysize;
+            
+            //Ritar ut roboten
+            int xRobot = (int) (ds.robotX * yscale);
+            int yRobot = (int) (ds.robotY * xscale);
+            g.setColor(RED_COLOR);
+            g.drawOval(xRobot - ((circlesize+10) / 2), height - yRobot - (circlesize+10) / 2, circlesize + 10, circlesize + 10);
 
             g.setColor(DARK_COLOR);
 
@@ -78,12 +84,6 @@ public class MapPanel extends JPanel {
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
             }
-
-            //Ritar ut roboten
-            int x3 = (int) (ds.robotX * yscale);
-            int y3 = (int) (ds.robotY * xscale);
-            g.setColor(RED_COLOR);
-            g.drawOval(x3 - ((circlesize + 10) / 2), height - y3 - ((circlesize + 10)) / 2, circlesize + 10, circlesize + 10);
 
         }
     }// end paintComponent

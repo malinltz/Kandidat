@@ -153,7 +153,6 @@ public class HTTPanrop implements Runnable {
         {
             System.out.print(k.toString());
     }
-
    /* public String HTTPkontact(String URL) {
        url = URL;
        op = new OptPlan(ds);

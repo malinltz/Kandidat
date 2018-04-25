@@ -8,18 +8,20 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    private int start = 40;
-    private int slut = 70;
+    public int start = 15;
+    public int slut = 20;
     public int[] shortestPathList = new int[1000];
 
     public OptPlan(DataStore ds) {
         this.ds = ds;
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
+
     }
 
     public void createPlan() {
 
+        nodes = new ArrayList<Vertex>();
+        edges = new ArrayList<Edge>();
+        
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
@@ -35,8 +37,8 @@ public class OptPlan {
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         
         // Compute shortest path
-        dijkstra.execute(nodes.get(start));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut));
+        dijkstra.execute(nodes.get(start-1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut-1));
         
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
@@ -65,5 +67,3 @@ public class OptPlan {
         
     } 
 }
-    
-

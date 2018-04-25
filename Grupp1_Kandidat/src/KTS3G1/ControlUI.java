@@ -505,13 +505,13 @@ public boolean anslut = false;
             OptPlan op = new OptPlan(ds);
             op.createPlan();
             
-            GuiUpdate r1 = new GuiUpdate(ds, cui, op);
-            Thread t2 = new Thread(r1);
-            t2.run();
-          
-            RobotRutt r2 = new RobotRutt(ds, cui, op);
-            Thread t1 = new Thread(r2);
+            GuiUpdate r1 = new GuiUpdate(ds, this, op);
+            Thread t1 = new Thread(r1);
             t1.start();
+          
+            RobotRutt r2 = new RobotRutt(ds, this, op);
+            Thread t2 = new Thread(r2);
+            t2.start();
             
 
 

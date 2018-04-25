@@ -65,13 +65,13 @@ public class KTS3G1 {
         Thread t4 = new Thread(p2);
         t4.start();
          */
-        GuiUpdate G1 = new GuiUpdate(ds, cui, op);
+       /* GuiUpdate G1 = new GuiUpdate(ds, cui, op);
         Thread t5 = new Thread(G1);
         t5.start();
 
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
-        t1.start();
+        t1.start(); */
 
         HTTPanrop h2 = new HTTPanrop(ds, op);
         Thread t4 = new Thread(h2);
@@ -83,8 +83,7 @@ public class KTS3G1 {
             t3.start();
 
         }*/
-        OptPlan op = new OptPlan(ds);
-        op.createPlan();
+       
     }
 
     /**
