@@ -532,7 +532,9 @@ public static String blueAdress;
         // TODO add your handling code here:
         ActionListener lyssnar = null; 
         blueAdress = jTextField7.getText();
+        blueAdress = blueAdress.replace(":", "");
         jTextField7.addActionListener(lyssnar);
+           
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 
