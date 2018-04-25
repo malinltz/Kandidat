@@ -2,7 +2,13 @@
 package KTS3G1;
 
 import java.io.*;
+import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.DocumentListener;
+
 import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -22,6 +28,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         myinitComponents();
         setTitle("Grupp 1");
+        
     }
 
     String uppdragslista = "";
@@ -47,8 +54,11 @@ public class ControlUI extends javax.swing.JFrame {
     }
     
     void bluetoothAdress(String b) {
-       
-    }
+        jTextField7.setText("" + b);
+        
+        
+}
+    
 
     public void myinitComponents() {
 
@@ -136,6 +146,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+                
             }
         });
 
@@ -143,6 +154,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
+                cui.appendStatus("Ansluter till AGV");
             }
         });
 
@@ -530,6 +542,7 @@ public boolean anslut = false;
     }//GEN-LAST:event_jTextField3ActionPerformed
 
 public static String blueAdress;
+ 
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
@@ -537,7 +550,16 @@ public static String blueAdress;
         //blueAdress = jTextField7.getText();
         //blueAdress = blueAdress.replace(":", "");
         //jTextField7.addActionListener(lyssnar);
-   try{
+       
+        
+       
+
+        
+
+       
+   
+
+   /*try{
         BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String myString = "";
         while (!myString.equals("")){
@@ -545,7 +567,7 @@ public static String blueAdress;
         jTextField7.setText("" + myString);}
         jTextField7.setText("hej");
         }catch(IOException e){jTextField7.setText("error");};
-              
+        */      
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 

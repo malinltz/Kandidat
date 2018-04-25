@@ -25,7 +25,7 @@ public class KTS3G1 {
 
     //Transceiver tc; 
     //Reciver re; 
-    String badress; 
+    String badress="201410149018:1"; 
 
 
 
@@ -63,6 +63,8 @@ public class KTS3G1 {
          */
         cui = new ControlUI(ds);
         cui.setVisible(true);
+        cui.bluetoothAdress(badress);
+        
 //        cui.showStatus(http.newmesssage());
 
 
@@ -82,6 +84,10 @@ public class KTS3G1 {
     HTTPanrop h2 = new HTTPanrop(ds, op);
     Thread t4 = new Thread(h2);
      t4.start();
+     
+   
+     
+     
 
 
 //        while(cui.anslut == true){

@@ -5,6 +5,8 @@ import javax.microedition.io.*;
 import javax.bluetooth.*;
 import java.lang.*;
 
+public 
+
 
 public class Transceiver implements Runnable{
    
