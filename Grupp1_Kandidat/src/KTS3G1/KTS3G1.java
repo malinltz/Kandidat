@@ -63,7 +63,7 @@ public class KTS3G1 {
          */
         cui = new ControlUI(ds);
         cui.setVisible(true);
-//        cui.showStatus(http.newmesssage());
+      //  cui.showStatus(http.newmesssage());
 
 
        
