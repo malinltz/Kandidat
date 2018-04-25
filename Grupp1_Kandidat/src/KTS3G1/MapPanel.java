@@ -25,6 +25,7 @@ public class MapPanel extends JPanel {
         int x, y;
         int x1, y1;
         int x2, y2;
+        
 
         final int circlesize = 10;
         final int ysize = 350;
@@ -72,6 +73,8 @@ public class MapPanel extends JPanel {
                 //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
+                
+                ds.arcCost[i] = dist;
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 

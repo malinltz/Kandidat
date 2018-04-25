@@ -27,14 +27,14 @@ public class GuiUpdate implements Runnable {
             
             int[] kortaste = op.getIndex();
 
-            while (i <= kortaste.length) {
+            while (i <= kortaste.length-1) {
                 Thread.sleep(sleepTime);
                 
                 //cui.appendStatus("Jag är tråd GuiUpdate! För " + i + ":te gången.");
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
                 
-                //System.out.println(kortaste[i]);
+                //System.out.println(ds.robotX);
                 i++;
 
                 cui.repaint();
