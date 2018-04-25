@@ -1,5 +1,8 @@
+
 package KTS3G1;
-import java.awt.event.ActionListener;
+
+import java.io.*;
+import java.io.InputStreamReader;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -530,11 +533,19 @@ public static String blueAdress;
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-        ActionListener lyssnar = null; 
-        blueAdress = jTextField7.getText();
-        blueAdress = blueAdress.replace(":", "");
-        jTextField7.addActionListener(lyssnar);
-           
+       // ActionListener lyssnar = null; 
+        //blueAdress = jTextField7.getText();
+        //blueAdress = blueAdress.replace(":", "");
+        //jTextField7.addActionListener(lyssnar);
+   try{
+        BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String myString = "";
+        while (!myString.equals("")){
+        myString = myBufferedReader.readLine();
+        jTextField7.setText("" + myString);}
+        jTextField7.setText("hej");
+        }catch(IOException e){jTextField7.setText("error");};
+              
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 
