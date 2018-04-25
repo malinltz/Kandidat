@@ -19,11 +19,11 @@ public class HTTPanrop implements Runnable {
     public OptPlan op;
     public DataStore ds;
     private String gruppmessage;
-    public String URL1;
-    public String URL2;
-    public String URL3;
-     private int sleepTime;
-
+    private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
+    private static String URL2 = ("http://tnk111.n7.se/listaplatser.php");
+    private static String URL3 = ("http://tnk111.n7.se/listaplatser.php");;
+    private int sleepTime;
+     
  public HTTPanrop(DataStore ds, OptPlan op) {
       //  this.cui = cui;
         this.ds = ds;

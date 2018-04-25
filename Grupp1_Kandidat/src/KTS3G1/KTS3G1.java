@@ -28,15 +28,15 @@ public class KTS3G1 {
         //re = new Reciver()
         http = new HTTPanrop(ds, op);
 
-        http.URL1 = ("http://tnk111.n7.se/listaplatser.php");
-        http.URL2 = ("http://tnk111.n7.se/listaplatser.php");
-        http.URL3 = ("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL1 = ("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL2 = ("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL3 = ("http://tnk111.n7.se/listaplatser.php");
 
         // cui.bluetoothAdress(badress);
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
-        //  http.getutmesssage();
+         http.getutmesssage();
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
