@@ -71,11 +71,12 @@ public class KTS3G1 {
 
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
-        t1.start(); */
+        t1.start();
 
         HTTPanrop h2 = new HTTPanrop(ds, op);
         Thread t4 = new Thread(h2);
         t4.start();
+         */
 
         /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);

@@ -1,8 +1,8 @@
-
 package KTS3G1;
 
 import java.io.*;
 import java.io.InputStreamReader;
+
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -22,6 +22,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         myinitComponents();
         setTitle("Grupp 1");
+      
     }
 
     String uppdragslista = "";
@@ -45,9 +46,9 @@ public class ControlUI extends javax.swing.JFrame {
         //  jTextArea2.setText(uppdragslista);
         //jScrollPane1.
     }
-    
+
     void bluetoothAdress(String b) {
-       
+
     }
 
     public void myinitComponents() {
@@ -511,26 +512,28 @@ public class ControlUI extends javax.swing.JFrame {
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
     }//GEN-LAST:event_startPositionActionPerformed
-public boolean anslut = false;
+    public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
-  
+
             OptPlan op = new OptPlan(ds);
             op.createPlan();
-            
+
             GuiUpdate r1 = new GuiUpdate(ds, this, op);
             Thread t1 = new Thread(r1);
             t1.start();
-          
+
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t2 = new Thread(r2);
             t2.start();
-            
 
+            HTTPanrop h2 = new HTTPanrop(ds, op);
+            Thread t4 = new Thread(h2);
+            t4.start();
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -546,23 +549,26 @@ public boolean anslut = false;
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-public static String blueAdress;
+    public static String blueAdress;
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-       // ActionListener lyssnar = null; 
+        // ActionListener lyssnar = null; 
         //blueAdress = jTextField7.getText();
         //blueAdress = blueAdress.replace(":", "");
         //jTextField7.addActionListener(lyssnar);
-   try{
-        BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String myString = "";
-        while (!myString.equals("")){
-        myString = myBufferedReader.readLine();
-        jTextField7.setText("" + myString);}
-        jTextField7.setText("hej");
-        }catch(IOException e){jTextField7.setText("error");};
-              
+        try {
+            BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String myString = "";
+            while (!myString.equals("")) {
+                myString = myBufferedReader.readLine();
+                jTextField7.setText("" + myString);
+            }
+            jTextField7.setText("hej");
+        } catch (IOException e) {
+            jTextField7.setText("error");
+        };
+
     }//GEN-LAST:event_jTextField7ActionPerformed
 
 
