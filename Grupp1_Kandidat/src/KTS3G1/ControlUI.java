@@ -569,6 +569,11 @@ public class ControlUI extends javax.swing.JFrame {
             t4.start();
             
 
+            /*Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();*/
+
+
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
