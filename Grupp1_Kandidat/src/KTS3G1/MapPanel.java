@@ -26,7 +26,7 @@ public class MapPanel extends JPanel {
         int x1, y1;
         int x2, y2;
 
-        final int circlesize = 8;
+        final int circlesize = 10;
         final int ysize = 350;
         final int xsize = 700;
 
