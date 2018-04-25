@@ -21,18 +21,19 @@ public class HTTPanrop implements Runnable {
     private String gruppmessage;
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     private static String URL2 = ("http://tnk111.n7.se/listaplatser.php");
-    private static String URL3 = ("http://tnk111.n7.se/listaplatser.php");;
+    private static String URL3 = ("http://tnk111.n7.se/listaplatser.php");
+    ;
     private int sleepTime;
-     
- public HTTPanrop(DataStore ds, OptPlan op) {
-      //  this.cui = cui;
+
+    public HTTPanrop(DataStore ds, OptPlan op) {
+        //  this.cui = cui;
         this.ds = ds;
         this.op = op;
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
-    
-    public void run(){
+
+    public void run() {
 
         url1 = URL1;
         url2 = URL2;
@@ -40,7 +41,7 @@ public class HTTPanrop implements Runnable {
         op = new OptPlan(ds);
 
         try { // Kopplar upp till listan
-           // String url1 = "http://tnk111.n7.se"; 
+            // String url1 = "http://tnk111.n7.se"; 
             URL urlobjekt1 = new URL(url1);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url1);
@@ -68,11 +69,13 @@ public class HTTPanrop implements Runnable {
                 System.out.println("Parametrar: " + paragraph);
             }
 
+            Thread.sleep(2000); //vilken sleeptime?
+
         } catch (Exception e) {
             System.out.print(e.toString());
 
-       }
-         try {
+        }
+        try {
             URL urlobjekt2 = new URL(url2);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
 
@@ -97,7 +100,7 @@ public class HTTPanrop implements Runnable {
             System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
-            new InputStreamReader(anslutning.getInputStream()));
+                    new InputStreamReader(anslutning.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
@@ -113,47 +116,53 @@ public class HTTPanrop implements Runnable {
 
             for (int i = 0; i < paras.length; i++) {
                 paragraph = paras[i];
-             
+
                 System.out.println("Parametrar: " + paragraph);
 
             }
+            Thread.sleep(2000); //vilken sleeptime?
+
         } catch (Exception e) {
 
             //print result
             System.out.println(e.toString());
-            
+
             try {
 
-            URL urlobjekt3 = new URL(url3);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
-            System.out.println("\nAnropar: " + url3);
+                URL urlobjekt3 = new URL(url3);
+                HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
+                System.out.println("\nAnropar: " + url3);
 
-            int mottagen_status = anslutning.getResponseCode();
-            System.out.println("Statuskod: " + mottagen_status);
+                int mottagen_status = anslutning.getResponseCode();
+                System.out.println("Statuskod: " + mottagen_status);
 
-            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-            String inkommande_text;
-            StringBuffer inkommande_samlat = new StringBuffer();
-            while ((inkommande_text = inkommande.readLine()) != null) {
-                inkommande_samlat.append(inkommande_text);
+                BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+                String inkommande_text;
+                StringBuffer inkommande_samlat = new StringBuffer();
+                while ((inkommande_text = inkommande.readLine()) != null) {
+                    inkommande_samlat.append(inkommande_text);
+                }
+
+                inkommande.close();
+                gruppmessage = inkommande_samlat.toString();
+                System.out.println(gruppmessage);
+
+                String[] paras = gruppmessage.split(";" + "");
+
+                for (int i = 0; i < paras.length; i++) {
+                    paragraph = paras[i];
+                    System.out.println("Parametrar: " + paragraph);
+                }
+
+            } catch (Exception k) {
+                System.out.print(k.toString());
             }
 
-            inkommande.close();
-            gruppmessage = inkommande_samlat.toString();
-            System.out.println(gruppmessage);
+        }
 
-            String[] paras = gruppmessage.split(";" + "");
-
-            for (int i = 0; i < paras.length; i++) {
-                paragraph = paras[i];
-                System.out.println("Parametrar: " + paragraph);
-            }
-
-        } catch (Exception k) 
-        {
-            System.out.print(k.toString());
     }
-   /* public String HTTPkontact(String URL) {
+
+    /* public String HTTPkontact(String URL) {
        url = URL;
        op = new OptPlan(ds);
 
@@ -249,11 +258,7 @@ public class HTTPanrop implements Runnable {
 
         }
         return gruppmessage;
- */
-    
-        }
-    }
-
+     */
     public String newmesssage() {
 
         return message;
@@ -269,5 +274,3 @@ public class HTTPanrop implements Runnable {
         return gruppmessage;
     }
 }
-
-

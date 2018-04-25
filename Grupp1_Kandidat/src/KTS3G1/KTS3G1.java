@@ -20,10 +20,6 @@ public class KTS3G1 {
     String badress="201410149018"; 
     String kanal = "1";
 
-
-
-    
-    
     String URL1;
     String URL2;
     String URL3;
