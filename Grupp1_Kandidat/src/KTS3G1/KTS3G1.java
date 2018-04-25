@@ -16,17 +16,22 @@ public class KTS3G1 {
     //String badress; 
     //Transceiver tc; 
     //  Reciver re; 
-     
-
     String badress;
+    String URL1;
+    String URL2;
+    String URL3;
 
     KTS3G1() {
 
         //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
-         http = new HTTPanrop(ds, op);
-         http.URL.toString();
+        http = new HTTPanrop(ds, op);
+
+        http.URL1 = ("http://tnk111.n7.se/listaplatser.php");
+        http.URL2 = ("http://tnk111.n7.se/listaplatser.php");
+        http.URL3 = ("http://tnk111.n7.se/listaplatser.php");
+
         // cui.bluetoothAdress(badress);
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
@@ -52,7 +57,6 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.showStatus(http.newmesssage());
 
-
         /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
         t3.start();
@@ -61,11 +65,10 @@ public class KTS3G1 {
         Thread t4 = new Thread(p2);
         t4.start();
          */
-        
-        GuiUpdate G1= new GuiUpdate(ds, cui, op);
-        Thread t5 = new Thread (G1);
+        GuiUpdate G1 = new GuiUpdate(ds, cui, op);
+        Thread t5 = new Thread(G1);
         t5.start();
-        
+
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
         t1.start();
@@ -74,14 +77,14 @@ public class KTS3G1 {
         Thread t4 = new Thread(h2);
         t4.start();
 
-     /*   while (cui.anslut == true) {
+        /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);
             Thread t3 = new Thread(p1);
             t3.start();
 
         }*/
-    OptPlan = new OptPlan();
-     op.createPlan();
+        OptPlan op = new OptPlan(ds);
+        op.createPlan();
     }
 
     /**

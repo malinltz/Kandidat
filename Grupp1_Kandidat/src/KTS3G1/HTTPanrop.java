@@ -40,9 +40,9 @@ public class HTTPanrop implements Runnable {
         op = new OptPlan(ds);
 
         try { // Kopplar upp till listan
-            // String url = "http://tnk111.n7.se"; 
-            URL urlobjekt = new URL(url1);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
+           // String url1 = "http://tnk111.n7.se"; 
+            URL urlobjekt1 = new URL(url1);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url1);
             anslutning.setRequestMethod("GET"); // ny kod
             //;
@@ -73,8 +73,8 @@ public class HTTPanrop implements Runnable {
 
        }
          try {
-            URL urlobjekt = new URL(url2);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
+            URL urlobjekt2 = new URL(url2);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
 
             //add reuqest header
             anslutning.setRequestMethod("POST");
@@ -124,8 +124,8 @@ public class HTTPanrop implements Runnable {
             
             try {
 
-            URL urlobjekt = new URL(url3);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt.openConnection();
+            URL urlobjekt3 = new URL(url3);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url3);
 
             int mottagen_status = anslutning.getResponseCode();
@@ -149,12 +149,13 @@ public class HTTPanrop implements Runnable {
                 System.out.println("Parametrar: " + paragraph);
             }
 
-        } catch (Exception k) {
+        } catch (Exception k) 
+        {
             System.out.print(k.toString());
     }
 
    /* public String HTTPkontact(String URL) {
-        url = URL;
+       url = URL;
        op = new OptPlan(ds);
 
         try {
@@ -249,8 +250,10 @@ public class HTTPanrop implements Runnable {
 
         }
         return gruppmessage;
+ */
+    
+        }
     }
-    */
 
     public String newmesssage() {
 
@@ -267,3 +270,5 @@ public class HTTPanrop implements Runnable {
         return gruppmessage;
     }
 }
+
+

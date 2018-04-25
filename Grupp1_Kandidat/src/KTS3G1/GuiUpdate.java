@@ -36,10 +36,11 @@ public class GuiUpdate implements Runnable {
                     ds.robotY = (int) ds.nodeY[op.shortestPathList[i] - 1];
                     System.out.println(ds.robotX);
                     System.out.println(ds.robotX);
+                    i++;
                     cui.repaint();
                    //System.out.println(op.shortestPathList[i]);
                    // System.out.println(ds.nodeX);
-                    i++;
+                    
                 }
             
         } catch (InterruptedException exception) {

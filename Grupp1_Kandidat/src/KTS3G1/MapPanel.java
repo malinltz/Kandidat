@@ -51,7 +51,8 @@ public class MapPanel extends JPanel {
                 
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
-                g.drawString(ritaRiktigaNoder,x,y);
+                
+                g.drawString(ritaRiktigaNoder,x - ((circlesize-7) / 2), height - y - ((circlesize+3) / 2));
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
                 
             }
