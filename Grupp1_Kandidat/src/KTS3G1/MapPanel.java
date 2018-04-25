@@ -26,7 +26,7 @@ public class MapPanel extends JPanel {
         int x1, y1;
         int x2, y2;
 
-        final int circlesize = 8;
+        final int circlesize = 10;
         final int ysize = 350;
         final int xsize = 700;
 
@@ -39,8 +39,8 @@ public class MapPanel extends JPanel {
             double yscale = 1.0 * height / ysize;
             
             //Ritar ut roboten
-            int xRobot = (int) (ds.robotX * yscale);
-            int yRobot = (int) (ds.robotY * xscale);
+            int xRobot = (int) (ds.robotX * xscale);
+            int yRobot = (int) (ds.robotY * yscale);
             g.setColor(RED_COLOR);
             g.drawOval(xRobot - ((circlesize+10) / 2), height - yRobot - (circlesize+10) / 2, circlesize + 10, circlesize + 10);
 
@@ -52,9 +52,8 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
-               
-                //Ritar ut nodnamn (enbart y-noder just nu)
                 
+                //Nodnummer
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
                 
@@ -79,6 +78,7 @@ public class MapPanel extends JPanel {
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
+                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 } else {
                     g.setColor(DARK_COLOR);
                 }

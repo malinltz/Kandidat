@@ -83,7 +83,6 @@ public class DataStore {
                 nodeX[i] = Double.parseDouble(sline[1].trim());
                 nodeY[i] = Double.parseDouble(sline[2].trim());
                 
-                
                 //System.out.println(nodeX[i]+" X");
                 //System.out.println(nodeY[i]+" Y");
             }
