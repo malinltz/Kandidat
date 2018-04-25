@@ -8,8 +8,8 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    public int start = 15;
-    public int slut = 20;
+    public int start = 5; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 20; //Inparametrar av något slag
     public int[] shortestPathList = new int[1000];
 
     public OptPlan(DataStore ds) {

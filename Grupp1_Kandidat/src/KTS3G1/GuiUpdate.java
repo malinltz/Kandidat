@@ -34,7 +34,7 @@ public class GuiUpdate implements Runnable {
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
                 
-                //System.out.println(list[i]);
+                //System.out.println(kortaste[i]);
                 i++;
 
                 cui.repaint();

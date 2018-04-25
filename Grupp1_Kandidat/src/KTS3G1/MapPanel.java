@@ -52,9 +52,8 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
-               
-                //Ritar ut nodnamn (enbart y-noder just nu)
                 
+                //Nodnummer
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
                 
