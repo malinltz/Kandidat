@@ -1,7 +1,16 @@
 package KTS3G1;
 
 import java.io.*;
+import java.util.Scanner;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.event.DocumentListener;
+
 import java.io.InputStreamReader;
+
+import javax.swing.JOptionPane;
+
+
 
 public class ControlUI extends javax.swing.JFrame {
 
@@ -22,7 +31,11 @@ public class ControlUI extends javax.swing.JFrame {
 
         myinitComponents();
         setTitle("Grupp 1");
+
+        
+
       
+
     }
 
     String uppdragslista = "";
@@ -53,7 +66,17 @@ public class ControlUI extends javax.swing.JFrame {
 
     void bluetoothAdress(String b) {
 
+        jTextField7.setText("" + b);
+        
+        
+}
+    void bluetoothchannel(String c){
+        jTextField6.setText("" + c);
     }
+
+
+    
+
 
     public void myinitComponents() {
 
@@ -141,6 +164,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+                
             }
         });
 
@@ -148,6 +172,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
+                cui.appendStatus("Ansluter till AGV");
             }
         });
 
@@ -390,6 +415,11 @@ public class ControlUI extends javax.swing.JFrame {
         jLabel3.setText("Kontakt med AGV:");
 
         jTextField6.setEditable(false);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Bluetoothkanal");
 
@@ -445,7 +475,6 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(15, 15, 15))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addGap(62, 62, 62))))
             .addGroup(layout.createSequentialGroup()
@@ -469,7 +498,7 @@ public class ControlUI extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jPanelMap, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
+                .addComponent(jPanelMap, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
@@ -544,6 +573,11 @@ public class ControlUI extends javax.swing.JFrame {
             t4.start();
             
 
+            /*Transceiver p1 = new Transceiver(cui); 
+        Thread t3 = new Thread(p1);
+        t3.start();*/
+
+
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
@@ -558,7 +592,12 @@ public class ControlUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    public static String blueAdress;
+
+public static String blueAdress;
+ 
+
+   
+
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
@@ -566,6 +605,26 @@ public class ControlUI extends javax.swing.JFrame {
         //blueAdress = jTextField7.getText();
         //blueAdress = blueAdress.replace(":", "");
         //jTextField7.addActionListener(lyssnar);
+
+       
+        
+       
+
+        
+
+       
+   
+
+   /*try{
+        BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String myString = "";
+        while (!myString.equals("")){
+        myString = myBufferedReader.readLine();
+        jTextField7.setText("" + myString);}
+        jTextField7.setText("hej");
+        }catch(IOException e){jTextField7.setText("error");};
+        */      
+
         try {
             BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String myString = "";
@@ -578,7 +637,12 @@ public class ControlUI extends javax.swing.JFrame {
             jTextField7.setText("error");
         };
 
+
     }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

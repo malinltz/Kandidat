@@ -15,11 +15,19 @@ public class KTS3G1 {
     //Reciver re; 
     //String badress; 
     //Transceiver tc; 
-    //  Reciver re; 
-    String badress;
+
+    //Reciver re; 
+    String badress="201410149018"; 
+    String kanal = "1";
+
+
+
+    
+    
     String URL1;
     String URL2;
     String URL3;
+
 
     KTS3G1() {
 
@@ -57,7 +65,13 @@ public class KTS3G1 {
          */
         cui = new ControlUI(ds);
         cui.setVisible(true);
+        cui.bluetoothAdress(badress);
+        cui.bluetoothchannel(kanal);
+        
+//        cui.showStatus(http.newmesssage());
+
         cui.showStatus(http.newmesssage());
+
 
         /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
@@ -75,10 +89,20 @@ public class KTS3G1 {
         Thread t1 = new Thread(r1);
         t1.start();
 
+
+    HTTPanrop h2 = new HTTPanrop(ds, op);
+    Thread t4 = new Thread(h2);
+     t4.start();
+     
+   
+     
+     
+
         HTTPanrop h2 = new HTTPanrop(ds, op);
         Thread t4 = new Thread(h2);
         t4.start();
          */
+
 
         /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);
