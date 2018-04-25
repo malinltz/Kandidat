@@ -39,8 +39,8 @@ public class MapPanel extends JPanel {
             double yscale = 1.0 * height / ysize;
             
             //Ritar ut roboten
-            int xRobot = (int) (ds.robotX * yscale);
-            int yRobot = (int) (ds.robotY * xscale);
+            int xRobot = (int) (ds.robotX * xscale);
+            int yRobot = (int) (ds.robotY * yscale);
             g.setColor(RED_COLOR);
             g.drawOval(xRobot - ((circlesize+10) / 2), height - yRobot - (circlesize+10) / 2, circlesize + 10, circlesize + 10);
 
@@ -78,6 +78,7 @@ public class MapPanel extends JPanel {
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
+                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 } else {
                     g.setColor(DARK_COLOR);
                 }
