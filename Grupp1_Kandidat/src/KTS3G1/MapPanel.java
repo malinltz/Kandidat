@@ -25,8 +25,9 @@ public class MapPanel extends JPanel {
         int x, y;
         int x1, y1;
         int x2, y2;
+        
 
-        final int circlesize = 8;
+        final int circlesize = 10;
         final int ysize = 350;
         final int xsize = 700;
 
@@ -37,6 +38,12 @@ public class MapPanel extends JPanel {
             int width = getWidth();
             double xscale = 1.0 * width / xsize;
             double yscale = 1.0 * height / ysize;
+            
+            //Ritar ut roboten
+            int xRobot = (int) (ds.robotX * xscale);
+            int yRobot = (int) (ds.robotY * yscale);
+            g.setColor(RED_COLOR);
+            g.drawOval(xRobot - ((circlesize+10) / 2), height - yRobot - (circlesize+10) / 2, circlesize + 10, circlesize + 10);
 
             g.setColor(DARK_COLOR);
 
@@ -46,9 +53,8 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
-               
-                //Ritar ut nodnamn (enbart y-noder just nu)
                 
+                //Nodnummer
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
                 
@@ -67,23 +73,20 @@ public class MapPanel extends JPanel {
                 //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
+                
+                ds.arcCost[i] = dist;
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
+                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 } else {
                     g.setColor(DARK_COLOR);
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
             }
-
-            //Ritar ut roboten
-            int x3 = (int) (ds.robotX * yscale);
-            int y3 = (int) (ds.robotY * xscale);
-            g.setColor(RED_COLOR);
-            g.drawOval(x3 - ((circlesize + 10) / 2), height - y3 - ((circlesize + 10)) / 2, circlesize + 10, circlesize + 10);
 
         }
     }// end paintComponent

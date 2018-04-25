@@ -8,18 +8,21 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    private int start = 40;
-    private int slut = 70;
+    public int start = 5; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 20; //Inparametrar av något slag
     public int[] shortestPathList = new int[1000];
+    int pathCost = 0;
 
     public OptPlan(DataStore ds) {
         this.ds = ds;
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
+
     }
 
     public void createPlan() {
 
+        nodes = new ArrayList<Vertex>();
+        edges = new ArrayList<Edge>();
+        
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
@@ -35,14 +38,13 @@ public class OptPlan {
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         
         // Compute shortest path
-        dijkstra.execute(nodes.get(start));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut));
+        dijkstra.execute(nodes.get(start-1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut-1));
         
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-            //System.out.println(path.get(i)+"TJOJO"); //FUNKAR
-            //System.out.println(shortestPathList[i]+"bajs"); //FUNKAR
+
         }
         
 
@@ -50,20 +52,28 @@ public class OptPlan {
         for (int i = 0; i < path.size() - 1; i++) {
             for (int j = 0; j < ds.arcs; j++) {
                 if (ds.arcStart[j] == Integer.parseInt(path.get(i).getId())
-                        && ds.arcEnd[j]
-                        == Integer.parseInt(path.get(i + 1).getId())) {
+                        && ds.arcEnd[j] == Integer.parseInt(path.get(i + 1).getId())) {
 
-                    //System.out.println("Arc: " + j);
+                    //Sätter shortest path till 1
                     ds.arcColor[j]=1;
+                    //Lägger till kostanden för shortest path
+                    pathCost=pathCost+ds.arcCost[j];
+                   // System.out.println(pathCost);
                 }
             }
         }
+        
     }
     public int[] getIndex(){
-         //System.out.println(shortestPathList+"bajs"); //FUNKAR
+
         return shortestPathList;
         
-    } 
-}
+    }
     
-
+    public int getCost(){
+        
+        return pathCost;
+        
+    }
+    
+}

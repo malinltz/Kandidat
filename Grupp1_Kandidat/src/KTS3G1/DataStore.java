@@ -83,7 +83,6 @@ public class DataStore {
                 nodeX[i] = Double.parseDouble(sline[1].trim());
                 nodeY[i] = Double.parseDouble(sline[2].trim());
                 
-                
                 //System.out.println(nodeX[i]+" X");
                 //System.out.println(nodeY[i]+" Y");
             }
@@ -100,7 +99,7 @@ public class DataStore {
                 sline = line.split(" ");
                 arcStart[i] = Integer.parseInt(sline[0].trim());
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
-                arcCost[i] = Integer.parseInt(sline[2].trim());
+                //arcCost[i] = Integer.parseInt(sline[2].trim());
 
                 
             }
