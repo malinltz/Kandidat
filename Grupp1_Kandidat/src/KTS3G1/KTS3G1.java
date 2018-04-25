@@ -7,44 +7,44 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-    HTTPanrop http; 
+    HTTPanrop http;
     OptPlan op;
     RobotRutt RR;
-
-
-    //Transceiver tc; 
 
     //Transceiver tc; 
     //Reciver re; 
     //String badress; 
-
-
     //Transceiver tc; 
 
-  //  Reciver re; 
-
-    //Transceiver tc; 
     //Reciver re; 
-    String badress="201410149018:1"; 
+    String badress="201410149018"; 
+    String kanal = "1";
 
+
+
+    
+    
+    String URL1;
+    String URL2;
+    String URL3;
 
 
     KTS3G1() {
-        
+
         //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
+        http = new HTTPanrop(ds, op);
 
-       
-       // http = new HTTPanrop();
-       // http.URL.toString();
-       // cui.bluetoothAdress(badress);
-       // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL1 = ("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL2 = ("http://tnk111.n7.se/listaplatser.php");
+      //  http.URL3 = ("http://tnk111.n7.se/listaplatser.php");
+
+        // cui.bluetoothAdress(badress);
+        // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
-       // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
-        
-      
-      //  http.getutmesssage();
+        // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
+         http.getutmesssage();
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -56,6 +56,8 @@ public class KTS3G1 {
         ds.setFileName("streets.txt");
         ds.readNet();
         //ds.nodeX
+        
+        
 
 
         /*
@@ -64,11 +66,13 @@ public class KTS3G1 {
         cui = new ControlUI(ds);
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
+        cui.bluetoothchannel(kanal);
         
 //        cui.showStatus(http.newmesssage());
 
+        cui.showStatus(http.newmesssage());
 
-       
+
         /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
         t3.start();
@@ -76,10 +80,15 @@ public class KTS3G1 {
         Reciver p2 = new Reciver(tc,cui); 
         Thread t4 = new Thread(p2);
         t4.start();
-        */
+         */
+       /* GuiUpdate G1 = new GuiUpdate(ds, cui, op);
+        Thread t5 = new Thread(G1);
+        t5.start();
+
         RobotRutt r1 = new RobotRutt(ds, cui, op);
         Thread t1 = new Thread(r1);
         t1.start();
+
 
     HTTPanrop h2 = new HTTPanrop(ds, op);
     Thread t4 = new Thread(h2);
@@ -89,17 +98,19 @@ public class KTS3G1 {
      
      
 
+        HTTPanrop h2 = new HTTPanrop(ds, op);
+        Thread t4 = new Thread(h2);
+        t4.start();
+         */
 
-//        while(cui.anslut == true){
-//        Transceiver p1 = new Transceiver(cui); 
-//        Thread t3 = new Thread(p1);
-//        t3.start();
-//
-//    }
- 
-        
- 
 
+        /*   while (cui.anslut == true) {
+            Transceiver p1 = new Transceiver(cui);
+            Thread t3 = new Thread(p1);
+            t3.start();
+
+        }*/
+       
     }
 
     /**
@@ -112,7 +123,6 @@ public class KTS3G1 {
          * and thereby, call the RobotControl constructor.
          */
         KTS3G1 x = new KTS3G1();
-     
-   
+
     }
 }
