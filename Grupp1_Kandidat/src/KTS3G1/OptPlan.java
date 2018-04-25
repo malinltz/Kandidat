@@ -5,6 +5,7 @@ import java.util.*;
 
 public class OptPlan {
 
+    ControlUI cui;
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
@@ -59,10 +60,11 @@ public class OptPlan {
                     //Lägger till kostanden för shortest path
                     pathCost=pathCost+ds.arcCost[j];
                    // System.out.println(pathCost);
+                   
                 }
             }
         }
-        
+        //cui.appendOptText("Optimering utförs");
     }
     public int[] getIndex(){
 

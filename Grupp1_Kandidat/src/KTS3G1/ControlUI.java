@@ -40,6 +40,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s + "\n");
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
+    
+    public void appendOptText(String s) {
+        statusuppdTextArea.append(s);
+    }
 
     void setUppdrag(String c) {
         //uppdragslista = uppdragslista + c + "\n";
