@@ -1,5 +1,9 @@
+
 package KTS3G1;
+
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.io.InputStreamReader;
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -499,7 +503,6 @@ public boolean anslut = false;
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
 
-
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
@@ -518,16 +521,22 @@ public static String blueAdress;
 public String bAdress(){
     return jTextField7.getText();
 }
-
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
         ActionListener lyssnar = null; 
-      //  blueAdress = jTextField7.getText();
-      //  blueAdress = blueAdress.replace(":", "");
-       // jTextField7.addActionListener(lyssnar);
+        blueAdress = jTextField7.getText();
+        blueAdress = blueAdress.replace(":", "");
+        jTextField7.addActionListener(lyssnar);
+   try{
+        BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String myString = "";
+        while (!myString.equals("")){
+        myString = myBufferedReader.readLine();
+        jTextField7.setText("" + myString);}
+        jTextField7.setText("hej");
+        }catch(IOException e){jTextField7.setText("error");};
     }//GEN-LAST:event_jTextField7ActionPerformed
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
