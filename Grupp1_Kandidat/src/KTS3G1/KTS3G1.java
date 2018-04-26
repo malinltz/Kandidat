@@ -10,6 +10,7 @@ public class KTS3G1 {
     HTTPanrop http;
     OptPlan op;
     RobotRutt RR;
+    HTTPextern hx;
 
     //Transceiver tc; 
     //Reciver re; 
