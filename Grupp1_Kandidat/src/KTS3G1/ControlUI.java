@@ -40,7 +40,7 @@ public class ControlUI extends javax.swing.JFrame {
         //System.out.println("Arcs: "+ds.arcs);
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
         // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-        jTextArea2.append(p + "\n");
+        jTextArea2.append("Uppdrag " + p + "\n");
     }
 
     public void appendStatus(String s) {
@@ -584,9 +584,9 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t2 = new Thread(r2);
             t2.start();
 
-            HTTPanrop h2 = new HTTPanrop(ds, op);
-            Thread t4 = new Thread(h2);
-            t4.start();
+            HTTPanrop h1 = new HTTPanrop(ds, op);
+            Thread t3 = new Thread(h1);
+            t3.start();
 
 
             /*Transceiver p1 = new Transceiver(cui); 
