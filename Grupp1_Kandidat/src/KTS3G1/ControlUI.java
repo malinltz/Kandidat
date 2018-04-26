@@ -548,19 +548,22 @@ public class ControlUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
-if (startPosition.getText().equals("Återvänd till startposition")) {
-            startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+    if (startPosition.getText().equals("Återvänd till startposition")) {
+            startPosition.setText("Återvänder...");
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
             
+            //Lägg till att AGV ska återvända till 0.0
+            ds.robotX = ds.nodeX[0];
+            ds.robotY = ds.nodeY[0];
             
             
 
-        } else {
-            startPosition.setText("Har återvänt");
-        }
+        } 
+    if  (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0])
+            startPosition.setText("Återvänd till startposition");
+    startPosition.setEnabled(true);
+            
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
