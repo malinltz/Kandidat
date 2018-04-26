@@ -41,7 +41,7 @@ public class KTS3G1 {
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
-         http.getutmesssage();
+        
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -56,7 +56,6 @@ public class KTS3G1 {
         
         
 
-
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore
          */
@@ -70,10 +69,11 @@ public class KTS3G1 {
         
         
         cui.showStatus(http.toString());
-
         cui.showStatus(http.newmesssage());
-
-
+        cui.showStatus(URL1);
+        
+      //  cui.showStatus(http.newmesssage());
+  
         /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
         t3.start();
