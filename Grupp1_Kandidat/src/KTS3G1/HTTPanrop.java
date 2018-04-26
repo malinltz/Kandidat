@@ -10,8 +10,8 @@ import java.io.DataOutputStream;
 
 public class HTTPanrop implements Runnable {
 
-    private String message;
-    private String paragraph;
+    public String message;
+    public String paragraph;
     private String url1;
     private String url2;
     private String url3;

@@ -9,8 +9,8 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    public int start = 5; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 20; //Inparametrar av något slag
+    public int start = 1; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 5; //Inparametrar av något slag
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
 
@@ -45,7 +45,7 @@ public class OptPlan {
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-
+//x=ds.nodeX
         }
         
 
