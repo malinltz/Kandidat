@@ -1,3 +1,4 @@
+ /*
 package KTS3G1;
 
 import java.util.Random;
@@ -22,8 +23,9 @@ public class RobotRutt implements Runnable {
         sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
 
-     //   list = op.getIndex();
-    }
+        list = op.getIndex();
+    
+   }
 
     @Override
     public void run() {
@@ -51,15 +53,15 @@ public class RobotRutt implements Runnable {
         cui.appendStatus("Wall-E är nu klar!");
 
     }
-}
-/*
+
+
     public void rutt() {
     
     for (int i = 0; i < ds.nodes ;i ++) 
         
         if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]) //varför 11?
         {
-            if (rutt== "m") //nästa höger
+            if (rutt== ds. ) //nästa höger
             {}
             if(rutt== "z") //lyssnar 
             {}
@@ -71,7 +73,7 @@ public class RobotRutt implements Runnable {
             {}
            }
     
-    else if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]{
+    else (ds.nodeX[list[i]]< ds.nodeX[list[i+11]{
          if (rutt== "m") //nästa höger
             {}
             if(rutt== "z") //lyssnar 
@@ -85,7 +87,10 @@ public class RobotRutt implements Runnable {
     }        
         }
     
-     for (int i = 0; i < ds.nodeY ;i ++) {}
+     for (int i = 0; i < ds.nodes ;i ++) {
+
+
+}
   
   
   
