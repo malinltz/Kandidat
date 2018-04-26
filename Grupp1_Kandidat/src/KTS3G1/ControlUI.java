@@ -31,8 +31,9 @@ public class ControlUI extends javax.swing.JFrame {
         setTitle("Grupp 1");
 
     }
-
-    String uppdragslista = "";
+    String allaUppdrag=""; 
+    String upphamtningsplats="";
+    String valtUppdrag = "";
 
     public void showStatus(String p) {
         //System.out.println("Nodes: "+ds.nodes);
@@ -52,22 +53,32 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s);
     }
 
-    void setUppdrag(String c) {
-        //uppdragslista = uppdragslista + c + "\n";
-        //  jTextArea2.setText(uppdragslista);
-        //jScrollPane1.
+    void valtUppdrag(String c) {
+        valtUppdrag = valtUppdrag + c + "\n";
+        jTextArea2.setText(valtUppdrag);
+        
     }
 
+    void upphamtningsplats(String c) {
+        upphamtningsplats = upphamtningsplats + c + "\n";
+        jTextArea2.setText(upphamtningsplats);
+        
+    }
+     void allaUppdrag(String c) {
+        allaUppdrag = allaUppdrag + c + "\n";
+        jTextArea2.setText(allaUppdrag);
+        
+    }
     void bluetoothAdress(String b) {
 
-        jTextField7.setText("" + b);
-
-    }
-
-    void bluetoothchannel(String c) {
+        jTextField7.setText("" + b);   
+}
+    void bluetoothchannel(String c){
         jTextField6.setText("" + c);
     }
 
+
+    
     public void myinitComponents() {
 
         jPanelMap = new MapPanel(ds);
@@ -537,7 +548,19 @@ public class ControlUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
+if (startPosition.getText().equals("Återvänd till startposition")) {
+            startPosition.setText("Återvänder");
+            startPosition.setBackground(Color.red);
+            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+            startPosition.setEnabled(false);
+            startPosition.setSelected(false);
+            
+            
+            
 
+        } else {
+            startPosition.setText("Har återvänt");
+        }
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
