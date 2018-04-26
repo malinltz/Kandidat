@@ -582,9 +582,7 @@ public boolean atervant = false;
                startPosition.setEnabled(true);
                startPosition.setText("Återvänd till startposition");
             }
-            
-            
-
+          
         } else if(atervant == false)  {
             
         }

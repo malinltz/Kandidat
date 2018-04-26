@@ -83,7 +83,7 @@ public class HTTPanrop implements Runnable {
                 paragraph1 = paras[i];
                 System.out.println("Parametrar: " + paragraph1);
             }
-cui.showStatus(paragraph1);
+        cui.showStatus(paragraph1);
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -135,6 +135,7 @@ cui.showStatus(paragraph1);
                 System.out.println("Parametrar: " + paragraph2);
 
             }
+            cui.showStatus(paragraph2);
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {
@@ -170,10 +171,11 @@ cui.showStatus(paragraph1);
                
                     paragraph3 = paras[i];
                     System.out.println("Parametrar: " + paragraph3);
-         //  paragraph = paras[i];
-                    //System.out.println("Parametrar: " + paragraph);
+         
 
                 }
+                Thread.sleep(2000); //vilken sleeptime?
+                cui.showStatus(paragraph3);
 
             } catch (Exception k) {
                 System.out.print(k.toString());
