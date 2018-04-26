@@ -32,9 +32,6 @@ public class KTS3G1 {
         //re = new Reciver()
         http = new HTTPanrop(ds, op);
 
-      //  http.URL1 = ("http://tnk111.n7.se/listaplatser.php");
-      //  http.URL2 = ("http://tnk111.n7.se/listaplatser.php");
-      //  http.URL3 = ("http://tnk111.n7.se/listaplatser.php");
 
         // cui.bluetoothAdress(badress);
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
@@ -64,7 +61,7 @@ public class KTS3G1 {
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
         
-//        cui.showStatus(http.newmesssage());
+        cui.showStatus(http.toString());
 
         cui.showStatus(http.newmesssage());
 
