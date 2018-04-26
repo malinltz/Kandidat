@@ -19,9 +19,14 @@ public class HTTPanrop implements Runnable {
     public OptPlan op;
     public DataStore ds;
     private String gruppmessage;
+    
+    //För att ta reda på vilka uppdragsplatser som finns vart
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
+    //För att skicka ett meddelande till HTTP- servern
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
-   // private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+    //För att läsa de meddelanden som grupper skickat
+//  private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+    ////För att ta reda på vilka uppdrag som finns på plats A
     private static String URL3 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     
     private int sleepTime;
@@ -72,8 +77,8 @@ public class HTTPanrop implements Runnable {
 
             Thread.sleep(2000); //vilken sleeptime?
 
-        } catch (Exception e) {
-            System.out.print(e.toString());
+        } catch (Exception c) {
+            System.out.print(c.toString());
 
         }
         try {
@@ -85,7 +90,7 @@ public class HTTPanrop implements Runnable {
             //con.setRequestProperty("User-Agent", USER_AGENT);
             //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = message;
+            String urlParameters = paragraph;
 
             // Send post request
             anslutning.setDoOutput(true);
@@ -127,7 +132,7 @@ public class HTTPanrop implements Runnable {
 
             //print result
             System.out.println(e.toString());
-
+        }
             try {
 
                 URL urlobjekt3 = new URL(url3);
@@ -138,7 +143,7 @@ public class HTTPanrop implements Runnable {
                 System.out.println("Statuskod: " + mottagen_status);
 
                 BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-                String inkommande_text;
+                String inkommande_text = "";
                 StringBuffer inkommande_samlat = new StringBuffer();
                 while ((inkommande_text = inkommande.readLine()) != null) {
                     inkommande_samlat.append(inkommande_text);
@@ -152,7 +157,7 @@ public class HTTPanrop implements Runnable {
 
                 for (int i = 0; i < paras.length; i++) {
                     paragraph = paras[i];
-                    System.out.println("Parametrar: " + paragraph);
+                    //System.out.println("Parametrar: " + paragraph);
                 }
 
             } catch (Exception k) {
@@ -161,7 +166,7 @@ public class HTTPanrop implements Runnable {
 
         }
 
-    }
+    
 
     /* public String HTTPkontact(String URL) {
        url = URL;

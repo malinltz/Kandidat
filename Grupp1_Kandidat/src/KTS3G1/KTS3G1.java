@@ -63,15 +63,15 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
-        cui.valtUppdrag(valtUppdrag);
-        cui.upphamtningsplats(upphamtningsplats);
-        cui.allaUppdrag(allaUppdrag);
+       // cui.valtUppdrag(valtUppdrag);
+        //cui.upphamtningsplats(upphamtningsplats);
+        //cui.allaUppdrag(allaUppdrag);
         
         
-        cui.showStatus(http.gruppmessages() );
+        cui.showStatus(http.gruppmessages());
         //cui.showStatus(http.newmesssage());
-        cui.showStatus(URL1);
-        
+       // cui.showStatus(URL1);
+       
       //  cui.showStatus(http.newmesssage());
   
         /*Transceiver p1 = new Transceiver(cui); 
