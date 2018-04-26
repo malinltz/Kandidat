@@ -546,20 +546,23 @@ public class ControlUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public boolean atervant = false;
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
             startPosition.setBackground(Color.red);
             startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
-            startPosition.setSelected(false);
             
+            if(atervant == true){
+               startPosition.setEnabled(false);
+               startPosition.setText("Återvänd till startposition");
+            }
             
             
 
-        } else {
-            startPosition.setText("Har återvänt");
+        } else if(atervant == false)  {
+            
         }
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
