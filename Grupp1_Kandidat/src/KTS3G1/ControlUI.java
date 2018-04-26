@@ -11,8 +11,6 @@ import java.io.InputStreamReader;
 
 import javax.swing.JOptionPane;
 
-
-
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -49,6 +47,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s + "\n");
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
+    
+    public void appendOptText(String s) {
+        statusuppdTextArea.append(s);
+    }
 
     void setUppdrag(String c) {
         //uppdragslista = uppdragslista + c + "\n";
@@ -61,13 +63,10 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField7.setText("" + b);
         
         
-}
+    }
     void bluetoothchannel(String c){
         jTextField6.setText("" + c);
     }
-
-
-    
 
 
     public void myinitComponents() {
@@ -137,8 +136,9 @@ public class ControlUI extends javax.swing.JFrame {
         startPosition.setText("Återvänd till startposition");
         startPosition.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         startPosition.addActionListener(new java.awt.event.ActionListener() {
+            
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startPositionActionPerformed(evt);
+            startPositionActionPerformed(evt);
             }
         });
 
@@ -559,10 +559,18 @@ public class ControlUI extends javax.swing.JFrame {
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t2 = new Thread(r2);
             t2.start();
-
-            HTTPanrop h2 = new HTTPanrop(ds, op);
-            Thread t4 = new Thread(h2);
+            /*
+            Transceiver b1 = new Transceiver(); 
+            Thread t3 = new Thread(b1);
+            t3.start();
+            */
+            Receiver b2 = new Receiver();
+            Thread t4 = new Thread(b2);
             t4.start();
+            
+            HTTPanrop h2 = new HTTPanrop(ds, op);
+            Thread t5 = new Thread(h2);
+            t5.start();
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -580,22 +588,6 @@ public class ControlUI extends javax.swing.JFrame {
 
 
 public static String blueAdress;
-
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        ActionListener lyssnar = null; 
-        blueAdress = jTextField7.getText();
-        blueAdress = blueAdress.replace(":", "");
-        jTextField7.addActionListener(lyssnar);
-   try{
-        BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String myString = "";
-        while (!myString.equals("")){
-        myString = myBufferedReader.readLine();
-        jTextField7.setText("" + myString);}
-        jTextField7.setText("hej");
-        }catch(IOException e){jTextField7.setText("error");};
-
-    public static String blueAdress;
   
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
@@ -614,12 +606,7 @@ public static String blueAdress;
             jTextField7.setText("hej");
         } catch (IOException e) {
             jTextField7.setText("error");
-        };
-
-
-
-    }                                           
-
+        };                                         
 
     }//GEN-LAST:event_jTextField7ActionPerformed
 
