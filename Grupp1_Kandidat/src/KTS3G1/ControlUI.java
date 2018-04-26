@@ -48,6 +48,11 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s + "\n");
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
+    public boolean atervant(boolean p) {
+
+        return p; 
+        
+    }
 
     public void appendOptText(String s) {
         statusuppdTextArea.append(s);
@@ -58,16 +63,13 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.setText(valtUppdrag);
         
     }
-
     void upphamtningsplats(String c) {
         upphamtningsplats = upphamtningsplats + c + "\n";
-        jTextArea2.setText(upphamtningsplats);
-        
+        jTextArea2.setText(upphamtningsplats);   
     }
      void allaUppdrag(String c) {
         allaUppdrag = allaUppdrag + c + "\n";
         jTextArea2.setText(allaUppdrag);
-        
     }
     void bluetoothAdress(String b) {
 
@@ -555,7 +557,7 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setEnabled(false);
             
             if(atervant == true){
-               startPosition.setEnabled(false);
+               startPosition.setEnabled(true);
                startPosition.setText("Återvänd till startposition");
             }
             

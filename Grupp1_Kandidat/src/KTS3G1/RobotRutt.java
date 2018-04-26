@@ -22,9 +22,9 @@ public class RobotRutt implements Runnable {
         sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
 
-     //   list = op.getIndex();
+       list = op.getIndex();
     }
-
+/*
     @Override
     public void run() {
         try {
@@ -52,42 +52,58 @@ public class RobotRutt implements Runnable {
 
     }
 }
-/*
-    public void rutt() {
+*/
+   
+
+ @Override
+    public void run() {
+        try {
+
+            
     
     for (int i = 0; i < ds.nodes ;i ++) 
         
-        if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]) //varför 11?
+        if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]]) //varför 11?
         {
-            if (rutt== "m") //nästa höger
-            {}
-            if(rutt== "z") //lyssnar 
-            {}
-            if (rutt== "n")//nästa vänster
-            {}
-            if (rutt== "o")//stanna för passagerare
-            {}
-            if (rutt== "p")//nollställ alla instruktioner
-            {}
-           }
-    
-    else if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]{
-         if (rutt== "m") //nästa höger
-            {}
-            if(rutt== "z") //lyssnar 
-            {}
-            if (rutt== "n")//nästa vänster
-            {}
-            if (rutt== "o")//stanna för passagerare
-            {}
-            if (rutt== "p")//nollställ alla instruktioner
-            {}
-    }        
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i+11]]){
+                rutt= "r"; //fortsätt framåt
+            }
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i+11]]) //lyssnar 
+            {
+                rutt="h"; //kör höger
+            }
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i+11]]) //lyssnar 
+            {
+                rutt="v"; //vänster
+            }
         }
     
-     for (int i = 0; i < ds.nodeY ;i ++) {}
-  
-  
+        else  if (ds.nodeX[list[i]] > ds.nodeX[list[i+11]])//nästa vänster
+            {
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i+11]]){
+                rutt= "r"; //fortsätt framåt
+            }
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i+11]]) //lyssnar 
+            {
+                rutt="v"; //kör vänster
+            }
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i+11]]) //lyssnar 
+            {
+                rutt="h"; //kör höger
+            }
+           }
+    
+    
+     
+            
+
+        } catch (NumberFormatException exception) {
+        }
+        cui.appendStatus("Wall-E är nu klar!");
+
+    }
+
+
   
   
   
@@ -96,4 +112,3 @@ public class RobotRutt implements Runnable {
         return rutt;
     }
 }
-*/

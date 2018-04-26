@@ -24,9 +24,9 @@ public class KTS3G1 {
     String URL2;
     String URL3;
     
-    String upphamtningsplats="lol"; 
-    String allaUppdrag="Nötallergiker undanbedes och beivras"; 
-    String valtUppdrag="Helt seriöst"; 
+    String upphamtningsplats="hej1"; 
+    String allaUppdrag="hej2"; 
+    String valtUppdrag="Hej3"; 
    
 
 
@@ -36,7 +36,7 @@ public class KTS3G1 {
         //tm = new Transmitter();
         //re = new Reciver()
         http = new HTTPanrop(ds, op);
-        // cui.bluetoothAdress(badress);
+      
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
