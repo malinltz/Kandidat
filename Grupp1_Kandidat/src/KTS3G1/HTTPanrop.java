@@ -48,7 +48,7 @@ public class HTTPanrop implements Runnable {
         sleepTime = 1000; //1000 millisekunder
     }
 
-    public void run() {
+    public void run() { //Lägg till en 
 
         url1 = URL1;
         url2 = URL2;

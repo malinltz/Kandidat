@@ -71,69 +71,93 @@ public class RobotRutt implements Runnable {
     public void run() {
         try {
 
-
+ cui.appendStatus("Jag heter Wall-E och kommer att köra i " + sleepTime + "millisekunder.");
+ 
     for (int i = 0; i < ds.nodes ;i ++) 
         
-        if (ds.nodeX[list[i]]< ds.nodeX[list[i+11]]) //varför 11?
+        if (ds.nodeX[list[i]]< ds.nodeX[list[i]+1]) //varför 11?
         {
 
-            if (ds.nodeY[list[i]]==ds.nodeY[list[i+11]]){
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i]+1]){
                 rutt= "r"; //fortsätt framåt
                 cui.appendStatus("Fortsätt framåt");
             }
-            if(ds.nodeY[list[i]]>ds.nodeY[list[i+11]]) //lyssnar 
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i]+1]) //lyssnar 
             {
                 rutt="h"; //kör höger
                 cui.appendStatus("Kör höger");
             }
-            if(ds.nodeY[list[i]]<ds.nodeY[list[i+11]]) //lyssnar 
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i]+1]) //lyssnar 
             {
                 rutt="v"; //vänster
                 cui.appendStatus("Kör vänster");
             }
         }
     
-        else  if (ds.nodeX[list[i]] > ds.nodeX[list[i+11]])//nästa vänster
+        else  if (ds.nodeX[list[i]] > ds.nodeX[list[i]+1])//nästa vänster
             {
-            if (ds.nodeY[list[i]]==ds.nodeY[list[i+11]]){
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i]]+1){
                 rutt= "r"; //fortsätt framåt
                 cui.appendStatus("Fortsätt framåt");
             }
-            if(ds.nodeY[list[i]]>ds.nodeY[list[i+11]]) //lyssnar 
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i]+1]) //lyssnar 
             {
                 rutt="v"; //kör vänster
                 cui.appendStatus("Kör vänster");
             }
-            if(ds.nodeY[list[i]]<ds.nodeY[list[i+11]]) //lyssnar 
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i]+1]) //lyssnar 
             {
                 rutt="h"; //kör höger
                 cui.appendStatus("Kör höger");
             }
-           }
-    
-    
-     
-            
+           
+            if (ds.nodeX[list[i]]< ds.nodeX[list[i]+1]) //varför 11?
+        {
 
-        } catch (NumberFormatException exception) {
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i]+1]){
+                rutt= "r"; //fortsätt framåt
+                cui.appendStatus("Fortsätt framåt");
+            }
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i]+1]) //lyssnar 
+            {
+                rutt="h"; //kör höger
+                cui.appendStatus("Kör höger");
+            }
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i]+1]) //lyssnar 
+            {
+                rutt="v"; //vänster
+                cui.appendStatus("Kör vänster");
+            }
+        }
+    
+        else  if (ds.nodeX[list[i]] > ds.nodeX[list[i]+1])//nästa vänster
+            {
+            if (ds.nodeY[list[i]]==ds.nodeY[list[i]]+1){
+                rutt= "r"; //fortsätt framåt
+                cui.appendStatus("Fortsätt framåt");
+            }
+            if(ds.nodeY[list[i]]>ds.nodeY[list[i]+1]) //lyssnar 
+            {
+                rutt="v"; //kör vänster
+                cui.appendStatus("Kör vänster");
+            }
+            if(ds.nodeY[list[i]]<ds.nodeY[list[i]+1]) //lyssnar 
+            {
+                rutt="h"; //kör höger
+                cui.appendStatus("Kör höger");
+            }
+           
+        }
+
+        }
+        }
+        catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
 
     }
 
-
-
-            
-            
-        
     
-     
-  
-  
-
-  
-  
-  
     public String gorutt() {
 
         return rutt;

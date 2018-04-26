@@ -629,7 +629,7 @@ public boolean atervant = false;
            // t3.start();
 
 
-            /*Transceiver p1 = new Transceiver(cui); 
+         /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
         t3.start();*/
         } else if (startStopp.getText().equals("Stop")) {
@@ -645,6 +645,10 @@ public boolean atervant = false;
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
+       // ActionListener lyssnar = null; 
+        // om agvn är på bli grön
+     //   if (meddelande_ut)
+      //  g.setColor(GREEN_COLOR);
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     public static String blueAdress;

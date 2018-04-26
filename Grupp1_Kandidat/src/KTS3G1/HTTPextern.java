@@ -25,9 +25,10 @@ public class HTTPextern {
     public DataStore ds;
     public HTTPanrop http;
     int sleepTime;
-    int[] capacity;
+    int capacity=3; //exempel på kapacitet
     int ID = 1;
     int[] messagetyp;
+    String uppdrag [];
     String z= "z";
     String m= "m";
     String n= "n";
@@ -48,6 +49,14 @@ public class HTTPextern {
         // 
        /* 
         if (ID < http.ID) 
+        
+        if (capacity < http.capacity) //jämför kapaciteten
+        
+        if( pathdist < http.pathdist) // jämför path 
+       
+        
+        if( uppdarg > http. uppdrag) // jämför antalet uppdarg
+        
         {
             System.out.println("");
         }

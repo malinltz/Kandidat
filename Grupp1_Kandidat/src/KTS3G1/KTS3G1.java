@@ -79,13 +79,10 @@ public class KTS3G1 {
         
         
 
-        cui.showStatus(http.paragraph1);
+      //  cui.showStatus(http.paragraph1);
         //cui.showStatus(http.message);
-     
-        
-        
-
-        cui.showStatus(http.gruppmessages());
+ 
+    //    cui.showStatus(http.gruppmessages());
         //cui.showStatus(http.newmesssage());
        // cui.showStatus(URL1);
        
