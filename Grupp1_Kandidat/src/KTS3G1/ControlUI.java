@@ -32,13 +32,10 @@ public class ControlUI extends javax.swing.JFrame {
         myinitComponents();
         setTitle("Grupp 1");
 
-        
-
-      
-
     }
-
-    String uppdragslista = "";
+    String allaUppdrag=""; 
+    String upphamtningsplats="";
+    String valtUppdrag = "";
 
     public void showStatus(String p) {
         //System.out.println("Nodes: "+ds.nodes);
@@ -58,17 +55,24 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s);
     }
 
-    void setUppdrag(String c) {
-        //uppdragslista = uppdragslista + c + "\n";
-        //  jTextArea2.setText(uppdragslista);
-        //jScrollPane1.
+    void valtUppdrag(String c) {
+        valtUppdrag = valtUppdrag + c + "\n";
+        jTextArea2.setText(valtUppdrag);
+        
     }
-
+    void upphamtningsplats(String c) {
+        upphamtningsplats = upphamtningsplats + c + "\n";
+        jTextArea2.setText(upphamtningsplats);
+        
+    }
+     void allaUppdrag(String c) {
+        allaUppdrag = allaUppdrag + c + "\n";
+        jTextArea2.setText(allaUppdrag);
+        
+    }
     void bluetoothAdress(String b) {
 
-        jTextField7.setText("" + b);
-        
-        
+        jTextField7.setText("" + b);   
 }
     void bluetoothchannel(String c){
         jTextField6.setText("" + c);

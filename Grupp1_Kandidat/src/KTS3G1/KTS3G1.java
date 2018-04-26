@@ -23,6 +23,10 @@ public class KTS3G1 {
     String URL1;
     String URL2;
     String URL3;
+    
+    String upphamtningsplats="lol"; 
+    String allaUppdrag="hejja"; 
+    String valtUppdrag="hejja"; 
 
 
     KTS3G1() {
@@ -63,6 +67,10 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
+        cui.valtUppdrag(valtUppdrag);
+        cui.upphamtningsplats(upphamtningsplats);
+        cui.allaUppdrag(allaUppdrag);
+        
         
 //        cui.showStatus(http.newmesssage());
 
