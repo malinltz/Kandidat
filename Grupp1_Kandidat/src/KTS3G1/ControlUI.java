@@ -550,12 +550,11 @@ public class ControlUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 public boolean atervant = false;
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
-if (startPosition.getText().equals("Återvänd till startposition")) {
-            startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+    if (startPosition.getText().equals("Återvänd till startposition")) {
+            startPosition.setText("Återvänder...");
             startPosition.setEnabled(false);
             
+
             if(atervant == true){
                startPosition.setEnabled(true);
                startPosition.setText("Återvänd till startposition");
@@ -566,6 +565,19 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
         } else if(atervant == false)  {
             
         }
+
+            //Lägg till att AGV ska återvända till 0.0
+            ds.robotX = ds.nodeX[0];
+            ds.robotY = ds.nodeY[0];
+            
+            
+
+         
+    if  (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0])
+            startPosition.setText("Återvänd till startposition");
+    startPosition.setEnabled(true);
+
+    
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -598,6 +610,7 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
         }
+
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -627,6 +640,7 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
         jTextField7.setText("hej");
         }catch(IOException e){jTextField7.setText("error");};
          */
+/*
         try {
             BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String myString = "";
@@ -637,8 +651,8 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
             jTextField7.setText("hej");
         } catch (IOException e) {
             jTextField7.setText("error");
-        };
-
+        }
+*/
 
     }//GEN-LAST:event_jTextField7ActionPerformed
 

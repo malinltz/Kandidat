@@ -21,7 +21,8 @@ public class HTTPanrop implements Runnable {
     private String gruppmessage;
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
-    private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+   // private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+    private static String URL3 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     
     private int sleepTime;
 

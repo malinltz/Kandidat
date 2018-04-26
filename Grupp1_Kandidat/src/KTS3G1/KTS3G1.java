@@ -10,6 +10,7 @@ public class KTS3G1 {
     HTTPanrop http;
     OptPlan op;
     RobotRutt RR;
+    HTTPextern hx;
 
     //Transceiver tc; 
     //Reciver re; 
@@ -67,8 +68,8 @@ public class KTS3G1 {
         cui.allaUppdrag(allaUppdrag);
         
         
-        cui.showStatus(http.toString());
-        cui.showStatus(http.newmesssage());
+        cui.showStatus(http.gruppmessages() );
+        //cui.showStatus(http.newmesssage());
         cui.showStatus(URL1);
         
       //  cui.showStatus(http.newmesssage());
