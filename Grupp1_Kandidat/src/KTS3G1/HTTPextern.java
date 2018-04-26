@@ -28,10 +28,16 @@ public class HTTPextern {
     int[] capacity;
     int ID=1;
     int[] messagetyp;
+    String z= "z";
+    String m= "m";
+    String n= "n";
+    String p= "p";
+    
 
-    public HTTPextern(HTTPanrop http) {
+    public HTTPextern(HTTPanrop http, DataStore ds) {
 
         this.http = http;
+        this.ds=ds;
         sleepTime = 1000;
 
     }

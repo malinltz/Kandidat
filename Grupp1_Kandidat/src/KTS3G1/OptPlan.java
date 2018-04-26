@@ -13,6 +13,8 @@ public class OptPlan {
     public int slut = 5; //Inparametrar av något slag
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
+    double x=0;
+    double y=0;
 
     public OptPlan(DataStore ds) {
         this.ds = ds;
@@ -45,7 +47,16 @@ public class OptPlan {
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-//x=ds.nodeX
+
+            System.out.println(Integer.parseInt(path.get(i).getId()));
+            //System.out.println(ds.pathInt[i]);
+            
+           
+             x = ds.nodeX[shortestPathList[i]]; 
+            y = ds.nodeY[shortestPathList[i]];
+            
+            System.out.println("" +x+", " +y);
+            
         }
         
 

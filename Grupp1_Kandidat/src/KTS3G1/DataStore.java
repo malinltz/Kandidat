@@ -24,6 +24,7 @@ public class DataStore {
     double robotX;
     double robotY;
     int[] arcColor;
+    
 
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data
