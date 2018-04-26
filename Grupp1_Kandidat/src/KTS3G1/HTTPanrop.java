@@ -83,6 +83,10 @@ public class HTTPanrop implements Runnable {
                 paragraph1 = paras[i];
                 System.out.println("Parametrar: " + paragraph1);
             }
+            //gör någon typ av dummy som delar upp 
+            
+                //platser = Integer.parseInt(message.substring(0,1));
+                
         cui.showStatus(paragraph1);
             Thread.sleep(2000); //vilken sleeptime?
 
