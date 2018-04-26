@@ -22,9 +22,20 @@ public class HTTPanrop implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     private String gruppmessage;
+    
+    //För att ta reda på vilka uppdragsplatser som finns vart
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
+    //För att skicka ett meddelande till HTTP- servern
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
+
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+
+
+    //För att läsa de meddelanden som grupper skickat
+//  private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+    ////För att ta reda på vilka uppdrag som finns på plats A
+  //  private static String URL3 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
+    
 
     private int sleepTime;
 
@@ -75,8 +86,8 @@ public class HTTPanrop implements Runnable {
 cui.showStatus(paragraph1);
             Thread.sleep(2000); //vilken sleeptime?
 
-        } catch (Exception e) {
-            System.out.print(e.toString());
+        } catch (Exception c) {
+            System.out.print(c.toString());
 
         }
         try {
@@ -88,7 +99,7 @@ cui.showStatus(paragraph1);
             //con.setRequestProperty("User-Agent", USER_AGENT);
             //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
-            String urlParameters = message;
+            String urlParameters = paragraph1;
 
             // Send post request
             anslutning.setDoOutput(true);
@@ -130,7 +141,7 @@ cui.showStatus(paragraph1);
 
             //print result
             System.out.println(e.toString());
-
+        }
             try {
 
                 URL urlobjekt3 = new URL(url3);
@@ -141,7 +152,7 @@ cui.showStatus(paragraph1);
                 System.out.println("Statuskod: " + mottagen_status);
 
                 BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-                String inkommande_text;
+                String inkommande_text = "";
                 StringBuffer inkommande_samlat = new StringBuffer();
                 while ((inkommande_text = inkommande.readLine()) != null) {
                     inkommande_samlat.append(inkommande_text);
@@ -155,9 +166,13 @@ cui.showStatus(paragraph1);
 
                 for (int i = 0; i < paras.length; i++) {
 
+
                
                     paragraph3 = paras[i];
                     System.out.println("Parametrar: " + paragraph3);
+         //  paragraph = paras[i];
+                    //System.out.println("Parametrar: " + paragraph);
+
                 }
 
             } catch (Exception k) {
@@ -166,7 +181,7 @@ cui.showStatus(paragraph1);
 
         }
 
-    }
+    
 
     /* public String HTTPkontact(String URL) {
        url = URL;

@@ -39,15 +39,25 @@ public class ControlUI extends javax.swing.JFrame {
         //System.out.println("Nodes: "+ds.nodes);
         //System.out.println("Arcs: "+ds.arcs);
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
+
         //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
        
          jTextArea2.append(p + "\n");
+
+        // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
+        jTextArea2.append("Uppdrag " + p + "\n");
+
     }
 
     void appendStatus(String s) {
 
         statusuppdTextArea.append(s + "\n");
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    }
+    public boolean atervant(boolean p) {
+
+        return p; 
+        
     }
 
     public void appendOptText(String s) {
@@ -59,16 +69,21 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.setText(valtUppdrag);
 
     }
-
     void upphamtningsplats(String c) {
         upphamtningsplats = upphamtningsplats + c + "\n";
-        jTextArea2.setText(upphamtningsplats);
+
+       // jTextArea2.setText(upphamtningsplats);
+
+
+        jTextArea2.setText(upphamtningsplats);   
 
     }
 
     void allaUppdrag(String c) {
         allaUppdrag = allaUppdrag + c + "\n";
         jTextArea2.setText(allaUppdrag);
+
+
 
     }
 
@@ -548,8 +563,9 @@ public class ControlUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public boolean atervant = false;
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
+
         if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
             startPosition.setBackground(Color.red);
@@ -557,9 +573,34 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-        } else {
-            startPosition.setText("Har återvänt");
+  //  if (startPosition.getText().equals("Återvänd till startposition")) {
+       //     startPosition.setText("Återvänder...");
+       //     startPosition.setEnabled(false);
+            
+
+            if(atervant == true){
+               startPosition.setEnabled(true);
+               startPosition.setText("Återvänd till startposition");
+            }
+            
+            
+
+        } else if(atervant == false)  {
+            
         }
+
+            //Lägg till att AGV ska återvända till 0.0
+            ds.robotX = ds.nodeX[0];
+            ds.robotY = ds.nodeY[0];
+            
+            
+
+         
+    if  (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0])
+            startPosition.setText("Återvänd till startposition");
+    startPosition.setEnabled(true);
+
+    
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
@@ -580,9 +621,14 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t2 = new Thread(r2);
             t2.start();
 
+
             HTTPanrop h2 = new HTTPanrop(ds,op, this );
             Thread t4 = new Thread(h2);
             t4.start();
+
+           // HTTPanrop h1 = new HTTPanrop(ds, op);
+          //  Thread t3 = new Thread(h1);
+           // t3.start();
 
 
             /*Transceiver p1 = new Transceiver(cui); 
@@ -592,6 +638,7 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
         }
+
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -621,6 +668,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextField7.setText("hej");
         }catch(IOException e){jTextField7.setText("error");};
          */
+/*
         try {
             BufferedReader myBufferedReader = new BufferedReader(new InputStreamReader(System.in));
             String myString = "";
@@ -631,8 +679,8 @@ public class ControlUI extends javax.swing.JFrame {
             jTextField7.setText("hej");
         } catch (IOException e) {
             jTextField7.setText("error");
-        };
-
+        }
+*/
 
     }//GEN-LAST:event_jTextField7ActionPerformed
 

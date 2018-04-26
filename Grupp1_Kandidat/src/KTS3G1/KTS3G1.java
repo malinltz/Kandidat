@@ -25,9 +25,16 @@ public class KTS3G1 {
     String URL2;
     String URL3;
     
-    String upphamtningsplats="lol"; 
+
+ //   String upphamtningsplats="lol"; 
     String allaUppdrag="Nötallergiker undanbedes och beivras"; 
     String valtUppdrag="Helt seriöst"; 
+
+    String upphamtningsplats="hej1"; 
+  //  String allaUppdrag="hej2"; 
+  //  String valtUppdrag="Hej3"; 
+   
+
 
 
     KTS3G1() {
@@ -35,8 +42,12 @@ public class KTS3G1 {
         //tc= new Transceiver
         //tm = new Transmitter();
         //re = new Reciver()
+
         http = new HTTPanrop(ds, op, cui);
         // cui.bluetoothAdress(badress);
+
+      
+
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
@@ -62,16 +73,23 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
-        cui.valtUppdrag(valtUppdrag);
-        cui.upphamtningsplats(upphamtningsplats);
-        cui.allaUppdrag(allaUppdrag);
+       // cui.valtUppdrag(valtUppdrag);
+        //cui.upphamtningsplats(upphamtningsplats);
+        //cui.allaUppdrag(allaUppdrag);
         
         
+
         cui.showStatus(http.paragraph1);
         //cui.showStatus(http.message);
      
         
         
+
+        cui.showStatus(http.gruppmessages());
+        //cui.showStatus(http.newmesssage());
+       // cui.showStatus(URL1);
+       
+
       //  cui.showStatus(http.newmesssage());
   
         /*Transceiver p1 = new Transceiver(cui); 
