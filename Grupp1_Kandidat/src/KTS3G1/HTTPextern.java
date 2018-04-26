@@ -18,7 +18,7 @@ import java.io.DataOutputStream;
  *
  * @author malinlilliecreutz
  */
-/*
+
 public class HTTPextern {
 
     public OptPlan op;
@@ -26,7 +26,7 @@ public class HTTPextern {
     public HTTPanrop http;
     int sleepTime;
     int[] capacity;
-    int[] ID;
+    int ID=1;
     int[] messagetyp;
 
     public HTTPextern(HTTPanrop http) {
@@ -39,16 +39,17 @@ public class HTTPextern {
     public void exprotokoll() {
 
         //om företagsgruppens id är lägre än en annan så  får den uppdraget
-        
-        if () {
+        // 
+       /* 
+        if (ID < http.ID) 
+        {
             System.out.println("");
         }
         System.out.println();
         System.out.println();
 
         if ()
-
+*/
     }
 
 }
-*/
