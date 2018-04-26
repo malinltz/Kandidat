@@ -8,8 +8,8 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    public int start = 15; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 20; //Inparametrar av något slag
+    public int start = 4; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 7; //Inparametrar av något slag
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
     double x = 0;
@@ -50,8 +50,8 @@ public class OptPlan {
             System.out.println(Integer.parseInt(path.get(i).getId()));
             //System.out.println(ds.pathInt[i]);
 
-            x = ds.nodeX[shortestPathList[i]];
-            y = ds.nodeY[shortestPathList[i]];
+            x = ds.nodeX[shortestPathList[i]-1];
+            y = ds.nodeY[shortestPathList[i]-1];
 
             System.out.println("" + x + ", " + y);
 

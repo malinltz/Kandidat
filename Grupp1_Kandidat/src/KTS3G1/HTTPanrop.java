@@ -11,24 +11,28 @@ import java.io.DataOutputStream;
 public class HTTPanrop implements Runnable {
 
     public String message;
-    public String paragraph;
+    public String paragraph1;
+    public String paragraph2;
+    public String paragraph3;
     private String url1;
     private String url2;
     private String url3;
     private String utmessage;
     public OptPlan op;
     public DataStore ds;
+    public ControlUI cui;
     private String gruppmessage;
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
-    
+
     private int sleepTime;
 
-    public HTTPanrop(DataStore ds, OptPlan op) {
+    public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
         //  this.cui = cui;
         this.ds = ds;
         this.op = op;
+        this.cui= cui;
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
@@ -65,10 +69,10 @@ public class HTTPanrop implements Runnable {
 
             for (int i = 0; i < paras.length; i++) {
 
-                paragraph = paras[i];
-                System.out.println("Parametrar: " + paragraph);
+                paragraph1 = paras[i];
+                System.out.println("Parametrar: " + paragraph1);
             }
-
+cui.showStatus(paragraph1);
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {
@@ -115,9 +119,9 @@ public class HTTPanrop implements Runnable {
             String[] paras = utmessage.split(";" + "");
 
             for (int i = 0; i < paras.length; i++) {
-                paragraph = paras[i];
+                paragraph2 = paras[i];
 
-                System.out.println("Parametrar: " + paragraph);
+                System.out.println("Parametrar: " + paragraph2);
 
             }
             Thread.sleep(2000); //vilken sleeptime?
@@ -150,8 +154,10 @@ public class HTTPanrop implements Runnable {
                 String[] paras = gruppmessage.split(";" + "");
 
                 for (int i = 0; i < paras.length; i++) {
-                    paragraph = paras[i];
-                    System.out.println("Parametrar: " + paragraph);
+
+               
+                    paragraph3 = paras[i];
+                    System.out.println("Parametrar: " + paragraph3);
                 }
 
             } catch (Exception k) {
@@ -260,7 +266,7 @@ public class HTTPanrop implements Runnable {
         return gruppmessage;
      */
     public String newmesssage() {
-
+    System.out.println(message);
         return message;
     }
 

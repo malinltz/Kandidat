@@ -31,19 +31,20 @@ public class ControlUI extends javax.swing.JFrame {
         setTitle("Grupp 1");
 
     }
-    String allaUppdrag=""; 
-    String upphamtningsplats="";
+    String allaUppdrag = "";
+    String upphamtningsplats = "";
     String valtUppdrag = "";
 
-    public void showStatus(String p) {
+    void showStatus(String p) {
         //System.out.println("Nodes: "+ds.nodes);
         //System.out.println("Arcs: "+ds.arcs);
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-        jTextArea2.append(p + "\n");
+        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
+       
+         jTextArea2.append(p + "\n");
     }
 
-    public void appendStatus(String s) {
+    void appendStatus(String s) {
 
         statusuppdTextArea.append(s + "\n");
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
@@ -56,29 +57,30 @@ public class ControlUI extends javax.swing.JFrame {
     void valtUppdrag(String c) {
         valtUppdrag = valtUppdrag + c + "\n";
         jTextArea2.setText(valtUppdrag);
-        
+
     }
 
     void upphamtningsplats(String c) {
         upphamtningsplats = upphamtningsplats + c + "\n";
         jTextArea2.setText(upphamtningsplats);
-        
+
     }
-     void allaUppdrag(String c) {
+
+    void allaUppdrag(String c) {
         allaUppdrag = allaUppdrag + c + "\n";
         jTextArea2.setText(allaUppdrag);
-        
+
     }
+
     void bluetoothAdress(String b) {
 
-        jTextField7.setText("" + b);   
-}
-    void bluetoothchannel(String c){
+        jTextField7.setText("" + b);
+    }
+
+    void bluetoothchannel(String c) {
         jTextField6.setText("" + c);
     }
 
-
-    
     public void myinitComponents() {
 
         jPanelMap = new MapPanel(ds);
@@ -548,15 +550,12 @@ public class ControlUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
-if (startPosition.getText().equals("Återvänd till startposition")) {
+        if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
             startPosition.setBackground(Color.red);
             startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
-            
-            
-            
 
         } else {
             startPosition.setText("Har återvänt");
@@ -581,7 +580,7 @@ if (startPosition.getText().equals("Återvänd till startposition")) {
             Thread t2 = new Thread(r2);
             t2.start();
 
-            HTTPanrop h2 = new HTTPanrop(ds, op);
+            HTTPanrop h2 = new HTTPanrop(ds,op, this );
             Thread t4 = new Thread(h2);
             t4.start();
 

@@ -1,4 +1,4 @@
- /*
+
 package KTS3G1;
 
 import java.util.Random;
@@ -53,8 +53,8 @@ public class RobotRutt implements Runnable {
         cui.appendStatus("Wall-E är nu klar!");
 
     }
-
-
+}
+/*
     public void rutt() {
     
     for (int i = 0; i < ds.nodes ;i ++) 
