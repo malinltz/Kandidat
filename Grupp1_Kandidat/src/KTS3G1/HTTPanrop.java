@@ -100,7 +100,7 @@ public class HTTPanrop implements Runnable {
              cui.showStatus(plats2);
              
              //Försöker att sätta slutnoden till upphämtningsplatsen
-//        int attakatill = Integer.parseInt(plats1.substring(2,4));
+          //int attakatill = Integer.parseInt(plats1.substring(2,4));
 //        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
 //        
 //        if(attakatill < attakatill2){

@@ -108,8 +108,8 @@ public class DataStore {
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 
-            robotX = nodeX[21];
-            robotY = nodeY[21];
+            robotX = nodeX[20];
+            robotY = nodeY[20];
 
             
         } catch (Exception e) {

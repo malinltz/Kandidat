@@ -51,8 +51,6 @@ public class ControlUI extends javax.swing.JFrame {
         //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
 
         jTextArea2.append("" + p + "\n");
-
-        jTextArea2.append("Uppdrag " + p + "\n");
     }
 
     void appendStatus(String s) {
@@ -601,12 +599,12 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
 
+            op = new OptPlan(ds);
+            op.createPlan();
+            
             HTTPanrop h1 = new HTTPanrop(ds, op, this);
             Thread t1 = new Thread(h1);
             t1.start();
-
-            op = new OptPlan(ds);
-            op.createPlan();
 
             GuiUpdate r1 = new GuiUpdate(ds, this, op);
             Thread t2 = new Thread(r1);

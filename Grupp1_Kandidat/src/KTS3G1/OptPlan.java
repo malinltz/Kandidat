@@ -28,7 +28,6 @@ public class OptPlan {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
         
-
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
@@ -37,15 +36,15 @@ public class OptPlan {
         for (int i = 0; i < ds.arcs; i++) {
             Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
             edges.add(lane);
-
         }
+         
 
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
         // Compute shortest path       
         dijkstra.execute(nodes.get(start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(http.slut - 1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut - 1));
 
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
