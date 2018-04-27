@@ -19,7 +19,7 @@ public class RobotRutt implements Runnable {
         this.cui = cui;
         this.ds = ds;
         this.op = op;
-        sleepTime = generator.nextInt(20000);
+        //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
 
         list = op.getIndex();
@@ -71,7 +71,7 @@ public class RobotRutt implements Runnable {
     public void run() {
         try {
 
-            cui.appendStatus("Jag heter Wall-E och kommer att köra i " + sleepTime + "millisekunder.");
+            cui.appendStatus("Jag heter Wall-E och börjar köra");
 
             for (int i = 0; i < ds.nodes; i++) {
                 if (ds.nodeX[list[i]] < ds.nodeX[i+11]) //varför 11?
@@ -80,6 +80,7 @@ public class RobotRutt implements Runnable {
                     if (ds.nodeX[list[i]] == ds.nodeX[list[i] + 1]) {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
+                        //Thread.sleep(sleepTime);
                     }
                     if (ds.nodeX[list[i]] > ds.nodeX[i]) //lyssnar 
                     {

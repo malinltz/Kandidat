@@ -8,9 +8,10 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
+    private HTTPanrop http;
 
-    public int start = 7; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut =52 ; //Inparametrar av något slag
+    public int start = 21; //Dessa skall inte vara fixt utan mer som en vektor? 
+    //public int slut = 0; //Inparametrar av något slag
 
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
@@ -26,6 +27,7 @@ public class OptPlan {
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
+        
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
@@ -41,21 +43,22 @@ public class OptPlan {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
-        // Compute shortest path
+        // Compute shortest path       
         dijkstra.execute(nodes.get(start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut - 1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(http.slut - 1));
 
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
 
-            System.out.println(Integer.parseInt(path.get(i).getId()));
+            //System.out.println(Integer.parseInt(path.get(i).getId()));
             //System.out.println(ds.pathInt[i]);
 
             x = ds.nodeX[shortestPathList[i]-1];
             y = ds.nodeY[shortestPathList[i]-1];
 
-            System.out.println(" " + x + ", " + y);
+            String nodePath = (" " + x + ", " + y);
+            //cui.appendOptText(nodePath); Funkar ej lol okej
 
         }
 

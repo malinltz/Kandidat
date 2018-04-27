@@ -27,10 +27,10 @@ public class KTS3G1 {
     
 
  //   String upphamtningsplats="lol"; 
-    String allaUppdrag="Nötallergiker undanbedes och beivras"; 
-    String valtUppdrag="Helt seriöst"; 
+    //String allaUppdrag="Nötallergiker undanbedes och beivras"; 
+    //String valtUppdrag="Helt seriöst"; 
 
-    String upphamtningsplats="hej1"; 
+   // String upphamtningsplats="hej1"; 
   //  String allaUppdrag="hej2"; 
   //  String valtUppdrag="Hej3"; 
    
@@ -64,8 +64,6 @@ public class KTS3G1 {
         ds.readNet();
         //ds.nodeX
         
-        
-
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore
          */

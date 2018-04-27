@@ -36,22 +36,30 @@ public class ControlUI extends javax.swing.JFrame {
     String valtUppdrag = "";
 
     void showStatus(String p) {
-        //System.out.println("Nodes: "+ds.nodes);
-        //System.out.println("Arcs: "+ds.arcs);
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-
         //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
        
-         jTextArea2.append(p + "\n");
-
-        // statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-        jTextArea2.append("Uppdrag " + p + "\n");
-
+        jTextArea2.append("Uppdragsplats " + p + "\n");
+    }
+    
+        void showStatus2(String p) {
+        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
+        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
+       
+        jTextArea2.append("Antal uppdrag " + p + "\n");
+    }
+    
+       void svarHTTP(String p) {
+        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
+        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
+       
+        jTextArea2.append("" + p + "\n");
     }
 
     void appendStatus(String s) {
 
         statusuppdTextArea.append(s + "\n");
+      
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
     }
     public boolean atervant(boolean p) {
@@ -608,30 +616,25 @@ public boolean atervant = false;
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             anslut = true;
 
-            OptPlan op = new OptPlan(ds);
+            HTTPanrop h1 = new HTTPanrop(ds,op, this );
+            Thread t1 = new Thread(h1);
+            t1.start();
+            
+            op = new OptPlan(ds);
             op.createPlan();
 
             GuiUpdate r1 = new GuiUpdate(ds, this, op);
-            Thread t1 = new Thread(r1);
-            t1.start();
-
-            RobotRutt r2 = new RobotRutt(ds, this, op);
-            Thread t2 = new Thread(r2);
+            Thread t2 = new Thread(r1);
             t2.start();
 
-
-            HTTPanrop h2 = new HTTPanrop(ds,op, this );
-            Thread t4 = new Thread(h2);
-            t4.start();
-
-           // HTTPanrop h1 = new HTTPanrop(ds, op);
-          //  Thread t3 = new Thread(h1);
-           // t3.start();
-
+            RobotRutt r2 = new RobotRutt(ds, this, op);
+            Thread t3 = new Thread(r2);
+            t3.start();
 
          /*Transceiver p1 = new Transceiver(cui); 
         Thread t3 = new Thread(p1);
         t3.start();*/
+         
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));

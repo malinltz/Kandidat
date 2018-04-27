@@ -14,6 +14,10 @@ public class HTTPanrop implements Runnable {
     public String paragraph1;
     public String paragraph2;
     public String paragraph3;
+    public String platser;
+    public String plats1;
+    public String plats2;
+    public int slut;
     private String url1;
     private String url2;
     private String url3;
@@ -23,10 +27,11 @@ public class HTTPanrop implements Runnable {
     public ControlUI cui;
     private String gruppmessage;
     
+    
     //För att ta reda på vilka uppdragsplatser som finns vart
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     //För att skicka ett meddelande till HTTP- servern
-    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
+    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=");
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
 
@@ -75,7 +80,6 @@ public class HTTPanrop implements Runnable {
             inkommande.close();
             message = inkommande_samlat.toString();
             System.out.println(message);
-
             String[] paras = message.split(" ");
 
             for (int i = 0; i < paras.length; i++) {
@@ -83,11 +87,28 @@ public class HTTPanrop implements Runnable {
                 paragraph1 = paras[i];
                 System.out.println("Parametrar: " + paragraph1);
             }
-            //gör någon typ av dummy som delar upp 
             
-                //platser = Integer.parseInt(message.substring(0,1));
-                
-        cui.showStatus(paragraph1);
+            //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
+            //behöver vi ändra detta eftersom det är hårdkodat
+            
+             platser = message.substring(0,1); //Får ut en 2 (antal platser)
+             plats1 = message.substring(1,8); //Får ut första platsen (A)
+             plats2 = message.substring(8,14); //Får ut andra platsen (B)
+
+             cui.showStatus2(platser);
+             cui.showStatus(plats1);
+             cui.showStatus(plats2);
+             
+        int attakatill = Integer.parseInt(plats1.substring(2,4));
+        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
+        
+        if(attakatill < attakatill2){
+            slut = attakatill2;
+        }
+        else {
+            slut = attakatill;
+        }
+        
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -114,7 +135,7 @@ public class HTTPanrop implements Runnable {
             wr.close();
 
             int responseCode = anslutning.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + url2);
+            System.out.println("\nSending 'POST' request to URL : " + url2 + paragraph1);
             System.out.println("Post parameters : " + urlParameters);
             System.out.println("Response Code : " + responseCode);
 
@@ -129,17 +150,16 @@ public class HTTPanrop implements Runnable {
 
             in.close();
             utmessage = response.toString();
-            System.out.println(utmessage);
 
             String[] paras = utmessage.split(";" + "");
 
             for (int i = 0; i < paras.length; i++) {
                 paragraph2 = paras[i];
 
-                System.out.println("Parametrar: " + paragraph2);
+                System.out.println("Mottaget meddelande: " + paragraph2);
 
             }
-            cui.showStatus(paragraph2);
+            cui.svarHTTP(paragraph2);
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {
@@ -165,21 +185,16 @@ public class HTTPanrop implements Runnable {
 
                 inkommande.close();
                 gruppmessage = inkommande_samlat.toString();
-                System.out.println(gruppmessage);
 
-                String[] paras = gruppmessage.split(";" + "");
+                String[] paras = gruppmessage.split("");
 
                 for (int i = 0; i < paras.length; i++) {
 
-
-               
                     paragraph3 = paras[i];
-                    System.out.println("Parametrar: " + paragraph3);
-         
 
                 }
                 Thread.sleep(2000); //vilken sleeptime?
-                cui.showStatus(paragraph3);
+                cui.svarHTTP("Tid för meddelandet osv: " + "\n"+ gruppmessage);
 
             } catch (Exception k) {
                 System.out.print(k.toString());
@@ -300,4 +315,5 @@ public class HTTPanrop implements Runnable {
 
         return gruppmessage;
     }
+    
 }
