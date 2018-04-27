@@ -17,7 +17,6 @@ public class HTTPanrop implements Runnable {
     public String platser;
     public String plats1;
     public String plats2;
-    public int slut;
     private String url1;
     private String url2;
     private String url3;
@@ -52,13 +51,13 @@ public class HTTPanrop implements Runnable {
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
-
+    @Override
     public void run() { //Lägg till en 
 
         url1 = URL1;
         url2 = URL2;
         url3 = URL3;
-        op = new OptPlan(ds);
+        //op = new OptPlan(ds);
 
         try { // Kopplar upp till listan
             // String url1 = "http://tnk111.n7.se"; 
@@ -79,7 +78,7 @@ public class HTTPanrop implements Runnable {
 
             inkommande.close();
             message = inkommande_samlat.toString();
-            System.out.println(message);
+            //System.out.println(message);
             String[] paras = message.split(" ");
 
             for (int i = 0; i < paras.length; i++) {
@@ -100,9 +99,16 @@ public class HTTPanrop implements Runnable {
              cui.showStatus(plats2);
              
              //Försöker att sätta slutnoden till upphämtningsplatsen
+          //op.getCost();
+             
           //int attakatill = Integer.parseInt(plats1.substring(2,4));
+         
+          
+          //op.createPlan();
+          
 //        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
 //        
+
 //        if(attakatill < attakatill2){
 //            slut = attakatill2;
 //        }
@@ -303,7 +309,7 @@ public class HTTPanrop implements Runnable {
         return gruppmessage;
      */
     public String newmesssage() {
-    System.out.println(message);
+        
         return message;
     }
 

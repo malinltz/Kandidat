@@ -82,7 +82,7 @@ public class RobotRutt implements Runnable {
                         cui.appendStatus("Fortsätt framåt");
                         //Thread.sleep(sleepTime);
                     }
-                    if (ds.nodeX[list[i]] > ds.nodeX[i]) //lyssnar 
+                    if (ds.nodeX[list[i]] > ds.nodeX[i + 1]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");

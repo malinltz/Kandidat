@@ -57,6 +57,7 @@ public class OptPlan {
             y = ds.nodeY[shortestPathList[i]-1];
 
             String nodePath = (" " + x + ", " + y);
+            //System.out.println(" " + x + ", " + y);
             //cui.appendOptText(nodePath); Funkar ej lol okej
 
         }
