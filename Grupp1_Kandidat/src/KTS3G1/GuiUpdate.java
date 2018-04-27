@@ -49,6 +49,9 @@ public class GuiUpdate implements Runnable {
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
                 
+                //int[] tillbakaX =  ds.robotX;
+                //int[] tillbakaY =  ds.robotY;
+                
                // System.out.println(kortaste.length);
                //Om du får felmeddelanden: 
                //Exception in thread "Thread-0" java.lang.ArrayIndexOutOfBoundsException: -1

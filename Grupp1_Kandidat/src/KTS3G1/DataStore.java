@@ -24,6 +24,7 @@ public class DataStore {
     double robotX;
     double robotY;
     int[] arcColor;
+    
 
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data
@@ -69,8 +70,8 @@ public class DataStore {
             arcs = Integer.parseInt(line.trim());
 
             // Debug printout: network size data
-            System.out.println("Nodes: " + nodes);
-            System.out.println("Arcs: " + arcs);
+            //System.out.println("Nodes: " + nodes);
+            //System.out.println("Arcs: " + arcs);
 
             // Read nodes as number, x, y
             for (int i = 0; i < nodes; i++) {
