@@ -99,16 +99,17 @@ public class HTTPanrop implements Runnable {
              cui.showStatus(plats1);
              cui.showStatus(plats2);
              
-        int attakatill = Integer.parseInt(plats1.substring(2,4));
-        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
-        
-        if(attakatill < attakatill2){
-            slut = attakatill2;
-        }
-        else {
-            slut = attakatill;
-        }
-        
+             //Försöker att sätta slutnoden till upphämtningsplatsen
+//        int attakatill = Integer.parseInt(plats1.substring(2,4));
+//        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
+//        
+//        if(attakatill < attakatill2){
+//            slut = attakatill2;
+//        }
+//        else {
+//            slut = attakatill;
+//        }
+//        
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
