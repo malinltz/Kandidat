@@ -365,6 +365,7 @@ public boolean atervant = false;
             //Thread t5 = new Thread(h2);
             //t5.start();
 
+
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setForeground(new java.awt.Color(0, 255, 0));
@@ -378,6 +379,10 @@ public boolean atervant = false;
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
+       // ActionListener lyssnar = null; 
+        // om agvn är på bli grön
+     //   if (meddelande_ut)
+      //  g.setColor(GREEN_COLOR);
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
