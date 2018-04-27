@@ -1,5 +1,6 @@
 package KTS3G1;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
 
@@ -73,8 +74,16 @@ public class RobotRutt implements Runnable {
 
             cui.appendStatus("Jag heter Wall-E och börjar köra");
 
-            for (int i = 0; i < ds.nodes; i++) {
-                if (ds.nodeX[list[i]] < ds.nodeX[i+1]) //varför 11?
+            for (int i = 0; i < list.length; i++) {
+                System.out.println(Arrays.toString(list)); //Noder vi ska besöka
+                System.out.println(ds.nodeX[list[0]]); //Funkar. X-koordinat för första platsen
+                System.out.println(ds.nodeX[list[1]]); //Funkar inte. X-koordinat för andra platsen
+                
+                if(list[i] == 0){
+                    break;
+                }
+                
+                if (ds.nodeX[list[i]] < ds.nodeX[list[i]+1]) //varför 11?
                 {
 
                     if (ds.nodeY[list[i]] == ds.nodeY[list[i] + 1]) {
@@ -83,7 +92,7 @@ public class RobotRutt implements Runnable {
                         //Thread.sleep(sleepTime);
                     }
 
-                    if (ds.nodeX[list[i]] > ds.nodeX[i + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
