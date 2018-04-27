@@ -74,68 +74,68 @@ public class RobotRutt implements Runnable {
             cui.appendStatus("Jag heter Wall-E och börjar köra");
 
             for (int i = 0; i < ds.nodes; i++) {
-                if (ds.nodeX[list[i]] < ds.nodeX[i+11]) //varför 11?
+                if (ds.nodeX[list[i]] < ds.nodeX[i+1]) //varför 11?
                 {
 
-                    if (ds.nodeX[list[i]] == ds.nodeX[list[i] + 1]) {
+                    if (ds.nodeY[list[i]] == ds.nodeY[list[i] + 1]) {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                         //Thread.sleep(sleepTime);
                     }
-                    if (ds.nodeX[list[i]] > ds.nodeX[i]) //lyssnar 
+                    if (ds.nodeY[list[i]] > ds.nodeY[i]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
                     }
-                    if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
                     {
                         rutt = "v"; //vänster
                         cui.appendStatus("Kör vänster");
                     }
                 } else if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1])//nästa vänster
                 {
-                    if (ds.nodeX[list[i]] == ds.nodeX[list[i]] + 1) {
+                    if (ds.nodeY[list[i]] == ds.nodeY[list[i]] + 1) {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                     }
-                    if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
                     {
                         rutt = "v"; //kör vänster
                         cui.appendStatus("Kör vänster");
                     }
-                    if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
                     } else if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //varför 11?
                     {
 
-                        if (ds.nodeY[list[i]] == ds.nodeY[list[i] + 1]) {
+                        if (ds.nodeX[list[i]] == ds.nodeX[list[i] + 1]) {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                         }
-                        if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");
                         }
-                        if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
                         {
                             rutt = "v"; //vänster
                             cui.appendStatus("Kör vänster");
                         }
                     } else if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1])//nästa vänster
                     {
-                        if (ds.nodeY[list[i]] == ds.nodeY[list[i]] + 1) {
+                        if (ds.nodeX[list[i]] == ds.nodeX[list[i]] + 1) {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                         }
-                        if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1]) //lyssnar 
                         {
                             rutt = "v"; //kör vänster
                             cui.appendStatus("Kör vänster");
                         }
-                        if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");

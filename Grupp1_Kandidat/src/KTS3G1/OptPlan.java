@@ -10,8 +10,8 @@ public class OptPlan {
     private DataStore ds;
     private HTTPanrop http;
 
-    public int start = 21; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 11; //Inparametrar av något slag
+    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 40; //Inparametrar av något slag
 
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
@@ -80,8 +80,10 @@ public class OptPlan {
     }
 
     public int[] getIndex() {
-
+        
         return shortestPathList;
+        
+        
 
     }
 
