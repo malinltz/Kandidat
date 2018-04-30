@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.lang.Math.*;
 
+
 /**
  *
  */
@@ -22,6 +23,8 @@ public class MapPanel extends JPanel {
         final Color LIGHT_COLOR = new Color(150, 150, 150);
         final Color DARK_COLOR = new Color(0, 0, 0);
         final Color RED_COLOR = new Color(255, 0, 0);
+        final Color PURPLE_COLOR = new Color(255,0,255);
+
         int x, y;
         int x1, y1;
         int x2, y2;
@@ -86,8 +89,21 @@ public class MapPanel extends JPanel {
                     g.setColor(DARK_COLOR);
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
+                
+                if (ds.arcStart[i]==24 && ds.arcEnd[i]==19){
+                    g.setColor(PURPLE_COLOR);
+                    g.drawString(String.valueOf("A"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                }
+                if (ds.arcStart[i]==50 && ds.arcEnd[i]==53){
+                    g.setColor(PURPLE_COLOR);
+                    g.drawString(String.valueOf("B"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                }
+                if (ds.arcStart[i]==10 && ds.arcEnd[i]==13){
+                    g.setColor(PURPLE_COLOR);
+                    g.drawString(String.valueOf("C"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                }
+                g.drawLine(x1, height - y1, x2, height - y2);
             }
-
         }
     }// end paintComponent
 }

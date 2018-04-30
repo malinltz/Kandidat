@@ -17,6 +17,7 @@ public class HTTPanrop implements Runnable {
     public String platser;
     public String plats1;
     public String plats2;
+    public String plats3;
     private String url1;
     private String url2;
     private String url3;
@@ -90,15 +91,17 @@ public class HTTPanrop implements Runnable {
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
             //behöver vi ändra detta eftersom det är hårdkodat
             
-             platser = message.substring(0,1); //Får ut en 2 (antal platser)
+             platser = message.substring(0,1); //Får ut en 3 (antal platser)
              plats1 = message.substring(1,8); //Får ut första platsen (A)
-             plats2 = message.substring(8,14); //Får ut andra platsen (B)
+             plats2 = message.substring(8,15); //Får ut andra platsen (B)
+             plats3 = message.substring(15,22); //Får ut andra platsen (B)
 
              cui.showStatus2(platser);
              cui.showStatus(plats1);
              cui.showStatus(plats2);
+             cui.showStatus(plats3);
              
-             //Försöker att sätta slutnoden till upphämtningsplatsen
+          //Försöker att sätta slutnoden till upphämtningsplatsen
           //op.getCost();
              
           //int attakatill = Integer.parseInt(plats1.substring(2,4));
