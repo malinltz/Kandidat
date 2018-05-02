@@ -86,6 +86,9 @@ public class OptPlan {
                 }
             }
         }
+
+        //// ny för uppdragen
+
         // Compute shortest path av uppdragen     
         dijkstra.execute(nodes.get(startupp - 1));
         LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
