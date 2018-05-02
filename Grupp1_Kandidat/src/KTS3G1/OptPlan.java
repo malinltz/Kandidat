@@ -137,8 +137,14 @@ public class OptPlan {
         return pathCost;
 
     }
-   // public int getuppdrag()
-   // {
-    //    return 
- //   }
+   public int [] getuppdrag()
+    {
+        return shortestPathListupp;
+    }
+    public int getCostupp() {
+
+        return pathCostupp;
+
+    }
+   
 }
