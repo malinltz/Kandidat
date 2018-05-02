@@ -11,10 +11,36 @@ import java.util.logging.Logger;
 public class Transceiver implements Runnable{
        public String mottaget = null;
        Anslutning asg;
-    
+       
    //     private ControlUI cui;
         
     public Transceiver() {
+       try{
+           System.out.println("Transceiver startad i public Transceiver!");
+           StreamConnection anslutning = (StreamConnection) asg.service;
+           PrintStream bluetooth_ut
+                    = new PrintStream(anslutning.openOutputStream());
+            BufferedReader bluetooth_in
+                    = new BufferedReader(
+                            new InputStreamReader(anslutning.openInputStream()));
+            BufferedReader tangentbord
+                    = new BufferedReader(
+                            new InputStreamReader(System.in));
+            while (true) {
+                String meddelande_ut = tangentbord.readLine();
+          
+              if (meddelande_ut == null) {
+                    break;
+                }
+                bluetooth_ut.print(meddelande_ut);
+                mottaget = bluetooth_in.readLine();
+                System.out.println("Mottaget (i tc): "  + mottaget);
+            }
+          anslutning.close();
+           
+           } catch (IOException e){
+                        System.out.print(e.toString());
+           } 
       /*    try {
      //      cui.appendStatus("Ansluter till AGV");
             StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
@@ -45,8 +71,8 @@ public class Transceiver implements Runnable{
      */
     }
        public void run (){
-           try{
-     
+       /*    try{
+           System.out.println("Transceiver startad i public void run!");
            StreamConnection anslutning = (StreamConnection) asg.service;
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
@@ -63,8 +89,8 @@ public class Transceiver implements Runnable{
                     break;
                 }
                 bluetooth_ut.print(meddelande_ut);
-                String meddelande_in = bluetooth_in.readLine();
-                System.out.println("Mottaget (i tc): "  + meddelande_in);
+                mottaget = bluetooth_in.readLine();
+                System.out.println("Mottaget (i tc): "  + mottaget);
             }
           anslutning.close();
            
@@ -72,7 +98,8 @@ public class Transceiver implements Runnable{
                         System.out.print(e.toString());
            }    
            }
-}
+*/
+       }
 
 
 
@@ -101,3 +128,4 @@ public class Transceiver implements Runnable{
         }
     }
 */
+}

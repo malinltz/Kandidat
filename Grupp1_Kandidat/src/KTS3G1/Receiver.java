@@ -13,8 +13,10 @@ public class Receiver implements Runnable {
             
     Anslutning asg;
     
-   /*   public Receiver() {
-            try {
+      public Receiver() {
+          
+          System.out.println("Receiver startad i public Receiver run!");
+           /*try {
             // btspp://201410149018:1
             // StreamConnectionNotifier service = (StreamConnectionNotifier) Connector.open("btspp://localhost:" + new UUID(0x1101).toString() + ";name=TNK111-test");
        
@@ -32,17 +34,16 @@ public class Receiver implements Runnable {
         anslutning.close();
         } catch (IOException e) {
             System.err.print(e.toString());
-        }
+        }*/
     }
     
-            */
+            
     
     
     @Override
     public void run() {
-        
-      
         try {
+            System.out.println("Receiver startad i public void run!");
            StreamConnectionNotifier service = (StreamConnectionNotifier) asg.service;
             StreamConnection anslutning = (StreamConnection) service.acceptAndOpen();
             InputStream bluetooth_in = anslutning.openInputStream();
@@ -52,6 +53,9 @@ public class Receiver implements Runnable {
             mottaget = new String(buffer,  0, antal_bytes);
             System.out.println("\n"+"Mottaget meddelande(i rc): "+ mottaget);
                   anslutning.close();
+                  if(mottaget != null){
+                      
+                  }
         } catch (IOException e) {
               System.err.print(e.toString());
         }
