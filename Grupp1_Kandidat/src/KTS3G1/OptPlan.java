@@ -45,7 +45,7 @@ public class OptPlan {
 
         // Compute shortest path       
         dijkstra.execute(nodes.get(start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(http.slut - 1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut - 1));
 
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {

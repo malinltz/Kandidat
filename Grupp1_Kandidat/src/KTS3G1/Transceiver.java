@@ -1,19 +1,21 @@
-/*
 package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
 import java.lang.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Transceiver implements Runnable{
-   
+       public String mottaget = null;
+       Anslutning asg;
     
    //     private ControlUI cui;
         
     public Transceiver() {
-           try {
+      /*    try {
      //      cui.appendStatus("Ansluter till AGV");
             StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
             PrintStream bluetooth_ut
@@ -40,9 +42,12 @@ public class Transceiver implements Runnable{
             System.out.print(e.toString());
             
         }
+     */
     }
        public void run (){
-           /*
+           try{
+     
+           StreamConnection anslutning = (StreamConnection) asg.service;
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
             BufferedReader bluetooth_in
@@ -59,13 +64,18 @@ public class Transceiver implements Runnable{
                 }
                 bluetooth_ut.print(meddelande_ut);
                 String meddelande_in = bluetooth_in.readLine();
-                System.out.println("Mottaget: "  + meddelande_in);
+                System.out.println("Mottaget (i tc): "  + meddelande_in);
             }
-           anslutning.close();
+          anslutning.close();
            
-        
-    }
-}*/
+           } catch (IOException e){
+                        System.out.print(e.toString());
+           }    
+           }
+}
+
+
+
 /*      HA KVAR IFALL ATT!
     public static void
             main(String args[]) {
