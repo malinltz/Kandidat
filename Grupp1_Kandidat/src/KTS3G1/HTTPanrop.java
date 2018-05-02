@@ -157,6 +157,7 @@ public class HTTPanrop implements Runnable {
                 System.out.println("Parametrar: " + paragraph1);
             }
             
+            cui.showStatus(paragraph1);
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
             //behöver vi ändra detta eftersom det är hårdkodat
             /*
