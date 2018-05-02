@@ -24,21 +24,6 @@ public class GuiUpdate implements Runnable {
         try {
             //cui.appendStatus("GuiUpdate startar och kommer att köra i " + sleepTime + " millisekunder.");
             int i = 0;
-
-
-                while (i < op.shortestPathList.length-1) {
-                    Thread.sleep(sleepTime);
-                    //cui.appendStatus("För " + i + ":te gången");
-//                    ds.robotX = (int) ds.nodeX[op.shortestPathList[i] - 1];
-//                    ds.robotY = (int) ds.nodeY[op.shortestPathList[i] - 1];
-  //                  System.out.println(ds.robotX);
-    //                System.out.println(ds.robotX);
-                    i++;
-                    cui.repaint();
-                   //System.out.println(op.shortestPathList[i]);
-                   // System.out.println(ds.nodeX);
-                    
-                }
             
             int[] kortaste = op.getIndex();
 

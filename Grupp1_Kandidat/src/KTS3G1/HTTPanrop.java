@@ -17,7 +17,7 @@ public class HTTPanrop implements Runnable {
     public String platser;
     public String plats1;
     public String plats2;
-    public int slut;
+    public String plats3;
     private String url1;
     private String url2;
     private String url3;
@@ -52,13 +52,13 @@ public class HTTPanrop implements Runnable {
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
     }
-
+    @Override
     public void run() { //Lägg till en 
 
         url1 = URL1;
         url2 = URL2;
         url3 = URL3;
-        op = new OptPlan(ds);
+        //op = new OptPlan(ds);
 
         try { // Kopplar upp till listan
             // String url1 = "http://tnk111.n7.se"; 
@@ -79,7 +79,7 @@ public class HTTPanrop implements Runnable {
 
             inkommande.close();
             message = inkommande_samlat.toString();
-            System.out.println(message);
+            //System.out.println(message);
             String[] paras = message.split(" ");
 
             for (int i = 0; i < paras.length; i++) {
@@ -91,18 +91,27 @@ public class HTTPanrop implements Runnable {
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
             //behöver vi ändra detta eftersom det är hårdkodat
             
-             platser = message.substring(0,1); //Får ut en 2 (antal platser)
+             platser = message.substring(0,1); //Får ut en 3 (antal platser)
              plats1 = message.substring(1,8); //Får ut första platsen (A)
-             plats2 = message.substring(8,14); //Får ut andra platsen (B)
+             plats2 = message.substring(8,15); //Får ut andra platsen (B)
+             plats3 = message.substring(15,22); //Får ut andra platsen (B)
 
              cui.showStatus2(platser);
              cui.showStatus(plats1);
              cui.showStatus(plats2);
+             cui.showStatus(plats3);
              
-             //Försöker att sätta slutnoden till upphämtningsplatsen
-//        int attakatill = Integer.parseInt(plats1.substring(2,4));
+          //Försöker att sätta slutnoden till upphämtningsplatsen
+          //op.getCost();
+             
+          //int attakatill = Integer.parseInt(plats1.substring(2,4));
+         
+          
+          //op.createPlan();
+          
 //        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
 //        
+
 //        if(attakatill < attakatill2){
 //            slut = attakatill2;
 //        }
@@ -303,7 +312,7 @@ public class HTTPanrop implements Runnable {
         return gruppmessage;
      */
     public String newmesssage() {
-    System.out.println(message);
+        
         return message;
     }
 

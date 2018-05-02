@@ -1,5 +1,6 @@
 package KTS3G1;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
 
@@ -72,78 +73,98 @@ public class RobotRutt implements Runnable {
         try {
 
             cui.appendStatus("Jag heter Wall-E och börjar köra");
+            
+            //Funkar inte!! Dock tror jag att  list[i]-1  funkar så spara det. whey
 
-            for (int i = 0; i < ds.nodes; i++) {
-                if (ds.nodeX[list[i]] < ds.nodeX[i+11]) //varför 11?
+            for (int i = 0; i < list.length; i++) {
+                if(list[i] == 0){
+                    break;
+                }
+                System.out.println(Arrays.toString(list)); //Noder vi ska besöka
+                System.out.println(ds.nodeX[list[i]-1]);
+                System.out.println(ds.nodeY[list[i]-1]);
+
+                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //varför 11?
                 {
 
-                    if (ds.nodeX[list[i]] == ds.nodeX[list[i] + 1]) {
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                         //Thread.sleep(sleepTime);
+                        System.out.println("VALD1");
                     }
-                    if (ds.nodeX[list[i]] > ds.nodeX[i]) //lyssnar 
+
+                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
+                        System.out.println("VALD2");
                     }
-                    if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //lyssnar 
                     {
                         rutt = "v"; //vänster
                         cui.appendStatus("Kör vänster");
+                        System.out.println("VALD3");
                     }
-                } else if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1])//nästa vänster
+                } else if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]])//nästa vänster
                 {
-                    if (ds.nodeX[list[i]] == ds.nodeX[list[i]] + 1) {
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
+                        System.out.println("VALD4");
                     }
-                    if (ds.nodeX[list[i]] > ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]]) //lyssnar 
                     {
                         rutt = "v"; //kör vänster
                         cui.appendStatus("Kör vänster");
+                        System.out.println("VALD5");
                     }
-                    if (ds.nodeX[list[i]] < ds.nodeX[list[i] + 1]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
-                    } else if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //varför 11?
+                        System.out.println("VALD6");
+                    }
+                } else if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //varför 11?
                     {
 
-                        if (ds.nodeY[list[i]] == ds.nodeY[list[i] + 1]) {
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
+                            System.out.println("VALD7");
                         }
-                        if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");
+                            System.out.println("VALD8");
                         }
-                        if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //lyssnar 
                         {
                             rutt = "v"; //vänster
                             cui.appendStatus("Kör vänster");
+                            System.out.println("VALD9");
                         }
-                    } else if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1])//nästa vänster
+                    } else if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]])//nästa vänster
                     {
-                        if (ds.nodeY[list[i]] == ds.nodeY[list[i]] + 1) {
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
+                            System.out.println("VALD10");
                         }
-                        if (ds.nodeY[list[i]] > ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]]) //lyssnar 
                         {
                             rutt = "v"; //kör vänster
                             cui.appendStatus("Kör vänster");
+                            System.out.println("VALD11");
                         }
-                        if (ds.nodeY[list[i]] < ds.nodeY[list[i] + 1]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");
+                            System.out.println("VALD12");
                         }
-
                     }
-
-                }
             }
         } catch (NumberFormatException exception) {
         }

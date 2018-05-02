@@ -10,8 +10,8 @@ public class OptPlan {
     private DataStore ds;
     private HTTPanrop http;
 
-    public int start = 21; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 11; //Inparametrar av något slag
+    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 40; //Inparametrar av något slag
 
     public int[] shortestPathList = new int[1000];
     int pathCost = 0;
@@ -28,7 +28,6 @@ public class OptPlan {
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
         
-
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
@@ -37,8 +36,8 @@ public class OptPlan {
         for (int i = 0; i < ds.arcs; i++) {
             Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
             edges.add(lane);
-
         }
+         
 
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
@@ -58,6 +57,7 @@ public class OptPlan {
             y = ds.nodeY[shortestPathList[i]-1];
 
             String nodePath = (" " + x + ", " + y);
+            //System.out.println(" " + x + ", " + y);
             //cui.appendOptText(nodePath); Funkar ej lol okej
 
         }
@@ -81,8 +81,10 @@ public class OptPlan {
     }
 
     public int[] getIndex() {
-
+        
         return shortestPathList;
+        
+        
 
     }
 
