@@ -22,19 +22,19 @@ public class KTS3G1 {
     //Reciver re; 
     String badress="201410149018"; 
     String kanal = "1";
-
+    
     String URL1;
+    String URL12;
     String URL2;
     String URL3;
     
-
- //   String upphamtningsplats="lol"; 
+    //String upphamtningsplats="lol"; 
     //String allaUppdrag="Nötallergiker undanbedes och beivras"; 
     //String valtUppdrag="Helt seriöst"; 
 
    // String upphamtningsplats="hej1"; 
-  //  String allaUppdrag="hej2"; 
-  //  String valtUppdrag="Hej3"; 
+    //String allaUppdrag="hej2"; 
+     // String valtUppdrag="Hej3"; 
    
 
 

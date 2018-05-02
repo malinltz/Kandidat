@@ -184,7 +184,6 @@ public class RobotRutt implements Runnable {
         cui.appendStatus("Wall-E är nu klar!");
 
     }
-
     public String gorutt() { 
 
         return rutt;
