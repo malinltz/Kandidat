@@ -11,6 +11,7 @@ import java.io.DataOutputStream;
 public class HTTPanrop implements Runnable {
 
     public String message;
+    public String messageupp;
     public String paragraph1;
     public String paragraph2;
     public String paragraph3;
@@ -147,16 +148,17 @@ public class HTTPanrop implements Runnable {
             }
 
             inkommande.close();
-            message = inkommande_samlat.toString();
+            messageupp = inkommande_samlat.toString();
             //System.out.println(message);
-            String[] paras = message.split(" ");
+            String[] paras = messageupp.split(" ");
 
             for (int i = 0; i < paras.length; i++) {
 
                 paragraph1 = paras[i];
                 System.out.println("Parametrar: " + paragraph1);
             }
-            
+           
+            //cui.showStatus(messageupp);
             cui.showStatus(paragraph1);
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
             //behöver vi ändra detta eftersom det är hårdkodat

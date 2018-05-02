@@ -43,7 +43,7 @@ public class ControlUI extends javax.swing.JFrame {
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
         //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
 
-        jTextArea2.append("Antal uppdrag " + p + "\n");
+        jTextArea2.append("Antal upphämtningsplatser " + p + "\n");
     }
 
     void svarHTTP(String p) {
