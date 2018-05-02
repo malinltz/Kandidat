@@ -25,11 +25,9 @@ public class RobotRutt implements Runnable {
 
         list = op.getIndex();
     }
-
     /*
 
-        list = op.getIndex();
-    
+        list = op.getIndex(); 
    }
 
     @Override
@@ -84,7 +82,7 @@ public class RobotRutt implements Runnable {
                 System.out.println(ds.nodeX[list[i]-1]);
                 System.out.println(ds.nodeY[list[i]-1]);
 
-                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //varför 11?
+                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) 
                 {
 
                     if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) {
@@ -172,7 +170,7 @@ public class RobotRutt implements Runnable {
 
     }
 
-    public String gorutt() {
+    public String gorutt() { 
 
         return rutt;
     }

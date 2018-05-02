@@ -33,6 +33,8 @@ public class HTTPextern {
     String m= "m";
     String n= "n";
     String p= "p";
+    String platserna;
+    
     
 
     public HTTPextern(HTTPanrop http, DataStore ds) {
@@ -64,7 +66,14 @@ public class HTTPextern {
         System.out.println();
 
         if ()
-*/
+
+       
+   http.platser;
+   http.plats1;
+   http.plats2;
+   http.plats3;
+   */
+           
     }
 
 }
