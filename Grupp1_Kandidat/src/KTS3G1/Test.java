@@ -13,8 +13,7 @@ package KTS3G1;
 public class Test {
     
 }
-/*
-    
+/* 
 //extra från HTTPanrop
     /* public String HTTPkontact(String URL) {
        url = URL;
