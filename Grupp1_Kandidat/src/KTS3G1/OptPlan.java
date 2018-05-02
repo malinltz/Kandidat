@@ -27,7 +27,7 @@ public class OptPlan {
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
-        
+
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
@@ -52,9 +52,8 @@ public class OptPlan {
 
             //System.out.println(Integer.parseInt(path.get(i).getId()));
             //System.out.println(ds.pathInt[i]);
-
-            x = ds.nodeX[shortestPathList[i]-1];
-            y = ds.nodeY[shortestPathList[i]-1];
+            x = ds.nodeX[shortestPathList[i] - 1];
+            y = ds.nodeY[shortestPathList[i] - 1];
 
             String nodePath = (" " + x + ", " + y);
             //System.out.println(" " + x + ", " + y);

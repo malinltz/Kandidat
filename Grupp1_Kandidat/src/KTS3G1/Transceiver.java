@@ -20,14 +20,17 @@ public class Transceiver implements Runnable{
            StreamConnection anslutning = (StreamConnection) asg.service;
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
+           
             BufferedReader bluetooth_in
                     = new BufferedReader(
                             new InputStreamReader(anslutning.openInputStream()));
+            
             BufferedReader tangentbord
                     = new BufferedReader(
                             new InputStreamReader(System.in));
             while (true) {
-                String meddelande_ut = tangentbord.readLine();
+              //String meddelande_ut = tangentbord.readLine();
+                String meddelande_ut = asg.kommando;
           
               if (meddelande_ut == null) {
                     break;
