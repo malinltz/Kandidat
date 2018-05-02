@@ -9,37 +9,44 @@ import java.util.logging.Logger;
 
 
 public class Transceiver implements Runnable{
-       public String mottaget = null;
-       Anslutning asg;
+       public String mottaget = "";
+     private  Anslutning asg;
        
-   //     private ControlUI cui;
         
     public Transceiver() {
        try{
+           // StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
            System.out.println("Transceiver startad i public Transceiver!");
            StreamConnection anslutning = (StreamConnection) asg.service;
+           System.out.println("Transceiver startad i public Transceiver2!");
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
-           
+           System.out.println("Transceiver startad i public Transceiver3!");
             BufferedReader bluetooth_in
                     = new BufferedReader(
                             new InputStreamReader(anslutning.openInputStream()));
             
+System.out.println("Transceiver startad i public Transceiver!4");
             BufferedReader tangentbord
                     = new BufferedReader(
                             new InputStreamReader(System.in));
+System.out.println("Transceiver startad i public Transceiver!5");
             while (true) {
               //String meddelande_ut = tangentbord.readLine();
+              System.out.println("Transceiver startad i public Transceiver!");
                 String meddelande_ut = asg.kommando;
-          
+               
               if (meddelande_ut == null) {
                     break;
                 }
+              System.out.println("Transceiver startad i public Transceiver6!");
                 bluetooth_ut.print(meddelande_ut);
                 mottaget = bluetooth_in.readLine();
-                System.out.println("Mottaget (i tc): "  + mottaget);
+                System.out.println("Skickat : "  + asg.kommando + " (i tc)");
+                System.out.println("Mottaget : "  + mottaget + " (i tc)");
             }
-          anslutning.close();
+
+         anslutning.close();
            
            } catch (IOException e){
                         System.out.print(e.toString());

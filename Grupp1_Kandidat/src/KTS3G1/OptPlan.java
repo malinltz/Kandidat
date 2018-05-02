@@ -13,11 +13,21 @@ public class OptPlan {
     public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
     public int slut = 40; //Inparametrar av något slag
 
+    public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
+    public int slutupp = 50; //slut av uppdrag 
+
     public int[] shortestPathList = new int[1000];
+    public int[] shortestPathListupp = new int[1000];
+    
     int pathCost = 0;
+    int pathCostupp = 0;
+    
     double x = 0;
     double y = 0;
-
+    
+    double xupp = 0;
+    double yupp = 0;
+    
     public OptPlan(DataStore ds) {
         this.ds = ds;
 
@@ -76,7 +86,40 @@ public class OptPlan {
                 }
             }
         }
-        //cui.appendOptText("Optimering utförs");
+        // Compute shortest path av uppdragen     
+        dijkstra.execute(nodes.get(startupp - 1));
+        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
+
+        // Get shortest path
+        for (int i = 0; i < pathupp.size(); i++) {
+            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
+
+            //System.out.println(Integer.parseInt(path.get(i).getId()));
+            //System.out.println(ds.pathInt[i]);
+            xupp = ds.nodeX[shortestPathListupp[i] - 1];
+            yupp = ds.nodeY[shortestPathListupp[i] - 1];
+
+            String nodePathupp = (" " + xupp + ", " + yupp);
+            //System.out.println(" " + x + ", " + y);
+            //cui.appendOptText(nodePath); Funkar ej lol okej
+
+        }
+
+        // Arcs in the shortest path
+        for (int i = 0; i < pathupp.size() - 1; i++) {
+            for (int j = 0; j < ds.arcs; j++) {
+                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
+                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
+
+                    //Sätter shortest path till 1
+                    ds.arcColor[j] = 2;
+                    //Lägger till kostanden för shortest path
+                    pathCostupp = pathCostupp + ds.arcCost[j];
+                    // System.out.println(pathCost);
+
+                }
+            }
+        }
     }
 
     public int[] getIndex() {
@@ -90,6 +133,16 @@ public class OptPlan {
     public int getCost() {
 
         return pathCost;
+
+    }
+
+    public int[] getuppdrag() {
+        return shortestPathListupp;
+    }
+
+    public int getCostupp() {
+
+        return pathCostupp;
 
     }
 

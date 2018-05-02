@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.lang.Math.*;
 
-
 /**
  *
  */
@@ -23,12 +22,12 @@ public class MapPanel extends JPanel {
         final Color LIGHT_COLOR = new Color(150, 150, 150);
         final Color DARK_COLOR = new Color(0, 0, 0);
         final Color RED_COLOR = new Color(255, 0, 0);
-        final Color PURPLE_COLOR = new Color(255,0,255);
+        final Color PURPLE_COLOR = new Color(255, 0, 255);
+        final Color CYAN_COLOR = new Color(0, 0, 0);
 
         int x, y;
         int x1, y1;
         int x2, y2;
-        
 
         final int circlesize = 10;
         final int ysize = 350;
@@ -41,12 +40,12 @@ public class MapPanel extends JPanel {
             int width = getWidth();
             double xscale = 1.0 * width / xsize;
             double yscale = 1.0 * height / ysize;
-            
+
             //Ritar ut roboten
             int xRobot = (int) (ds.robotX * xscale);
             int yRobot = (int) (ds.robotY * yscale);
             g.setColor(RED_COLOR);
-            g.drawOval(xRobot - ((circlesize+10) / 2), height - yRobot - (circlesize+10) / 2, circlesize + 10, circlesize + 10);
+            g.drawOval(xRobot - ((circlesize + 10) / 2), height - yRobot - (circlesize + 10) / 2, circlesize + 10, circlesize + 10);
 
             g.setColor(DARK_COLOR);
 
@@ -56,14 +55,14 @@ public class MapPanel extends JPanel {
                 y = (int) (ds.nodeY[i] * yscale);
 
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
-                
+
                 //Nodnummer
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
-                
-                g.drawString(ritaRiktigaNoder,x - ((circlesize-7) / 2), height - y - ((circlesize+3) / 2));
+
+                g.drawString(ritaRiktigaNoder, x - ((circlesize - 7) / 2), height - y - ((circlesize + 3) / 2));
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-                
+
             }
 
             // Draw arcs
@@ -76,7 +75,7 @@ public class MapPanel extends JPanel {
                 //Beräknar och ritar ut siffror på båglängden
                 int dist;
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-                
+
                 ds.arcCost[i] = dist;
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
@@ -85,20 +84,24 @@ public class MapPanel extends JPanel {
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
                     g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                } else if (ds.arcColor[i] == 2) {
+                    g.setColor(CYAN_COLOR);
+                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+
                 } else {
                     g.setColor(DARK_COLOR);
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
-                
-                if (ds.arcStart[i]==24 && ds.arcEnd[i]==19){
+
+                if (ds.arcStart[i] == 24 && ds.arcEnd[i] == 19) {
                     g.setColor(PURPLE_COLOR);
                     g.drawString(String.valueOf("A"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 }
-                if (ds.arcStart[i]==50 && ds.arcEnd[i]==53){
+                if (ds.arcStart[i] == 50 && ds.arcEnd[i] == 53) {
                     g.setColor(PURPLE_COLOR);
                     g.drawString(String.valueOf("B"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 }
-                if (ds.arcStart[i]==10 && ds.arcEnd[i]==13){
+                if (ds.arcStart[i] == 10 && ds.arcEnd[i] == 13) {
                     g.setColor(PURPLE_COLOR);
                     g.drawString(String.valueOf("C"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 }

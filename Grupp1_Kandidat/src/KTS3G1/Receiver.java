@@ -1,7 +1,6 @@
 
 package KTS3G1;
 
-
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,8 +43,8 @@ public class Receiver implements Runnable {
     public void run() {
         try {
             System.out.println("Receiver startad i public void run!");
-           StreamConnectionNotifier service = (StreamConnectionNotifier) asg.service;
-            StreamConnection anslutning = (StreamConnection) service.acceptAndOpen();
+            StreamConnectionNotifier anslut = (StreamConnectionNotifier) asg.service;
+            StreamConnection anslutning = (StreamConnection) anslut.acceptAndOpen();
             InputStream bluetooth_in = anslutning.openInputStream();
             byte buffer[] = new byte[80];
             int antal_bytes = bluetooth_in.read(buffer);
