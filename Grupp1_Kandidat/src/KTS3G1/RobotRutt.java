@@ -26,68 +26,30 @@ public class RobotRutt implements Runnable {
         list = op.getIndex();
     }
 
-    /*
-
-        list = op.getIndex();
-    
-   }
-
-    @Override
-    public void run() {
-        try {
-
-
-            cui.appendStatus("Jag heter Wall-E och kommer att köra i " + sleepTime + "millisekunder.");
-            int i = 1;
-            while (i < 10) {
-                Thread.sleep(sleepTime / 10);
-                cui.appendStatus("Jag är Wall-E! För " + i + ":te gången.");
-                i++;
-
-                while (i <= 20) {
-                    Thread.sleep(sleepTime / 10);
-                    cui.appendStatus("Jag är Wall-E ! För " + i + ":te gången.");
-                    ds.updateUIflag = true;
-                    i++;
-
-                }
-            }
-
-        } catch (InterruptedException exception) {
-        }
-        cui.appendStatus("Wall-E är nu klar!");
-
-    }
-
-}
-/*
-    public void rutt() {
-    
-
-     */
-    
-    //vad ska jämföra med? listan och nästa steg eller med vad det är?
-
     @Override
     public void run() {
         try {
 
             cui.appendStatus("Jag heter Wall-E och börjar köra");
             
-            //Funkar inte!! Dock tror jag att  list[i]-1  funkar så spara det. whey
+            //PROBLEM!!!
+            //[i]-1 jämförs med nästkommande koordinat i nodeX/nodeY. Inte nästkommande koordinat i List
 
             for (int i = 0; i < list.length; i++) {
                 if(list[i] == 0){
                     break;
                 }
                 System.out.println(Arrays.toString(list)); //Noder vi ska besöka
-                System.out.println(ds.nodeX[list[i]-1]);
-                System.out.println(ds.nodeY[list[i]-1]);
+                System.out.println("Nu " + ds.nodeX[list[i]-1]); //Nuvarande Nod X
+                System.out.println("Nästa " + ds.nodeX[list[i]]); //Nästa Nod X
+                System.out.println("Nu " + ds.nodeY[list[i]-1]); //Nuvarande Nod Y
+                System.out.println("Nästa " + ds.nodeY[list[i]]); //Nästa Nod Y
 
-                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //varför 11?
+                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]])
                 {
 
-                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) {
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) //lyssnar
+                    {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                         //Thread.sleep(sleepTime);
@@ -106,9 +68,12 @@ public class RobotRutt implements Runnable {
                         cui.appendStatus("Kör vänster");
                         System.out.println("VALD3");
                     }
-                } else if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]])//nästa vänster
+                } 
+                
+                else if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]])
                 {
-                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) {
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) //lyssnar
+                    {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD4");
@@ -125,10 +90,13 @@ public class RobotRutt implements Runnable {
                         cui.appendStatus("Kör höger");
                         System.out.println("VALD6");
                     }
-                } else if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //varför 11?
+                } 
+                
+                else if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]])
                     {
 
-                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) {
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) //lyssnar
+                        {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                             System.out.println("VALD7");
@@ -145,9 +113,12 @@ public class RobotRutt implements Runnable {
                             cui.appendStatus("Kör vänster");
                             System.out.println("VALD9");
                         }
-                    } else if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]])//nästa vänster
+                    } 
+                
+                else if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]])
                     {
-                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) {
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) //lyssnar
+                        {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                             System.out.println("VALD10");
