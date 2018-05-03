@@ -25,6 +25,7 @@ public class RobotRutt implements Runnable {
         list = op.getIndex();
     }
 
+
     public void run() {
         try {
 
