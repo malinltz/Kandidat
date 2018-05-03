@@ -1,4 +1,4 @@
-/*package KTS3G1;
+package KTS3G1;
 import java.io.*;
 import java.lang.*;
 import java.util.concurrent.TimeUnit;
@@ -85,5 +85,5 @@ RobotRutt rr;
         } 
     }
 }
-*/
+
 

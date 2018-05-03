@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.io.*;
@@ -49,14 +49,9 @@ public class Receiver implements Runnable {
         anslutning.close();
         } catch (IOException e) {
             System.err.print(e.toString());
-        
+        */
     }
-    
-            
-    
-    
     @Override
     public void run() {
                  }
     }
-*/
