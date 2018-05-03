@@ -67,6 +67,7 @@ public class RobotRutt implements Runnable {
      */
     
     //vad ska jämföra med? listan och nästa steg eller med vad det är?
+   // @Override
     public void run() {
         try {
 
