@@ -11,7 +11,8 @@ public class OptPlan {
     private HTTPanrop http;
 
 
-    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int start = 2;//http.ink.get(k)
+    //Dessa skall inte vara fixt utan mer som en vektor? 
     public int slut = 75; //Inparametrar av något slag
 
 

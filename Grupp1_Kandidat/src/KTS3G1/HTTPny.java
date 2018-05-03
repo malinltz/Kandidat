@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -11,18 +16,22 @@ import java.io.DataOutputStream;
 import java.util.Collections;
 //import java.util.regex.Pattern;
 
-public class HTTPanrop implements Runnable {
+/**
+ *
+ * @author malinlilliecreutz
+ */
+public class HTTPny {
 
     public String message;
     public String messageupp;
-   // public String paragraph1;
-   // public String paragraph2;
-   // public String paragraph3;
-   // public String platser;
-  //  public String plats1;
-  //  public String plats2;
-   // public String plats3;
-    private String url1;
+    // public String paragraph1;
+    // public String paragraph2;
+    // public String paragraph3;
+    // public String platser;
+    //  public String plats1;
+    //  public String plats2;
+    // public String plats3;
+    private String url;
     private String url12;
     private String url2;
     private String url3;
@@ -32,95 +41,50 @@ public class HTTPanrop implements Runnable {
     public ControlUI cui;
     private String gruppmessage;
 
+    public String plats, ID, passagerare, grupp;
+
     // private List<String> uppdrag;
     // String aline= null;
-    ArrayList<String> ink = new ArrayList<String>();
-    ArrayList<String> upp = new ArrayList<String>();
-    ArrayList<String> ut = new ArrayList<String>();
-    ArrayList<String> utmess = new ArrayList<String>();
-    
+    private static String URL;
     //För att ta reda på vilka uppdragsplatser som finns vart
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     //För att hämta ett uppdrag på platsen
-    private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
+    //  private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
     //För att läsa de meddelanden som grupper skickat
-
     ////För att ta reda på vilka uppdrag som finns på plats A
-  
     private int sleepTime;
 
     // int j = 0;
     // int numberOfLines = 20;
     String[] Listupp;
-    
-    public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
+
+    public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         //  this.cui = cui;
         this.ds = ds;
         this.op = op;
         this.cui = cui;
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
+
     }
+    //op = new OptPlan(ds);
 
-    @Override
-    public void run() { //Lägg till en 
-
-        url1 = URL1;
-        url12 = URL12;
-        url2 = URL2;
-        url3 = URL3;
-        //op = new OptPlan(ds);
-
+    public void Listaplats() {
+        
+            url = URL;
+            ArrayList<String> ink = new ArrayList<String>();
+            
         try { // Kopplar upp till listan och hämtar info
-
-            URL urlobjekt1 = new URL(url1);
+           
+            String url = ("http://tnk111.n7.se/listaplatser.php");
+            URL urlobjekt1 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
-            System.out.println("\nAnropar: " + url1);
-            anslutning.setRequestMethod("GET"); // ny kod
-            //;
-            int mottagen_status = anslutning.getResponseCode();
-            System.out.println("Statuskod: " + mottagen_status);
-
-            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-            String inkommande_text;
-            StringBuffer inkommande_samlat = new StringBuffer();
-            
-            while ((inkommande_text = inkommande.readLine()) != null)
-            {
-                inkommande_samlat.append(inkommande_text);
-                
-                ink.add(inkommande_text);
-            }
-            inkommande.close();
-            
-         for(int k = 0; k < ink.size(); k++){
-            System.out.println("Upphämtningsplatser: " + ink.get(k));
-             // System.out.println(ink.indexOf(k));
-             // System.out.println(ink.spliterator(k));
-             // Listupp[k] = Integer.parseInt(ink.get(k));
-             //ink.
-             //Collections.indexOfSubList(ink,ut);
-         }
-         cui.lista(ink);
-        // ink.indexOf(k);
-         
-   // Collections.emptyList(ink(k));
-            Thread.sleep(2000); //vilken sleeptime?
-
-        } catch (Exception c) {
-            System.out.print(c.toString());
-
-        }
-        try { // hämtar uppdrag
-
-            URL urlobjekt1 = new URL(url12);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
-            System.out.println("\nAnropar: " + url12);
+            System.out.println("\nAnropar: " + url);
             anslutning.setRequestMethod("GET"); // ny kod
             //;
             int mottagen_status = anslutning.getResponseCode();
@@ -132,30 +96,73 @@ public class HTTPanrop implements Runnable {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
-          
+
+                ink.add(inkommande_text);
+            }
+            inkommande.close();
+
+            for (int k = 0; k < ink.size(); k++) {
+                System.out.println("Upphämtningsplatser: " + ink.get(k));
+                // System.out.println(ink.indexOf(k));
+                // System.out.println(ink.spliterator(k));
+                // Listupp[k] = Integer.parseInt(ink.get(k));
+                //ink.
+                //Collections.indexOfSubList(ink,ut);
+            }
+            cui.lista(ink);
+            // ink.indexOf(k);
+
+            // Collections.emptyList(ink(k));
+            Thread.sleep(2000); //vilken sleeptime?
+
+        } catch (Exception c) {
+            System.out.print(c.toString());
+
+        }
+    }
+
+    public String uppdrag(String plats) {
+        url = URL;
+        ArrayList<String> upp = new ArrayList<String>();
+
+        try { // hämtar uppdrag
+
+            String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
+            URL urlobjekt1 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
+            System.out.println("\nAnropar: " + url);
+            anslutning.setRequestMethod("GET"); // ny kod
+            //;
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text;
+            StringBuffer inkommande_samlat = new StringBuffer();
+
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+
                 upp.add(inkommande_text);
             }
 
             inkommande.close();
-            
-             for(int k = 0; k < upp.size(); k++){
-            System.out.println("Uppdrag: " + upp.get(k));
-            //upp.spliterator("");
-             // System.out.println("After Sorting:");
-            // upp.ArrayList.sort();
-                         }
-	   for(String counter: ink){
-			
-                        counter.split("A");
-                        System.out.println(counter.toString());
-                        
-               }
-         cui.lista(upp);
-        // upp.spliterator(k);
-         
-        // upp.subList(5,56);
-         
-             messageupp = inkommande_samlat.toString();
+
+            for (int k = 0; k < upp.size(); k++) {
+                System.out.println("Uppdrag: " + upp.get(k));
+                //upp.spliterator("");
+                // System.out.println("After Sorting:");
+                // upp.ArrayList.sort();
+            }
+            //for(String counter: ink){
+
+            //     counter.split("A");
+            //    System.out.println(counter.toString());
+            cui.lista(upp);
+            // upp.spliterator(k);
+
+            // upp.subList(5,56);
+            messageupp = inkommande_samlat.toString();
             //System.out.println(message);
             //  String[] paras = messageupp.split(" ");
             // StringBuilder sb = new StringBuilder();
@@ -174,7 +181,7 @@ public class HTTPanrop implements Runnable {
             }
              */
             cui.showStatus(messageupp);
-           // cui.showStatus(paragraph1);
+            // cui.showStatus(paragraph1);
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
             //behöver vi ändra detta eftersom det är hårdkodat
             /*
@@ -200,16 +207,23 @@ public class HTTPanrop implements Runnable {
 //        }
 //        else {
 //            slut = attakatill;
-//        }
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
             System.out.print(c.toString());
 
         }
+        return messageupp;
+    }
+
+    public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
+        url = URL;
+        ArrayList<String> ut = new ArrayList<String>();
 
         try { //lägger upp uppdrag
-            URL urlobjekt2 = new URL(url2);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + plats + ID + passagerare + grupp);
+
+            URL urlobjekt2 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
 
             //add reuqest header
@@ -228,8 +242,8 @@ public class HTTPanrop implements Runnable {
 
             int responseCode = anslutning.getResponseCode();
             System.out.println("\nSending 'POST' request to URL : " + url2);// + paragraph1);
-           // System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
-          //  System.out.println("Response Code : " + responseCode);
+            // System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
+            //  System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(anslutning.getInputStream()));
@@ -249,20 +263,17 @@ public class HTTPanrop implements Runnable {
             }
 
             in.close();
-             for(int k = 0; k < ut.size(); k++){
-            System.out.println("Hej: " + ut.get(k));
-         }
-         cui.lista(ut);
+            for (int k = 0; k < ut.size(); k++) {
+                System.out.println("Hej: " + ut.get(k));
+            }
+            cui.lista(ut);
             utmessage = response.toString();
 
-         //   String[] paras = utmessage.split(";" + "");
-
-         //   for (int i = 0; i < paras.length; i++) {
+            //   String[] paras = utmessage.split(";" + "");
+            //   for (int i = 0; i < paras.length; i++) {
             //    paragraph2 = paras[i];
-
-          //      System.out.println("Mottaget meddelande: " + paragraph2);
-
-          //  }
+            //      System.out.println("Mottaget meddelande: " + paragraph2);
+            //  }
             cui.svarHTTP(utmessage);
             Thread.sleep(2000); //vilken sleeptime?
 
@@ -271,11 +282,19 @@ public class HTTPanrop implements Runnable {
             //print result
             System.out.println(e.toString());
         }
+            return utmessage; 
+    }
+
+    public String aterstall(String Scenario) {
+        url = URL;
+        ArrayList<String> utmess = new ArrayList<String>();
+
         try { //vad vi hämtar hem från de anrda 
 
-            URL urlobjekt3 = new URL(url3);
+            String url = ("http://tnk111.n7.se/aterstall.php?" + Scenario);
+            URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
-            System.out.println("\nAnropar: " + url3);
+            System.out.println("\nAnropar: " + url);
 
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
@@ -294,19 +313,16 @@ public class HTTPanrop implements Runnable {
             }
 
             inkommande.close();
-             for(int k = 0; k < utmess.size(); k++){
-            System.out.println("Ink: " + utmess.get(k));
-         }
-         cui.lista(utmess);
+            for (int k = 0; k < utmess.size(); k++) {
+                System.out.println("Ink: " + utmess.get(k));
+            }
+            cui.lista(utmess);
             gruppmessage = inkommande_samlat.toString();
 
-          //  String[] paras = gruppmessage.split("");
-
-           // for (int i = 0; i < paras.length; i++) {
-
+            //  String[] paras = gruppmessage.split("");
+            // for (int i = 0; i < paras.length; i++) {
             //    paragraph3 = paras[i];
-
-           // }
+            // }
             Thread.sleep(2000); //vilken sleeptime?
             cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
 
@@ -314,7 +330,101 @@ public class HTTPanrop implements Runnable {
         } catch (Exception k) {
             System.out.print(k.toString());
         }
+        return gruppmessage; 
+    }
 
+    public void messages() {
+        url = URL;
+        ArrayList<String> utmess = new ArrayList<String>();
+
+        try { //vad vi hämtar hem från de anrda 
+
+            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
+            URL urlobjekt3 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
+            System.out.println("\nAnropar: " + url);
+
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text = "";
+            StringBuffer inkommande_samlat = new StringBuffer();
+
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+                //  arrayOfStrings[j]= inkommande_text;
+                // j++; 
+                //  inkommande_text = inkommande.readLine() ; 
+
+                utmess.add(inkommande_text);
+            }
+
+            inkommande.close();
+            for (int k = 0; k < utmess.size(); k++) {
+                System.out.println("Ink: " + utmess.get(k));
+            }
+            cui.lista(utmess);
+            gruppmessage = inkommande_samlat.toString();
+
+            //  String[] paras = gruppmessage.split("");
+            // for (int i = 0; i < paras.length; i++) {
+            //    paragraph3 = paras[i];
+            // }
+            Thread.sleep(2000); //vilken sleeptime?
+            cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
+
+            //  String infogrupp = gruppmessage.substring(1,8);
+        } catch (Exception k) {
+            System.out.print(k.toString());
+        }
+    }
+
+    public void utmessages() {
+        url = URL;
+        ArrayList<String> utmess = new ArrayList<String>();
+
+        try { //vad vi hämtar hem från de anrda 
+
+            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
+            URL urlobjekt3 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
+            System.out.println("\nAnropar: " + url);
+
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text = "";
+            StringBuffer inkommande_samlat = new StringBuffer();
+
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+                //  arrayOfStrings[j]= inkommande_text;
+                // j++; 
+                //  inkommande_text = inkommande.readLine() ; 
+
+                utmess.add(inkommande_text);
+            }
+
+            inkommande.close();
+            for (int k = 0; k < utmess.size(); k++) {
+                System.out.println("Ink: " + utmess.get(k));
+            }
+            cui.lista(utmess);
+            gruppmessage = inkommande_samlat.toString();
+
+            //  String[] paras = gruppmessage.split("");
+            // for (int i = 0; i < paras.length; i++) {
+            //    paragraph3 = paras[i];
+            // }
+            Thread.sleep(2000); //vilken sleeptime?
+            cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
+
+            //  String infogrupp = gruppmessage.substring(1,8);
+        } catch (Exception k) {
+            System.out.print(k.toString());
+        }
     }
 
     public String newmesssage() {

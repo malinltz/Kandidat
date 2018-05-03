@@ -9,7 +9,7 @@ public class KTS3G1 {
 
     DataStore ds;
     ControlUI cui;
-    HTTPanrop http;
+    HTTPny http;
     OptPlan op;
     RobotRutt RR;
     //HTTPextern hx;
@@ -23,10 +23,11 @@ public class KTS3G1 {
     String badress="201410149018"; 
     String kanal = "1";
     
-    String URL1;
-    String URL12;
-    String URL2;
-    String URL3;
+    String URL;
+  //  String URL1;
+  //  String URL12;
+  //  String URL2;
+  //  String URL3;
     
     //String upphamtningsplats="lol"; 
     //String allaUppdrag="Nötallergiker undanbedes och beivras"; 
@@ -45,7 +46,7 @@ public class KTS3G1 {
         //tm = new Transmitter();
         //re = new Reciver()
 
-        http = new HTTPanrop(ds, op, cui);
+        http = new HTTPny(ds, op, cui);
         // cui.bluetoothAdress(badress);
 
       

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
+
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -13,11 +13,12 @@ import java.net.URL;
 //import java.util.List;
 import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 /**
  *
  * @author malinlilliecreutz
- 
+*/ 
 public class HTTPextern {
 
     public OptPlan op;
@@ -33,7 +34,7 @@ public class HTTPextern {
     String dummy;
     String message;
     String test;
-    int dist;
+    int dist=0;
 
     public HTTPextern(HTTPanrop http, DataStore ds) {
         
@@ -44,17 +45,18 @@ public class HTTPextern {
 
     public void exprotokoll() {
 
+        http.ink.get(dist);
+      
         //om företagsgruppens id är lägre än en annan så  får den uppdraget
         
+        if (ID < http.ink.size()) //jämför viåt id med id från de andra
         
-        if (ID < http.ID) //jämför viåt id med id från de andra
+        if (capacity < http.ut.size()) //jämför kapaciteten
         
-        if (capacity < http.capacity) //jämför kapaciteten
-        
-        if( op.pathCost < http.pathcost) // jämför minsta kostnad för oss med minsta kostnad för de anrda
+      //  if( op.pathCost < http.) // jämför minsta kostnad för oss med minsta kostnad för de anrda
        
         
-        if( op.shortestPathList > http. uppdrag) // jämför antalet uppdarg
+       // if( op.shortestPathList > http.utmess.size()) // jämför antalet uppdarg
         
         {
             System.out.println(""); //
@@ -65,12 +67,11 @@ public class HTTPextern {
     
 
        
-   http.platser;
-   http.plats1;
-   http.plats2;
-   http.plats3;
+ //  http.platser;
+ //  http.plats1;
+ //  http.plats2;
+ //  http.plats3;
          
     }
 
 }
-*/
