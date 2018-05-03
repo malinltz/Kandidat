@@ -33,20 +33,23 @@ public class HTTPanrop implements Runnable {
     // private List<String> uppdrag;
     // String aline= null;
     ArrayList<String> ink = new ArrayList<String>();
-
+    ArrayList<String> upp = new ArrayList<String>();
+    ArrayList<String> ut = new ArrayList<String>();
+    ArrayList<String> utmess = new ArrayList<String>();
+    
     //För att ta reda på vilka uppdragsplatser som finns vart
     private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
     //För att hämta ett uppdrag på platsen
     private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
-    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=hejhejhej");
+    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
     //För att läsa de meddelanden som grupper skickat
-//  private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=2");
+
     ////För att ta reda på vilka uppdrag som finns på plats A
-    //  private static String URL3 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
+  
     private int sleepTime;
 
     // int j = 0;
@@ -98,57 +101,7 @@ public class HTTPanrop implements Runnable {
             System.out.println("Upphämtningsplatser: " + ink.get(k));
          }
          cui.lista(ink);
-            //   message = inkommande_samlat.toString();
-            //System.out.println(message);
-            //  String[] paras = message.split(" ");
-            //String listString = "";
 
-           /* for (String s : ink) 
-            
-            {
-                inkommande_text += s + "\t";
-            }
-
-<<<<<<< HEAD
-            System.out.println("Hej kom igen" + inkommande_text);
-=======
-             cui.showStatus2(platser);
-             cui.showStatus(plats1);
-             cui.showStatus(plats2);
-             cui.showStatus(plats3);
-             
-          //Försöker att sätta slutnoden till upphämtningsplatsen
-          //op.getCost();
-             
-          //int attakatill = Integer.parseInt(plats1.substring(2,4));
-
-          
-          //op.createPlan();
-          
-//        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
-//        
->>>>>>> 8caf57a5e6932009737c82381033ac5260296fc4
-
-            for (int i = 0; i < ink.size(); i++) {
-                // int foo = Integer.parseInt(ink.get(1));
-                // int koo = Integer.parseInt(ink.get(0)));
-                // paragraph1 = ink.get(i);
-
-                System.out.println("Parametrar: " + ink.get(i));
-            } */
-           // cui.showStatus(inkommande_text);
-            //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
-            //behöver vi ändra detta eftersom det är hårdkodat
-           /* platser = message.substring(0, 1); //Får ut en 3 (antal platser)
-            plats1 = message.substring(1, 8); //Får ut första platsen (A)
-            plats2 = message.substring(8, 15); //Får ut andra platsen (B)
-            plats3 = message.substring(15, 22); //Får ut andra platsen (B)
-
-            cui.showStatus2(platser);
-            cui.showStatus(plats1);
-            cui.showStatus(plats2);
-            cui.showStatus(plats3);
-*/
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -175,15 +128,15 @@ public class HTTPanrop implements Runnable {
                 // j++; 
                 //  inkommande_text = inkommande.readLine() ; 
 
-                ink.add(inkommande_text);
+                upp.add(inkommande_text);
             }
 
             inkommande.close();
             
-             for(int k = 0; k < ink.size(); k++){
-            System.out.println("Uppdrag: " + ink.get(k));
+             for(int k = 0; k < upp.size(); k++){
+            System.out.println("Uppdrag: " + upp.get(k));
          }
-         cui.lista(ink);
+         cui.lista(upp);
             // messageupp = inkommande_samlat.toString();
             //System.out.println(message);
             //  String[] paras = messageupp.split(" ");
@@ -230,7 +183,6 @@ public class HTTPanrop implements Runnable {
 //        else {
 //            slut = attakatill;
 //        }
-//        
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -258,8 +210,8 @@ public class HTTPanrop implements Runnable {
 
             int responseCode = anslutning.getResponseCode();
             System.out.println("\nSending 'POST' request to URL : " + url2);// + paragraph1);
-            System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
-            System.out.println("Response Code : " + responseCode);
+           // System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
+          //  System.out.println("Response Code : " + responseCode);
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(anslutning.getInputStream()));
@@ -275,14 +227,14 @@ public class HTTPanrop implements Runnable {
                 // j++; 
                 //  inkommande_text = inkommande.readLine() ; 
 
-                ink.add(inputLine);
+                ut.add(inputLine);
             }
 
             in.close();
-             for(int k = 0; k < ink.size(); k++){
-            System.out.println("Hej: " + ink.get(k));
+             for(int k = 0; k < ut.size(); k++){
+            System.out.println("Hej: " + ut.get(k));
          }
-         cui.lista(ink);
+         cui.lista(ut);
           //  utmessage = response.toString();
 
          //   String[] paras = utmessage.split(";" + "");
@@ -320,14 +272,14 @@ public class HTTPanrop implements Runnable {
                 // j++; 
                 //  inkommande_text = inkommande.readLine() ; 
 
-                ink.add(inkommande_text);
+                utmess.add(inkommande_text);
             }
 
             inkommande.close();
-             for(int k = 0; k < ink.size(); k++){
-            System.out.println("Ink: " + ink.get(k));
+             for(int k = 0; k < utmess.size(); k++){
+            System.out.println("Ink: " + utmess.get(k));
          }
-         cui.lista(ink);
+         cui.lista(utmess);
           //  gruppmessage = inkommande_samlat.toString();
 
           //  String[] paras = gruppmessage.split("");
