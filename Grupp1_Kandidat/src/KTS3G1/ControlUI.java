@@ -56,13 +56,17 @@ public class ControlUI extends javax.swing.JFrame {
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
         //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
 
-        jTextArea2.append("" + p + "\n");
+        statusuppdTextArea.append("" + p + "\n");
     }
 
     void appendStatus(String s) {
         statusuppdTextArea.append(s + "\n");
 
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    }
+    
+        void appendStatus2(String s) {
+        statusuppdTextArea.append(s + "\n");
     }
 
     public boolean atervant(boolean p) {

@@ -11,18 +11,15 @@ public class RobotRutt implements Runnable {
     private ControlUI cui;
     private DataStore ds;
     private OptPlan op;
-    public String rutt;
+    public String rutt = "";
     public int[] list;
     public int go;
-    double [] x;
-    double [] y;
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
         this.cui = cui;
         this.ds = ds;
         this.op = op;
-        //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
 
         list = op.getIndex();
@@ -43,25 +40,25 @@ public class RobotRutt implements Runnable {
                     //Kollar på nästa två noder
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i]-1] == 0)) //Kör rakt fram
                     {
-                        rutt = rutt + "r"; //fortsätt framåt
+                        rutt = rutt + Character.toString('r');
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD1");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör höger
                     {
-                        rutt = rutt + "h"; //kör höger
+                        rutt = rutt + Character.toString('h');
                         cui.appendStatus("Kör höger");
                         System.out.println("VALD2");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör vänster
                     {
-                        rutt = rutt + "v"; //vänster
+                        rutt = rutt + Character.toString('v');
                         cui.appendStatus("Kör vänster");
                         System.out.println("VALD3");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör framåt
                     {
-                        rutt = rutt + "r"; //fortsätt framåt
+                        rutt = rutt + Character.toString('r');
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD4");
                     }
@@ -72,19 +69,19 @@ public class RobotRutt implements Runnable {
                     //Kollar på nästa två noder
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör framåt
                     {
-                        rutt = rutt + "r"; //fortsätt framåt
+                        rutt = rutt + Character.toString('r');
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD5");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör höger
                     {
-                        rutt = rutt + "v"; //kör vänster
+                        rutt = rutt + Character.toString('v');
                         cui.appendStatus("Kör höger");
                         System.out.println("VALD6"); 
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör vänster
                     {
-                        rutt = rutt + "h"; //kör höger
+                        rutt = rutt + Character.toString('h');
                         cui.appendStatus("Kör vänster");
                         System.out.println("VALD7");
                     }
@@ -94,31 +91,31 @@ public class RobotRutt implements Runnable {
                 {
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör framåt
                     {
-                        rutt = rutt + "r"; //fortsätt framåt
+                        rutt = rutt + Character.toString('r');
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD8");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör höger
                     {
-                         rutt = rutt + "h"; //kör höger
+                         rutt = rutt + Character.toString('h');
                          cui.appendStatus("Kör höger");
                          System.out.println("VALD9");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör vänster
                     {
-                         rutt = rutt + "v"; //vänster
+                         rutt = rutt + Character.toString('v');
                          cui.appendStatus("Kör vänster");
                          System.out.println("VALD10");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Sned sväng höger
                     {
-                         rutt = rutt + "h"; //kör höger
+                         rutt = rutt + Character.toString('h');
                          cui.appendStatus("Kör höger");
                          System.out.println("VALD11");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Sned sväng vänster
                     {
-                         rutt = rutt + "v"; //vänster
+                         rutt = rutt + Character.toString('v');
                          cui.appendStatus("Kör vänster");
                          System.out.println("VALD12");
                     }
@@ -128,40 +125,40 @@ public class RobotRutt implements Runnable {
                 {
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör framåt
                     {
-                         rutt = rutt + "r"; //fortsätt framåt
+                         rutt = rutt + Character.toString('r');
                          cui.appendStatus("Fortsätt framåt");
                          System.out.println("VALD13");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör höger
                     {
-                         rutt = rutt + "h"; //kör höger
+                         rutt = rutt + Character.toString('h');
                          cui.appendStatus("Kör höger");
                          System.out.println("VALD14");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör vänster
                     {
-                         rutt = rutt + "v"; //vänster
+                         rutt = rutt + Character.toString('v');
                          cui.appendStatus("Kör vänster");
                          System.out.println("VALD15");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Sned sväng vänster
                     {
-                         rutt = rutt + "v"; //vänster
+                         rutt = rutt + Character.toString('v');
                          cui.appendStatus("Kör vänster");
                          System.out.println("VALD16");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Sned sväng höger
                     {
-                         rutt = rutt + "h"; //kör höger
+                         rutt = rutt + Character.toString('h');
                          cui.appendStatus("Kör höger");
                          System.out.println("VALD17");
                     }
                 }
             }
+            cui.appendStatus("Wall-E är nu klar!");
+            cui.appendStatus(rutt);
             }catch (NumberFormatException exception) {
         }
-        cui.appendStatus("Wall-E är nu klar!");
-            
     }
     public String gorutt() { 
 
