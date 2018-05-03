@@ -77,20 +77,18 @@ public class RobotRutt implements Runnable {
                 if(list[i] == 0){
                     break;
                 }
-                System.out.println(Arrays.toString(list)); //Noder vi ska besöka
+                System.out.println(list[i]); //Noder vi ska besöka
                 System.out.println("Nu " + ds.nodeX[list[i]-1]); //Nuvarande Nod X
-                System.out.println("Nästa " + ds.nodeX[list[i]]); //Nästa Nod X
+                System.out.println("Nästa " + ds.nodeX[list[i+2]-1]); //Nästa Nod X
                 System.out.println("Nu " + ds.nodeY[list[i]-1]); //Nuvarande Nod Y
-                System.out.println("Nästa " + ds.nodeY[list[i]]); //Nästa Nod Y
+                System.out.println("Nästa " + ds.nodeY[list[i+2]-1]); //Nästa Nod Y
 
 
-             //   if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) 
-
-                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]])
+                if (ds.nodeX[list[i]-1] < ds.nodeX[list[i+2]-1])
 
                 {
 
-                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) //lyssnar
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i+2]-1]) //lyssnar
                     {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
@@ -98,13 +96,13 @@ public class RobotRutt implements Runnable {
                         System.out.println("VALD1");
                     }
 
-                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i+2]-1]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
                         cui.appendStatus("Kör höger");
                         System.out.println("VALD2");
                     }
-                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i+2]-1]) //lyssnar 
                     {
                         rutt = "v"; //vänster
                         cui.appendStatus("Kör vänster");
@@ -112,44 +110,44 @@ public class RobotRutt implements Runnable {
                     }
                 } 
                 
-                else if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]])
+                else if (ds.nodeX[list[i]-1] > ds.nodeX[list[i+2]-1])
                 {
-                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i]]) //lyssnar
+                    if (ds.nodeY[list[i]-1] == ds.nodeY[list[i+2]-1]) //lyssnar
                     {
                         rutt = "r"; //fortsätt framåt
                         cui.appendStatus("Fortsätt framåt");
                         System.out.println("VALD4");
                     }
-                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] > ds.nodeY[list[i+2]-1]) //lyssnar 
                     {
                         rutt = "v"; //kör vänster
-                        cui.appendStatus("Kör vänster");
+                        cui.appendStatus("Kör höger");
                         System.out.println("VALD5");
                     }
-                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]]) //lyssnar 
+                    if (ds.nodeY[list[i]-1] < ds.nodeY[list[i+2]-1]) //lyssnar 
                     {
                         rutt = "h"; //kör höger
-                        cui.appendStatus("Kör höger");
+                        cui.appendStatus("Kör vänster");
                         System.out.println("VALD6");
                     }
                 } 
                 
-                else if (ds.nodeY[list[i]-1] < ds.nodeY[list[i]])
+                else if (ds.nodeY[list[i]-1] < ds.nodeY[list[i+2]-1])
                     {
 
-                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) //lyssnar
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i+2]-1]) //lyssnar
                         {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                             System.out.println("VALD7");
                         }
-                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i+2]-1]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");
                             System.out.println("VALD8");
                         }
-                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i+2]-1]) //lyssnar 
                         {
                             rutt = "v"; //vänster
                             cui.appendStatus("Kör vänster");
@@ -157,21 +155,21 @@ public class RobotRutt implements Runnable {
                         }
                     } 
                 
-                else if (ds.nodeY[list[i]-1] > ds.nodeY[list[i]])
+                else if (ds.nodeY[list[i]-1] > ds.nodeY[list[i+2]-1])
                     {
-                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i]]) //lyssnar
+                        if (ds.nodeX[list[i]-1] == ds.nodeX[list[i+2]-1]) //lyssnar
                         {
                             rutt = "r"; //fortsätt framåt
                             cui.appendStatus("Fortsätt framåt");
                             System.out.println("VALD10");
                         }
-                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i]]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] > ds.nodeX[list[i+2]-1]) //lyssnar 
                         {
                             rutt = "v"; //kör vänster
                             cui.appendStatus("Kör vänster");
                             System.out.println("VALD11");
                         }
-                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i]]) //lyssnar 
+                        if (ds.nodeX[list[i]-1] < ds.nodeX[list[i+2]-1]) //lyssnar 
                         {
                             rutt = "h"; //kör höger
                             cui.appendStatus("Kör höger");

@@ -614,9 +614,9 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t3 = new Thread(r2);
             t3.start();
 
-            Anslutning b1 = new Anslutning();
-            Thread t6 = new Thread(b1);
-            t6.start();
+//            Anslutning b1 = new Anslutning();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");

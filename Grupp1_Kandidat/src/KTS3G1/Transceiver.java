@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -78,7 +78,7 @@ System.out.println("Transceiver startad i public Transceiver!5");
             System.out.print(e.toString());
             
         }
-     */
+     
     }
        public void run (){
        /*    try{
@@ -108,7 +108,7 @@ System.out.println("Transceiver startad i public Transceiver!5");
                         System.out.print(e.toString());
            }    
            }
-*/
+
        }
 
 
@@ -137,5 +137,6 @@ System.out.println("Transceiver startad i public Transceiver!5");
             System.out.print(e.toString());
         }
     }
-*/
+
 }
+*/

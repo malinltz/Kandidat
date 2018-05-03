@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 import java.io.*;
 import java.lang.*;
 import javax.microedition.io.*;
@@ -49,5 +49,5 @@ Receiver rc;
     }
  
 }
-
+*/
 
