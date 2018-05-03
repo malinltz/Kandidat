@@ -109,7 +109,25 @@ public class HTTPanrop implements Runnable {
                 inkommande_text += s + "\t";
             }
 
+<<<<<<< HEAD
             System.out.println("Hej kom igen" + inkommande_text);
+=======
+             cui.showStatus2(platser);
+             cui.showStatus(plats1);
+             cui.showStatus(plats2);
+             cui.showStatus(plats3);
+             
+          //Försöker att sätta slutnoden till upphämtningsplatsen
+          //op.getCost();
+             
+          //int attakatill = Integer.parseInt(plats1.substring(2,4));
+
+          
+          //op.createPlan();
+          
+//        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
+//        
+>>>>>>> 8caf57a5e6932009737c82381033ac5260296fc4
 
             for (int i = 0; i < ink.size(); i++) {
                 // int foo = Integer.parseInt(ink.get(1));

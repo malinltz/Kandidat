@@ -10,8 +10,10 @@ public class OptPlan {
     private DataStore ds;
     private HTTPanrop http;
 
+
     public int start = 6; //Dessa skall inte vara fixt utan mer som en vektor? 
     public int slut = 50; //Inparametrar av något slag
+
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
@@ -47,6 +49,7 @@ public class OptPlan {
             Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
             edges.add(lane);
         }
+         
 
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
@@ -84,7 +87,9 @@ public class OptPlan {
                 }
             }
         }
+
         //// ny för uppdragen
+
         // Compute shortest path av uppdragen     
         dijkstra.execute(nodes.get(startupp - 1));
         LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
@@ -122,8 +127,10 @@ public class OptPlan {
     }
 
     public int[] getIndex() {
-
+        
         return shortestPathList;
+        
+        
 
     }
 
