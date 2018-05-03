@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -75,7 +75,7 @@ public class Transceiver implements Runnable{
             System.out.print(e.toString());
             
         }
-     */
+     
     }
        public void run (){
        /*    try{
@@ -105,7 +105,7 @@ public class Transceiver implements Runnable{
                         System.out.print(e.toString());
            }    
            }
-*/
+
        }
 
 
@@ -134,5 +134,6 @@ public class Transceiver implements Runnable{
             System.out.print(e.toString());
         }
     }
-*/
+
 }
+*/

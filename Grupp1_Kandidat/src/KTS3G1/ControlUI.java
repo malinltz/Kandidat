@@ -8,6 +8,7 @@ import java.awt.event.*;
 import javax.swing.event.DocumentListener;
 import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 public class ControlUI extends javax.swing.JFrame {
 
@@ -31,6 +32,11 @@ public class ControlUI extends javax.swing.JFrame {
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
+    
+    void lista(ArrayList k)
+    {
+    jTextArea2.append("Uppdragsplats " + k + "\n");
+    }
 
     void showStatus(String p) {
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
@@ -614,9 +620,9 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t3 = new Thread(r2);
             t3.start();
 
-            Anslutning b1 = new Anslutning();
-            Thread t6 = new Thread(b1);
-            t6.start();
+//            Anslutning b1 = new Anslutning();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -633,7 +639,7 @@ public class ControlUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // ActionListener lyssnar = null; 
         // om agvn är på bli grön
-        //   if (meddelande_ut)
+        //  if (tr.meddelande_ut)
         //  g.setColor(GREEN_COLOR);
     }//GEN-LAST:event_jTextField3ActionPerformed
 
