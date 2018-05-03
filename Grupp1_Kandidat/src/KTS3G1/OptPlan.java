@@ -10,8 +10,8 @@ public class OptPlan {
     private DataStore ds;
     private HTTPanrop http;
 
-    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 40; //Inparametrar av något slag
+    public int start = 6; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 50; //Inparametrar av något slag
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
@@ -19,7 +19,7 @@ public class OptPlan {
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
     
-    int pathCost = 0;
+    public int pathCost = 0;
     int pathCostupp = 0;
     
     double x = 0;
@@ -81,7 +81,6 @@ public class OptPlan {
                     //Lägger till kostanden för shortest path
                     pathCost = pathCost + ds.arcCost[j];
                     // System.out.println(pathCost);
-
                 }
             }
         }
@@ -115,7 +114,7 @@ public class OptPlan {
                     ds.arcColor[j] = 2;
                     //Lägger till kostanden för shortest path
                     pathCostupp = pathCostupp + ds.arcCost[j];
-                    // System.out.println(pathCost);
+                    // System.out.println(pathCostupp);
 
                 }
             }
