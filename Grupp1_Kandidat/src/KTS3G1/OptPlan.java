@@ -11,8 +11,8 @@ public class OptPlan {
     private HTTPanrop http;
 
 
-    public int start = 6; //Dessa skall inte vara fixt utan mer som en vektor? 
-    public int slut = 50; //Inparametrar av något slag
+    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int slut = 75; //Inparametrar av något slag
 
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
