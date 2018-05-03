@@ -28,6 +28,8 @@ public static StreamConnection service;
 
 Transceiver tc;
 Receiver rc;
+RobotRutt rr;
+
 // *****************************************
     public Anslutning()  {
  
