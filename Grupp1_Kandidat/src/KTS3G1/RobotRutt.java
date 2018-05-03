@@ -31,7 +31,7 @@ public class RobotRutt implements Runnable {
 
             cui.appendStatus("Jag heter Wall-E och börjar köra");
             int i = 0;
-            while(list[i] != 0){
+            while(list[i+2] != 0){
 
                 if((ds.nodeX[list[i+1]-1] - ds.nodeX[list[i]-1] > 0) && (ds.nodeY[list[i+1]-1] - ds.nodeY[list[i]-1] == 0)) //Öst
                 {
@@ -157,6 +157,7 @@ public class RobotRutt implements Runnable {
             }catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
+        cui.appendStatus2(rutt);
     }
     public String gorutt() { 
         return rutt;

@@ -67,7 +67,7 @@ public class ControlUI extends javax.swing.JFrame {
     }
     
         void appendStatus2(String s) {
-        statusuppdTextArea.append(s + "\n");
+        statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
 
     public boolean atervant(boolean p) {
