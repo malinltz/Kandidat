@@ -8,7 +8,7 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    private HTTPanrop http;
+    private HTTPny http;
 
 
     public int start = 2;//http.ink.get(k)

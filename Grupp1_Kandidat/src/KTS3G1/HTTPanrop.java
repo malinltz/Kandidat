@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -172,7 +172,7 @@ public class HTTPanrop implements Runnable {
                 paragraph1 = paras[i];
                 System.out.println("Parametrar: " + paragraph1);
             }
-             */
+             
             cui.showStatus(messageupp);
            // cui.showStatus(paragraph1);
             //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
@@ -187,7 +187,7 @@ public class HTTPanrop implements Runnable {
              cui.showStatus(plats1);
              cui.showStatus(plats2);
              cui.showStatus(plats3);
-             */
+             
             //Försöker att sätta slutnoden till upphämtningsplatsen
             //op.getCost();
 
@@ -333,3 +333,4 @@ public class HTTPanrop implements Runnable {
     }
 
 }
+*/

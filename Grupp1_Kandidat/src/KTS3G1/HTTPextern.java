@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ 
 
 package KTS3G1;
 
@@ -18,12 +18,12 @@ import java.util.ArrayList;
 /**
  *
  * @author malinlilliecreutz
-*/ 
+
 public class HTTPextern {
 
     public OptPlan op;
     public DataStore ds;
-    public HTTPanrop http;
+    public HTTPny http;
     int sleepTime;
     int capacity = 3; //exempel på kapacitet
     int ID = 1;
@@ -36,7 +36,7 @@ public class HTTPextern {
     String test;
     int dist=0;
 
-    public HTTPextern(HTTPanrop http, DataStore ds) {
+    public HTTPextern(HTTPny http, DataStore ds) {
         
         this.http = http;
         this.ds = ds;
@@ -75,3 +75,4 @@ public class HTTPextern {
     }
 
 }
+*/
