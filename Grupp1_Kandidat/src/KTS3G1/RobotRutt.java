@@ -156,10 +156,12 @@ public class RobotRutt implements Runnable {
                     }
                 }
             }
-            cui.appendStatus("Wall-E är nu klar!");
-            cui.appendStatus(rutt);
+            
+            
             }catch (NumberFormatException exception) {
         }
+        cui.appendStatus("Wall-E är nu klar!");
+        cui.appendStatus(rutt);
     }
     public String gorutt() { 
 

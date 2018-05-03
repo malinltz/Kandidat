@@ -124,7 +124,7 @@ public class KTS3G1 {
 
         }*/
        //cui.appendStatus2(RR.gorutt());
-       System.out.println(RR.gorutt());
+       //System.out.println(RR.gorutt());
     }
 
     /**
