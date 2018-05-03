@@ -16,6 +16,7 @@ public class ControlUI extends javax.swing.JFrame {
     ControlUI cui;
     HTTPanrop http;
     OptPlan op;
+    RobotRutt RR;
     //Transceiver tc;
 
     /**
@@ -63,6 +64,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s + "\n");
 
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    }
+    
+        void appendStatus2(String s) {
+        statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
 
     public boolean atervant(boolean p) {
@@ -619,6 +624,8 @@ public class ControlUI extends javax.swing.JFrame {
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t3 = new Thread(r2);
             t3.start();
+            
+            
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
@@ -682,6 +689,4 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton startStopp;
     private javax.swing.JTextArea statusuppdTextArea;
     // End of variables declaration//GEN-END:variables
-
-    private MapPanel map;
 }
