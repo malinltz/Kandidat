@@ -589,8 +589,7 @@ public class ControlUI extends javax.swing.JFrame {
 
             if (atervant == true) {
                 startPosition.setEnabled(true);
-                startPosition.setText("Återvänd till startposition");
-                cui.appendStatus("Har återvänt");
+                
             }
 
         } else if (atervant == false) {
@@ -599,7 +598,7 @@ public class ControlUI extends javax.swing.JFrame {
         //Lägg till att AGV ska återvända till 0.0
         ds.robotX = ds.nodeX[0];
         ds.robotY = ds.nodeY[0];
-
+        
         if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
             startPosition.setText("Återvänd till startposition");
         }
