@@ -24,17 +24,8 @@ public class HTTPny {
 
     public String message;
     public String messageupp;
-    // public String paragraph1;
-    // public String paragraph2;
-    // public String paragraph3;
-    // public String platser;
-    //  public String plats1;
-    //  public String plats2;
-    // public String plats3;
     private String url;
-    private String url12;
-    private String url2;
-    private String url3;
+
     private String utmessage;
     public OptPlan op;
     public DataStore ds;
@@ -42,26 +33,35 @@ public class HTTPny {
     private String gruppmessage;
 
     public String plats, ID, passagerare, grupp;
+    public String listaplats;
+    public int storlek;
+
+    int[] startlist;
+    int[] stopplist;
+
+    String uppdragsid[];
+
+    int[] pass;
+    int[] samakning;
+    int[] poäng;
+    int[] dest; //destination på uppdraget 
 
     // private List<String> uppdrag;
     // String aline= null;
     private static String URL;
     //För att ta reda på vilka uppdragsplatser som finns vart
-    private static String URL1 = ("http://tnk111.n7.se/listaplatser.php");
+
     //För att hämta ett uppdrag på platsen
     //  private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
-    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
-
-    private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
-
     //För att läsa de meddelanden som grupper skickat
     ////För att ta reda på vilka uppdrag som finns på plats A
     private int sleepTime;
 
     // int j = 0;
     // int numberOfLines = 20;
-    String[] Listupp;
+    ArrayList<String> ink;
+    // String[] Listupp;
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         //  this.cui = cui;
@@ -71,16 +71,17 @@ public class HTTPny {
         //sleepTime = generator.nextInt(20000);
         sleepTime = 1000; //1000 millisekunder
 
+        ink = new ArrayList<String>();
+
     }
     //op = new OptPlan(ds);
 
     public void Listaplats() {
-        
-            url = URL;
-            ArrayList<String> ink = new ArrayList<String>();
-            
-        try { // Kopplar upp till listan och hämtar info
-           
+
+        url = URL;
+
+        try { // Kopplar upp till listan och hämtar info och returnerar
+
             String url = ("http://tnk111.n7.se/listaplatser.php");
             URL urlobjekt1 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
@@ -102,13 +103,26 @@ public class HTTPny {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                System.out.println("Upphämtningsplatser: " + ink.get(k));
+                System.out.println("Upphämtningsplatser: " + ink.get(0));
                 // System.out.println(ink.indexOf(k));
                 // System.out.println(ink.spliterator(k));
                 // Listupp[k] = Integer.parseInt(ink.get(k));
                 //ink.
+
                 //Collections.indexOfSubList(ink,ut);
             }
+
+            listaplats = ink.get(0);
+            storlek = Integer.parseInt(listaplats);
+            // int line=0; 
+            String[] sline;
+            pass = new int[storlek];
+
+            // line = scanner.nextLine();
+            //  for(int i=1; i<.size(); i++)
+            startlist = new int[storlek];
+            stopplist = new int[storlek];
+
             cui.lista(ink);
             // ink.indexOf(k);
 
@@ -119,6 +133,7 @@ public class HTTPny {
             System.out.print(c.toString());
 
         }
+
     }
 
     public String uppdrag(String plats) {
@@ -241,7 +256,7 @@ public class HTTPny {
             wr.close();
 
             int responseCode = anslutning.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + url2);// + paragraph1);
+            System.out.println("\nSending 'POST' request to URL : " + url);// + paragraph1);
             // System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
             //  System.out.println("Response Code : " + responseCode);
 
@@ -263,7 +278,7 @@ public class HTTPny {
             }
 
             in.close();
-            for (int k = 0; k < ut.size(); k++) {
+            for (int k = 1; k < ut.size() - 1; k++) {
                 System.out.println("Hej: " + ut.get(k));
             }
             cui.lista(ut);
@@ -282,7 +297,7 @@ public class HTTPny {
             //print result
             System.out.println(e.toString());
         }
-            return utmessage; 
+        return utmessage;
     }
 
     public String aterstall(String Scenario) {
@@ -330,7 +345,7 @@ public class HTTPny {
         } catch (Exception k) {
             System.out.print(k.toString());
         }
-        return gruppmessage; 
+        return gruppmessage;
     }
 
     public void messages() {
