@@ -175,7 +175,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         });
 
-        //startStopp.setBackground(java.awt.Color.green);
+        startStopp.setBackground(java.awt.Color.green);
         startStopp.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         startStopp.setText("Start");
         startStopp.addActionListener(new java.awt.event.ActionListener() {
@@ -185,11 +185,11 @@ public class ControlUI extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-
+                
             }
         });
 
@@ -422,7 +422,9 @@ public class ControlUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 255));
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+        jTextField1.setSelectionColor(new java.awt.Color(255, 51, 51));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -608,10 +610,11 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
-            startStopp.setBackground(new java.awt.Color(255, 0, 0));
+            //startStopp.setBackground(Color.red);
+            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
             
-            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+            
             HTTPanrop h1 = new HTTPanrop(ds, op, this);
             Thread t1 = new Thread(h1);
             t1.start();
@@ -636,13 +639,13 @@ public class ControlUI extends javax.swing.JFrame {
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setBackground(new java.awt.Color(0, 255, 0));
+            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
        
-        
     }//GEN-LAST:event_jTextField1ActionPerformed
     
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -682,7 +685,7 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
