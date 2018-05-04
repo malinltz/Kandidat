@@ -1,4 +1,5 @@
-/*package KTS3G1;
+/*
+package KTS3G1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +14,7 @@ import java.util.Collections;
 
 public class HTTPanrop implements Runnable {
 
+public  HTTPny http; 
     public String message;
     public String messageupp;
    // public String paragraph1;
@@ -22,6 +24,7 @@ public class HTTPanrop implements Runnable {
   //  public String plats1;
   //  public String plats2;
    // public String plats3;
+    
     private String url1;
     private String url12;
     private String url2;
@@ -31,7 +34,7 @@ public class HTTPanrop implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     private String gruppmessage;
-
+/*
     // private List<String> uppdrag;
     // String aline= null;
     ArrayList<String> ink = new ArrayList<String>();
@@ -57,25 +60,42 @@ public class HTTPanrop implements Runnable {
     // int j = 0;
     // int numberOfLines = 20;
     String[] Listupp;
+   
+   // public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
+    ArrayList<String> ink;
     
-    public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
+        public HTTPanrop(HTTPny http){ 
+    
         //  this.cui = cui;
-        this.ds = ds;
+      //  this.ds = ds;
         this.op = op;
         this.cui = cui;
+        this.http= http;
         //sleepTime = generator.nextInt(20000);
-        sleepTime = 1000; //1000 millisekunder
+     //   sleepTime = 1000; //1000 millisekunder
+    ink= new ArrayList<String>() ;
+     
     }
 
     @Override
     public void run() { //Lägg till en 
-
-        url1 = URL1;
-        url12 = URL12;
-        url2 = URL2;
-        url3 = URL3;
+        
+     //  http.cui.lista(ink.size());
+        
+        http.cui.lista(ink);
+        http.cui.lista(ink);
+        cui.http.lista(ink);
+        
+        
+    }
+}
+*/
+        //url1 = URL1;
+       // url12 = URL12;
+      //  url2 = URL2;
+      //  url3 = URL3;
         //op = new OptPlan(ds);
-
+/*
         try { // Kopplar upp till listan och hämtar info
 
             URL urlobjekt1 = new URL(url1);

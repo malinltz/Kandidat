@@ -12,6 +12,7 @@ public class KTS3G1 {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
+    HTTPanrop ht;
     //HTTPextern hx;
     //Transceiver tc; 
     //Reciver re; 
@@ -46,7 +47,7 @@ public class KTS3G1 {
         http = new HTTPny(ds, op, cui);
         // cui.bluetoothAdress(badress);
 
-      
+      ht = new HTTPanrop(http);
 
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
