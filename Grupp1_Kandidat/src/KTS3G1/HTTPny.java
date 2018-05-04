@@ -272,8 +272,9 @@ public class HTTPny {
         url = URL;
         
 
+
         try { //lägger upp uppdrag
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + plats + ID + passagerare + grupp);
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats"+ plats + "§id"+ ID +"&passagerare="+  pass + "&grupp"+  grupp);
 
             URL urlobjekt2 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
