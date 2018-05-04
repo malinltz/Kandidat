@@ -30,6 +30,7 @@ public class HTTPny {
     public OptPlan op;
     public DataStore ds;
     public ControlUI cui;
+    public RobotRutt RR;
     private String gruppmessage;
 
     public String plats;
@@ -113,7 +114,7 @@ public class HTTPny {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                System.out.println("Upphämtningsplatser: " + ink.get(0));
+                System.out.println("Upphämtningsplatser: " + ink.get(k));
                 // System.out.println(ink.indexOf(k));
                 // System.out.println(ink.spliterator(k));
                 // Listupp[k] = Integer.parseInt(ink.get(k));
@@ -152,6 +153,18 @@ public class HTTPny {
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
             }
+            
+            for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
+            {
+            
+            
+            
+                
+            
+            
+            }
+            
+            
 
             // ink.indexOf(k);
             // Collections.emptyList(ink(k));
@@ -358,7 +371,7 @@ public class HTTPny {
         return gruppmessage;
     }
 
-    public void messages() {
+    public void inmessages() {
         url = URL;
         
         try { //vad vi hämtar hem från de anrda 
@@ -407,10 +420,11 @@ public class HTTPny {
     public void utmessages() {
         url = URL;
        
+        String messut = "A!50!1";
 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + messut);
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);

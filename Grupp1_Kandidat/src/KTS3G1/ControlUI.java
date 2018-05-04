@@ -604,14 +604,14 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+            //startPosition.setBackground(Color.red);
+            //startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
             if (atervant == true) {
                 startPosition.setEnabled(true);
-                startPosition.setText("Återvänd till startposition");
+                
             }
 
         } else if (atervant == false) {
@@ -620,7 +620,7 @@ public class ControlUI extends javax.swing.JFrame {
         //Lägg till att AGV ska återvända till 0.0
         ds.robotX = ds.nodeX[0];
         ds.robotY = ds.nodeY[0];
-
+        
         if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
             startPosition.setText("Återvänd till startposition");
         }
@@ -636,13 +636,14 @@ public class ControlUI extends javax.swing.JFrame {
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
             
-            
-            HTTPanrop h1 = new HTTPanrop(ds, op, this);
-            Thread t1 = new Thread(h1);
-            t1.start();
+          // HTTPanrop h1 = new HTTPanrop(ds, op, this);
+          // Thread t1 = new Thread(h1);
+          // t1.start();
+           http= new HTTPny(ds, op, cui);
+           http.Listaplats();
+           http.utmessages();
+           http.inmessages();
 
-            
-            
             op = new OptPlan(ds);
             op.createPlan();
 

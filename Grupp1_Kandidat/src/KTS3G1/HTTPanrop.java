@@ -44,7 +44,7 @@ public class HTTPanrop implements Runnable {
     //För att hämta ett uppdrag på platsen
     private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
-    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
+  
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
