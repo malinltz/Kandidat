@@ -17,7 +17,7 @@ public class OptPlan {
 
     //Dessa skall inte vara fixt utan mer som en vektor? 
     
-    public int slut; //Inparametrar av något slag
+    public int slut = 50; //Inparametrar av något slag
    public int Origin = start;
     public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.

@@ -649,8 +649,8 @@ public class ControlUI extends javax.swing.JFrame {
             t3.start();
             
             http = new HTTPny(ds, op, this);
-            http.listauppdrag("A");
             http.Listaplats();
+            http.listauppdrag("A");
             http.utmessages();
             http.inmessages();
             http.tauppdrag("A", "1", "4", "1");

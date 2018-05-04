@@ -139,38 +139,28 @@ public class HTTPny {
             stopplist = new int[storlek];
             
             for (int k = 1; k < storlek + 1; k++)
-                
-            {
-                
-           opt[k]= new OptPlan(ds);
-           opt[k].createPlan();
+            { 
+                opt[k]= new OptPlan(ds);
+                opt[k].createPlan();
            
-            op.start= op.platsw;
-            op.slut= stopplist[k]; 
-            
-           //skapa array där noderna sparas
-          // for()
-          
-          for (int i=0; i< opt[i].size(); i++){
-            
+                op.slut= stopplist[k]; 
             }
 
             for (int j = 1; j < storlek + 1; j++) {
-
-                sline = ink.get(j).split(" ");
-                listans[j - 1] = sline[0];
-                platser[j - 1] = sline[1];
-
+                sline = ink.get(j).split(";");
+                platser[j - 1] = sline[0];
+                listans[j - 1] = sline[1];
             }
             
             for (int i = 1; i < storlek + 1; i++) {
-                
-                sline = listans[i].split(" ");
+                sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
-
+                
+                op.start = startlist[i];
+                op.slut = stopplist[i];   
             }
-          
+            
             
             cui.lista(ink);
             
@@ -178,7 +168,7 @@ public class HTTPny {
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?
 
-        } }catch (Exception c) {
+          }catch (Exception c) {
             System.out.print(c.toString());
 
         }
