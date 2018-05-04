@@ -45,6 +45,11 @@ public class ControlUI extends javax.swing.JFrame {
     {
     jTextArea2.append("Lista uppdrag: " + k + "\n");
     }
+    
+    void tauppdrag(String p) 
+    {
+        jTextArea2.append("Taget uppdrag med " + p + "\n");
+    }
 
     void showStatus(String p) 
     {
@@ -656,6 +661,7 @@ public class ControlUI extends javax.swing.JFrame {
             http.Listaplats();
             http.utmessages();
             http.inmessages();
+            http.tauppdrag("A", "1", "4", "1");
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
