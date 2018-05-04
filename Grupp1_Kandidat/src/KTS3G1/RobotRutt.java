@@ -11,7 +11,7 @@ public class RobotRutt implements Runnable {
     private ControlUI cui;
     private DataStore ds;
     private OptPlan op;
-    public String rutt = "";
+    public static String rutt = "";
     public int[] list;
     public int go;
 

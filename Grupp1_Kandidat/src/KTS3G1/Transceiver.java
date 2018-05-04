@@ -11,14 +11,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
-    
-String lista = "hrrhrr";
-public static String kommando;
-public static String inskickat = "";
+    RobotRutt RR;
+//String lista = "hrrhrr";
+String kommando;
+String inskickat = "";
 
        
-   public Transceiver() {
-       
+   public Transceiver() { 
+      String lista = RR.gorutt();
+      System.out.println("listan = "+ lista);
        while(true){
        try{
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
@@ -46,7 +47,6 @@ public static String inskickat = "";
               //      break;
             //    }
             
-
                 bluetooth_ut.print(kommando);
                 inskickat = bluetooth_in.readLine();
                 
@@ -56,7 +56,6 @@ public static String inskickat = "";
                 for(int i = 0; i < lista.length(); i++) {
                  kommando = String.valueOf(lista.charAt(i));
                     while(true){
-                         
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
