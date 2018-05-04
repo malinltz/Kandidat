@@ -138,19 +138,22 @@ public class HTTPny {
             startlist = new int[storlek];
             stopplist = new int[storlek];
             
-            for (int j = 1; j < storlek + 1; j++)
+            for (int k = 1; k < storlek + 1; k++)
                 
             {
                 
-           opt[j]= new OptPlan(ds);
-           opt[j].createPlan();
+           opt[k]= new OptPlan(ds);
+           opt[k].createPlan();
+           
+            op.start= op.platsw;
+            op.slut= stopplist[k]; 
             
            //skapa array där noderna sparas
-           
+          // for()
+          
+          for (int i=0; i< opt[i].size(); i++){
+            
             }
-           
-   
-            cui.lista(ink);
 
             for (int j = 1; j < storlek + 1; j++) {
 
@@ -159,27 +162,18 @@ public class HTTPny {
                 platser[j - 1] = sline[1];
 
             }
-
+            
             for (int i = 1; i < storlek + 1; i++) {
-
+                
                 sline = listans[i].split(" ");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
             }
+          
             
-            for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
-            {
+            cui.lista(ink);
             
-            
-            
-                
-            
-            
-            }
-            
-            
-
             // ink.indexOf(k);
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?

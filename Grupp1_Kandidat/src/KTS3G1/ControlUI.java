@@ -31,6 +31,8 @@ public class ControlUI extends javax.swing.JFrame {
         setTitle("Grupp 1");
     }
 
+    
+    String allaUppdrag = "";
 
     String upphamtningsplats = "";
     String valtUppdrag = "";
@@ -87,6 +89,7 @@ public class ControlUI extends javax.swing.JFrame {
     {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
+
     
     //Används inte
     void appendStatus3(String s) 
@@ -94,10 +97,7 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + s + "\n");
     }
 
-    public boolean atervant(boolean p) 
-    {
-        return p;
-    }
+
 
     public void appendOptText(String s) 
     {
@@ -111,13 +111,13 @@ public class ControlUI extends javax.swing.JFrame {
 
     }
 
-    void upphamtningsplats(String b) 
-    {
-        upphamtningsplats = upphamtningsplats + b + "\n";
+  //  void upphamtningsplats(String b) 
+   // {
+   //     upphamtningsplats = upphamtningsplats + b + "\n";
 
-        jTextArea2.setText(upphamtningsplats);
-        jTextField7.setText("" + b);
-    }
+   //     jTextArea2.setText(upphamtningsplats);
+     //   jTextField7.setText("" + b);
+   // }
 
     void bluetoothchannel(String c) 
     {
@@ -604,7 +604,7 @@ public class ControlUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean atervant = false;
+    
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
@@ -615,21 +615,13 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-            if (atervant == true) {
+            ds.atervant = true; 
                 startPosition.setEnabled(true);
                 
             }
-
-        } else if (atervant == false) {
-
-        }
-        //Lägg till att AGV ska återvända till 0.0
-        ds.robotX = ds.nodeX[0];
-        ds.robotY = ds.nodeY[0];
         
-        if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
-            startPosition.setText("Återvänd till startposition");
-        }
+        
+     
         startPosition.setEnabled(true);
 
     }//GEN-LAST:event_startPositionActionPerformed

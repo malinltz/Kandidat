@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- 
+ */
 
 package KTS3G1;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  *
  * @author malinlilliecreutz
-
+*/
 public class HTTPextern {
 
     public OptPlan op;
@@ -75,7 +75,7 @@ public class HTTPextern {
     }
 
 }
-*/
+
 /*public Uppdrag(DataStore ds) { 
         aterstall("1");
         this.ds = ds;
