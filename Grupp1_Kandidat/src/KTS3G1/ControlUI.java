@@ -33,6 +33,10 @@ public class ControlUI extends javax.swing.JFrame {
 
     
     String allaUppdrag = "";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -45,6 +49,11 @@ public class ControlUI extends javax.swing.JFrame {
     void listauppdrag(ArrayList k)
     {
     jTextArea2.append("Lista uppdrag: " + k + "\n");
+    }
+    
+    void tauppdrag(String p) 
+    {
+        jTextArea2.append("Taget uppdrag med " + p + "\n");
     }
 
     void showStatus(String p) 
@@ -91,10 +100,13 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + s + "\n");
     }
 
+<<<<<<< HEAD
     public boolean atervant(boolean p) 
     {
         return p;
     }
+=======
+>>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
 
 
     public void appendOptText(String s) 
@@ -109,13 +121,13 @@ public class ControlUI extends javax.swing.JFrame {
 
     }
 
-    void upphamtningsplats(String b) 
-    {
-        upphamtningsplats = upphamtningsplats + b + "\n";
+  //  void upphamtningsplats(String b) 
+   // {
+   //     upphamtningsplats = upphamtningsplats + b + "\n";
 
-        jTextArea2.setText(upphamtningsplats);
-        jTextField7.setText("" + b);
-    }
+   //     jTextArea2.setText(upphamtningsplats);
+     //   jTextField7.setText("" + b);
+   // }
 
     void bluetoothchannel(String c) 
     {
@@ -650,10 +662,11 @@ public class ControlUI extends javax.swing.JFrame {
             t3.start();
             
             http = new HTTPny(ds, op, this);
-            http.listauppdrag("A");
             http.Listaplats();
-            http.utmessages();
-            http.inmessages();
+            //http.listauppdrag("A");
+            //http.utmessages();
+            //http.inmessages();
+            //http.tauppdrag("A", "1", "4", "1");
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
