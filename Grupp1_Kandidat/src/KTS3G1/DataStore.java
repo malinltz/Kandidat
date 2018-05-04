@@ -21,7 +21,7 @@ public class DataStore {
     int[] arcCost;
     boolean networkRead;
     boolean updateUIflag;
-
+    boolean atervant; 
     double robotX;
     double robotY;
     int[] arcColor;
@@ -38,7 +38,7 @@ public class DataStore {
         arcEnd = new int[1000];
         arcCost = new int[1000];
         arcColor = new int[1000];
-
+        atervant = false; 
         networkRead = false;
         updateUIflag = false;
 

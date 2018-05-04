@@ -10,12 +10,12 @@ public class OptPlan {
     private DataStore ds;
     private HTTPny http;
 
-
+    
     public int  start = 2;//http.ink.get(k)
     //Dessa skall inte vara fixt utan mer som en vektor? 
     
     public int  slut = 75; //Inparametrar av något slag
-
+   public int Origin = start;
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
@@ -38,10 +38,15 @@ public class OptPlan {
     }
 
     public void createPlan() {
-//         if (cui.atervant(true)){
-//            slut = ;  
-//        }
-       
+        try {
+            if (ds.atervant){
+            slut = start; //startnoden;
+            //ds.atervant=false;
+            
+//start=nuvarande nod som man är på väg till ;  
+        }
+            else{
+         
         
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
@@ -130,15 +135,16 @@ public class OptPlan {
                 }
             }
         }
+            }
+        }catch(NullPointerException exception){}
         
     }
-
     public int[] getIndex() {
         
         return shortestPathList;
         
         
-
+    
     }
 
     public int getCost() {

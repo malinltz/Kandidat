@@ -29,7 +29,7 @@ public class ControlUI extends javax.swing.JFrame {
         myinitComponents();
         setTitle("Grupp 1");
     }
-    public boolean atervant = false;
+    
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
@@ -69,10 +69,8 @@ public class ControlUI extends javax.swing.JFrame {
         void appendStatus2(String s) {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
-
-    public boolean atervant(boolean p) {
-        return p;
-    }
+     
+    
 
     public void appendOptText(String s) {
         statusuppdTextArea.append(s);
@@ -587,21 +585,13 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-            atervant = true; 
+            ds.atervant = true; 
                 startPosition.setEnabled(true);
                 
             }
         
-         else if (atervant == false) {
-
-        }
-        //Lägg till att AGV ska återvända till 0.0
-        ds.robotX = ds.nodeX[0];
-        ds.robotY = ds.nodeY[0];
         
-        if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
-            startPosition.setText("Återvänd till startposition");
-        }
+     
         startPosition.setEnabled(true);
 
     }//GEN-LAST:event_startPositionActionPerformed
