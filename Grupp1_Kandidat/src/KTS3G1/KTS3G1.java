@@ -72,6 +72,8 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
+        
+        
 
         /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);

@@ -30,7 +30,7 @@ public class ControlUI extends javax.swing.JFrame {
         setTitle("Grupp 1");
     }
 
-    String allaUppdrag = "";
+
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -45,65 +45,81 @@ public class ControlUI extends javax.swing.JFrame {
     jTextArea2.append("Lista uppdrag: " + k + "\n");
     }
 
-    void showStatus(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    void showStatus(String p) 
+    {
         jTextArea2.append("Uppdragsplats " + p + "\n");
     }
 
-    void showStatus2(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    void showStatus2(String p) 
+    {
         jTextArea2.append("Antal upphämtningsplatser " + p + "\n");
     }
-
-    void svarHTTP(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    
+    //Används för listauppdrag i HTTP för att skriva ut alla uppdrag på en hållsplats
+    void hallplatsuppdrag(String p) 
+    {
+        jTextArea2.append("" + p + "\n");
+    }
+    
+    //Används för listauppdrag i HTTP för att skriva ut noder
+    void destination(String p) 
+    {
         jTextArea2.append("" + p + "\n");
     }
 
-    void appendStatus(String s) {
-        statusuppdTextArea.append(s + "\n");
+    void svarHTTP(String p) 
+    {
+        jTextArea2.append("" + p + "\n");
+    }
 
-        //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    void appendStatus(String s) 
+    {
+        statusuppdTextArea.append(s + "\n");
     }
     
-        void appendStatus2(String s) {
+    void appendStatus2(String s) 
+    {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
+    
+    //Används inte
+    void appendStatus3(String s) 
+    {
+        statusuppdTextArea.append("" + s + "\n");
+    }
 
-    public boolean atervant(boolean p) {
+    public boolean atervant(boolean p) 
+    {
         return p;
     }
 
-    public void appendOptText(String s) {
+    public void appendOptText(String s) 
+    {
         statusuppdTextArea.append(s);
     }
 
-    void valtUppdrag(String c) {
+    void valtUppdrag(String c) 
+    {
         valtUppdrag = valtUppdrag + c + "\n";
         jTextArea2.setText(valtUppdrag);
 
     }
 
-    void upphamtningsplats(String b) {
+    void upphamtningsplats(String b) 
+    {
         upphamtningsplats = upphamtningsplats + b + "\n";
 
         jTextArea2.setText(upphamtningsplats);
         jTextField7.setText("" + b);
-
     }
 
-    void bluetoothchannel(String c) {
+    void bluetoothchannel(String c) 
+    {
         jTextField6.setText("" + c);
     }
     
-      void bluetoothAdress(String b) {
-
+    void bluetoothAdress(String b) 
+    {
         jTextField7.setText("" + b);
     }
 
@@ -181,7 +197,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         });
 
-        //startStopp.setBackground(java.awt.Color.green);
+        startStopp.setBackground(java.awt.Color.green);
         startStopp.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         startStopp.setText("Start");
         startStopp.addActionListener(new java.awt.event.ActionListener() {
@@ -191,11 +207,11 @@ public class ControlUI extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-
+                
             }
         });
 
@@ -428,7 +444,9 @@ public class ControlUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 255));
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+        jTextField1.setSelectionColor(new java.awt.Color(255, 51, 51));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -614,13 +632,16 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
-            startStopp.setBackground(new java.awt.Color(255, 0, 0));
+            //startStopp.setBackground(Color.red);
+            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
             
-            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+            
             HTTPanrop h1 = new HTTPanrop(ds, op, this);
             Thread t1 = new Thread(h1);
             t1.start();
+
+            
             
             op = new OptPlan(ds);
             op.createPlan();
@@ -633,6 +654,9 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t3 = new Thread(r2);
             t3.start();
             
+            http = new HTTPny(ds, op, this);
+            http.listauppdrag("A");
+            
             
 
 //            Anslutning b1 = new Anslutning();
@@ -642,13 +666,13 @@ public class ControlUI extends javax.swing.JFrame {
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setBackground(new java.awt.Color(0, 255, 0));
+            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
        
-        
     }//GEN-LAST:event_jTextField1ActionPerformed
     
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -688,7 +712,7 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
