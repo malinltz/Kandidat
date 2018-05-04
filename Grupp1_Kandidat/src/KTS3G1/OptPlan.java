@@ -11,6 +11,7 @@ public class OptPlan {
     private HTTPny http;
 
 
+    public int platsw= 5;
     public int start = 2;//http.ink.get(k)
     //Dessa skall inte vara fixt utan mer som en vektor? 
     

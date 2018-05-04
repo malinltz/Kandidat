@@ -144,10 +144,13 @@ public class HTTPny {
                 
            opt[j]= new OptPlan(ds);
            opt[j].createPlan();
+           
+            op.start= op.platsw;
+            op.slut= stopplist[j]; 
             
            //skapa array där noderna sparas
-           
-            }
+          // for()
+           // }
            
    
             cui.lista(ink);
@@ -170,6 +173,7 @@ public class HTTPny {
             
             for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
             {
+            
             
             
             
@@ -290,8 +294,8 @@ public class HTTPny {
 
             DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
             //wr.writeBytes(distance);
-            wr.flush();
-            wr.close();
+           // wr.flush();
+           // wr.close();
 
             int responseCode = anslutning.getResponseCode();
             System.out.println("\nSending 'POST' request to URL : " + url);// + paragraph1);

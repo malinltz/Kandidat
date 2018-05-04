@@ -24,6 +24,7 @@ public class DataStore {
 
     double robotX;
     double robotY;
+    
     int[] arcColor;
     
 
