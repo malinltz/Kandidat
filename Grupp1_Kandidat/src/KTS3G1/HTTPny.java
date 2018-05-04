@@ -282,10 +282,6 @@ public class HTTPny {
             
             inkommande.close();
             
-            for (int k = 1; k < ut.size() - 1; k++) {
-                System.out.println("Tagna uppdrag: " + ut.get(k));
-            }
-            
             //Skriver ut vilket uppdrag vi tagit i statusruta
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
             + ", Passagerare: " + passagerare + ", Grupp: " + grupp + "");    

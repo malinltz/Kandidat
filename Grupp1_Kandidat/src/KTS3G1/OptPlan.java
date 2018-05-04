@@ -28,10 +28,8 @@ public class OptPlan {
     
     public int pathCost = 0;
     int pathCostupp = 0;
-    
     double x = 0;
     double y = 0;
-    
     double xupp = 0;
     double yupp = 0;
     
