@@ -8,10 +8,12 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
-    private HTTPanrop http;
+    private HTTPny http;
 
 
-    public int start = 2; //Dessa skall inte vara fixt utan mer som en vektor? 
+    public int start = 2;//http.ink.get(k)
+    //Dessa skall inte vara fixt utan mer som en vektor? 
+    
     public int slut = 75; //Inparametrar av något slag
 
 
@@ -36,7 +38,10 @@ public class OptPlan {
     }
 
     public void createPlan() {
-
+        
+       // if (cui.atervant==true){
+         //   slut = 0; 
+       // }
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 

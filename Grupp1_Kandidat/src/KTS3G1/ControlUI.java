@@ -14,8 +14,10 @@ public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
     ControlUI cui;
-    HTTPanrop http;
+    HTTPny http;
     OptPlan op;
+    RobotRutt RR;
+    HTTPanrop ht;
     //Transceiver tc;
 
     /**
@@ -63,6 +65,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append(s + "\n");
 
         //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    }
+    
+        void appendStatus2(String s) {
+        statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
 
     public boolean atervant(boolean p) {
@@ -180,11 +186,11 @@ public class ControlUI extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-
+                
             }
         });
 
@@ -198,9 +204,11 @@ public class ControlUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
         jLabel1.setText("Status hos andra AGVer:");
-
+        
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Kontakt med AGV:");
+        jLabel3.setBackground(Color.yellow);
+        
 
         jTextField6.setEditable(false);
 
@@ -416,7 +424,8 @@ public class ControlUI extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+        jTextField1.setSelectionColor(new java.awt.Color(255, 51, 51));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -574,14 +583,14 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+            //startPosition.setBackground(Color.red);
+            //startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
             if (atervant == true) {
                 startPosition.setEnabled(true);
-                startPosition.setText("Återvänd till startposition");
+                
             }
 
         } else if (atervant == false) {
@@ -590,7 +599,7 @@ public class ControlUI extends javax.swing.JFrame {
         //Lägg till att AGV ska återvända till 0.0
         ds.robotX = ds.nodeX[0];
         ds.robotY = ds.nodeY[0];
-
+        
         if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
             startPosition.setText("Återvänd till startposition");
         }
@@ -604,11 +613,27 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
 
+
+            //startStopp.setBackground(Color.red);
+            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+            anslut = true;
+
             
-            HTTPanrop h1 = new HTTPanrop(ds, op, this);
-            Thread t1 = new Thread(h1);
+            
+          HTTPanrop h1 = new HTTPanrop(http);
+           Thread t1 = new Thread(ht);
             t1.start();
-            
+          
+           http= new HTTPny(ds, op, cui);
+           
+         
+           
+           http.Listaplats();
+           http.utmessages();
+           http.inmessages();
+           
+          // http.listauppdrag();
+          
             op = new OptPlan(ds);
             op.createPlan();
 
@@ -627,15 +652,16 @@ public class ControlUI extends javax.swing.JFrame {
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
-            startStopp.setForeground(new java.awt.Color(0, 255, 0));
+            startStopp.setBackground(new java.awt.Color(0, 255, 0));
+            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-
+       
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
         // ActionListener lyssnar = null; 
@@ -673,7 +699,7 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -683,6 +709,4 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton startStopp;
     private javax.swing.JTextArea statusuppdTextArea;
     // End of variables declaration//GEN-END:variables
-
-    private MapPanel map;
 }
