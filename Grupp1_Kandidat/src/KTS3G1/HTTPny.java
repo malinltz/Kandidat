@@ -116,7 +116,9 @@ public class HTTPny {
             storlek = Integer.parseInt(listaplats);
             // int line=0; 
             String[] sline;
-            pass = new int[storlek];
+            String listans[] = new String[storlek];
+            String platser[] = new String[storlek];
+            //  pass = new int[storlek];
 
             // line = scanner.nextLine();
             //  for(int i=1; i<.size(); i++)
@@ -124,8 +126,28 @@ public class HTTPny {
             stopplist = new int[storlek];
 
             cui.lista(ink);
-            // ink.indexOf(k);
+            
+             for (int j = 1; j < storlek + 1; j++) 
+            {
 
+                sline = ink.get(j).split(" ");
+                listans[j-1]=sline[0];
+                platser[j-1]=sline[1];
+                
+
+            }
+            
+
+            for (int i = 1; i < storlek + 1; i++) 
+            {
+
+                sline = listans[i].split(" ");
+                startlist[i] = Integer.parseInt(sline[0].trim());
+                stopplist[i] = Integer.parseInt(sline[1].trim());
+
+            }
+
+            // ink.indexOf(k);
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?
 
