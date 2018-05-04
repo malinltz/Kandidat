@@ -158,7 +158,7 @@ public class HTTPny {
 
     }
 
-    public String uppdrag(String plats) {
+    public String listauppdrag(String plats) {
         url = URL;
         ArrayList<String> upp = new ArrayList<String>();
 
@@ -166,7 +166,8 @@ public class HTTPny {
 
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
             URL urlobjekt1 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
+            HttpURLConnection anslutning = (HttpURLConnection) 
+            urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
             anslutning.setRequestMethod("GET"); // ny kod
             //;
@@ -190,12 +191,13 @@ public class HTTPny {
                 //upp.spliterator("");
                 // System.out.println("After Sorting:");
                 // upp.ArrayList.sort();
+                cui.listauppdrag(upp);
             }
             //for(String counter: ink){
 
             //     counter.split("A");
             //    System.out.println(counter.toString());
-            cui.lista(upp);
+            cui.listauppdrag(upp);
             // upp.spliterator(k);
 
             // upp.subList(5,56);
@@ -232,18 +234,7 @@ public class HTTPny {
              cui.showStatus(plats2);
              cui.showStatus(plats3);
              */
-            //Försöker att sätta slutnoden till upphämtningsplatsen
-            //op.getCost();
 
-            //int attakatill = Integer.parseInt(plats1.substring(2,4));
-            //op.createPlan();
-//        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
-//        
-//        if(attakatill < attakatill2){
-//            slut = attakatill2;
-//        }
-//        else {
-//            slut = attakatill;
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {

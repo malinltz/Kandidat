@@ -38,6 +38,12 @@ public class ControlUI extends javax.swing.JFrame {
     {
     jTextArea2.append("Uppdragsplats " + k + "\n");
     }
+    
+    //Används för listauppdrag metod i HTTPny
+    void listauppdrag(ArrayList k)
+    {
+    jTextArea2.append("Lista uppdrag: " + k + "\n");
+    }
 
     void showStatus(String p) {
         //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
