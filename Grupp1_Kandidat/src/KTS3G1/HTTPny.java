@@ -424,7 +424,7 @@ public class HTTPny {
         try { //vad vi hämtar hem från de anrda 
 
             String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
-            URL urlobjekt3 = new URL(url+ "kul");
+            URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);
 
