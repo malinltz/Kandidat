@@ -120,7 +120,6 @@ public class HTTPny {
                 // System.out.println(ink.spliterator(k));
                 // Listupp[k] = Integer.parseInt(ink.get(k));
                 //ink.
-
                 //Collections.indexOfSubList(ink,ut);
             }
 
@@ -151,10 +150,6 @@ public class HTTPny {
            //skapa array där noderna sparas
           // for()
           
-          for (int i=0; i< opt[i].size(); i++){
-            
-            }
-
             for (int j = 1; j < storlek + 1; j++) {
 
                 sline = ink.get(j).split(" ");
@@ -170,7 +165,6 @@ public class HTTPny {
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
             }
-          
             
             cui.lista(ink);
             
@@ -178,6 +172,7 @@ public class HTTPny {
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?
 
+        }
         } catch (Exception c) {
             System.out.print(c.toString());
 
