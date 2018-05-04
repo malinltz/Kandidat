@@ -28,7 +28,7 @@ public class RobotRutt implements Runnable {
 
     public void run() {
         try {
-
+            
             cui.appendStatus("Jag heter Wall-E och börjar köra");
             int i = 0;
             while(list[i+2] != 0){

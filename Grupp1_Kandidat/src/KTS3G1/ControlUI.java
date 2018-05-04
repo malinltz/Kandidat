@@ -582,14 +582,15 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+            //startPosition.setBackground(Color.red);
+            //startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
             if (atervant == true) {
                 startPosition.setEnabled(true);
                 startPosition.setText("Återvänd till startposition");
+                cui.appendStatus("Har återvänt");
             }
 
         } else if (atervant == false) {
