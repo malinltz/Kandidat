@@ -1,10 +1,14 @@
 package KTS3G1;
 
 import java.util.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Random;
 
 public class OptPlan {
 
     ControlUI cui;
+    RobotRutt RR; 
     private List<Vertex> nodes;
     private List<Edge> edges;
     private DataStore ds;
@@ -38,23 +42,15 @@ public class OptPlan {
     }
 
     public void createPlan() {
-<<<<<<< HEAD
         try {
             if (ds.atervant){
-            slut = start; //startnoden;
-            //ds.atervant=false;
-            
-//start=nuvarande nod som man är på väg till ;  
+            //start=RR.list;
+                    slut = 2; //startnoden;
+            //start=nuvarande nod som man är på väg till(ACK från AGV) ;  
         }
             else{
          
         
-=======
-        
-       // if (cui.atervant==true){
-         //   slut = 0; 
-       // }
->>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 

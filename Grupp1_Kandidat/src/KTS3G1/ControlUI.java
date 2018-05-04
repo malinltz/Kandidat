@@ -30,13 +30,9 @@ public class ControlUI extends javax.swing.JFrame {
         myinitComponents();
         setTitle("Grupp 1");
     }
-<<<<<<< HEAD
+
     
     String allaUppdrag = "";
-=======
-
-
->>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -87,10 +83,7 @@ public class ControlUI extends javax.swing.JFrame {
     {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
-<<<<<<< HEAD
-     
-    
-=======
+
     
     //Används inte
     void appendStatus3(String s) 
@@ -102,7 +95,7 @@ public class ControlUI extends javax.swing.JFrame {
     {
         return p;
     }
->>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
+
 
     public void appendOptText(String s) 
     {
@@ -621,13 +614,16 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setSelected(false);
 
             ds.atervant = true; 
-                startPosition.setEnabled(true);
+                
                 
             }
         
-        
+         //if(AGV:n har återvänt)
+         //startPosition.setText("Återvänd till StartPosition");
+         //startPosition.setEnabled(true);    
+        //} startPosition.setEnabled(true);
      
-        startPosition.setEnabled(true);
+        //startPosition.setEnabled(true);
 
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
