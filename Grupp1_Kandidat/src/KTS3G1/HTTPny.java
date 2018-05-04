@@ -134,7 +134,9 @@ public class HTTPny {
             stopplist = new int[storlek];
             
             for (int j = 1; j < storlek + 1; j++)
+                
             {
+                
            opt[j]= new OptPlan(ds);
            opt[j].createPlan();
             
