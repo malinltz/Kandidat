@@ -603,7 +603,7 @@ public class ControlUI extends javax.swing.JFrame {
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
-            anslut = true;
+
             
             HTTPanrop h1 = new HTTPanrop(ds, op, this);
             Thread t1 = new Thread(h1);
@@ -619,10 +619,11 @@ public class ControlUI extends javax.swing.JFrame {
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t3 = new Thread(r2);
             t3.start();
-
-//            Anslutning b1 = new Anslutning();
-//            Thread t6 = new Thread(b1);
-//            t6.start();
+            
+            Transceiver b1 = new Transceiver();
+            //Anslutning b1 = new Anslutning();
+            Thread t6 = new Thread(b1);
+            t6.start();
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
