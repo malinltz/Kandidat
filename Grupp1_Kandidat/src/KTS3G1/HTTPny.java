@@ -178,7 +178,7 @@ public class HTTPny {
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?
 
-        } catch (Exception c) {
+        } }catch (Exception c) {
             System.out.print(c.toString());
 
         }
