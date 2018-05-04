@@ -16,7 +16,7 @@ import java.io.DataOutputStream;
 import java.util.Collections;
 //import java.util.regex.Pattern;
 
-/**
+/** 
  *
  * @author malinlilliecreutz
  */
@@ -30,6 +30,7 @@ public class HTTPny {
     public OptPlan op;
     public DataStore ds;
     public ControlUI cui;
+    public RobotRutt RR;
     private String gruppmessage;
 
     public String plats, ID, passagerare, grupp;
@@ -61,6 +62,9 @@ public class HTTPny {
     // int j = 0;
     // int numberOfLines = 20;
     ArrayList<String> ink;
+     ArrayList<String> upp;
+     ArrayList<String> ut;
+     ArrayList<String> utmess; 
     // String[] Listupp;
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
@@ -72,7 +76,9 @@ public class HTTPny {
         sleepTime = 1000; //1000 millisekunder
 
         ink = new ArrayList<String>();
-
+        upp = new ArrayList<String>();
+        ut = new ArrayList<String>();
+        utmess = new ArrayList<String>();
     }
     //op = new OptPlan(ds);
 
@@ -126,26 +132,34 @@ public class HTTPny {
             stopplist = new int[storlek];
 
             cui.lista(ink);
-            
-             for (int j = 1; j < storlek + 1; j++) 
-            {
+
+            for (int j = 1; j < storlek + 1; j++) {
 
                 sline = ink.get(j).split(" ");
-                listans[j-1]=sline[0];
-                platser[j-1]=sline[1];
-                
+                listans[j - 1] = sline[0];
+                platser[j - 1] = sline[1];
 
             }
-            
 
-            for (int i = 1; i < storlek + 1; i++) 
-            {
+            for (int i = 1; i < storlek + 1; i++) {
 
                 sline = listans[i].split(" ");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
             }
+            
+            for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
+            {
+            
+            
+            
+                
+            
+            
+            }
+            
+            
 
             // ink.indexOf(k);
             // Collections.emptyList(ink(k));
@@ -159,9 +173,9 @@ public class HTTPny {
     }
 
     public String uppdrag(String plats) {
+        
         url = URL;
-        ArrayList<String> upp = new ArrayList<String>();
-
+        
         try { // hämtar uppdrag
 
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
@@ -255,7 +269,7 @@ public class HTTPny {
 
     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
         url = URL;
-        ArrayList<String> ut = new ArrayList<String>();
+        
 
         try { //lägger upp uppdrag
             String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + plats + ID + passagerare + grupp);
@@ -324,7 +338,7 @@ public class HTTPny {
 
     public String aterstall(String Scenario) {
         url = URL;
-        ArrayList<String> utmess = new ArrayList<String>();
+        
 
         try { //vad vi hämtar hem från de anrda 
 
@@ -370,10 +384,9 @@ public class HTTPny {
         return gruppmessage;
     }
 
-    public void messages() {
+    public void inmessages() {
         url = URL;
-        ArrayList<String> utmess = new ArrayList<String>();
-
+        
         try { //vad vi hämtar hem från de anrda 
 
             String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
@@ -419,7 +432,7 @@ public class HTTPny {
 
     public void utmessages() {
         url = URL;
-        ArrayList<String> utmess = new ArrayList<String>();
+       
 
         try { //vad vi hämtar hem från de anrda 
 
