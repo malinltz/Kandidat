@@ -109,7 +109,7 @@ public class HTTPny {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                System.out.println("Upphämtningsplatser: " + ink.get(0));
+                System.out.println("Upphämtningsplatser: " + ink.get(k));
                 // System.out.println(ink.indexOf(k));
                 // System.out.println(ink.spliterator(k));
                 // Listupp[k] = Integer.parseInt(ink.get(k));
@@ -436,7 +436,7 @@ public class HTTPny {
 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + "A!50!1");
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);
