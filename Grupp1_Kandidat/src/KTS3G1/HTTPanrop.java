@@ -1,4 +1,5 @@
-/*package KTS3G1;
+/*
+package KTS3G1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +14,7 @@ import java.util.Collections;
 
 public class HTTPanrop implements Runnable {
 
+public  HTTPny http; 
     public String message;
     public String messageupp;
    // public String paragraph1;
@@ -22,6 +24,7 @@ public class HTTPanrop implements Runnable {
   //  public String plats1;
   //  public String plats2;
    // public String plats3;
+    
     private String url1;
     private String url12;
     private String url2;
@@ -31,7 +34,7 @@ public class HTTPanrop implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     private String gruppmessage;
-
+/*
     // private List<String> uppdrag;
     // String aline= null;
     ArrayList<String> ink = new ArrayList<String>();
@@ -44,7 +47,11 @@ public class HTTPanrop implements Runnable {
     //För att hämta ett uppdrag på platsen
     private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
+<<<<<<< HEAD
     private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
+=======
+  
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
@@ -57,25 +64,42 @@ public class HTTPanrop implements Runnable {
     // int j = 0;
     // int numberOfLines = 20;
     String[] Listupp;
+   
+   // public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
+    ArrayList<String> ink;
     
-    public HTTPanrop(DataStore ds, OptPlan op, ControlUI cui) {
+        public HTTPanrop(HTTPny http){ 
+    
         //  this.cui = cui;
-        this.ds = ds;
+      //  this.ds = ds;
         this.op = op;
         this.cui = cui;
+        this.http= http;
         //sleepTime = generator.nextInt(20000);
-        sleepTime = 1000; //1000 millisekunder
+     //   sleepTime = 1000; //1000 millisekunder
+    ink= new ArrayList<String>() ;
+     
     }
 
     @Override
     public void run() { //Lägg till en 
-
-        url1 = URL1;
-        url12 = URL12;
-        url2 = URL2;
-        url3 = URL3;
+        
+     //  http.cui.lista(ink.size());
+        
+        http.cui.lista(ink);
+        http.cui.lista(ink);
+        cui.http.lista(ink);
+        
+        
+    }
+}
+*/
+        //url1 = URL1;
+       // url12 = URL12;
+      //  url2 = URL2;
+      //  url3 = URL3;
         //op = new OptPlan(ds);
-
+/*
         try { // Kopplar upp till listan och hämtar info
 
             URL urlobjekt1 = new URL(url1);
@@ -107,9 +131,13 @@ public class HTTPanrop implements Runnable {
              //Collections.indexOfSubList(ink,ut);
          }
          cui.lista(ink);
+<<<<<<< HEAD
+
+=======
         // ink.indexOf(k);
          
    // Collections.emptyList(ink(k));
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -132,7 +160,14 @@ public class HTTPanrop implements Runnable {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
+<<<<<<< HEAD
+                //  arrayOfStrings[j]= inkommande_text;
+                // j++; 
+                //  inkommande_text = inkommande.readLine() ; 
+
+=======
           
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
                 upp.add(inkommande_text);
             }
 
@@ -140,6 +175,11 @@ public class HTTPanrop implements Runnable {
             
              for(int k = 0; k < upp.size(); k++){
             System.out.println("Uppdrag: " + upp.get(k));
+<<<<<<< HEAD
+         }
+         cui.lista(upp);
+            // messageupp = inkommande_samlat.toString();
+=======
             //upp.spliterator("");
              // System.out.println("After Sorting:");
             // upp.ArrayList.sort();
@@ -156,6 +196,7 @@ public class HTTPanrop implements Runnable {
         // upp.subList(5,56);
          
              messageupp = inkommande_samlat.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
             //System.out.println(message);
             //  String[] paras = messageupp.split(" ");
             // StringBuilder sb = new StringBuilder();
@@ -253,7 +294,11 @@ public class HTTPanrop implements Runnable {
             System.out.println("Hej: " + ut.get(k));
          }
          cui.lista(ut);
+<<<<<<< HEAD
+          //  utmessage = response.toString();
+=======
             utmessage = response.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
          //   String[] paras = utmessage.split(";" + "");
 
@@ -298,7 +343,11 @@ public class HTTPanrop implements Runnable {
             System.out.println("Ink: " + utmess.get(k));
          }
          cui.lista(utmess);
+<<<<<<< HEAD
+          //  gruppmessage = inkommande_samlat.toString();
+=======
             gruppmessage = inkommande_samlat.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
           //  String[] paras = gruppmessage.split("");
 

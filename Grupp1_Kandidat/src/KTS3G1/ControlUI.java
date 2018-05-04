@@ -17,6 +17,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
+    HTTPanrop ht;
     //Transceiver tc;
 
     /**
@@ -29,8 +30,13 @@ public class ControlUI extends javax.swing.JFrame {
         myinitComponents();
         setTitle("Grupp 1");
     }
+<<<<<<< HEAD
     
     String allaUppdrag = "";
+=======
+
+
+>>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -38,64 +44,93 @@ public class ControlUI extends javax.swing.JFrame {
     {
     jTextArea2.append("Uppdragsplats " + k + "\n");
     }
+    
+    //Används för listauppdrag metod i HTTPny
+    void listauppdrag(ArrayList k)
+    {
+    jTextArea2.append("Lista uppdrag: " + k + "\n");
+    }
 
-    void showStatus(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    void showStatus(String p) 
+    {
         jTextArea2.append("Uppdragsplats " + p + "\n");
     }
 
-    void showStatus2(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    void showStatus2(String p) 
+    {
         jTextArea2.append("Antal upphämtningsplatser " + p + "\n");
     }
-
-    void svarHTTP(String p) {
-        //statusuppdTextArea.append("Nodes: "+ds.nodes+"\n");
-        //statusuppdTextArea.append("Arcs: "+ds.arcs+"\n");
-
+    
+    //Används för listauppdrag i HTTP för att skriva ut alla uppdrag på en hållsplats
+    void hallplatsuppdrag(String p) 
+    {
+        jTextArea2.append("" + p + "\n");
+    }
+    
+    //Används för listauppdrag i HTTP för att skriva ut noder
+    void destination(String p) 
+    {
         jTextArea2.append("" + p + "\n");
     }
 
-    void appendStatus(String s) {
-        statusuppdTextArea.append(s + "\n");
+    void svarHTTP(String p) 
+    {
+        jTextArea2.append("" + p + "\n");
+    }
 
-        //statusuppdTextArea.setCaretPosition(statusuppdTextArea.getDocument().getLength());
+    void appendStatus(String s) 
+    {
+        statusuppdTextArea.append(s + "\n");
     }
     
-        void appendStatus2(String s) {
+    void appendStatus2(String s) 
+    {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
+<<<<<<< HEAD
      
     
+=======
+    
+    //Används inte
+    void appendStatus3(String s) 
+    {
+        statusuppdTextArea.append("" + s + "\n");
+    }
 
-    public void appendOptText(String s) {
+    public boolean atervant(boolean p) 
+    {
+        return p;
+    }
+>>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
+
+    public void appendOptText(String s) 
+    {
         statusuppdTextArea.append(s);
     }
 
-    void valtUppdrag(String c) {
+    void valtUppdrag(String c) 
+    {
         valtUppdrag = valtUppdrag + c + "\n";
         jTextArea2.setText(valtUppdrag);
 
     }
 
-    void upphamtningsplats(String b) {
+    void upphamtningsplats(String b) 
+    {
         upphamtningsplats = upphamtningsplats + b + "\n";
 
         jTextArea2.setText(upphamtningsplats);
         jTextField7.setText("" + b);
-
     }
 
-    void bluetoothchannel(String c) {
+    void bluetoothchannel(String c) 
+    {
         jTextField6.setText("" + c);
     }
     
-      void bluetoothAdress(String b) {
-
+    void bluetoothAdress(String b) 
+    {
         jTextField7.setText("" + b);
     }
 
@@ -600,15 +635,13 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
+            startStopp.setForeground(new java.awt.Color(255, 0, 0));
+
+
             //startStopp.setBackground(Color.red);
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
-            
-            
-            HTTPanrop h1 = new HTTPanrop(ds, op, this);
-            Thread t1 = new Thread(h1);
-            t1.start();
-            
+
             op = new OptPlan(ds);
             op.createPlan();
 
@@ -620,11 +653,21 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t3 = new Thread(r2);
             t3.start();
             
-            
+            http = new HTTPny(ds, op, this);
+            http.listauppdrag("A");
+            http.Listaplats();
+            http.utmessages();
+            http.inmessages();
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
 //            t6.start();
+
+//            Transceiver b1 = new Transceiver();
+//            //Anslutning b1 = new Anslutning();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
+
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");

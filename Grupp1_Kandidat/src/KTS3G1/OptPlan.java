@@ -38,6 +38,7 @@ public class OptPlan {
     }
 
     public void createPlan() {
+<<<<<<< HEAD
         try {
             if (ds.atervant){
             slut = start; //startnoden;
@@ -48,6 +49,12 @@ public class OptPlan {
             else{
          
         
+=======
+        
+       // if (cui.atervant==true){
+         //   slut = 0; 
+       // }
+>>>>>>> 952b040c8049e4bb4b3ef74f6f2fb36e224d0d9f
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 
