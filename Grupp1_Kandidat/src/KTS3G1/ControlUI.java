@@ -175,7 +175,7 @@ public class ControlUI extends javax.swing.JFrame {
 
         });
 
-        startStopp.setBackground(java.awt.Color.green);
+        //startStopp.setBackground(java.awt.Color.green);
         startStopp.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         startStopp.setText("Start");
         startStopp.addActionListener(new java.awt.event.ActionListener() {
@@ -203,9 +203,11 @@ public class ControlUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 10)); // NOI18N
         jLabel1.setText("Status hos andra AGVer:");
-
+        
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel3.setText("Kontakt med AGV:");
+        jLabel3.setBackground(Color.yellow);
+        
 
         jTextField6.setEditable(false);
 
@@ -420,8 +422,7 @@ public class ControlUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 51, 51));
+        jTextField1.setBackground(new java.awt.Color(0, 0, 255));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -607,9 +608,10 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
-            startStopp.setForeground(new java.awt.Color(255, 0, 0));
+            startStopp.setBackground(new java.awt.Color(255, 0, 0));
             anslut = true;
             
+            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             HTTPanrop h1 = new HTTPanrop(ds, op, this);
             Thread t1 = new Thread(h1);
             t1.start();
@@ -633,15 +635,16 @@ public class ControlUI extends javax.swing.JFrame {
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
-            startStopp.setForeground(new java.awt.Color(0, 255, 0));
+            startStopp.setBackground(new java.awt.Color(0, 255, 0));
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-
+       
+        
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
         // ActionListener lyssnar = null; 
