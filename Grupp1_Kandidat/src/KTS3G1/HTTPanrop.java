@@ -47,7 +47,11 @@ public  HTTPny http;
     //För att hämta ett uppdrag på platsen
     private static String URL12 = ("http://tnk111.n7.se/listauppdrag.php?plats=A");
     //För att skicka ett meddelande till HTTP- servern
+<<<<<<< HEAD
+    private static String URL2 = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=kul");
+=======
   
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
     private static String URL3 = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
@@ -127,9 +131,13 @@ public  HTTPny http;
              //Collections.indexOfSubList(ink,ut);
          }
          cui.lista(ink);
+<<<<<<< HEAD
+
+=======
         // ink.indexOf(k);
          
    // Collections.emptyList(ink(k));
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
@@ -152,7 +160,14 @@ public  HTTPny http;
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
+<<<<<<< HEAD
+                //  arrayOfStrings[j]= inkommande_text;
+                // j++; 
+                //  inkommande_text = inkommande.readLine() ; 
+
+=======
           
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
                 upp.add(inkommande_text);
             }
 
@@ -160,6 +175,11 @@ public  HTTPny http;
             
              for(int k = 0; k < upp.size(); k++){
             System.out.println("Uppdrag: " + upp.get(k));
+<<<<<<< HEAD
+         }
+         cui.lista(upp);
+            // messageupp = inkommande_samlat.toString();
+=======
             //upp.spliterator("");
              // System.out.println("After Sorting:");
             // upp.ArrayList.sort();
@@ -176,6 +196,7 @@ public  HTTPny http;
         // upp.subList(5,56);
          
              messageupp = inkommande_samlat.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
             //System.out.println(message);
             //  String[] paras = messageupp.split(" ");
             // StringBuilder sb = new StringBuilder();
@@ -273,7 +294,11 @@ public  HTTPny http;
             System.out.println("Hej: " + ut.get(k));
          }
          cui.lista(ut);
+<<<<<<< HEAD
+          //  utmessage = response.toString();
+=======
             utmessage = response.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
          //   String[] paras = utmessage.split(";" + "");
 
@@ -318,7 +343,11 @@ public  HTTPny http;
             System.out.println("Ink: " + utmess.get(k));
          }
          cui.lista(utmess);
+<<<<<<< HEAD
+          //  gruppmessage = inkommande_samlat.toString();
+=======
             gruppmessage = inkommande_samlat.toString();
+>>>>>>> 15cd782a6ab4ccc295f65ce61aef2affdb1ac851
 
           //  String[] paras = gruppmessage.split("");
 
