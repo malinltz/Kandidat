@@ -11,10 +11,10 @@ public class OptPlan {
     private HTTPny http;
 
 
-    public int start = 2;//http.ink.get(k)
+    public int  start = 2;//http.ink.get(k)
     //Dessa skall inte vara fixt utan mer som en vektor? 
     
-    public int slut = 75; //Inparametrar av något slag
+    public int  slut = 75; //Inparametrar av något slag
 
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
@@ -38,10 +38,11 @@ public class OptPlan {
     }
 
     public void createPlan() {
+//         if (cui.atervant(true)){
+//            slut = ;  
+//        }
+       
         
-        if (cui.atervant==true){
-            slut = 0; 
-        }
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 
@@ -129,6 +130,7 @@ public class OptPlan {
                 }
             }
         }
+        
     }
 
     public int[] getIndex() {
