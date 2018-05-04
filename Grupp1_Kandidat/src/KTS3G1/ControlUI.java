@@ -582,14 +582,14 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startPosition.getText().equals("Återvänd till startposition")) {
             startPosition.setText("Återvänder");
-            startPosition.setBackground(Color.red);
-            startPosition.setForeground(new java.awt.Color(255, 0, 0));
+            //startPosition.setBackground(Color.red);
+            //startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
             if (atervant == true) {
                 startPosition.setEnabled(true);
-                startPosition.setText("Återvänd till startposition");
+                
             }
 
         } else if (atervant == false) {
@@ -598,7 +598,7 @@ public class ControlUI extends javax.swing.JFrame {
         //Lägg till att AGV ska återvända till 0.0
         ds.robotX = ds.nodeX[0];
         ds.robotY = ds.nodeY[0];
-
+        
         if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
             startPosition.setText("Återvänd till startposition");
         }
