@@ -47,8 +47,6 @@ public class KTS3G1 {
         http = new HTTPny(ds, op, cui);
         // cui.bluetoothAdress(badress);
 
-      ht = new HTTPanrop(http);
-
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
 //        http.HTTPkontact("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=2&message=hejhej");
         // http.HTTPuppdrag("http://tnk111.n7.se/getmessage.php?messagetype=2");
@@ -73,6 +71,8 @@ public class KTS3G1 {
         cui.setVisible(true);
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
+        
+        
 
         /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);

@@ -23,7 +23,7 @@ import java.util.Collections;
 public class HTTPny {
 
     public String message;
-    public String messageupp;
+    public String uppdragslista;
     private String url;
 
     private String utmessage;
@@ -34,19 +34,24 @@ public class HTTPny {
     public RobotRutt RR;
     private String gruppmessage;
 
-    public String plats, ID, passagerare, grupp;
+    public String plats;
+    public String ID;
+    public String passagerare;
+    public String grupp; 
     public String listaplats;
     public int storlek;
+    public int uppsizeInt;
 
     int[] startlist;
     int[] stopplist;
 
-    String uppdragsid[];
-
+    String[] uppdragsid;
+    String[] destination;
+    int[] nuPoints;
+    int[] destNod1;
+    int[] destNod2;
     int[] pass;
     int[] samakning;
-    int[] poäng;
-    int[] dest; //destination på uppdraget 
 
     // private List<String> uppdrag;
     // String aline= null;
@@ -184,17 +189,16 @@ public class HTTPny {
 
     }
 
-    public String uppdrag(String plats) {
+    public String listauppdrag(String plats) {
         
-        url = URL;
-        
-        try { // hämtar uppdrag
+        try {
 
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
             URL urlobjekt1 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
+            HttpURLConnection anslutning = (HttpURLConnection) 
+            urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
-            anslutning.setRequestMethod("GET"); // ny kod
+            anslutning.setRequestMethod("GET");
             //;
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
@@ -213,70 +217,53 @@ public class HTTPny {
 
             for (int k = 0; k < upp.size(); k++) {
                 System.out.println("Uppdrag: " + upp.get(k));
-                //upp.spliterator("");
-                // System.out.println("After Sorting:");
-                // upp.ArrayList.sort();
             }
-            //for(String counter: ink){
+            
+            uppdragslista = inkommande_samlat.toString();
+            
+         //Variabler för uppdragslistan
+        String uppsize = upp.get(0);
+        uppsizeInt = Integer.parseInt(uppsize); 
+        String [] slice;
+        uppdragsid = new String[uppsizeInt];
+        destination  = new String[uppsizeInt];
+        pass  = new int[uppsizeInt]; 
+        samakning  = new int[uppsizeInt];
+        nuPoints = new int[uppsizeInt];
+        destNod1 = new int[uppsizeInt];
+        destNod2 = new int[uppsizeInt];
+        
+        //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
+        for(int k = 1; k <uppsizeInt+1 ; k++){
+             slice = upp.get(k).split(";");
+             uppdragsid[k-1] = slice[0];
+             destination[k-1] = slice[1];
+             pass[k-1] = Integer.parseInt(slice[2]);
+             samakning[k-1] = Integer.parseInt(slice[3]);
+             nuPoints[k-1] = Integer.parseInt(slice[4]);
 
-            //     counter.split("A");
-            //    System.out.println(counter.toString());
-            cui.lista(upp);
-            // upp.spliterator(k);
+        //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
+            cui.hallplatsuppdrag("ID: "  + uppdragsid[k-1] + ", Destination: " + destination[k-1]
+            + ", Passagerare: " + pass[k-1] + ", Samåkning: " + samakning[k-1]
+            + ", Poäng: " + nuPoints[k-1] + "");      
+        }
+        
+        for(int j = 0; j <uppsizeInt; j++){
+            slice = destination[j].split(",");    
+            destNod1[j] =Integer.parseInt(slice[0]);
+            destNod2[j] =Integer.parseInt(slice[1]);
+            cui.destination("Destination ligger melland noderna: " + destNod1[j] + " och " + destNod2[j]); 
+        }
+        
+        
 
-            // upp.subList(5,56);
-            messageupp = inkommande_samlat.toString();
-            //System.out.println(message);
-            //  String[] paras = messageupp.split(" ");
-            // StringBuilder sb = new StringBuilder();
-            // for ( String s : ink.toArray(arrayOfStrings) ) 
-            // {
-            //    sb.append(s);
-            //    sb.append("\t");
-            // }
-
-            //  System.out.println(sb.toString());
-            /*
-            for (int i = 0; i < paras.length; i++) {
-
-                paragraph1 = paras[i];
-                System.out.println("Parametrar: " + paragraph1);
-            }
-             */
-            cui.showStatus(messageupp);
-            // cui.showStatus(paragraph1);
-            //Delar upp uppdragsplatserna. Om vi får fler uppdragsplatser 
-            //behöver vi ändra detta eftersom det är hårdkodat
-            /*
-             platser = message.substring(0,1); //Får ut en 3 (antal platser)
-             plats1 = message.substring(1,8); //Får ut första platsen (A)
-             plats2 = message.substring(8,15); //Får ut andra platsen (B)
-             plats3 = message.substring(15,22); //Får ut andra platsen (B)
-
-             cui.showStatus2(platser);
-             cui.showStatus(plats1);
-             cui.showStatus(plats2);
-             cui.showStatus(plats3);
-             */
-            //Försöker att sätta slutnoden till upphämtningsplatsen
-            //op.getCost();
-
-            //int attakatill = Integer.parseInt(plats1.substring(2,4));
-            //op.createPlan();
-//        int attakatill2 = Integer.parseInt(plats1.substring(5,7));
-//        
-//        if(attakatill < attakatill2){
-//            slut = attakatill2;
-//        }
-//        else {
-//            slut = attakatill;
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception c) {
-            System.out.print(c.toString());
+            System.out.print("Fel: " + c.toString());
 
         }
-        return messageupp;
+        return uppdragslista;
     }
 
     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
@@ -329,7 +316,7 @@ public class HTTPny {
             for (int k = 1; k < ut.size() - 1; k++) {
                 System.out.println("Hej: " + ut.get(k));
             }
-            cui.lista(ut);
+            //cui.lista(ut);
             utmessage = response.toString();
 
             //   String[] paras = utmessage.split(";" + "");
@@ -379,7 +366,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-            cui.lista(utmess);
+            //cui.lista(utmess);
             gruppmessage = inkommande_samlat.toString();
 
             //  String[] paras = gruppmessage.split("");
@@ -426,7 +413,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-            cui.lista(utmess);
+            //cui.lista(utmess);
             gruppmessage = inkommande_samlat.toString();
 
             //  String[] paras = gruppmessage.split("");
@@ -474,7 +461,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-            cui.lista(utmess);
+            //cui.lista(utmess);
             gruppmessage = inkommande_samlat.toString();
 
             //  String[] paras = gruppmessage.split("");

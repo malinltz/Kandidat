@@ -11,20 +11,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
-    RobotRutt RR;
-//String lista = "hrrhrr";
+RobotRutt RR;
+String lista = "hrrhrr";
 String kommando;
 String inskickat = "";
+String start = "s";
+String pickup = "p";
+public static String utfort;
 
-       
    public Transceiver() { 
-      String lista = RR.gorutt();
+      
+      //String lista = RR.gorutt();
       System.out.println("listan = "+ lista);
+      String listan = start + lista + pickup;
+     // System.out.println(listan);
+      
        while(true){
        try{
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
-
+ 
+            
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
+        //listan =  lista + pickup;
         kommando = String.valueOf(lista.charAt(0));
         
            PrintStream bluetooth_ut
@@ -59,7 +67,7 @@ String inskickat = "";
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
-                       System.out.println("Upprepar kommando");
+                      // System.out.println("Upprepar kommando");
                        TimeUnit.MILLISECONDS.sleep(1000);
                     } else{
                         System.out.println("Spegling funkar ej, helvete då...");
@@ -72,6 +80,7 @@ String inskickat = "";
                     }
                      if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
+                         utfort = String.valueOf(lista.charAt(i));
                         break;
                     }
                      
