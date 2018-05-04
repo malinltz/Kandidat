@@ -615,10 +615,15 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
             
             
-            HTTPanrop h1 = new HTTPanrop(ds, op, this);
-            Thread t1 = new Thread(h1);
-            t1.start();
-            
+          // HTTPanrop h1 = new HTTPanrop(ds, op, this);
+          // Thread t1 = new Thread(h1);
+          // t1.start();
+           http= new HTTPny(ds, op, cui);
+           http.Listaplats();
+           http.utmessages();
+           http.inmessages();
+          // http.listauppdrag();
+          
             op = new OptPlan(ds);
             op.createPlan();
 

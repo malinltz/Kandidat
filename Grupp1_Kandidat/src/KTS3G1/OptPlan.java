@@ -39,9 +39,9 @@ public class OptPlan {
 
     public void createPlan() {
         
-        if (cui.atervant==true){
-            slut = 0; 
-        }
+       // if (cui.atervant==true){
+         //   slut = 0; 
+       // }
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 
