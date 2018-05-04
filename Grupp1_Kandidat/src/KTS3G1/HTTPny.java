@@ -30,6 +30,7 @@ public class HTTPny {
     public OptPlan op;
     public DataStore ds;
     public ControlUI cui;
+    public RobotRutt RR;
     private String gruppmessage;
 
     public String plats, ID, passagerare, grupp;
@@ -147,6 +148,18 @@ public class HTTPny {
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
             }
+            
+            for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
+            {
+            
+            
+            
+                
+            
+            
+            }
+            
+            
 
             // ink.indexOf(k);
             // Collections.emptyList(ink(k));
@@ -160,9 +173,9 @@ public class HTTPny {
     }
 
     public String uppdrag(String plats) {
+        
         url = URL;
         
-
         try { // hämtar uppdrag
 
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
@@ -371,7 +384,7 @@ public class HTTPny {
         return gruppmessage;
     }
 
-    public void messages() {
+    public void inmessages() {
         url = URL;
         
         try { //vad vi hämtar hem från de anrda 
