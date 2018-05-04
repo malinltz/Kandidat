@@ -1,53 +1,70 @@
-/*package KTS3G1;
+package KTS3G1;
 import java.io.*;
 import java.lang.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.microedition.io.*;
 import javax.bluetooth.*;
 
-public class Anslutning implements Runnable {
-String lista = "rhhrr";
-public String kommando;
+public class Anslutning  implements Runnable {
+    
+//********* Variabler: *********************
+String lista = "ghhrr";
+public static String kommando;
+public static String inskickat;
+boolean kontroll = false;
 public static StreamConnection service;
+
 Transceiver tc;
 Receiver rc;
-    public Anslutning(){
-        try {
-         // btspp://201410149018:1
-            service = (StreamConnection) Connector.open("btspp://201410149018:1");
+RobotRutt rr;
+// *****************************************
 
-            System.out.println("Startar Transceiver!");
-            Transceiver p1 = new Transceiver(); 
-            Thread t4 = new Thread(p1);  
-            t4.start();
-           
-            int i = 0;
-            kommando = String.valueOf(lista.charAt(i));
-            System.out.println("tc.mottaget =  " + tc.mottaget);
-            System.out.println(tc.mottaget);
-            System.out.println("Kommando = " + kommando);
-           
-            if(tc.mottaget.equals(kommando)){
-                System.out.println("Startar Receiver och avslutar Transceiver!");
-                 t4.interrupt();
-                 Receiver b2 = new Receiver();
-                 Thread t5 = new Thread(b2);
-                 t5.start();
-            }
-            else
-                System.out.println("If-satsen funkar ej!");
-            if(rc.mottaget != null){
-                i++;
-                System.out.println("Startar Transceiver och avslutar Receiver!");
-                t4.start();
-            }       
-        } catch (Exception e) {
-          System.out.print(e.toString());
-        }  
+    public Anslutning()  {
+    
        }
     @Override
     public void run() {
+
+    try {
+
+        
+        service = (StreamConnection) Connector.open("btspp://201410149018:1");
+        kommando = String.valueOf(lista.charAt(0));
+        Transceiver trc = new Transceiver();
+        Thread b1 = new Thread(trc);
+        b1.start();
+        
+            for(int i = 0; i < lista.length(); i++) {
+            kommando = String.valueOf(lista.charAt(i));
+            TimeUnit.MILLISECONDS.sleep(50);
+            if(inskickat.equals(kommando)){
+                while(kontroll){
+                    kommando = "f";
+                    
+                    if(inskickat.equals("p")){
+                       kommando = "f";
+                    }
+                    else if(inskickat.equals("k")){
+                        kommando = "f";
+                    }
+                    else if(inskickat.equals("b")){
+                        break;
+                    }
+                        TimeUnit.MILLISECONDS.sleep(50);
+                }
+                    
+                
+            }else
+                System.out.println("Inskickat = " + inskickat + " Kommando = " + kommando);
+        }
+        
+    } catch (IOException | InterruptedException ex ) {
+        
+        }
     }
- 
 }
-*/
+
+
 

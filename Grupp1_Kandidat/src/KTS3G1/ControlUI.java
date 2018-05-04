@@ -633,6 +633,9 @@ public class ControlUI extends javax.swing.JFrame {
 
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
+            startStopp.setForeground(new java.awt.Color(255, 0, 0));
+
+
             //startStopp.setBackground(Color.red);
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
@@ -657,6 +660,12 @@ public class ControlUI extends javax.swing.JFrame {
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
 //            t6.start();
+
+//            Transceiver b1 = new Transceiver();
+//            //Anslutning b1 = new Anslutning();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
+
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
