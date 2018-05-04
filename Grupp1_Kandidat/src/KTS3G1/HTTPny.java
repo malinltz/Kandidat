@@ -28,6 +28,7 @@ public class HTTPny {
 
     private String utmessage;
     public OptPlan op;
+    OptPlan [] opt;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
@@ -66,7 +67,7 @@ public class HTTPny {
 
     // int j = 0;
     // int numberOfLines = 20;
-    ArrayList<String> ink;
+   ArrayList<String> ink;
      ArrayList<String> upp;
      ArrayList<String> ut;
      ArrayList<String> utmess; 
@@ -129,13 +130,24 @@ public class HTTPny {
             String[] sline;
             String listans[] = new String[storlek];
             String platser[] = new String[storlek];
+            //opt = new Optplan[storlek];
             //  pass = new int[storlek];
 
             // line = scanner.nextLine();
             //  for(int i=1; i<.size(); i++)
             startlist = new int[storlek];
             stopplist = new int[storlek];
-
+            
+            for (int j = 1; j < storlek + 1; j++)
+            {
+           opt[j]= new OptPlan(ds);
+           opt[j].createPlan();
+            
+           //skapa array där noderna sparas
+           
+            }
+           
+   
             cui.lista(ink);
 
             for (int j = 1; j < storlek + 1; j++) {
@@ -464,6 +476,8 @@ public class HTTPny {
             System.out.print(k.toString());
         }
     }
+    
+  
 
     public String newmesssage() {
 
