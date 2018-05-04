@@ -650,10 +650,10 @@ public class ControlUI extends javax.swing.JFrame {
             
             http = new HTTPny(ds, op, this);
             http.Listaplats();
-            http.listauppdrag("A");
-            http.utmessages();
-            http.inmessages();
-            http.tauppdrag("A", "1", "4", "1");
+            //http.listauppdrag("A");
+            //http.utmessages();
+            //http.inmessages();
+            //http.tauppdrag("A", "1", "4", "1");
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);

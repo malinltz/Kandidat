@@ -9,16 +9,10 @@ public class OptPlan {
     private List<Edge> edges;
     private DataStore ds;
     private HTTPny http;
-
-
-
     public int platsw= 5;
-    public int start = 2;//http.ink.get(k)
-
-    //Dessa skall inte vara fixt utan mer som en vektor? 
-    
-    public int slut = 50; //Inparametrar av något slag
-   public int Origin = start;
+    public int start = 2;
+    public int slut = 50;
+    public int Origin = start;
     public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
