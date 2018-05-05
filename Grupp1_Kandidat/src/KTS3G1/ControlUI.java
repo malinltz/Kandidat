@@ -17,7 +17,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-    //HTTPanrop ht;
+
     //Transceiver tc;
 
     /**
@@ -756,7 +756,6 @@ public class ControlUI extends javax.swing.JFrame {
            //Thread t6 = new Thread(b1);
            //t6.start();
 
-           
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
