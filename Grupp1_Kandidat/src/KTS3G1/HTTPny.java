@@ -94,6 +94,8 @@ public class HTTPny {
 
             for (int k = 0; k < ink.size(); k++) {
                 System.out.println("Upphämtningsplatser: " + ink.get(k));
+                
+                cui.appendStatus3(ink.get(k));
             }
 
             listaplats = ink.get(0);
@@ -119,8 +121,6 @@ public class HTTPny {
                 //ds.arcStart = startlist[i];
                 //ds.arcEnd = stopplist[i];   
             }
-                  
-            cui.lista(ink);
 
             Thread.sleep(2000); //vilken sleeptime?
 
@@ -183,16 +183,16 @@ public class HTTPny {
              nuPoints[k-1] = Integer.parseInt(slice[4]);
 
         //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
-            cui.hallplatsuppdrag("ID: "  + uppdragsid[k-1] + ", Destination: " + destination[k-1]
-            + ", Passagerare: " + pass[k-1] + ", Samåkning: " + samakning[k-1]
-            + ", Poäng: " + nuPoints[k-1] + "");      
+            cui.hallplatsuppdrag("ID: "  + uppdragsid[k-1] + ", Dest: " + destination[k-1]
+            + ", Pass: " + pass[k-1] + ", Sam: " + samakning[k-1]
+            + ", P: " + nuPoints[k-1] + "");      
         }
         
         for(int j = 0; j <uppsizeInt; j++){
             slice = destination[j].split(",");    
             destNod1[j] =Integer.parseInt(slice[0]);
             destNod2[j] =Integer.parseInt(slice[1]);
-            cui.destination("Destination ligger mellan noderna: " + destNod1[j] + " och " + destNod2[j]); 
+            cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]); 
             
             //ds.arcStart[j] = destNod1[j];
             //ds.arcEnd[j] = destNod2[j]; 
@@ -241,13 +241,11 @@ public class HTTPny {
             
             //Skriver ut vilket uppdrag vi tagit i statusruta
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
-            + ", Passagerare: " + passagerare + ", Grupp: " + grupp + "");    
+            + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
  
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {
-
-            //print result
             System.out.println(e.toString());
         }
         return utmessage;
