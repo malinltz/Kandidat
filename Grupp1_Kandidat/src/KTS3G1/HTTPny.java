@@ -92,11 +92,9 @@ public class HTTPny {
             for (int k = 0; k < ink.size(); k++) {
                 System.out.println("Upphämtningsplatser: " + ink.get(k));
 
-                // System.out.println(ink.indexOf(k));
-                // System.out.println(ink.spliterator(k));
-                // Listupp[k] = Integer.parseInt(ink.get(k));
-                //ink.
-                //Collections.indexOfSubList(ink,ut);
+                
+                cui.appendStatus3(ink.get(k));
+
             }
 
             listaplats = ink.get(0);
@@ -122,8 +120,6 @@ public class HTTPny {
                 startlist[i]=op.nodeStart[i];
                 stopplist[i]=op.nodeEnd[i] ;   
             }
-
-            cui.lista(ink);
 
             Thread.sleep(2000); //vilken sleeptime?
 
@@ -164,42 +160,44 @@ public class HTTPny {
 
             uppdragslista = inkommande_samlat.toString();
 
-            //Variabler för uppdragslistan
-            String uppsize = upp.get(0);
-            uppsizeInt = Integer.parseInt(uppsize);
-            String[] slice;
-            uppdragsid = new String[uppsizeInt];
-            destination = new String[uppsizeInt];
-            pass = new int[uppsizeInt];
-            samakning = new int[uppsizeInt];
-            nuPoints = new int[uppsizeInt];
-            destNod1 = new int[uppsizeInt];
-            destNod2 = new int[uppsizeInt];
+            
+         //Variabler för uppdragslistan
+        String uppsize = upp.get(0);
+        uppsizeInt = Integer.parseInt(uppsize); 
+        String [] slice;
+        uppdragsid = new String[uppsizeInt];
+        destination  = new String[uppsizeInt];
+        pass  = new int[uppsizeInt]; 
+        samakning  = new int[uppsizeInt];
+        nuPoints = new int[uppsizeInt];
+        destNod1 = new int[uppsizeInt];
+        destNod2 = new int[uppsizeInt];
+        
+        //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
+        for(int k = 1; k <uppsizeInt+1 ; k++){
+             slice = upp.get(k).split(";");
+             uppdragsid[k-1] = slice[0];
+             destination[k-1] = slice[1];
+             pass[k-1] = Integer.parseInt(slice[2]);
+             samakning[k-1] = Integer.parseInt(slice[3]);
+             nuPoints[k-1] = Integer.parseInt(slice[4]);
 
-            //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
-            for (int k = 1; k < uppsizeInt + 1; k++) {
-                slice = upp.get(k).split(";");
-                uppdragsid[k - 1] = slice[0];
-                destination[k - 1] = slice[1];
-                pass[k - 1] = Integer.parseInt(slice[2]);
-                samakning[k - 1] = Integer.parseInt(slice[3]);
-                nuPoints[k - 1] = Integer.parseInt(slice[4]);
+        //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
+            cui.hallplatsuppdrag("ID: "  + uppdragsid[k-1] + ", Dest: " + destination[k-1]
+            + ", Pass: " + pass[k-1] + ", Sam: " + samakning[k-1]
+            + ", P: " + nuPoints[k-1] + "");      
+        }
+        
+        for(int j = 0; j <uppsizeInt; j++){
+            slice = destination[j].split(",");    
+            destNod1[j] =Integer.parseInt(slice[0]);
+            destNod2[j] =Integer.parseInt(slice[1]);
+            cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]); 
+            
+            //ds.arcStart[j] = destNod1[j];
+            //ds.arcEnd[j] = destNod2[j]; 
+        }
 
-                //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
-                cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Destination: " + destination[k - 1]
-                        + ", Passagerare: " + pass[k - 1] + ", Samåkning: " + samakning[k - 1]
-                        + ", Poäng: " + nuPoints[k - 1] + "");
-            }
-
-            for (int j = 0; j < uppsizeInt; j++) {
-                slice = destination[j].split(",");
-                destNod1[j] = Integer.parseInt(slice[0]);
-                destNod2[j] = Integer.parseInt(slice[1]);
-                cui.destination("Destination ligger mellan noderna: " + destNod1[j] + " och " + destNod2[j]);
-
-                //ds.arcStart[j] = destNod1[j];
-                //ds.arcEnd[j] = destNod2[j]; 
-            }
 
             Thread.sleep(2000); //vilken sleeptime?
 
@@ -242,16 +240,14 @@ public class HTTPny {
             inkommande.close();
 
             //Skriver ut vilket uppdrag vi tagit i statusruta
-            cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Passagerare: " + passagerare + ", Grupp: " + grupp + "");
 
-            utmessage = inkommande.toString();
+            cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
+            + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
+ 
 
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {
-
-            //print result
             System.out.println(e.toString());
         }
         return utmessage;
