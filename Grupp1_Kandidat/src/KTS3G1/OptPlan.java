@@ -17,7 +17,10 @@ public class OptPlan {
 
     //Dessa skall inte vara fixt utan mer som en vektor? 
     
+
     public int slut= 5; //Inparametrar av något slag
+
+
    public int Origin = start;
     public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
@@ -26,7 +29,7 @@ public class OptPlan {
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
     
-    public int pathCost = 0;
+    int pathCost = 0;
     int pathCostupp = 0;
     
     double x = 0;
@@ -153,9 +156,7 @@ public class OptPlan {
     public int[] getIndex() {
         
         return shortestPathList;
-        
-        
-    
+  
     }
 
     public int getCost() {
