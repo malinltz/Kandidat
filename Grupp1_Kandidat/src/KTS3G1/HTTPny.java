@@ -48,6 +48,7 @@ public class HTTPny {
     int[] pass;
     int[] samakning;
     private int sleepTime;
+    int narmstaNod = 0;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -92,10 +93,8 @@ public class HTTPny {
 
             for (int k = 0; k < ink.size(); k++) {
                 System.out.println("Upphämtningsplatser: " + ink.get(k));
-
                 
                 cui.appendStatus3(ink.get(k));
-
             }
 
             
@@ -104,13 +103,13 @@ public class HTTPny {
             String[] sline;
             String platser[] = new String[storlek];
             String listans[] = new String[storlek];
-            double tot_kostnad = 0.0;
+            double tot_kostnad = 0;
             double lagstaKostnad = 1000000;
-            int narmstaNod = op.start;
+            
             startlist = new int[storlek];
             stopplist = new int[storlek];
-            opt = new OptPlan[storlek];
-
+            
+            
             for (int j = 1; j < storlek + 1; j++) {
                 sline = ink.get(j).split(";");
                 platser[j - 1] = sline[0];
@@ -126,31 +125,23 @@ public class HTTPny {
             
             for (int j = 0; j < storlek; j++) {
            
-                op.slut = stopplist[j];
+                System.out.println(stopplist[j]);
+                System.out.println(ds.slut);
+                ds.slut = stopplist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
-                
-                //opt[j].getCost();
-                
-                for (int i=0; i< opt[j].path.size(); i++){      
-         
-                  malin = Integer.parseInt(opt[j].path.get(i).getId()); //Gör om path till ints
-                                                 
-                 op.pathCost = ds.arcCost[malin];
-                 tot_kostnad = tot_kostnad + op.pathCost;
 
-            }
-                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + op.start + " till " + op.slut + ", kostnad: "  + tot_kostnad);
+                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
                 
-             if (tot_kostnad < lagstaKostnad){
-                 lagstaKostnad = tot_kostnad;
+             if (op.pathCost < lagstaKostnad){
+                 lagstaKostnad = op.pathCost;
                  narmstaPlats = platser[j];
-                 narmstaNod = op.slut;
+                 narmstaNod = ds.slut;
              }
              
         }
 
-           System.out.println("Min value "+ tot_kostnad);
+           System.out.println("Min value "+ op.pathCost);
 
             Thread.sleep(1000); //vilken sleeptime?
 

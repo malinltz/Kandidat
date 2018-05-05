@@ -13,9 +13,6 @@ public class OptPlan {
     private HTTPny http;
     public int platsw= 5;
 
-    public int start = 2;
-    public int slut;
-
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
 
@@ -74,10 +71,10 @@ public class OptPlan {
        //   slut= ds.arcStart[http.stopplist[i]-1];
           //slut= ds.arcEnd[http.stopplist[i]-1];
         //  slut= ds.arcStart[http.stopplist[i]-1];
-       slut=http.malin;
+        
         }
         for (int i = 0; i < ds.arcs; i++) {
-            Edge lane = new Edge("" + (i + 1), nodes.get(start - 1), nodes.get(slut - 1), 1); // Last argument is arc
+            Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
             edges.add(lane);
             
         }
@@ -86,8 +83,8 @@ public class OptPlan {
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
         // Compute shortest path       
-        dijkstra.execute(nodes.get(start - 1));
-        path = dijkstra.getPath(nodes.get(slut - 1));
+        dijkstra.execute(nodes.get(ds.start - 1));
+        path = dijkstra.getPath(nodes.get(ds.slut - 1));
 
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
@@ -112,9 +109,10 @@ public class OptPlan {
 
                     //Sätter shortest path till 1
                     ds.arcColor[j] = 1;
+                    
                     //Lägger till kostanden för shortest path
-                    //pathCost = pathCost + ds.arcCost[j];
-                    // System.out.println(pathCost);
+                    pathCost = pathCost + ds.arcCost[j];
+                    System.out.println(pathCost);
                 }
             }
         }

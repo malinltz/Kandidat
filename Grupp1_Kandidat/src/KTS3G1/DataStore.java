@@ -24,6 +24,8 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
+    public int start = 2;
+    public int slut = 20;
    // int [] nodeStart;
    // int [] nodeEnd; 
     
