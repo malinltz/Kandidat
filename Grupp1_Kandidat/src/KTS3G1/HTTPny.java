@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
 
@@ -20,7 +20,7 @@ public class HTTPny {
     String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
-    
+    public int malin=0;
     
     public OptPlan op;
     OptPlan[] opt;
@@ -134,7 +134,7 @@ public class HTTPny {
                 
                 for (int i=0; i< opt[j].path.size(); i++){      
          
-                 int malin = Integer.parseInt(opt[j].path.get(i).getId()); //Gör om path till ints
+                  malin = Integer.parseInt(opt[j].path.get(i).getId()); //Gör om path till ints
                                                  
                  op.pathCost = ds.arcCost[malin];
                  tot_kostnad = tot_kostnad + op.pathCost;
@@ -269,6 +269,10 @@ public class HTTPny {
             }
 
             inkommande.close();
+            
+            for (int k = 0; k < ut.size(); k++) {
+                System.out.println("Uppdrag: " + ut.get(k));
+            }
 
             utmessage = response.toString();
 

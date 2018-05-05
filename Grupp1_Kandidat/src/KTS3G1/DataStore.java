@@ -24,8 +24,8 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-    int [] nodeStart;
-    int [] nodeEnd; 
+   // int [] nodeStart;
+   // int [] nodeEnd; 
     
     int[] arcColor;
     
@@ -106,7 +106,7 @@ public class DataStore {
                 sline = line.split(" ");
                 arcStart[i] = Integer.parseInt(sline[0].trim());
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
-                //arcCost[i] = Integer.parseInt(sline[2].trim());
+               // arcCost[i] = Integer.parseInt(sline[2].trim());
                 
             }
             
