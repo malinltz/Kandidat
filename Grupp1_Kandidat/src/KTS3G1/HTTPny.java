@@ -127,8 +127,8 @@ public class HTTPny {
             for (int j = 0; j < storlek; j++) {
            
                 op.slut = stopplist[j];
-                opt[j] = new OptPlan(ds);
-                opt[j].createPlan();
+                op = new OptPlan(ds);
+                op.createPlan();
                 
                 //opt[j].getCost();
                 
@@ -269,10 +269,6 @@ public class HTTPny {
             }
 
             inkommande.close();
-            
-            for (int k = 0; k < ut.size(); k++) {
-                System.out.println("Uppdrag: " + ut.get(k));
-            }
 
             utmessage = response.toString();
 

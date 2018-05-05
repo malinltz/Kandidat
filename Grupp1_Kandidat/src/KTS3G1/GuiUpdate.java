@@ -28,7 +28,12 @@ public class GuiUpdate implements Runnable {
             while (i <= kortaste.length-1) {
                 Thread.sleep(sleepTime);
                 
-                //cui.appendStatus("Jag är tråd GuiUpdate! För " + i + ":te gången.");
+                if(kortaste[i] == 0)
+                {
+                    System.out.println("Wall-E KLAR");
+                    break;
+                }
+
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
                 

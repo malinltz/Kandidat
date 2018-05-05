@@ -738,7 +738,7 @@ public class ControlUI extends javax.swing.JFrame {
             http.listauppdrag("A");
           //http.utmessages();
           //http.inmessages();
-            //http.tauppdrag("A", "1", "4", "1");
+            http.tauppdrag("A", "1", "4", "1");
             
             op = new OptPlan(ds);
             op.createPlan();
@@ -756,8 +756,6 @@ public class ControlUI extends javax.swing.JFrame {
            //Thread t6 = new Thread(b1);
            //t6.start();
 
-            http.Listaplats();
-            http.tauppdrag("A", "1", "4", "1");
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
