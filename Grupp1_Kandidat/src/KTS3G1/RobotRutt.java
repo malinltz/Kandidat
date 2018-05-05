@@ -146,17 +146,18 @@ public class RobotRutt implements Runnable {
     public String gorutt() { 
         return rutt;
     }
-    public String passeradenoder(){
-        while(true){
-        int nodilistan=0;    
-        
-        if (Transceiver.utfort!=null){
-            nodilistan++;
-            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-            op.startupp=list[nodilistan];
-           
-        }
-        }
-    }
+
+//    public String passeradenoder(){
+//        while(true){
+//        int nodilistan=0;    
+//        
+//        if (Transceiver.utfort!=null){
+//            nodilistan++;
+//            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
+//           
+//        }
+//        }
+//    }
+
 }
 
