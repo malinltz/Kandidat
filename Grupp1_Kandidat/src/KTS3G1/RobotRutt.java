@@ -14,7 +14,7 @@ public class RobotRutt implements Runnable {
     public static String rutt = "";
     public int[] list;
     public int go;
-    Transceiver tc; 
+    //Transceiver tc; 
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
