@@ -17,6 +17,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
+
     //Transceiver tc;
 
     /**
@@ -730,6 +731,8 @@ public class ControlUI extends javax.swing.JFrame {
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
             
+            
+            
             http = new HTTPny(ds, op, this);
             http.Listaplats();
             http.listauppdrag("A");
@@ -824,4 +827,6 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JTextArea statusuppdTextArea;
     private javax.swing.JTextArea walleTextArea;
     // End of variables declaration//GEN-END:variables
+
+  //  private MapPanel;
 }

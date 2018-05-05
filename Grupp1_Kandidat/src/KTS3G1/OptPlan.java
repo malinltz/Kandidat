@@ -32,8 +32,7 @@ public class OptPlan {
     double xupp = 0;
     double yupp = 0;
     
-    int startar=0;
-    int slutar =0;
+
     
     public OptPlan(DataStore ds) {
         this.ds = ds;
@@ -55,6 +54,7 @@ public class OptPlan {
 
        //  http.startlist=Double.parseDouble(sline[0].trim());
         // http.stopplist=Double.parseDouble(sline[1].trim());
+        
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
@@ -66,14 +66,18 @@ public class OptPlan {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
             nodes.add(location);
             
-           nodeEnd[i] = Integer.parseInt(nodes.get(i).getId());
-           nodeStart[i]= Integer.parseInt(nodes.get(i).getId());
+           ds.arcEnd[i] = Integer.parseInt(nodes.get(i).getId());
+           ds.arcStart[i]= Integer.parseInt(nodes.get(i).getId());
             
-            startar= ds.arcStart[nodeStart[i]-1];
-            slutar = ds.arcEnd[nodeEnd[i]-1];
+          //  startar= ds.arcStart[nodeStart[i]-1];
+           // slutar = ds.arcEnd[nodeEnd[i]-1];
+       //   slut= ds.arcStart[http.stopplist[i]-1];
+          //slut= ds.arcEnd[http.stopplist[i]-1];
+        //  slut= ds.arcStart[http.stopplist[i]-1];
+       slut=http.malin;
         }
         for (int i = 0; i < ds.arcs; i++) {
-            Edge lane = new Edge("" + (i + 1), nodes.get(startar - 1), nodes.get(slutar - 1), 1); // Last argument is arc
+            Edge lane = new Edge("" + (i + 1), nodes.get(start - 1), nodes.get(slut - 1), 1); // Last argument is arc
             edges.add(lane);
             
         }
@@ -115,7 +119,7 @@ public class OptPlan {
             }
         }
 
-//        //// ny för uppdragen
+// ny för uppdragen
 //
 //        // Compute shortest path av uppdragen     
 //        dijkstra.execute(nodes.get(startupp - 1));
