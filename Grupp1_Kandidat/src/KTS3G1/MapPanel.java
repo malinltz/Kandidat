@@ -77,6 +77,7 @@ public class MapPanel extends JPanel {
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
 
                 ds.arcCost[i] = dist;
+                
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
 

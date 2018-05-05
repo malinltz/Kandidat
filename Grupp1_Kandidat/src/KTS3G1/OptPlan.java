@@ -15,6 +15,7 @@ public class OptPlan {
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
+    public int startnod=0;//ändra till startnod
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
@@ -40,7 +41,7 @@ public class OptPlan {
     public void createPlan() {
         try {
 //            if (ds.atervant){
-//            slut = starts; //startnoden;
+//            slut = startnod; //startnoden;
 //            //ds.atervant=false;
 //            
 ////start=nuvarande nod som man är på väg till ;  
@@ -65,13 +66,7 @@ public class OptPlan {
             
            ds.arcEnd[i] = Integer.parseInt(nodes.get(i).getId());
            ds.arcStart[i]= Integer.parseInt(nodes.get(i).getId());
-            
-          //  startar= ds.arcStart[nodeStart[i]-1];
-           // slutar = ds.arcEnd[nodeEnd[i]-1];
-       //   slut= ds.arcStart[http.stopplist[i]-1];
-          //slut= ds.arcEnd[http.stopplist[i]-1];
-        //  slut= ds.arcStart[http.stopplist[i]-1];
-        
+
         }
         for (int i = 0; i < ds.arcs; i++) {
             Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
@@ -82,6 +77,7 @@ public class OptPlan {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
+        
         // Compute shortest path       
         dijkstra.execute(nodes.get(ds.start - 1));
         path = dijkstra.getPath(nodes.get(ds.slut - 1));
@@ -163,11 +159,11 @@ public class OptPlan {
   
     }
 
-//    public int getCost() {
-//
-//        return pathCost;
-//
-//    }
+    public int getCost() {
+        
+        return pathCost;
+    }
+    
 
     public int[] getuppdrag() {
         return shortestPathListupp;
