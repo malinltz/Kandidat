@@ -146,6 +146,7 @@ public class RobotRutt implements Runnable {
     public String gorutt() { 
         return rutt;
     }
+
 //    public String passeradenoder(){
 //        while(true){
 //        int nodilistan=0;    
@@ -157,5 +158,6 @@ public class RobotRutt implements Runnable {
 //        }
 //        }
 //    }
+
 }
 
