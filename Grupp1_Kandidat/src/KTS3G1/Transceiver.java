@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.io.*;
@@ -104,3 +104,4 @@ public static String utfort;
        public void run (){
         }
     }
+*/
