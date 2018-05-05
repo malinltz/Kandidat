@@ -1,9 +1,6 @@
 package KTS3G1;
 
 import java.util.*;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Random;
 
 public class OptPlan {
 
@@ -11,23 +8,17 @@ public class OptPlan {
     RobotRutt RR; 
     private List<Vertex> nodes;
     private List<Edge> edges;
-    public DataStore ds;
-    public HTTPny http;
-   // public int platsw= 5;
+    public LinkedList<Vertex> path;
+    private DataStore ds;
+    private HTTPny http;
+    public int platsw= 5;
 
-   // public int start = 2;//http.ink.get(k)
+    public int start = 2;
+    public int slut;
 
-    //Dessa skall inte vara fixt utan mer som en vektor? 
-    
-
-    //public int slut= 5; //Inparametrar av något slag
-
-
-  // public int Origin = start;
-
-    public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
+    public int startnod=0;//ändra till startnod
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
@@ -42,8 +33,7 @@ public class OptPlan {
     double xupp = 0;
     double yupp = 0;
     
-    int startar=0;
-    int slutar =0;
+
     
     public OptPlan(DataStore ds) {
         this.ds = ds;
@@ -54,7 +44,7 @@ public class OptPlan {
     public void createPlan() {
         try {
 //            if (ds.atervant){
-//            slut = starts; //startnoden;
+//            slut = startnod; //startnoden;
 //            //ds.atervant=false;
 //            
 ////start=nuvarande nod som man är på väg till ;  
@@ -65,6 +55,7 @@ public class OptPlan {
 
        //  http.startlist=Double.parseDouble(sline[0].trim());
         // http.stopplist=Double.parseDouble(sline[1].trim());
+        
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
@@ -76,14 +67,17 @@ public class OptPlan {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
             nodes.add(location);
             
-           nodeEnd[i] = Integer.parseInt(nodes.get(i).getId());
-           nodeStart[i]= Integer.parseInt(nodes.get(i).getId());
+           ds.arcEnd[i] = Integer.parseInt(nodes.get(i).getId());
+           ds.arcStart[i]= Integer.parseInt(nodes.get(i).getId());
             
-            startar= ds.arcStart[nodeStart[i]-1];
-            slutar = ds.arcEnd[nodeEnd[i]-1];
+          //  startar= ds.arcStart[nodeStart[i]-1];
+           // slutar = ds.arcEnd[nodeEnd[i]-1];
+       //   slut= ds.arcStart[http.stopplist[i]-1];
+          slut= (http.stopplist[i]-1);
+       
         }
         for (int i = 0; i < ds.arcs; i++) {
-            Edge lane = new Edge("" + (i + 1), nodes.get(startar - 1), nodes.get(slutar - 1), 1); // Last argument is arc
+            Edge lane = new Edge("" + (i + 1), nodes.get(start - 1), nodes.get(slut - 1), 1); // Last argument is arc
             edges.add(lane);
             
         }
@@ -91,13 +85,11 @@ public class OptPlan {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
-        // Compute shortest path    
-       
-        dijkstra.execute(nodes.get(startar - 1));
-        LinkedList <Vertex> path = dijkstra.getPath(nodes.get(slutar- 1));
-       
-       
         
+        // Compute shortest path       
+        dijkstra.execute(nodes.get(start - 1));
+        path = dijkstra.getPath(nodes.get(slut - 1));
+
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
@@ -122,13 +114,13 @@ public class OptPlan {
                     //Sätter shortest path till 1
                     ds.arcColor[j] = 1;
                     //Lägger till kostanden för shortest path
-                    pathCost = pathCost + ds.arcCost[j];
+                    //pathCost = pathCost + ds.arcCost[j];
                     // System.out.println(pathCost);
                 }
             }
         }
 
-//        //// ny för uppdragen
+// ny för uppdragen
 //
 //        // Compute shortest path av uppdragen     
 //        dijkstra.execute(nodes.get(startupp - 1));
@@ -175,10 +167,10 @@ public class OptPlan {
     }
 
     public int getCost() {
-
+        
         return pathCost;
-
     }
+    
 
     public int[] getuppdrag() {
         return shortestPathListupp;

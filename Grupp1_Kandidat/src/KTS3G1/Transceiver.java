@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
 RobotRutt RR;
-String lista = "hhhrrhhhrhr";
+//String lista = "hhhrrhhhrhr";
 String kommando;
 String inskickat = "";
 String start = "s";
@@ -19,13 +19,13 @@ int antal_passagerare;
 public static String utfort;
 
   public Transceiver() { 
-      //String lista = RR.gorutt();
+      String lista = RR.gorutt();
       System.out.println("\n"+"listan = "+ lista);
-     // System.out.println(listan);
      
        while(true){
        try{
            //201410149018:1
+           
            //001A7DDA7106	
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
  
@@ -103,7 +103,6 @@ public static String utfort;
                     break;
                   //  System.out.println("Uppdragslistan är tom");
                 }
-                    
             }
          anslutning.close();
            
@@ -117,3 +116,4 @@ public static String utfort;
        public void run (){
         }
     }
+

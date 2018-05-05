@@ -14,7 +14,9 @@ public class RobotRutt implements Runnable {
     public static String rutt = "";
     public int[] list;
     public int go;
+
     Transceiver tc; 
+
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
@@ -25,8 +27,6 @@ public class RobotRutt implements Runnable {
 
         list = op.getIndex();
     }
-
-
     public void run() {
         try {
             
@@ -138,16 +138,20 @@ public class RobotRutt implements Runnable {
                 }
                 i++;
             }
+        int nodilistan=0;   
             while(true){
-        int nodilistan=0;    
-        
         if (Transceiver.utfort!=null){
             nodilistan++;
             cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-           
+           op.startupp=list[nodilistan];
         }
+        if(Transceiver.utfort.equals("p")){
+            nodilistan = 0;
+            cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
         }
             
+        }
+
             }catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
@@ -156,6 +160,5 @@ public class RobotRutt implements Runnable {
     public String gorutt() { 
         return rutt;
     }
-   
 }
 

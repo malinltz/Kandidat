@@ -17,7 +17,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-    HTTPanrop ht;
+
     //Transceiver tc;
 
     /**
@@ -81,7 +81,7 @@ public class ControlUI extends javax.swing.JFrame {
     //Används inte
     void svarHTTP(String p) 
     {
-        jTextArea2.append("" + p + "\n");
+        statusuppdTextArea.append("" + p + "\n");
     }
 
     //Skriver ut kördirektiv för Wall-E från RobotRutt
@@ -722,7 +722,6 @@ public class ControlUI extends javax.swing.JFrame {
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
 
-
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
@@ -731,34 +730,31 @@ public class ControlUI extends javax.swing.JFrame {
             //startStopp.setBackground(Color.red);
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
-
+            
+            
+            
+            http = new HTTPny(ds, op, this);
+            http.Listaplats();
+            http.listauppdrag("A");
+          //http.utmessages();
+          //http.inmessages();
+            http.tauppdrag("A", "1", "4", "1");
+            
             op = new OptPlan(ds);
             op.createPlan();
-
-            GuiUpdate r1 = new GuiUpdate(ds, this, op);
-            Thread t2 = new Thread(r1);
-            t2.start();
-
+            
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t3 = new Thread(r2);
             t3.start();
             
-            http = new HTTPny(ds, op, this);
-            http.listauppdrag("A");
-            http.Listaplats();
-          //http.utmessages();
-            http.inmessages();
-            http.tauppdrag("A", "1", "4", "1");
-
-
+            GuiUpdate r1 = new GuiUpdate(ds, this, op);
+            Thread t2 = new Thread(r1);
+            t2.start();
 
            Transceiver b1 = new Transceiver();
            //Anslutning b1 = new Anslutning();
            Thread t6 = new Thread(b1);
            t6.start();
-
-            http.Listaplats();
-            http.tauppdrag("A", "1", "4", "1");
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -828,4 +824,6 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JTextArea statusuppdTextArea;
     private javax.swing.JTextArea walleTextArea;
     // End of variables declaration//GEN-END:variables
+
+  //  private MapPanel;
 }
