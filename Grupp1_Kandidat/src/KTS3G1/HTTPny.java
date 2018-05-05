@@ -269,23 +269,11 @@ public class HTTPny {
             }
 
             inkommande.close();
-            
-            for (int k = 1; k < ut.size() - 1; k++) {
-                System.out.println("Tagna uppdrag: " + ut.get(k));
-            }
 
-            //cui.lista(ut);
             utmessage = response.toString();
 
-            //   String[] paras = utmessage.split(";" + "");
-            //   for (int i = 0; i < paras.length; i++) {
-            //    paragraph2 = paras[i];
-            //      System.out.println("Mottaget meddelande: " + paragraph2);
-            //  }
-            cui.svarHTTP(utmessage);
 
             //Skriver ut vilket uppdrag vi tagit i statusruta
-
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
             + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
 

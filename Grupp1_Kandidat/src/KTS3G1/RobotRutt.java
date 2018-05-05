@@ -14,7 +14,7 @@ public class RobotRutt implements Runnable {
     public static String rutt = "";
     public int[] list;
     public int go;
-    Transceiver tc; 
+    //Transceiver tc; 
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
 
@@ -146,16 +146,16 @@ public class RobotRutt implements Runnable {
     public String gorutt() { 
         return rutt;
     }
-    public String passeradenoder(){
-        while(true){
-        int nodilistan=0;    
-        
-        if (Transceiver.utfort!=null){
-            nodilistan++;
-            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-           
-        }
-        }
-    }
+//    public String passeradenoder(){
+//        while(true){
+//        int nodilistan=0;    
+//        
+//        if (Transceiver.utfort!=null){
+//            nodilistan++;
+//            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
+//           
+//        }
+//        }
+//    }
 }
 

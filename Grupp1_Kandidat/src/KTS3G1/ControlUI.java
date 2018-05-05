@@ -722,7 +722,6 @@ public class ControlUI extends javax.swing.JFrame {
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
 
-
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
@@ -733,11 +732,11 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
             
             http = new HTTPny(ds, op, this);
-            http.listauppdrag("A");
             http.Listaplats();
+            http.listauppdrag("A");
           //http.utmessages();
-            http.inmessages();
-            http.tauppdrag("A", "1", "4", "1");
+          //http.inmessages();
+            //http.tauppdrag("A", "1", "4", "1");
             
             op = new OptPlan(ds);
             op.createPlan();
@@ -750,13 +749,10 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t2 = new Thread(r1);
             t2.start();
 
-
-
-
-           Transceiver b1 = new Transceiver();
+           //Transceiver b1 = new Transceiver();
 //            //Anslutning b1 = new Anslutning();
-           Thread t6 = new Thread(b1);
-           t6.start();
+           //Thread t6 = new Thread(b1);
+           //t6.start();
 
             http.Listaplats();
             http.tauppdrag("A", "1", "4", "1");
