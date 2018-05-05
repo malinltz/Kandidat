@@ -33,7 +33,6 @@ public class ControlUI extends javax.swing.JFrame {
 
     
     String allaUppdrag = "";
-
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -89,7 +88,6 @@ public class ControlUI extends javax.swing.JFrame {
     {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
-
     
     //Används inte
     void appendStatus3(String s) 
@@ -97,7 +95,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + s + "\n");
     }
 
-
+    public boolean atervant(boolean p) 
+    {
+        return p;
+    }
 
     public void appendOptText(String s) 
     {
@@ -616,13 +617,16 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setSelected(false);
 
             ds.atervant = true; 
-                startPosition.setEnabled(true);
+                
                 
             }
         
-        
+         //if(AGV:n har återvänt)
+         //startPosition.setText("Återvänd till StartPosition");
+         //startPosition.setEnabled(true);    
+        //} startPosition.setEnabled(true);
      
-        startPosition.setEnabled(true);
+        //startPosition.setEnabled(true);
 
     }//GEN-LAST:event_startPositionActionPerformed
     public boolean anslut = false;
@@ -650,10 +654,14 @@ public class ControlUI extends javax.swing.JFrame {
             
             http = new HTTPny(ds, op, this);
             http.Listaplats();
+
             http.listauppdrag("A");
             http.utmessages("A");
             http.inmessages();
             http.tauppdrag("A", "1", "4", "1");
+
+         
+
 
 //            Anslutning b1 = new Anslutning();
 //            Thread t6 = new Thread(b1);
