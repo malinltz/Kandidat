@@ -9,8 +9,8 @@ public class OptPlan {
     private List<Vertex> nodes;
     private List<Edge> edges;
     public LinkedList<Vertex> path;
-    private DataStore ds;
-    private HTTPny http;
+    public DataStore ds;
+    public HTTPny http;
     public int platsw= 5;
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
@@ -30,15 +30,16 @@ public class OptPlan {
     double xupp = 0;
     double yupp = 0;
     
-
-    
     public OptPlan(DataStore ds) {
         this.ds = ds;
-       
+         nodes = new ArrayList<Vertex>();
+         edges = new ArrayList<Edge>();
 
     }
 
     public void createPlan() {
+      
+        
         try {
 //            if (ds.atervant){
 //            slut = startnod; //startnoden;
@@ -54,8 +55,7 @@ public class OptPlan {
         // http.stopplist=Double.parseDouble(sline[1].trim());
         
 
-        nodes = new ArrayList<Vertex>();
-        edges = new ArrayList<Edge>();
+      
         
         //http = new HTTPny;
 
@@ -85,7 +85,7 @@ public class OptPlan {
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-
+           // System.out.println(path.get(i));
             //System.out.println(Integer.parseInt(path.get(i).getId()));
             //System.out.println(ds.pathInt[i]);
             x = ds.nodeX[shortestPathList[i] - 1];
@@ -107,10 +107,14 @@ public class OptPlan {
                     ds.arcColor[j] = 1;
                     
                     //Lägger till kostanden för shortest path
-                    pathCost = pathCost + ds.arcCost[j];
-                    System.out.println(pathCost);
+                   
+                     pathCost = pathCost + ds.arcCost[i];
                 }
+                else 
+                    System.out.println("FUNKAR INTE!!");
+                
             }
+        
         }
 
 // ny för uppdragen
@@ -150,19 +154,24 @@ public class OptPlan {
 //            }
 //        }
 //            }
-        }catch(NullPointerException exception){}
+        }
+        catch(NullPointerException exception){}
         
-    }
+    
+}
+    
     public int[] getIndex() {
         
         return shortestPathList;
-  
     }
 
     public int getCost() {
         
-        return pathCost;
-    }
+       System.out.println(pathCost); 
+       return pathCost;
+     
+       
+  }
     
 
     public int[] getuppdrag() {

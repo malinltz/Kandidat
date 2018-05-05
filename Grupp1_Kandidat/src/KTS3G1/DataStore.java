@@ -30,6 +30,7 @@ public class DataStore {
    // int [] nodeEnd; 
     
     int[] arcColor;
+   // int pathInt;
     
 
     public DataStore() {

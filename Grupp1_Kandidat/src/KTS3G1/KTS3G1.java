@@ -50,7 +50,7 @@ public class KTS3G1 {
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
         
-        
+      //  op = new OptPlan(ds);
 
         /*   while (cui.anslut == true) {
             Transceiver p1 = new Transceiver(cui);

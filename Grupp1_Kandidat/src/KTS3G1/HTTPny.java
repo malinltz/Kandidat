@@ -137,11 +137,14 @@ public class HTTPny {
                  lagstaKostnad = op.pathCost;
                  narmstaPlats = platser[j];
                  narmstaNod = ds.slut;
-             }
+             } 
+             
+             System.out.println("Min value "+ lagstaKostnad);
+             
              
         }
 
-           System.out.println("Min value "+ op.pathCost);
+          
 
             Thread.sleep(1000); //vilken sleeptime?
 
@@ -171,10 +174,8 @@ public class HTTPny {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
-
                 upp.add(inkommande_text);
             }
-
             inkommande.close();
 
             for (int k = 0; k < upp.size(); k++) {
@@ -182,7 +183,6 @@ public class HTTPny {
             }
 
             uppdragslista = inkommande_samlat.toString();
-
             
          //Variabler för uppdragslistan
         String uppsize = upp.get(0);

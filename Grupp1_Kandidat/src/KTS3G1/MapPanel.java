@@ -23,7 +23,7 @@ public class MapPanel extends JPanel {
         final Color DARK_COLOR = new Color(0, 0, 0);
         final Color RED_COLOR = new Color(255, 0, 0);
         final Color PURPLE_COLOR = new Color(255, 0, 255);
-        final Color CYAN_COLOR = new Color(0, 0, 0);
+      //  final Color CYAN_COLOR = new Color(0, 0, 0);
 
         int x, y;
         int x1, y1;
@@ -77,6 +77,8 @@ public class MapPanel extends JPanel {
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
 
                 ds.arcCost[i] = dist;
+                System.out.println("dist" + dist);
+                System.out.println("dist på arcCost = " + ds.arcCost);
                 
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
@@ -85,9 +87,10 @@ public class MapPanel extends JPanel {
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
                     g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
-                } else if (ds.arcColor[i] == 2) {
-                    g.setColor(CYAN_COLOR);
-                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+               // } 
+                //else if (ds.arcColor[i] == 2) {
+                 //   g.setColor(CYAN_COLOR);
+                  //  g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
 
                 } else {
                     g.setColor(DARK_COLOR);
