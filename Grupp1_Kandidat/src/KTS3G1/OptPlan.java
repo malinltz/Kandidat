@@ -1,9 +1,6 @@
 package KTS3G1;
 
 import java.util.*;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Random;
 
 public class OptPlan {
 
@@ -11,16 +8,13 @@ public class OptPlan {
     RobotRutt RR; 
     private List<Vertex> nodes;
     private List<Edge> edges;
+    public List<Vertex> path;
     private DataStore ds;
     private HTTPny http;
     public int platsw= 5;
 
-    public int start = 2;//http.ink.get(k)
-
-    //Dessa skall inte vara fixt utan mer som en vektor? 
-    
-
-    public int slut= 5; //Inparametrar av något slag
+    public int start = 2;
+    public int slut;
 
 
    public int Origin = start;
@@ -78,7 +72,7 @@ public class OptPlan {
 
         // Compute shortest path       
         dijkstra.execute(nodes.get(start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut - 1));
+        path = dijkstra.getPath(nodes.get(slut - 1));
 
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
@@ -104,7 +98,7 @@ public class OptPlan {
                     //Sätter shortest path till 1
                     ds.arcColor[j] = 1;
                     //Lägger till kostanden för shortest path
-                    pathCost = pathCost + ds.arcCost[j];
+                    //pathCost = pathCost + ds.arcCost[j];
                     // System.out.println(pathCost);
                 }
             }
@@ -156,11 +150,11 @@ public class OptPlan {
   
     }
 
-    public int getCost() {
-
-        return pathCost;
-
-    }
+//    public int getCost() {
+//
+//        return pathCost;
+//
+//    }
 
     public int[] getuppdrag() {
         return shortestPathListupp;

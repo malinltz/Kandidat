@@ -44,7 +44,7 @@ public class KTS3G1 {
         //tm = new Transmitter();
         //re = new Reciver()
 
-        http = new HTTPny(ds, op, cui);
+        //http = new HTTPny(ds, op, cui);
         // cui.bluetoothAdress(badress);
 
         // http.HTTPanrop("http://tnk111.n7.se/listaplatser.php");
