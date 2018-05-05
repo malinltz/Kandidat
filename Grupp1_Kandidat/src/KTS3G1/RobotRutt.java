@@ -138,6 +138,15 @@ public class RobotRutt implements Runnable {
                 }
                 i++;
             }
+            while(true){
+        int nodilistan=0;    
+        
+        if (Transceiver.utfort!=null){
+            nodilistan++;
+            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
+           op.startupp=list[nodilistan];
+        }
+        }
             }catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
