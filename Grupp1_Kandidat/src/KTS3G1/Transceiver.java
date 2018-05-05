@@ -56,14 +56,15 @@ public static String utfort;
             //    }
                 kommando = start;
                 bluetooth_ut.print(kommando);
+                TimeUnit.MILLISECONDS.sleep(50);
                 inskickat = bluetooth_in.readLine();
                 
                 System.out.println("Skickat : "  + kommando);
                 System.out.println("Mottaget : "  + inskickat);
                 inskickat = "";
                
-                 while(true){
-                     // listan =  lista + pickup;
+                while(true){
+             // listan =  lista + pickup;
                 for(int i = 0; i < lista.length(); i++) {
                  utfort = null;
                  kommando = String.valueOf(lista.charAt(i));
@@ -76,11 +77,9 @@ public static String utfort;
                     } else{
                         System.out.println("Spegling funkar ej, helvete då...");
                     } 
-                        
                     if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
                         kommando = "w";
-                       
                     }
                      if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
