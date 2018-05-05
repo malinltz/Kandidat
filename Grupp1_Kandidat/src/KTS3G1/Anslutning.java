@@ -30,8 +30,6 @@ RobotRutt rr;
     public void run() {
 
     try {
-
-        
         service = (StreamConnection) Connector.open("btspp://201410149018:1");
         kommando = String.valueOf(lista.charAt(0));
         Transceiver trc = new Transceiver();

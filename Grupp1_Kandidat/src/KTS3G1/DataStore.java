@@ -24,6 +24,8 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
+    int [] nodeStart;
+    int [] nodeEnd; 
     
     int[] arcColor;
     
@@ -39,6 +41,8 @@ public class DataStore {
         arcEnd = new int[1000];
         arcCost = new int[1000];
         arcColor = new int[1000];
+       
+        
         atervant = false; 
         networkRead = false;
         updateUIflag = false;
@@ -89,7 +93,7 @@ public class DataStore {
                 //System.out.println(nodeX[i]+" X");
                 //System.out.println(nodeY[i]+" Y");
             }
-            for (int i=0; i< nodes; i++)
+            for (int i=0; i < nodes; i++)
             {
             // Debug printout: print data for node 1
             //System.out.println("Node: " + nodeX[i] + " " + nodeY[i]);
@@ -103,10 +107,11 @@ public class DataStore {
                 arcStart[i] = Integer.parseInt(sline[0].trim());
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
                 //arcCost[i] = Integer.parseInt(sline[2].trim());
-
                 
             }
-
+            
+    
+         
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 

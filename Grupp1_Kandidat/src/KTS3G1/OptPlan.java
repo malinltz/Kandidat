@@ -8,7 +8,7 @@ public class OptPlan {
     RobotRutt RR; 
     private List<Vertex> nodes;
     private List<Edge> edges;
-    public List<Vertex> path;
+    public LinkedList<Vertex> path;
     private DataStore ds;
     private HTTPny http;
     public int platsw= 5;
@@ -16,15 +16,14 @@ public class OptPlan {
     public int start = 2;
     public int slut;
 
-
-   public int Origin = start;
-
-    public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
+    
+    public int[] nodeStart= new int[1000];;
+    public int[] nodeEnd= new int[1000];; 
     
     int pathCost = 0;
     int pathCostupp = 0;
@@ -33,8 +32,12 @@ public class OptPlan {
     double xupp = 0;
     double yupp = 0;
     
+    int startar=0;
+    int slutar =0;
+    
     public OptPlan(DataStore ds) {
         this.ds = ds;
+       
 
     }
 
@@ -55,18 +58,26 @@ public class OptPlan {
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
+        
+        //http = new HTTPny;
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
             nodes.add(location);
+            
+           nodeEnd[i] = Integer.parseInt(nodes.get(i).getId());
+           nodeStart[i]= Integer.parseInt(nodes.get(i).getId());
+            
+            startar= ds.arcStart[nodeStart[i]-1];
+            slutar = ds.arcEnd[nodeEnd[i]-1];
         }
         for (int i = 0; i < ds.arcs; i++) {
-            Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
+            Edge lane = new Edge("" + (i + 1), nodes.get(startar - 1), nodes.get(slutar - 1), 1); // Last argument is arc
             edges.add(lane);
+            
         }
-         
-   
+    
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 

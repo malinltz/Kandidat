@@ -12,28 +12,27 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
-//import java.util.Collections;
-//import java.util.regex.Pattern;
-
 
 public class HTTPny {
 
     public String message;
     public String uppdragslista;
-    private String url;
     String narmstaPlats;
+    private String gruppmessage;
     private String utmessage;
+    
+    
     public OptPlan op;
-    OptPlan [] opt;
+    OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    private String gruppmessage;
+    
 
     public String plats;
     public String ID;
     public String passagerare;
-    public String grupp; 
+    public String grupp;
     public String listaplats;
     public int storlek;
     public int uppsizeInt;
@@ -50,10 +49,10 @@ public class HTTPny {
     int[] samakning;
     private int sleepTime;
 
-     ArrayList<String> ink;
-     ArrayList<String> upp;
-     ArrayList<String> ut;
-     ArrayList<String> utmess; 
+    ArrayList<String> ink;
+    ArrayList<String> upp;
+    ArrayList<String> ut;
+    ArrayList<String> utmess;
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
@@ -71,7 +70,7 @@ public class HTTPny {
 
         try { // Kopplar upp till listan och hämtar info och returnerar
             String url = ("http://tnk111.n7.se/listaplatser.php");
-            
+
             URL urlobjekt1 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -93,8 +92,10 @@ public class HTTPny {
 
             for (int k = 0; k < ink.size(); k++) {
                 System.out.println("Upphämtningsplatser: " + ink.get(k));
+
                 
                 cui.appendStatus3(ink.get(k));
+
             }
 
             
@@ -110,14 +111,12 @@ public class HTTPny {
             stopplist = new int[storlek];
             opt = new OptPlan[storlek];
 
-
-
             for (int j = 1; j < storlek + 1; j++) {
                 sline = ink.get(j).split(";");
                 platser[j - 1] = sline[0];
                 listans[j - 1] = sline[1];
             }
-            
+
             for (int i = 0; i < storlek; i++) {
                 sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
@@ -139,10 +138,9 @@ public class HTTPny {
                                                  
                  op.pathCost = ds.arcCost[malin];
                  tot_kostnad = tot_kostnad + op.pathCost;
-              
+
             }
                 cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + op.start + " till " + op.slut + ", kostnad: "  + tot_kostnad);
-           
                 
              if (tot_kostnad < lagstaKostnad){
                  lagstaKostnad = tot_kostnad;
@@ -156,7 +154,7 @@ public class HTTPny {
 
             Thread.sleep(1000); //vilken sleeptime?
 
-        
+
         } catch (Exception c) {
 
             System.out.print(c.toString());
@@ -164,13 +162,12 @@ public class HTTPny {
     }
 
     public String listauppdrag(String plats) {
-        
+
         try {
 
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
             URL urlobjekt1 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) 
-            urlobjekt1.openConnection();
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
             anslutning.setRequestMethod("GET");
             //;
@@ -192,8 +189,9 @@ public class HTTPny {
             for (int k = 0; k < upp.size(); k++) {
                 System.out.println("Uppdrag: " + upp.get(k));
             }
-            
+
             uppdragslista = inkommande_samlat.toString();
+
             
          //Variabler för uppdragslistan
         String uppsize = upp.get(0);
@@ -242,13 +240,12 @@ public class HTTPny {
     }
 
     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
- 
+
         try { //lägger upp uppdrag
-            String url = ("http://tnk111.n7.se/tauppdrag.php?plats"+ plats + "&id"+ ID +"&passagerare="+  passagerare + "&grupp"+  grupp);
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
 
             URL urlobjekt2 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) 
-            urlobjekt2.openConnection();
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
 
             anslutning.setRequestMethod("POST");
             anslutning.setDoOutput(true);
@@ -256,13 +253,13 @@ public class HTTPny {
             DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
             wr.flush();
             wr.close();
-            
+
             System.out.println("\nSending 'POST' request to URL : " + url);
             int responseCode = anslutning.getResponseCode();
             System.out.println("Statuskod: " + responseCode);
 
             BufferedReader inkommande = new BufferedReader(
-            new InputStreamReader(anslutning.getInputStream()));
+                    new InputStreamReader(anslutning.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
@@ -270,13 +267,28 @@ public class HTTPny {
                 response.append(inputLine);
                 ut.add(inputLine);
             }
-            
+
             inkommande.close();
             
+            for (int k = 1; k < ut.size() - 1; k++) {
+                System.out.println("Tagna uppdrag: " + ut.get(k));
+            }
+
+            //cui.lista(ut);
+            utmessage = response.toString();
+
+            //   String[] paras = utmessage.split(";" + "");
+            //   for (int i = 0; i < paras.length; i++) {
+            //    paragraph2 = paras[i];
+            //      System.out.println("Mottaget meddelande: " + paragraph2);
+            //  }
+            cui.svarHTTP(utmessage);
+
             //Skriver ut vilket uppdrag vi tagit i statusruta
+
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
             + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
- 
+
             Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception e) {
@@ -289,7 +301,7 @@ public class HTTPny {
 
         try { //vad vi hämtar hem från de andra 
             String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
-            
+
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -310,7 +322,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-            
+
             gruppmessage = inkommande_samlat.toString();
 
             Thread.sleep(1000); //vilken sleeptime?
@@ -322,10 +334,10 @@ public class HTTPny {
     }
 
     public void inmessages() {
-        
+
         try { //vad vi hämtar hem från de anrda 
             String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
-            
+
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -357,18 +369,13 @@ public class HTTPny {
         }
     }
 
-
     public void utmessages(String platser) {
-        
 
-       
-        platser= "A!400!1";
-        
+        platser = "A!400!1";
+
         try { //vad vi hämtar hem från de anrda 
 
-
             String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + platser);
-
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -391,7 +398,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-            
+
             gruppmessage = inkommande_samlat.toString();
 
             Thread.sleep(1000); //vilken sleeptime?

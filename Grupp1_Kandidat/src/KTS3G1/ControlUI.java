@@ -31,11 +31,22 @@ public class ControlUI extends javax.swing.JFrame {
         setTitle("Grupp 1");
     }
     
+    String allaUppdrag = "";
+    String upphamtningsplats = "";
+    String valtUppdrag = "";
+    
+    void lista(ArrayList k)
+    {
+    jTextArea2.append("Uppdragsplats " + k + "\n");
+    }
+
+    
     //Används för listauppdrag metod i HTTPny
     void listauppdrag(ArrayList k)
     {
     jTextArea2.append("Lista uppdrag: " + k + "\n");
     }
+
     
     //Används för att skriva ut vilket uppdrag vi tar.
     void tauppdrag(String p) 
@@ -91,19 +102,36 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.append("" + s + "\n");
     }
 
-    //Vet inte om den används
+
+
     public boolean atervant(boolean p) 
     {
         return p;
     }
+
+    
+    //Används inte
+   /* void appendStatus3(String s) 
+    {
+        statusuppdTextArea.append("" + s + "\n");
+    }
+*/
+    //Vet inte om den använd
 
     //Används inte
     public void appendOptText(String s) 
     {
         statusuppdTextArea.append(s);
     }
+    void upphamtningsplats(String b) 
+    {
+        upphamtningsplats = upphamtningsplats + b + "\n";
 
+        jTextArea2.setText(upphamtningsplats);
+        jTextField7.setText("" + b);
+    }
     //Används för att skriva ut bluetooth kanalen
+
     void bluetoothchannel(String c) 
     {
         jTextField6.setText("" + c);
@@ -114,8 +142,6 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextField7.setText("" + b);
     }
-
-
     public void myinitComponents() {
 
         jPanelMap = new MapPanel(ds);
@@ -176,7 +202,8 @@ public class ControlUI extends javax.swing.JFrame {
             jPanelMapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 386, Short.MAX_VALUE)
         );
-
+       
+        
         statusuppdTextArea.setEditable(false);
         statusuppdTextArea.setColumns(20);
         statusuppdTextArea.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
@@ -192,7 +219,9 @@ public class ControlUI extends javax.swing.JFrame {
                 startPositionActionPerformed(evt);
             }
         });
-
+  
+ 
+                
         startStopp.setBackground(java.awt.Color.green);
         startStopp.setFont(new java.awt.Font("Chalkboard", 1, 15)); // NOI18N
         startStopp.setText("Start");
@@ -480,7 +509,6 @@ public class ControlUI extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
         jTextField1.setSelectionColor(new java.awt.Color(255, 51, 51));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,23 +599,21 @@ public class ControlUI extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(startStopp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startStopp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(startPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(7, 7, 7)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(startPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(154, 154, 154))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(connectToWallE, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
+                                .addComponent(connectToWallE, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,7 +621,7 @@ public class ControlUI extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -670,6 +696,7 @@ public class ControlUI extends javax.swing.JFrame {
 
     
 
+
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
         if (startPosition.getText().equals("Återvänd till startposition")) {
@@ -695,6 +722,7 @@ public class ControlUI extends javax.swing.JFrame {
     public boolean anslut = false;
     private void startStoppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startStoppActionPerformed
 
+
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
@@ -705,10 +733,10 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
             
             http = new HTTPny(ds, op, this);
-            http.Listaplats();
             http.listauppdrag("A");
-            //http.utmessages();
-            //http.inmessages();
+            http.Listaplats();
+          //http.utmessages();
+            http.inmessages();
             http.tauppdrag("A", "1", "4", "1");
             
             op = new OptPlan(ds);
@@ -723,15 +751,15 @@ public class ControlUI extends javax.swing.JFrame {
             t2.start();
 
 
-//            Anslutning b1 = new Anslutning();
-//            Thread t6 = new Thread(b1);
-//            t6.start();
 
-//            Transceiver b1 = new Transceiver();
+
+           Transceiver b1 = new Transceiver();
 //            //Anslutning b1 = new Anslutning();
-//            Thread t6 = new Thread(b1);
-//            t6.start();
+           Thread t6 = new Thread(b1);
+           t6.start();
 
+            http.Listaplats();
+            http.tauppdrag("A", "1", "4", "1");
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -740,10 +768,6 @@ public class ControlUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-       
-    }//GEN-LAST:event_jTextField1ActionPerformed
     
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
@@ -766,9 +790,14 @@ public class ControlUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_connectToWallEActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -789,7 +818,7 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    public javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
