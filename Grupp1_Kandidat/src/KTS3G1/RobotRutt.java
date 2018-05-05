@@ -138,15 +138,15 @@ public class RobotRutt implements Runnable {
                 }
                 i++;
             }
-            while(true){
-        int nodilistan=0;    
-        
-        if (Transceiver.utfort!=null){
-            nodilistan++;
-            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-           op.startupp=list[nodilistan];
-        }
-        }
+//            while(true){
+//        int nodilistan=0;    
+//        
+//        if (Transceiver.utfort!=null){
+//            nodilistan++;
+//            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
+//           op.startupp=list[nodilistan];
+//        }
+//        }
             }catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
@@ -156,17 +156,7 @@ public class RobotRutt implements Runnable {
         return rutt;
     }
 
-//    public String passeradenoder(){
-//        while(true){
-//        int nodilistan=0;    
-//        
-//        if (Transceiver.utfort!=null){
-//            nodilistan++;
-//            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-//           op.startupp=list[nodilistan];
-//        }
-//        }
-//    }
+
 
 }
 
