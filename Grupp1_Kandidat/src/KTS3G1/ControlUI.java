@@ -81,7 +81,7 @@ public class ControlUI extends javax.swing.JFrame {
     //Används inte
     void svarHTTP(String p) 
     {
-        jTextArea2.append("" + p + "\n");
+        statusuppdTextArea.append("" + p + "\n");
     }
 
     //Skriver ut kördirektiv för Wall-E från RobotRutt
@@ -731,17 +731,6 @@ public class ControlUI extends javax.swing.JFrame {
             //startStopp.setBackground(Color.red);
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
-
-            op = new OptPlan(ds);
-            op.createPlan();
-
-            GuiUpdate r1 = new GuiUpdate(ds, this, op);
-            Thread t2 = new Thread(r1);
-            t2.start();
-
-            RobotRutt r2 = new RobotRutt(ds, this, op);
-            Thread t3 = new Thread(r2);
-            t3.start();
             
             http = new HTTPny(ds, op, this);
             http.listauppdrag("A");
@@ -749,6 +738,18 @@ public class ControlUI extends javax.swing.JFrame {
           //http.utmessages();
             http.inmessages();
             http.tauppdrag("A", "1", "4", "1");
+            
+            op = new OptPlan(ds);
+            op.createPlan();
+            
+            RobotRutt r2 = new RobotRutt(ds, this, op);
+            Thread t3 = new Thread(r2);
+            t3.start();
+            
+            GuiUpdate r1 = new GuiUpdate(ds, this, op);
+            Thread t2 = new Thread(r1);
+            t2.start();
+
 
 
 

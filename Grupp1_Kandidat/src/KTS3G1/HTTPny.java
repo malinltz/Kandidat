@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
 
@@ -16,13 +17,13 @@ public class HTTPny {
 
     public String message;
     public String uppdragslista;
-  //  private String url;
+    String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
     
     
     public OptPlan op;
-  //  OptPlan[] opt;
+    OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
@@ -97,14 +98,18 @@ public class HTTPny {
 
             }
 
+            
             listaplats = ink.get(0);
             storlek = Integer.parseInt(listaplats);
             String[] sline;
             String platser[] = new String[storlek];
             String listans[] = new String[storlek];
-
+            double tot_kostnad = 0.0;
+            double lagstaKostnad = 1000000;
+            int narmstaNod = op.start;
             startlist = new int[storlek];
             stopplist = new int[storlek];
+            opt = new OptPlan[storlek];
 
             for (int j = 1; j < storlek + 1; j++) {
                 sline = ink.get(j).split(";");
@@ -117,11 +122,38 @@ public class HTTPny {
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
 
-                startlist[i]=op.nodeStart[i];
-                stopplist[i]=op.nodeEnd[i] ;   
             }
+            
+            for (int j = 0; j < storlek; j++) {
+           
+                op.slut = stopplist[j];
+                opt[j] = new OptPlan(ds);
+                opt[j].createPlan();
+                
+                //opt[j].getCost();
+                
+                for (int i=0; i< opt[j].path.size(); i++){      
+         
+                 int malin = Integer.parseInt(opt[j].path.get(i).getId()); //Gör om path till ints
+                                                 
+                 op.pathCost = ds.arcCost[malin];
+                 tot_kostnad = tot_kostnad + op.pathCost;
 
-            Thread.sleep(2000); //vilken sleeptime?
+            }
+                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + op.start + " till " + op.slut + ", kostnad: "  + tot_kostnad);
+                
+             if (tot_kostnad < lagstaKostnad){
+                 lagstaKostnad = tot_kostnad;
+                 narmstaPlats = platser[j];
+                 narmstaNod = op.slut;
+             }
+             
+        }
+
+           System.out.println("Min value "+ tot_kostnad);
+
+            Thread.sleep(1000); //vilken sleeptime?
+
 
         } catch (Exception c) {
 
@@ -198,8 +230,7 @@ public class HTTPny {
             //ds.arcEnd[j] = destNod2[j]; 
         }
 
-
-            Thread.sleep(2000); //vilken sleeptime?
+            Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
@@ -257,9 +288,8 @@ public class HTTPny {
 
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
             + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
- 
 
-            Thread.sleep(2000); //vilken sleeptime?
+            Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -295,7 +325,7 @@ public class HTTPny {
 
             gruppmessage = inkommande_samlat.toString();
 
-            Thread.sleep(2000); //vilken sleeptime?
+            Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -331,7 +361,7 @@ public class HTTPny {
 
             gruppmessage = inkommande_samlat.toString();
 
-            Thread.sleep(2000); //vilken sleeptime?
+            Thread.sleep(1000); //vilken sleeptime?
             //cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
 
         } catch (Exception k) {
@@ -371,7 +401,7 @@ public class HTTPny {
 
             gruppmessage = inkommande_samlat.toString();
 
-            Thread.sleep(2000); //vilken sleeptime?
+            Thread.sleep(1000); //vilken sleeptime?
             //cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
 
         } catch (Exception k) {
