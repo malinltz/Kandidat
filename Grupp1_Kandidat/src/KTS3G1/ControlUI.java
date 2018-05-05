@@ -794,13 +794,15 @@ public class ControlUI extends javax.swing.JFrame {
       Anslutning b1 = new Anslutning();
       Thread t6 = new Thread(b1);
       t6.start();*/
-      jTextField1.setBackground(new java.awt.Color(0, 255, 0));
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);
        }
        /*
+       if ()//om recivern tar emot något. Receiver.Anslutning.mottaget !=null??
+       jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+       
       while(true){
-          if(){ //om recivern inte får emot något 
+          if(){ //om recivern inte får emot något. Receiver.Anslutning.mottaget =null??
             connectToWallE.setEnabled(true);
             connectToWallE.setSelected(true);
             jTextField1.setBackground(new java.awt.Color(255, 0, 0));
