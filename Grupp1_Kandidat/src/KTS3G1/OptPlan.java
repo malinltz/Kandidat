@@ -72,9 +72,8 @@ public class OptPlan {
           //  startar= ds.arcStart[nodeStart[i]-1];
            // slutar = ds.arcEnd[nodeEnd[i]-1];
        //   slut= ds.arcStart[http.stopplist[i]-1];
-          //slut= ds.arcEnd[http.stopplist[i]-1];
-        //  slut= ds.arcStart[http.stopplist[i]-1];
-       slut=http.malin;
+          slut= (http.stopplist[i]-1);
+       
         }
         for (int i = 0; i < ds.arcs; i++) {
             Edge lane = new Edge("" + (i + 1), nodes.get(start - 1), nodes.get(slut - 1), 1); // Last argument is arc
@@ -85,6 +84,7 @@ public class OptPlan {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
+        
         // Compute shortest path       
         dijkstra.execute(nodes.get(start - 1));
         path = dijkstra.getPath(nodes.get(slut - 1));
@@ -165,11 +165,11 @@ public class OptPlan {
   
     }
 
-//    public int getCost() {
-//
-//        return pathCost;
-//
-//    }
+    public int getCost() {
+        
+        return pathCost;
+    }
+    
 
     public int[] getuppdrag() {
         return shortestPathListupp;
