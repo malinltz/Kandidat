@@ -1,6 +1,5 @@
+
 package KTS3G1;
-
-
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -17,24 +16,25 @@ String kommando;
 String inskickat = "";
 String start = "s";
 String pickup = "p";
+int antal_passagerare;
 public static String utfort;
 
    public Transceiver() { 
       
       //String lista = RR.gorutt();
-      System.out.println("listan = "+ lista);
-      String listan = start + lista + pickup;
+      System.out.println("\n"+"listan = "+ lista);
+    
      // System.out.println(listan);
       
        while(true){
        try{
-           StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
+           //201410149018:1
+           //001A7DDA7106	
+           StreamConnection anslutning = (StreamConnection) Connector.open("btspp://001A7DDA7106:1");
  
-            
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
         //listan =  lista + pickup;
-        kommando = String.valueOf(lista.charAt(0));
-        
+
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
         
@@ -43,8 +43,8 @@ public static String utfort;
                             new InputStreamReader(anslutning.openInputStream()));
            
          //   BufferedReader tangentbord
-           //         = new BufferedReader(
-             //               new InputStreamReader(System.in));
+         //         = new BufferedReader(
+         //               new InputStreamReader(System.in));
 
            // while (true) {
               //String meddelande_ut = tangentbord.readLine();
@@ -54,14 +54,18 @@ public static String utfort;
              // if (meddelande_ut == null) {
               //      break;
             //    }
-            
+                kommando = start;
                 bluetooth_ut.print(kommando);
                 inskickat = bluetooth_in.readLine();
                 
                 System.out.println("Skickat : "  + kommando);
                 System.out.println("Mottaget : "  + inskickat);
-                
+                inskickat = "";
+               
+                 while(true){
+                     // listan =  lista + pickup;
                 for(int i = 0; i < lista.length(); i++) {
+                 utfort = null;
                  kommando = String.valueOf(lista.charAt(i));
                     while(true){
                          bluetooth_ut.print(kommando);
@@ -75,7 +79,7 @@ public static String utfort;
                         
                     if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
-                       kommando = "w";
+                        kommando = "w";
                        
                     }
                      if(inskickat.equals("k")){         // AGV är klar med kommandot. 
@@ -83,14 +87,11 @@ public static String utfort;
                          utfort = String.valueOf(lista.charAt(i));
                         break;
                     }
-                     
                 }
             }
-                
-                System.out.println("Skickat2 : "  + kommando);
-                System.out.println("Mottaget2 : "  + inskickat);
-           // }
-
+                if(lista.equals(""))
+                    break;
+           }
          anslutning.close();
            
            } catch (IOException e){

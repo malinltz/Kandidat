@@ -138,51 +138,37 @@ public class HTTPny {
             startlist = new int[storlek];
             stopplist = new int[storlek];
             
-            for (int j = 1; j < storlek + 1; j++)
-            {
-           opt[j]= new OptPlan(ds);
-           opt[j].createPlan();
-            
-           //skapa array där noderna sparas
+            for (int k = 1; k < storlek + 1; k++)
+            { 
+                opt[k]= new OptPlan(ds);
+                opt[k].createPlan();
            
+                op.slut= stopplist[k]; 
             }
-           
-   
-            cui.lista(ink);
 
             for (int j = 1; j < storlek + 1; j++) {
-
-                sline = ink.get(j).split(" ");
-                listans[j - 1] = sline[0];
-                platser[j - 1] = sline[1];
-
+                sline = ink.get(j).split(";");
+                platser[j - 1] = sline[0];
+                listans[j - 1] = sline[1];
             }
-
+            
             for (int i = 1; i < storlek + 1; i++) {
-
-                sline = listans[i].split(" ");
+                sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
-
-            }
-            
-            for(  int i = 1; i < storlek + 1; i++      ) //lista platser på kartan
-            {
-            
-            
-            
                 
-            
-            
+                op.start = startlist[i];
+                op.slut = stopplist[i];   
             }
             
             
-
+            cui.lista(ink);
+            
             // ink.indexOf(k);
             // Collections.emptyList(ink(k));
             Thread.sleep(2000); //vilken sleeptime?
 
-        } catch (Exception c) {
+          }catch (Exception c) {
             System.out.print(c.toString());
 
         }
@@ -254,8 +240,7 @@ public class HTTPny {
             destNod2[j] =Integer.parseInt(slice[1]);
             cui.destination("Destination ligger melland noderna: " + destNod1[j] + " och " + destNod2[j]); 
         }
-        
-        
+
 
             Thread.sleep(2000); //vilken sleeptime?
 
@@ -267,55 +252,41 @@ public class HTTPny {
     }
 
     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
-        url = URL;
-        
-
+ 
         try { //lägger upp uppdrag
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + plats + ID + passagerare + grupp);
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats"+ plats + "&id"+ ID +"&passagerare="+  passagerare + "&grupp"+  grupp);
 
             URL urlobjekt2 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
+            HttpURLConnection anslutning = (HttpURLConnection) 
+            urlobjekt2.openConnection();
 
-            //add reuqest header
             anslutning.setRequestMethod("POST");
-            //con.setRequestProperty("User-Agent", USER_AGENT);
-            //con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-            // int distance= op.pathCost;
-            // Send post request
             anslutning.setDoOutput(true);
 
             DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
-            //wr.writeBytes(distance);
             wr.flush();
             wr.close();
-
+            
+            System.out.println("\nSending 'POST' request to URL : " + url);
             int responseCode = anslutning.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + url);// + paragraph1);
-            // System.out.println("Post parameters : " + op.pathCost); //vad vi vill lägga upp?
-            //  System.out.println("Response Code : " + responseCode);
+            System.out.println("Statuskod: " + responseCode);
 
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(anslutning.getInputStream()));
+            BufferedReader inkommande = new BufferedReader(
+            new InputStreamReader(anslutning.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
 
-            //  while ((inputLine = in.readLine()) != null) {
-            //     response.append(inputLine);
-            //   }
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = inkommande.readLine()) != null) {
                 response.append(inputLine);
-                //  arrayOfStrings[j]= inkommande_text;
-                // j++; 
-                //  inkommande_text = inkommande.readLine() ; 
-
                 ut.add(inputLine);
             }
-
-            in.close();
+            
+            inkommande.close();
+            
             for (int k = 1; k < ut.size() - 1; k++) {
-                System.out.println("Hej: " + ut.get(k));
+                System.out.println("Tagna uppdrag: " + ut.get(k));
             }
+
             //cui.lista(ut);
             utmessage = response.toString();
 
@@ -325,6 +296,14 @@ public class HTTPny {
             //      System.out.println("Mottaget meddelande: " + paragraph2);
             //  }
             cui.svarHTTP(utmessage);
+
+            
+            //Skriver ut vilket uppdrag vi tagit i statusruta
+            cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
+            + ", Passagerare: " + passagerare + ", Grupp: " + grupp + "");    
+
+ 
+
             Thread.sleep(2000); //vilken sleeptime?
 
         } catch (Exception e) {

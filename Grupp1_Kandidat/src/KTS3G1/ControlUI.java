@@ -30,8 +30,8 @@ public class ControlUI extends javax.swing.JFrame {
         myinitComponents();
         setTitle("Grupp 1");
     }
-
-
+    
+    String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -44,6 +44,12 @@ public class ControlUI extends javax.swing.JFrame {
     void listauppdrag(ArrayList k)
     {
     jTextArea2.append("Lista uppdrag: " + k + "\n");
+    }
+
+    
+    void tauppdrag(String p) 
+    {
+        jTextArea2.append("Taget uppdrag med " + p + "\n");
     }
 
     void showStatus(String p) 
@@ -89,11 +95,19 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + s + "\n");
     }
 
+
     public boolean atervant(boolean p) 
     {
         return p;
     }
 
+    
+    //Används inte
+   /* void appendStatus3(String s) 
+    {
+        statusuppdTextArea.append("" + s + "\n");
+    }
+*/
     public void appendOptText(String s) 
     {
         statusuppdTextArea.append(s);
@@ -106,6 +120,7 @@ public class ControlUI extends javax.swing.JFrame {
 
     }
 
+
     void upphamtningsplats(String b) 
     {
         upphamtningsplats = upphamtningsplats + b + "\n";
@@ -113,6 +128,15 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.setText(upphamtningsplats);
         jTextField7.setText("" + b);
     }
+
+  //  void upphamtningsplats(String b) 
+   // {
+   //     upphamtningsplats = upphamtningsplats + b + "\n";
+
+   //     jTextArea2.setText(upphamtningsplats);
+     //   jTextField7.setText("" + b);
+   // }
+
 
     void bluetoothchannel(String c) 
     {
@@ -601,7 +625,7 @@ public class ControlUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean atervant = false;
+    
 
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
@@ -613,21 +637,13 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-            if (atervant == true) {
+            ds.atervant = true; 
                 startPosition.setEnabled(true);
                 
             }
-
-        } else if (atervant == false) {
-
-        }
-        //Lägg till att AGV ska återvända till 0.0
-        ds.robotX = ds.nodeX[0];
-        ds.robotY = ds.nodeY[0];
         
-        if (ds.robotX == ds.nodeX[0] && ds.robotY == ds.nodeY[0]) {
-            startPosition.setText("Återvänd till startposition");
-        }
+        
+     
         startPosition.setEnabled(true);
 
     }//GEN-LAST:event_startPositionActionPerformed
@@ -667,6 +683,11 @@ public class ControlUI extends javax.swing.JFrame {
            Thread t6 = new Thread(b1);
            t6.start();
 
+            http.Listaplats();
+            http.listauppdrag("A");
+            http.utmessages();
+            http.inmessages();
+            http.tauppdrag("A", "1", "4", "1");
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
