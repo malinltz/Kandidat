@@ -1,4 +1,3 @@
-
 package KTS3G1;
 
 import java.io.*;
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
 RobotRutt RR;
-String lista = "hrrhrr";
+String lista = "hhhrrhhhrhr";
 String kommando;
 String inskickat = "";
 String start = "s";
@@ -19,18 +18,16 @@ String pickup = "p";
 int antal_passagerare;
 public static String utfort;
 
-   public Transceiver() { 
-      
+  public Transceiver() { 
       //String lista = RR.gorutt();
       System.out.println("\n"+"listan = "+ lista);
-    
      // System.out.println(listan);
-      
+     
        while(true){
        try{
            //201410149018:1
            //001A7DDA7106	
-           StreamConnection anslutning = (StreamConnection) Connector.open("btspp://001A7DDA7106:1");
+           StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
  
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
         //listan =  lista + pickup;
@@ -54,6 +51,18 @@ public static String utfort;
              // if (meddelande_ut == null) {
               //      break;
             //    }
+                int fem = 5;
+                boolean starten = true;
+                for(int i = 0; i< 5;i++){
+                   int j = fem - i;
+                   if(starten){
+                    System.out.println("AGV värmer upp, startar om " + j + "sekunder" );
+                    starten = false;
+                   } else{
+                       System.out.println(j + "...");
+                   }
+                      TimeUnit.MILLISECONDS.sleep(1000); 
+                }
                 kommando = start;
                 bluetooth_ut.print(kommando);
                 TimeUnit.MILLISECONDS.sleep(50);
@@ -68,29 +77,34 @@ public static String utfort;
                 for(int i = 0; i < lista.length(); i++) {
                  utfort = null;
                  kommando = String.valueOf(lista.charAt(i));
+                 System.out.println(kommando);
                     while(true){
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
                       // System.out.println("Upprepar kommando");
-                       TimeUnit.MILLISECONDS.sleep(1000);
-                    } else{
-                        System.out.println("Spegling funkar ej, helvete då...");
+                       TimeUnit.MILLISECONDS.sleep(100);
                     } 
-                    if(inskickat.equals("b")){          // AGV är i "point of no return"
+                    else if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
                         kommando = "w";
                     }
-                     if(inskickat.equals("k")){         // AGV är klar med kommandot. 
+                    else if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
                          utfort = String.valueOf(lista.charAt(i));
                         break;
                     }
+                    else{
+                        System.out.println("Spegling funkar ej, helvete då...");
+                    } 
                 }
             }
-                if(lista.equals(""))
+                if(lista.equals("")){
                     break;
-           }
+                  //  System.out.println("Uppdragslistan är tom");
+                }
+                    
+            }
          anslutning.close();
            
            } catch (IOException e){
