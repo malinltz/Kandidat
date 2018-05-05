@@ -13,6 +13,7 @@ public class DataStore {
     String fileName = null;
     int nodes;
     int arcs;
+    int dist;
     double[] nodeX;
     double[] nodeY;
     double[] nodNamn;
@@ -24,6 +25,8 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
+    public int start = 2;
+    public int slut = 20;
    // int [] nodeStart;
    // int [] nodeEnd; 
     
@@ -107,10 +110,12 @@ public class DataStore {
                 arcStart[i] = Integer.parseInt(sline[0].trim());
                 arcEnd[i] = Integer.parseInt(sline[1].trim());
                // arcCost[i] = Integer.parseInt(sline[2].trim());
-                
+               
+                //Beräknar och ritar ut siffror på båglängden
+                dist = (int) Math.round(Math.hypot((nodeX[arcStart[i] - 1] - nodeX[arcEnd[i] - 1]), (nodeY[arcStart[i] - 1] - nodeY[arcEnd[i] - 1])));
+                arcCost[i] = dist;
+
             }
-            
-    
          
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;

@@ -72,11 +72,6 @@ public class MapPanel extends JPanel {
                 x2 = (int) (ds.nodeX[ds.arcEnd[i] - 1] * xscale);
                 y2 = (int) (ds.nodeY[ds.arcEnd[i] - 1] * yscale);
 
-                //Beräknar och ritar ut siffror på båglängden
-                int dist;
-                dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-
-                ds.arcCost[i] = dist;
                 
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
                 // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
@@ -84,12 +79,9 @@ public class MapPanel extends JPanel {
                 //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
-                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
-                } else if (ds.arcColor[i] == 2) {
-                    g.setColor(CYAN_COLOR);
-                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
-
-                } else {
+                    g.drawString(String.valueOf(ds.dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                }
+                 else {
                     g.setColor(DARK_COLOR);
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
