@@ -6,6 +6,7 @@ public class OptPlan {
 
     ControlUI cui;
     RobotRutt RR; 
+   
     private List<Vertex> nodes;
     private List<Edge> edges;
     public LinkedList<Vertex> path;
@@ -89,7 +90,7 @@ public class OptPlan {
          System.out.println(Arrays.toString(path.toArray()) + "FIKA ÄR GOTT");
          
         // Get shortest path
-        for (int i = 0; i < path.size()-1; i++) {
+        for (int i = 1; i < path.size()-1; i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
 
 
@@ -106,7 +107,7 @@ public class OptPlan {
         }
 
         // Arcs in the shortest path
-        for (int i = 0; i < path.size() - 1; i++) {
+        for (int i = 1; i < path.size() - 1; i++) {
             for (int j = 0; j < ds.arcs; j++) {
                 if (ds.arcStart[j] == Integer.parseInt(path.get(i).getId())
                         && ds.arcEnd[j] == Integer.parseInt(path.get(i + 1).getId())) {
@@ -116,7 +117,9 @@ public class OptPlan {
                     
                     //Lägger till kostanden för shortest path
                    
-                     pathCost = pathCost + ds.arcCost[i];
+                   
+                    
+                    System.out.println(pathCost + "hejhej");
 
                 }
                 else 
@@ -124,17 +127,18 @@ public class OptPlan {
                 
             }
 
-        pathCost = pathCost + ds.arcCost[i];
+       // pathCost = pathCost + ds.arcCost[i];
         }
 
             
             
-            System.out.println("BAAAJS" + pathCost);
+           
         
     
         }catch(NullPointerException exception){}
 
-        
+      // pathCost = pathCost + ds.dist;
+      // System.out.println("BAAAJS" + pathCost);  
 
 }
     

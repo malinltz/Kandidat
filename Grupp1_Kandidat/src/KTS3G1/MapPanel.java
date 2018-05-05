@@ -74,12 +74,19 @@ public class MapPanel extends JPanel {
 
 
                 //Beräknar och ritar ut siffror på båglängden
-                int dist;
-                dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
+                
+              //  int dist;
+              //  dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
 
-                ds.arcCost[i] = dist;
-                System.out.println("dist" + dist);
-                System.out.println("dist på arcCost = " + ds.arcCost);
+                
+           
+                ds.arcCost[i] = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
+                System.out.println("arcCost = " + ds.arcCost[i]);
+                
+                ds.arcCost[i]=ds.dist;
+            //   dist = (int)(ds.arcCost[i]) ;
+              
+             //  System.out.println("dist på arcCost = " + dist);
 
                 
                 //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
@@ -91,7 +98,7 @@ public class MapPanel extends JPanel {
 
   
 
-                    g.drawString(String.valueOf(ds.dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                    g.drawString(String.valueOf(ds.arcCost), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 }
                  else {
 

@@ -13,7 +13,7 @@ public class DataStore {
     String fileName = null;
     int nodes;
     int arcs;
-    int dist;
+    int dist=0;
     double[] nodeX;
     double[] nodeY;
     double[] nodNamn;
@@ -113,8 +113,9 @@ public class DataStore {
                // arcCost[i] = Integer.parseInt(sline[2].trim());
                
                 //Beräknar och ritar ut siffror på båglängden
-                dist = (int) Math.round(Math.hypot((nodeX[arcStart[i] - 1] - nodeX[arcEnd[i] - 1]), (nodeY[arcStart[i] - 1] - nodeY[arcEnd[i] - 1])));
-                arcCost[i] = dist;
+               // dist = (int) Math.round(Math.hypot((nodeX[arcStart[i] - 1] - nodeX[arcEnd[i] - 1]), (nodeY[arcStart[i] - 1] - nodeY[arcEnd[i] - 1])));
+              //  dist= (int)(arcCost[i]);
+              //  System.out.println("Dist: " + dist);
 
             }
          
