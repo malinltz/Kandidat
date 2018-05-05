@@ -33,39 +33,24 @@ public class OptPlan {
     
     public OptPlan(DataStore ds) {
         this.ds = ds;
-        
-        
 
     }
 
     public void createPlan() {
-<<<<<<< HEAD
         try {
-            if (ds.atervant){
-            //start=RR.list;
-                    slut = 2; //startnoden;
-            //start=nuvarande nod som man är på väg till(ACK från AGV) ;  
-=======
-      
-
-        try {
-            if (ds.atervant){
-            slut = starts; //startnoden;
-            //ds.atervant=false;
-            
-//start=nuvarande nod som man är på väg till ;  
->>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
-        }
-            else{
+//            if (ds.atervant){
+//            slut = starts; //startnoden;
+//            //ds.atervant=false;
+//            
+////start=nuvarande nod som man är på väg till ;  
+//        }
+//            else{
          
       // String[] sline;
-        
-<<<<<<< HEAD
-=======
+
        //  http.startlist=Double.parseDouble(sline[0].trim());
         // http.stopplist=Double.parseDouble(sline[1].trim());
 
->>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
 
@@ -117,43 +102,43 @@ public class OptPlan {
             }
         }
 
-        //// ny för uppdragen
-
-        // Compute shortest path av uppdragen     
-        dijkstra.execute(nodes.get(startupp - 1));
-        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
-
-        // Get shortest path
-        for (int i = 0; i < pathupp.size(); i++) {
-            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
-
-            //System.out.println(Integer.parseInt(path.get(i).getId()));
-            //System.out.println(ds.pathInt[i]);
-            xupp = ds.nodeX[shortestPathListupp[i] - 1];
-            yupp = ds.nodeY[shortestPathListupp[i] - 1];
-
-            String nodePathupp = (" " + xupp + ", " + yupp);
-            //System.out.println(" " + x + ", " + y);
-            //cui.appendOptText(nodePath); Funkar ej lol okej
-
-        }
-
-        // Arcs in the shortest path
-        for (int i = 0; i < pathupp.size() - 1; i++) {
-            for (int j = 0; j < ds.arcs; j++) {
-                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
-                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
-
-                    //Sätter shortest path till 1
-                    ds.arcColor[j] = 2;
-                    //Lägger till kostanden för shortest path
-                    pathCostupp = pathCostupp + ds.arcCost[j];
-                    // System.out.println(pathCostupp);
-
-                }
-            }
-        }
-            }
+//        //// ny för uppdragen
+//
+//        // Compute shortest path av uppdragen     
+//        dijkstra.execute(nodes.get(startupp - 1));
+//        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
+//
+//        // Get shortest path
+//        for (int i = 0; i < pathupp.size(); i++) {
+//            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
+//
+//            //System.out.println(Integer.parseInt(path.get(i).getId()));
+//            //System.out.println(ds.pathInt[i]);
+//            xupp = ds.nodeX[shortestPathListupp[i] - 1];
+//            yupp = ds.nodeY[shortestPathListupp[i] - 1];
+//
+//            String nodePathupp = (" " + xupp + ", " + yupp);
+//            //System.out.println(" " + x + ", " + y);
+//            //cui.appendOptText(nodePath); Funkar ej lol okej
+//
+//        }
+//
+//        // Arcs in the shortest path
+//        for (int i = 0; i < pathupp.size() - 1; i++) {
+//            for (int j = 0; j < ds.arcs; j++) {
+//                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
+//                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
+//
+//                    //Sätter shortest path till 1
+//                    ds.arcColor[j] = 2;
+//                    //Lägger till kostanden för shortest path
+//                    pathCostupp = pathCostupp + ds.arcCost[j];
+//                    // System.out.println(pathCostupp);
+//
+//                }
+//            }
+//        }
+//            }
         }catch(NullPointerException exception){}
         
     }

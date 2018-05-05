@@ -33,10 +33,6 @@ public class ControlUI extends javax.swing.JFrame {
 
     
     String allaUppdrag = "";
-<<<<<<< HEAD
-=======
-
->>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
     String upphamtningsplats = "";
     String valtUppdrag = "";
     
@@ -92,7 +88,6 @@ public class ControlUI extends javax.swing.JFrame {
     {
         statusuppdTextArea.append("Kommandon: " + s + "\n");
     }
-
     
     //Används inte
     void appendStatus3(String s) 
@@ -100,14 +95,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + s + "\n");
     }
 
-<<<<<<< HEAD
     public boolean atervant(boolean p) 
     {
         return p;
     }
-=======
->>>>>>> 382cb7ba2dce07097f4cfaf45295cf64dab970b0
-
 
     public void appendOptText(String s) 
     {
