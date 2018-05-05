@@ -752,10 +752,10 @@ public class ControlUI extends javax.swing.JFrame {
 
 
 
-           Transceiver b1 = new Transceiver();
+           //Transceiver b1 = new Transceiver();
 //            //Anslutning b1 = new Anslutning();
-           Thread t6 = new Thread(b1);
-           t6.start();
+           //Thread t6 = new Thread(b1);
+           //t6.start();
 
             http.Listaplats();
             http.tauppdrag("A", "1", "4", "1");
