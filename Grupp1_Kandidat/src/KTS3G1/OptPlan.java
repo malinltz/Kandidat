@@ -18,6 +18,7 @@ public class OptPlan {
 
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
+    public int startnod=0;//ändra till startnod
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
@@ -43,7 +44,7 @@ public class OptPlan {
     public void createPlan() {
         try {
 //            if (ds.atervant){
-//            slut = starts; //startnoden;
+//            slut = startnod; //startnoden;
 //            //ds.atervant=false;
 //            
 ////start=nuvarande nod som man är på väg till ;  
