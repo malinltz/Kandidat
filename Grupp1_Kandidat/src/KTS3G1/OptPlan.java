@@ -1,24 +1,30 @@
 package KTS3G1;
 
 import java.util.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Random;
 
 public class OptPlan {
 
     ControlUI cui;
+    RobotRutt RR; 
     private List<Vertex> nodes;
     private List<Edge> edges;
-    private DataStore ds;
-    private HTTPny http;
+    public DataStore ds;
+    public HTTPny http;
+   // public int platsw= 5;
 
-
-
-    public int platsw= 5;
-    public int start = 2;//http.ink.get(k)
+   // public int start = 2;//http.ink.get(k)
 
     //Dessa skall inte vara fixt utan mer som en vektor? 
     
-    public int slut = 50; //Inparametrar av något slag
-   public int Origin = start;
+
+    //public int slut= 5; //Inparametrar av något slag
+
+
+  // public int Origin = start;
+
     public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
@@ -26,60 +32,72 @@ public class OptPlan {
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
     
-    public int pathCost = 0;
-    int pathCostupp = 0;
+    public int[] nodeStart= new int[1000];;
+    public int[] nodeEnd= new int[1000];; 
     
+    int pathCost = 0;
+    int pathCostupp = 0;
     double x = 0;
     double y = 0;
-    
     double xupp = 0;
     double yupp = 0;
     
+    int startar=0;
+    int slutar =0;
+    
     public OptPlan(DataStore ds) {
         this.ds = ds;
-        
-        
+       
 
     }
 
     public void createPlan() {
-      
-
         try {
-            if (ds.atervant){
-            slut = starts; //startnoden;
-            //ds.atervant=false;
-            
-//start=nuvarande nod som man är på väg till ;  
-        }
-            else{
+//            if (ds.atervant){
+//            slut = starts; //startnoden;
+//            //ds.atervant=false;
+//            
+////start=nuvarande nod som man är på väg till ;  
+//        }
+//            else{
          
       // String[] sline;
-        
+
        //  http.startlist=Double.parseDouble(sline[0].trim());
         // http.stopplist=Double.parseDouble(sline[1].trim());
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
+        
+        //http = new HTTPny;
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
             Vertex location = new Vertex("" + (i + 1), "Nod #" + (i + 1));
             nodes.add(location);
+            
+           nodeEnd[i] = Integer.parseInt(nodes.get(i).getId());
+           nodeStart[i]= Integer.parseInt(nodes.get(i).getId());
+            
+            startar= ds.arcStart[nodeStart[i]-1];
+            slutar = ds.arcEnd[nodeEnd[i]-1];
         }
         for (int i = 0; i < ds.arcs; i++) {
-            Edge lane = new Edge("" + (i + 1), nodes.get(ds.arcStart[i] - 1), nodes.get(ds.arcEnd[i] - 1), 1); // Last argument is arc
+            Edge lane = new Edge("" + (i + 1), nodes.get(startar - 1), nodes.get(slutar - 1), 1); // Last argument is arc
             edges.add(lane);
+            
         }
-         
-       
+    
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
-        // Compute shortest path       
-        dijkstra.execute(nodes.get(start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(slut - 1));
-
+        // Compute shortest path    
+       
+        dijkstra.execute(nodes.get(startar - 1));
+        LinkedList <Vertex> path = dijkstra.getPath(nodes.get(slutar- 1));
+       
+       
+        
         // Get shortest path
         for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
@@ -110,52 +128,50 @@ public class OptPlan {
             }
         }
 
-        //// ny för uppdragen
-
-        // Compute shortest path av uppdragen     
-        dijkstra.execute(nodes.get(startupp - 1));
-        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
-
-        // Get shortest path
-        for (int i = 0; i < pathupp.size(); i++) {
-            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
-
-            //System.out.println(Integer.parseInt(path.get(i).getId()));
-            //System.out.println(ds.pathInt[i]);
-            xupp = ds.nodeX[shortestPathListupp[i] - 1];
-            yupp = ds.nodeY[shortestPathListupp[i] - 1];
-
-            String nodePathupp = (" " + xupp + ", " + yupp);
-            //System.out.println(" " + x + ", " + y);
-            //cui.appendOptText(nodePath); Funkar ej lol okej
-
-        }
-
-        // Arcs in the shortest path
-        for (int i = 0; i < pathupp.size() - 1; i++) {
-            for (int j = 0; j < ds.arcs; j++) {
-                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
-                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
-
-                    //Sätter shortest path till 1
-                    ds.arcColor[j] = 2;
-                    //Lägger till kostanden för shortest path
-                    pathCostupp = pathCostupp + ds.arcCost[j];
-                    // System.out.println(pathCostupp);
-
-                }
-            }
-        }
-            }
+//        //// ny för uppdragen
+//
+//        // Compute shortest path av uppdragen     
+//        dijkstra.execute(nodes.get(startupp - 1));
+//        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
+//
+//        // Get shortest path
+//        for (int i = 0; i < pathupp.size(); i++) {
+//            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
+//
+//            //System.out.println(Integer.parseInt(path.get(i).getId()));
+//            //System.out.println(ds.pathInt[i]);
+//            xupp = ds.nodeX[shortestPathListupp[i] - 1];
+//            yupp = ds.nodeY[shortestPathListupp[i] - 1];
+//
+//            String nodePathupp = (" " + xupp + ", " + yupp);
+//            //System.out.println(" " + x + ", " + y);
+//            //cui.appendOptText(nodePath); Funkar ej lol okej
+//
+//        }
+//
+//        // Arcs in the shortest path
+//        for (int i = 0; i < pathupp.size() - 1; i++) {
+//            for (int j = 0; j < ds.arcs; j++) {
+//                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
+//                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
+//
+//                    //Sätter shortest path till 1
+//                    ds.arcColor[j] = 2;
+//                    //Lägger till kostanden för shortest path
+//                    pathCostupp = pathCostupp + ds.arcCost[j];
+//                    // System.out.println(pathCostupp);
+//
+//                }
+//            }
+//        }
+//            }
         }catch(NullPointerException exception){}
         
     }
     public int[] getIndex() {
         
         return shortestPathList;
-        
-        
-    
+  
     }
 
     public int getCost() {
