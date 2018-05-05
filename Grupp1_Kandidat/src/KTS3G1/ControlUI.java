@@ -751,11 +751,9 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t2 = new Thread(r1);
             t2.start();
 
-           //Transceiver b1 = new Transceiver();
-//            //Anslutning b1 = new Anslutning();
-           //Thread t6 = new Thread(b1);
-           //t6.start();
-
+         //  Transceiver b1 = new Transceiver();
+         //  Thread t6 = new Thread(b1);
+         //  t6.start();
            
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -791,7 +789,26 @@ public class ControlUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
-        // TODO add your handling code here:
+       if (connectToWallE.getText().equals("Connect")){
+        
+      /*Transceiver b1 = new Transceiver();
+      Anslutning b1 = new Anslutning();
+      Thread t6 = new Thread(b1);
+      t6.start();*/
+      connectToWallE.setEnabled(false);
+      connectToWallE.setSelected(false);
+       }
+       /*
+       if ()//om recivern tar emot något. Receiver.Anslutning.mottaget !=null??
+       jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+       
+      while(true){
+          if(){ //om recivern inte får emot något. Receiver.Anslutning.mottaget =null??
+            connectToWallE.setEnabled(true);
+            connectToWallE.setSelected(true);
+            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+              }
+       }*/
     }//GEN-LAST:event_connectToWallEActionPerformed
 
 

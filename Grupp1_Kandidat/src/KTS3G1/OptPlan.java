@@ -23,7 +23,7 @@ public class OptPlan {
     public int[] nodeStart= new int[1000];;
     public int[] nodeEnd= new int[1000];; 
     
-    int pathCost = 0;
+    int pathCost;
     int pathCostupp = 0;
     double x = 0;
     double y = 0;
@@ -55,7 +55,10 @@ public class OptPlan {
         // http.stopplist=Double.parseDouble(sline[1].trim());
         
 
-      
+        nodes = new ArrayList<Vertex>();
+        path = new LinkedList<Vertex>();
+        edges = new ArrayList<Edge>();
+
         
         //http = new HTTPny;
 
@@ -79,14 +82,19 @@ public class OptPlan {
 
         
         // Compute shortest path       
-        dijkstra.execute(nodes.get(ds.start - 1));
-        path = dijkstra.getPath(nodes.get(ds.slut - 1));
-
+        dijkstra.execute(nodes.get(ds.start-1));
+        System.out.println("HEEEJ");
+        path = dijkstra.getPath(nodes.get(ds.slut-1));
+        
+         System.out.println(Arrays.toString(path.toArray()) + "FIKA ÄR GOTT");
+         
         // Get shortest path
-        for (int i = 0; i < path.size(); i++) {
+        for (int i = 0; i < path.size()-1; i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-           // System.out.println(path.get(i));
-            //System.out.println(Integer.parseInt(path.get(i).getId()));
+
+
+            System.out.println(shortestPathList[i]);
+
             //System.out.println(ds.pathInt[i]);
             x = ds.nodeX[shortestPathList[i] - 1];
             y = ds.nodeY[shortestPathList[i] - 1];
@@ -103,61 +111,31 @@ public class OptPlan {
                 if (ds.arcStart[j] == Integer.parseInt(path.get(i).getId())
                         && ds.arcEnd[j] == Integer.parseInt(path.get(i + 1).getId())) {
 
-                    //Sätter shortest path till 1
+
                     ds.arcColor[j] = 1;
                     
                     //Lägger till kostanden för shortest path
                    
                      pathCost = pathCost + ds.arcCost[i];
+
                 }
                 else 
                     System.out.println("FUNKAR INTE!!");
                 
             }
-        
+
+        pathCost = pathCost + ds.arcCost[i];
         }
 
-// ny för uppdragen
-//
-//        // Compute shortest path av uppdragen     
-//        dijkstra.execute(nodes.get(startupp - 1));
-//        LinkedList<Vertex> pathupp = dijkstra.getPath(nodes.get(slutupp - 1));
-//
-//        // Get shortest path
-//        for (int i = 0; i < pathupp.size(); i++) {
-//            shortestPathListupp[i] = Integer.parseInt(pathupp.get(i).getId());
-//
-//            //System.out.println(Integer.parseInt(path.get(i).getId()));
-//            //System.out.println(ds.pathInt[i]);
-//            xupp = ds.nodeX[shortestPathListupp[i] - 1];
-//            yupp = ds.nodeY[shortestPathListupp[i] - 1];
-//
-//            String nodePathupp = (" " + xupp + ", " + yupp);
-//            //System.out.println(" " + x + ", " + y);
-//            //cui.appendOptText(nodePath); Funkar ej lol okej
-//
-//        }
-//
-//        // Arcs in the shortest path
-//        for (int i = 0; i < pathupp.size() - 1; i++) {
-//            for (int j = 0; j < ds.arcs; j++) {
-//                if (ds.arcStart[j] == Integer.parseInt(pathupp.get(i).getId())
-//                        && ds.arcEnd[j] == Integer.parseInt(pathupp.get(i + 1).getId())) {
-//
-//                    //Sätter shortest path till 1
-//                    ds.arcColor[j] = 2;
-//                    //Lägger till kostanden för shortest path
-//                    pathCostupp = pathCostupp + ds.arcCost[j];
-//                    // System.out.println(pathCostupp);
-//
-//                }
-//            }
-//        }
-//            }
-        }
-        catch(NullPointerException exception){}
+            
+            
+            System.out.println("BAAAJS" + pathCost);
         
     
+        }catch(NullPointerException exception){}
+
+        
+
 }
     
     public int[] getIndex() {

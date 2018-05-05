@@ -125,7 +125,6 @@ public class HTTPny {
             
             for (int j = 0; j < storlek; j++) {
            
-                System.out.println(stopplist[j]);
                 System.out.println(ds.slut);
                 ds.slut = stopplist[j];
                 op = new OptPlan(ds);
@@ -144,7 +143,9 @@ public class HTTPny {
              
         }
 
-          
+
+           System.out.println("Min value "+ op.pathCost);
+           
 
             Thread.sleep(1000); //vilken sleeptime?
 

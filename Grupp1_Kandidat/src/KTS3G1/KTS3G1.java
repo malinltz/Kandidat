@@ -19,7 +19,7 @@ public class KTS3G1 {
     String badress="201410149018"; 
     String kanal = "1";
     
-
+    
     String URL;
 
    
@@ -50,14 +50,9 @@ public class KTS3G1 {
         cui.bluetoothAdress(badress);
         cui.bluetoothchannel(kanal);
         
+
       //  op = new OptPlan(ds);
 
-        /*   while (cui.anslut == true) {
-            Transceiver p1 = new Transceiver(cui);
-            Thread t3 = new Thread(p1);
-            t3.start();
-
-        }*/
     }
 
     public static void main(String[] args) {
@@ -67,7 +62,7 @@ public class KTS3G1 {
          * and thereby, call the RobotControl constructor.
          */
         KTS3G1 x = new KTS3G1();
-
+        
     }
 }
 
