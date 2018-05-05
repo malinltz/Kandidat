@@ -13,7 +13,7 @@ import java.net.URL;
 //import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
-import java.util.Collections;
+//import java.util.Collections;
 //import java.util.regex.Pattern;
 
 
@@ -107,6 +107,8 @@ public class HTTPny {
             startlist = new int[storlek];
             stopplist = new int[storlek];
 
+
+
             for (int j = 1; j < storlek + 1; j++) {
                 sline = ink.get(j).split(";");
                 platser[j - 1] = sline[0];
@@ -124,7 +126,10 @@ public class HTTPny {
 
             Thread.sleep(2000); //vilken sleeptime?
 
-          }catch (Exception c) {
+
+        
+        } catch (Exception c) {
+
             System.out.print(c.toString());
         }
     }
@@ -323,13 +328,19 @@ public class HTTPny {
         }
     }
 
-    public void utmessages() {
-       
-        String messut = "A!50!1";
 
+    public void utmessages(String platser) {
+        
+
+       
+        platser= "A!400!1";
+        
         try { //vad vi hämtar hem från de anrda 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + messut);
-            
+
+
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + platser);
+
+
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -361,7 +372,6 @@ public class HTTPny {
             System.out.print(k.toString());
         }
     }
-  
 
     public String newmesssage() {
 

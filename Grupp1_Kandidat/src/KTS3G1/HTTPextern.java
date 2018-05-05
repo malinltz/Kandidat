@@ -2,8 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
-
+ 
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 /**
  *
  * @author malinlilliecreutz
-*/
+ 
 public class HTTPextern {
 
     public OptPlan op;
@@ -34,10 +33,12 @@ public class HTTPextern {
     String dummy;
     String message;
     String test;
-    int dist=0;
+    int dist = 0;
+    public String plats;
+    int platsgrupp;
 
     public HTTPextern(HTTPny http, DataStore ds) {
-        
+
         this.http = http;
         this.ds = ds;
         sleepTime = 1000;
@@ -45,38 +46,46 @@ public class HTTPextern {
 
     public void exprotokoll() {
 
-        http.ink.get(dist);
-      
+        platsgrupp = Integer.parseInt(http.plats);
+        
+        for (int i = 0; i < platsgrupp ; i++) // kolla om platsen är samma som en annan företagsgrupp
+        {  
+            if ( ){
         //om företagsgruppens id är lägre än en annan så  får den uppdraget
+            }
         
-        if (ID < http.ink.size()) //jämför viåt id med id från de andra
-        
-        if (capacity < http.ut.size()) //jämför kapaciteten
-        
-      //  if( op.pathCost < http.) // jämför minsta kostnad för oss med minsta kostnad för de anrda
-       
-        
-       // if( op.shortestPathList > http.utmess.size()) // jämför antalet uppdarg
-        
+            
+        for (int i = 0; i < platsgrupp ; i++) // kolla hur kostnaden från en bilen till upphämtningsplatsen är
         {
-            System.out.println(""); //
+            if (ID < http.ink.size()) //jämför viåt id med id från de andra
+           
+            {
+               
+        for (int i = 0; i < platsgrupp ; i++)  //jämför hur många uppdrag
+                
+                if (capacity < http.ut.size()) 
+                //
+                //jämför kapaciteten
+                //  if( op.pathCost < http.) // jämför minsta kostnad för oss med minsta kostnad för de anrda
+                // if( op.shortestPathList > http.utmess.size()) // jämför antalet uppdarg
+                {
+                    System.out.println(""); //
+                }
+            }
         }
         System.out.println();
         System.out.println();
 
-    
-
-       
- //  http.platser;
- //  http.plats1;
- //  http.plats2;
- //  http.plats3;
-         
+        //  http.platser;
+        //  http.plats1;
+        //  http.plats2;
+        //  http.plats3;
     }
 
 }
 
-/*public Uppdrag(DataStore ds) { 
+
+public Uppdrag(DataStore ds) { 
         aterstall("1");
         this.ds = ds;
         listaplatser();

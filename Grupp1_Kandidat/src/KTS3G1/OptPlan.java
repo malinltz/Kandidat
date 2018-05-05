@@ -14,9 +14,17 @@ public class OptPlan {
     private DataStore ds;
     private HTTPny http;
     public int platsw= 5;
-    public int start = 2;
-    public int slut = 50;
-    public int Origin = start;
+
+    public int start = 2;//http.ink.get(k)
+
+    //Dessa skall inte vara fixt utan mer som en vektor? 
+    
+
+    public int slut= 5; //Inparametrar av något slag
+
+
+   public int Origin = start;
+
     public int starts;
     public int startupp = 40; //start av uppdrag startar där upphämtningsplatsslutar.
     public int slutupp = 50; //slut av uppdrag 
@@ -24,7 +32,7 @@ public class OptPlan {
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
     
-    public int pathCost = 0;
+    int pathCost = 0;
     int pathCostupp = 0;
     double x = 0;
     double y = 0;
@@ -64,7 +72,7 @@ public class OptPlan {
             edges.add(lane);
         }
          
-       
+   
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
 
@@ -145,9 +153,7 @@ public class OptPlan {
     public int[] getIndex() {
         
         return shortestPathList;
-        
-        
-    
+  
     }
 
     public int getCost() {
