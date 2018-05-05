@@ -154,7 +154,7 @@ public class RobotRutt implements Runnable {
 //        if (Transceiver.utfort!=null){
 //            nodilistan++;
 //            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-//           
+//           op.startupp=list[nodilistan];
 //        }
 //        }
 //    }
