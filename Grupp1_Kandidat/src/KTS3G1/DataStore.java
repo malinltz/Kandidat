@@ -22,7 +22,7 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-    public int start = 57;
+    public int start = 73;
     public int slut;
     int[] arcColor;
 
@@ -91,8 +91,8 @@ public class DataStore {
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 
-            robotX = nodeX[20];
-            robotY = nodeY[20];
+            robotX = nodeX[start];
+            robotY = nodeY[start];
             
         } catch (Exception e) {
             e.printStackTrace();
