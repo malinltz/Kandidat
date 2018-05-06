@@ -16,8 +16,6 @@ public class KTS3G1 {
     //Transceiver tc; 
     //Reciver re; 
 
-    String badress="201410149018"; 
-    String kanal = "1";
     
     
     String URL;
@@ -47,8 +45,6 @@ public class KTS3G1 {
          */
         cui = new ControlUI(ds);
         cui.setVisible(true);
-        cui.bluetoothAdress(badress);
-        cui.bluetoothchannel(kanal);
         
 
       //  op = new OptPlan(ds);

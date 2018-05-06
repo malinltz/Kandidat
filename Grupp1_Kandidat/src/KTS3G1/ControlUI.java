@@ -790,6 +790,11 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
        if (connectToWallE.getText().equals("Connect")){
+           
+      String badress="201410149018"; 
+      String kanal = "1";
+      bluetoothAdress(badress);
+      bluetoothchannel(kanal);
         
       /*Transceiver b1 = new Transceiver();
       Anslutning b1 = new Anslutning();
