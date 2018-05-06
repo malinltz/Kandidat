@@ -101,9 +101,6 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextArea2.append("" + s + "\n");
     }
-
-
-
     public boolean atervant(boolean p) 
     {
         return p;
@@ -516,7 +513,6 @@ public class ControlUI extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -792,10 +788,10 @@ public class ControlUI extends javax.swing.JFrame {
       bluetoothAdress(badress);
       bluetoothchannel(kanal);
         
-      /*Transceiver b1 = new Transceiver();
-      Anslutning b1 = new Anslutning();
+      Transceiver b1 = new Transceiver();
       Thread t6 = new Thread(b1);
-      t6.start();*/
+      t6.start();
+      
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);
        }
@@ -832,7 +828,7 @@ public class ControlUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

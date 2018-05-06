@@ -1,4 +1,4 @@
-/*package KTS3G1;
+package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
 RobotRutt RR;
+ControlUI cui;
 //String lista = "hhhrrhhhrhr";
 String kommando;
 String inskickat = "";
@@ -19,8 +20,9 @@ int antal_passagerare;
 public static String utfort;
 
   public Transceiver() { 
-      String lista = RR.gorutt();
-      System.out.println("\n"+"listan = "+ lista);
+      
+      String lista = RR.rutt;
+      System.out.println("\n"+"lista = "+ lista);
      
        while(true){
        try{
@@ -56,10 +58,12 @@ public static String utfort;
                 for(int i = 0; i< 5;i++){
                    int j = fem - i;
                    if(starten){
-                    System.out.println("AGV värmer upp, startar om " + j + "sekunder" );
+                    System.out.println("AGV värmer upp, startar om " + j + " sekunder" );
+                  //  cui.appendStatus("AGV värmer upp, startar om " + j + "sekunder");
                     starten = false;
                    } else{
                        System.out.println(j + "...");
+                 //      cui.appendStatus(j + "...");
                    }
                       TimeUnit.MILLISECONDS.sleep(1000); 
                 }
@@ -87,10 +91,13 @@ public static String utfort;
                     } 
                     else if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
+                //        cui.appendStatus("AGV har upptäckt en skylt, PONR");
+                        
                         kommando = "w";
                     }
                     else if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
+                   //     cui.appendStatus("Avbryter while-loop och läser nästa kommando");
                          utfort = String.valueOf(lista.charAt(i));
                         break;
                     }
@@ -111,10 +118,8 @@ public static String utfort;
            } catch (InterruptedException ex) {
                Logger.getLogger(Transceiver.class.getName()).log(Level.SEVERE, null, ex);
            } 
-             }
+          }
         }
        public void run (){
         }
     }
-
-*/
