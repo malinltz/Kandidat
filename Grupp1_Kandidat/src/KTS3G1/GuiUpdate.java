@@ -25,33 +25,18 @@ public class GuiUpdate implements Runnable {
             
             int[] kortaste = op.getIndex();
 
-            while (i <= kortaste.length-1) {
+            while (kortaste[i] != 0) {
                 Thread.sleep(sleepTime);
-                
-                if(kortaste[i] == 0)
-                {
-                    System.out.println("Wall-E KLAR");
-                    break;
-                }
 
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
-                
-                //int[] tillbakaX =  ds.robotX;
-                //int[] tillbakaY =  ds.robotY;
-                
-               // System.out.println(kortaste.length);
-               //Om du får felmeddelanden: 
-               //Exception in thread "Thread-0" java.lang.ArrayIndexOutOfBoundsException: -1
-               //at KTS3G1.GuiUpdate.run(GuiUpdate.java:34)
-               //at java.lang.Thread.run(Thread.java:748)
-               //Antaglien för att kortaste.length=1000
+ 
                 i++;
                 cui.repaint();  
             }
 
         } catch (InterruptedException exception) {
         }
-        //cui.appendStatus("GuiUpdate är nu klar!");
+        System.out.println("Wall-E är nu KLAR");
     }
 }

@@ -76,7 +76,7 @@ public class HTTPny {
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
             anslutning.setRequestMethod("GET"); // ny kod
-            //;
+            
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
 
@@ -92,7 +92,7 @@ public class HTTPny {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                System.out.println("Upphämtningsplatser: " + ink.get(k));
+                //System.out.println("Upphämtningsplatser: " + ink.get(k));
                 
                 cui.appendStatus3(ink.get(k));
             }
@@ -103,7 +103,6 @@ public class HTTPny {
             String[] sline;
             String platser[] = new String[storlek];
             String listans[] = new String[storlek];
-            double tot_kostnad = 0;
             double lagstaKostnad = 1000000;
             
             startlist = new int[storlek];
@@ -134,12 +133,19 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
+                 
                  narmstaPlats = platser[j];
-                 narmstaNod = ds.slut;
+                 narmstaNod = stopplist[j];
+                 ds.slut = narmstaNod;          //Funkar inte
              }  
         }
 
            System.out.println("Min value "+ lagstaKostnad);
+           System.out.println("Plats "+ narmstaPlats);
+           System.out.println("narmsta " + narmstaNod);
+           System.out.println("ds.Slut " + ds.slut);
+                op = new OptPlan(ds);
+                op.createPlan();
 
         } catch (Exception c) {
 
@@ -171,7 +177,7 @@ public class HTTPny {
             inkommande.close();
 
             for (int k = 0; k < upp.size(); k++) {
-                System.out.println("Uppdrag: " + upp.get(k));
+                //System.out.println("Uppdrag: " + upp.get(k));
             }
 
             uppdragslista = inkommande_samlat.toString();

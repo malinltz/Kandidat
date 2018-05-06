@@ -29,7 +29,7 @@ public class OptPlan {
       
          nodes = new ArrayList<Vertex>();
          edges = new ArrayList<Edge>();
- 
+         
          /*
             if (ds.atervant){
             slut = startnod; //startnoden;

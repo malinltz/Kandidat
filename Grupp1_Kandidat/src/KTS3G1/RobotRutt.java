@@ -33,7 +33,6 @@ public class RobotRutt implements Runnable {
             
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
-            System.out.println("list " + Arrays.toString(list));
             while(list[i+2] != 0){
 
                 if((ds.nodeX[list[i+1]-1] - ds.nodeX[list[i]-1] > 0) && (ds.nodeY[list[i+1]-1] - ds.nodeY[list[i]-1] == 0)) //Öst
