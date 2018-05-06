@@ -221,9 +221,9 @@ public class HTTPny {
             cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]); 
         }
         
-        for (int j = 0; j < storlek; j++) {
+        for (int j = 0; j < uppsizeInt; j++) {
                 
-                ds.slut = stopplist[j];
+                ds.slut = destNod2[j];
                 op = new OptPlan(ds);
                 op.createPlan();
                 op.getCost();
@@ -234,7 +234,7 @@ public class HTTPny {
                  lagstaKostnad = op.pathCost;
                  System.out.println("RÄTT");
                  narmstaPlats = destination[j];
-                 narmstaNod = stopplist[j];
+                 narmstaNod = destNod2[j];
              }
              else{
                  System.out.println("FEL");
