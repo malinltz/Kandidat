@@ -34,6 +34,7 @@ public class ControlUI extends javax.swing.JFrame {
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
+    boolean simon = false;
     
     void lista(ArrayList k)
     {
@@ -726,23 +727,29 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
 
             http = new HTTPny(ds, op, this);
-            //http.Listaplats();
-            http.listauppdrag("A");
-          //http.utmessages();
-          //http.inmessages();
-           // http.tauppdrag("A", "1", "4", "1");
+            http.Listaplats();
             
             op = new OptPlan(ds);
             op.createPlan();
             op.getCost();
  
             RobotRutt r2 = new RobotRutt(ds, this, op);
-            Thread t3 = new Thread(r2);
-            t3.start();
+            Thread t1 = new Thread(r2);
+            t1.start();
             
             GuiUpdate r1 = new GuiUpdate(ds, this, op);
             Thread t2 = new Thread(r1);
             t2.start();
+            
+            if(simon){
+             http.listauppdrag(http.narmstaPlats);
+           //http.utmessages();
+           //http.inmessages();
+          // http.tauppdrag("A", "1", "4", "1");
+            
+            }
+//            t1.start();
+//            t2.start();
 
          //  Transceiver b1 = new Transceiver();
          //  Thread t6 = new Thread(b1);

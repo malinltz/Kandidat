@@ -152,6 +152,8 @@ public class HTTPny {
                 op = new OptPlan(ds);
                 op.createPlan();
                 op.getCost();
+                cui.simon = true;
+           //ds.start = ds.slut;
 
         } catch (Exception c) {
             System.out.print(c.toString());
@@ -249,6 +251,8 @@ public class HTTPny {
                 op = new OptPlan(ds);
                 op.createPlan();
                 op.getCost();
+                cui.simon = false;
+           
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
