@@ -726,14 +726,15 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
 
             http = new HTTPny(ds, op, this);
-            http.Listaplats();
+            //http.Listaplats();
             http.listauppdrag("A");
           //http.utmessages();
           //http.inmessages();
-            http.tauppdrag("A", "1", "4", "1");
+           // http.tauppdrag("A", "1", "4", "1");
             
             op = new OptPlan(ds);
             op.createPlan();
+            op.getCost();
  
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t3 = new Thread(r2);
@@ -788,9 +789,9 @@ public class ControlUI extends javax.swing.JFrame {
       bluetoothAdress(badress);
       bluetoothchannel(kanal);
         
-      Transceiver b1 = new Transceiver();
-      Thread t6 = new Thread(b1);
-      t6.start();
+      //Transceiver b1 = new Transceiver();
+      //Thread t6 = new Thread(b1);
+      //t6.start();
       
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);

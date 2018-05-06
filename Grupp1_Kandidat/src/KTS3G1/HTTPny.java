@@ -49,6 +49,7 @@ public class HTTPny {
     int[] samakning;
     private int sleepTime;
     int narmstaNod;
+    double lagstaKostnad = 1000000;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -103,7 +104,7 @@ public class HTTPny {
             String[] sline;
             String platser[] = new String[storlek];
             String listans[] = new String[storlek];
-            double lagstaKostnad = 1000000;
+            
             
             startlist = new int[storlek];
             stopplist = new int[storlek];
@@ -137,7 +138,6 @@ public class HTTPny {
                  System.out.println("RÄTT");
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
-                          //Funkar inte
              }
              else{
                  System.out.println("FEL");
@@ -219,10 +219,36 @@ public class HTTPny {
             destNod1[j] =Integer.parseInt(slice[0]);
             destNod2[j] =Integer.parseInt(slice[1]);
             cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]); 
-            
-            //ds.arcStart[j] = destNod1[j];
-            //ds.arcEnd[j] = destNod2[j]; 
         }
+        
+        for (int j = 0; j < storlek; j++) {
+                
+                ds.slut = stopplist[j];
+                op = new OptPlan(ds);
+                op.createPlan();
+                op.getCost();
+
+                cui.svarHTTP("Upp.Plats: " + destination[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
+                
+             if (op.pathCost < lagstaKostnad){
+                 lagstaKostnad = op.pathCost;
+                 System.out.println("RÄTT");
+                 narmstaPlats = destination[j];
+                 narmstaNod = stopplist[j];
+             }
+             else{
+                 System.out.println("FEL");
+             }
+        }
+           ds.slut = narmstaNod;
+           
+           System.out.println("Min value "+ lagstaKostnad);
+           System.out.println("Plats "+ narmstaPlats);
+           System.out.println("narmsta " + narmstaNod);
+           System.out.println("ds.Slut " + ds.slut);
+                op = new OptPlan(ds);
+                op.createPlan();
+                op.getCost();
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());

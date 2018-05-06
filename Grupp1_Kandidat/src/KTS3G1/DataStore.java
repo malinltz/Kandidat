@@ -22,7 +22,7 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-    public int start = 2;
+    public int start = 7;
     public int slut;
     int[] arcColor;
 
