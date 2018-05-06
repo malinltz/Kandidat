@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class RobotRutt implements Runnable {
     public int[] list;
     public int go;
 
-    Transceiver tc; 
+    //Transceiver tc; 
 
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
@@ -33,6 +33,7 @@ public class RobotRutt implements Runnable {
             
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
+            System.out.println("list " + Arrays.toString(list));
             while(list[i+2] != 0){
 
                 if((ds.nodeX[list[i+1]-1] - ds.nodeX[list[i]-1] > 0) && (ds.nodeY[list[i+1]-1] - ds.nodeY[list[i]-1] == 0)) //Öst
@@ -139,6 +140,7 @@ public class RobotRutt implements Runnable {
                 }
                 i++;
             }
+/*
         int nodilistan=0;   
             while(true){
         if (Transceiver.utfort!=null){
@@ -150,9 +152,9 @@ public class RobotRutt implements Runnable {
             nodilistan = 0;
             cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
         }
-            
-        }
-
+         
+        }*/
+ 
             }catch (NumberFormatException exception) {
         }
         cui.appendStatus("Wall-E är nu klar!");
@@ -162,5 +164,3 @@ public class RobotRutt implements Runnable {
         return rutt;
     }
 }
-
-*/

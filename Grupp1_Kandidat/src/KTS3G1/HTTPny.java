@@ -125,7 +125,7 @@ public class HTTPny {
             
             for (int j = 0; j < storlek; j++) {
            
-                System.out.println(ds.slut);
+                //System.out.println(ds.slut);
                 ds.slut = stopplist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
@@ -136,19 +136,10 @@ public class HTTPny {
                  lagstaKostnad = op.pathCost;
                  narmstaPlats = platser[j];
                  narmstaNod = ds.slut;
-             } 
-             
-             System.out.println("Min value "+ lagstaKostnad);
-             
-             
+             }  
         }
 
-
-           System.out.println("Min value "+ op.pathCost);
-           
-
-            Thread.sleep(1000); //vilken sleeptime?
-
+           System.out.println("Min value "+ lagstaKostnad);
 
         } catch (Exception c) {
 
@@ -222,8 +213,6 @@ public class HTTPny {
             //ds.arcEnd[j] = destNod2[j]; 
         }
 
-            Thread.sleep(1000); //vilken sleeptime?
-
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
 
@@ -259,17 +248,12 @@ public class HTTPny {
                 response.append(inputLine);
                 ut.add(inputLine);
             }
-
             inkommande.close();
-
             utmessage = response.toString();
-
 
             //Skriver ut vilket uppdrag vi tagit i statusruta
             cui.tauppdrag("Plats: "  + plats + ", ID: " + ID
             + ", Pass: " + passagerare + ", Grupp: " + grupp + "");    
-
-            Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -302,10 +286,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-
             gruppmessage = inkommande_samlat.toString();
-
-            Thread.sleep(1000); //vilken sleeptime?
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -338,11 +319,7 @@ public class HTTPny {
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-
             gruppmessage = inkommande_samlat.toString();
-
-            Thread.sleep(1000); //vilken sleeptime?
-            //cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -373,16 +350,12 @@ public class HTTPny {
 
                 utmess.add(inkommande_text);
             }
-
             inkommande.close();
+            
             for (int k = 0; k < utmess.size(); k++) {
                 System.out.println("Ink: " + utmess.get(k));
             }
-
             gruppmessage = inkommande_samlat.toString();
-
-            Thread.sleep(1000); //vilken sleeptime?
-            //cui.svarHTTP("Tid för meddelandet osv: " + "\n" + gruppmessage);
 
         } catch (Exception k) {
             System.out.print(k.toString());

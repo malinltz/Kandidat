@@ -725,16 +725,10 @@ public class ControlUI extends javax.swing.JFrame {
         if (startStopp.getText().equals("Start")) {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
-
-
             //startStopp.setBackground(Color.red);
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
             anslut = true;
-            
-            op = new OptPlan(ds);
-            op.createPlan();
-            
-            
+
             http = new HTTPny(ds, op, this);
             http.Listaplats();
             http.listauppdrag("A");
@@ -742,7 +736,9 @@ public class ControlUI extends javax.swing.JFrame {
           //http.inmessages();
             http.tauppdrag("A", "1", "4", "1");
             
-            
+            op = new OptPlan(ds);
+            op.createPlan();
+ 
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t3 = new Thread(r2);
             t3.start();

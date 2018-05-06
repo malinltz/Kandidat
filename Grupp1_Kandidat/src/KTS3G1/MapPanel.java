@@ -6,9 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.lang.Math.*;
 
-/**
- *
- */
 public class MapPanel extends JPanel {
 
     DataStore ds;
@@ -23,7 +20,6 @@ public class MapPanel extends JPanel {
         final Color DARK_COLOR = new Color(0, 0, 0);
         final Color RED_COLOR = new Color(255, 0, 0);
         final Color PURPLE_COLOR = new Color(255, 0, 255);
-      //  final Color CYAN_COLOR = new Color(0, 0, 0);
 
         int x, y;
         int x1, y1;
@@ -53,16 +49,13 @@ public class MapPanel extends JPanel {
             for (int i = 0; i < ds.nodes; i++) {
                 x = (int) (ds.nodeX[i] * xscale);
                 y = (int) (ds.nodeY[i] * yscale);
-
                 g.fillOval(x - (circlesize / 2), height - y - circlesize / 2, circlesize, circlesize);
 
-                //Nodnummer
+                //Ritar ut nodnummer på alla noder
                 String ritaNoder = String.valueOf(ds.nodNamn[i]);
                 String ritaRiktigaNoder = ritaNoder.split("\\.", 2)[0];
-
                 g.drawString(ritaRiktigaNoder, x - ((circlesize - 7) / 2), height - y - ((circlesize + 3) / 2));
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-
             }
 
             // Draw arcs
@@ -71,37 +64,17 @@ public class MapPanel extends JPanel {
                 y1 = (int) (ds.nodeY[ds.arcStart[i] - 1] * yscale);
                 x2 = (int) (ds.nodeX[ds.arcEnd[i] - 1] * xscale);
                 y2 = (int) (ds.nodeY[ds.arcEnd[i] - 1] * yscale);
-
-
-                //Beräknar och ritar ut siffror på båglängden
                 
-              //  int dist;
-              //  dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-
-                
-           
-                ds.arcCost[i] = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
-                System.out.println("arcCost = " + ds.arcCost[i]);
-                
-                ds.arcCost[i]=ds.dist;
-            //   dist = (int)(ds.arcCost[i]) ;
-              
-             //  System.out.println("dist på arcCost = " + dist);
-
-                
-                //g.drawString(String.valueOf(dist), (x1 + x2) / 2, (height - y1 + height - y2) / 2);
-                // g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-
-                //System.out.println("Arc " + i + ": " + ds.arcStart[i] + " " + ds.arcEnd[i]);
+                int dist;
+                //Beräknar bågkostnader
+                dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
+                ds.arcCost[i] = dist;
+                //Om bågkostnaderna är lika med 1 sätt dem röda.
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
-
-  
-
-                    g.drawString(String.valueOf(ds.arcCost), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
+                    g.drawString(String.valueOf(dist), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
                 }
                  else {
-
                     g.setColor(DARK_COLOR);
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);

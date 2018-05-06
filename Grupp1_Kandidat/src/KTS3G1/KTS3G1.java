@@ -14,13 +14,7 @@ public class KTS3G1 {
     RobotRutt RR;
     //HTTPextern hx;
     //Transceiver tc; 
-    //Reciver re; 
-
-    
-    
-    String URL;
-
-   
+    //Reciver re;   
 
     KTS3G1() {
 
