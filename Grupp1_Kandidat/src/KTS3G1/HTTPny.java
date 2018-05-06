@@ -48,7 +48,7 @@ public class HTTPny {
     int[] pass;
     int[] samakning;
     private int sleepTime;
-    int narmstaNod = 0;
+    int narmstaNod;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -123,32 +123,37 @@ public class HTTPny {
             }
             
             for (int j = 0; j < storlek; j++) {
-           
-                //System.out.println(ds.slut);
+                
+                
                 ds.slut = stopplist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
+                op.getCost();
 
                 cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 
+                 System.out.println("RÄTT");
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
-                 ds.slut = narmstaNod;          //Funkar inte
-             }  
+                          //Funkar inte
+             }
+             else{
+                 System.out.println("FEL");
+             }
         }
-
+           ds.slut = narmstaNod;
+           
            System.out.println("Min value "+ lagstaKostnad);
            System.out.println("Plats "+ narmstaPlats);
            System.out.println("narmsta " + narmstaNod);
            System.out.println("ds.Slut " + ds.slut);
                 op = new OptPlan(ds);
                 op.createPlan();
+                op.getCost();
 
         } catch (Exception c) {
-
             System.out.print(c.toString());
         }
     }
@@ -156,8 +161,8 @@ public class HTTPny {
     public String listauppdrag(String plats) {
 
         try {
-
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
+            
             URL urlobjekt1 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);

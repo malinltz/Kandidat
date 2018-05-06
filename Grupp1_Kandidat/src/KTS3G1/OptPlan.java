@@ -9,9 +9,10 @@ public class OptPlan {
    
     private List<Vertex> nodes;
     private List<Edge> edges;
-    //public LinkedList<Vertex> path;
+    public LinkedList<Vertex> path;
     public DataStore ds;
     public HTTPny http;
+    
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
@@ -29,7 +30,7 @@ public class OptPlan {
       
          nodes = new ArrayList<Vertex>();
          edges = new ArrayList<Edge>();
-         
+          
          /*
             if (ds.atervant){
             slut = startnod; //startnoden;
@@ -59,12 +60,12 @@ public class OptPlan {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         
-        // Compute shortest path       
-        dijkstra.execute(nodes.get(ds.start - 1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(ds.slut - 1));
+        // Compute shortest path       (MÅSTE VA -1)
+        dijkstra.execute(nodes.get(ds.start-1));
+        path = dijkstra.getPath(nodes.get(ds.slut-1));
          
         // Get shortest path
-        for (int i = 0; i < path.size()-1; i++) {
+        for (int i = 0; i < path.size(); i++) {
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
 
             x = ds.nodeX[shortestPathList[i] - 1];
@@ -73,8 +74,16 @@ public class OptPlan {
             //System.out.println(" " + x + ", " + y);
             //cui.appendOptText(nodePath); Funkar ej lol okej
         }
+}
+    
+    public int[] getIndex() {
+        
+        return shortestPathList;
+    }
 
-                // Arcs in the shortest path
+    public int getCost() {
+        
+                        // Arcs in the shortest path
         for (int i = 0; i < path.size() - 1; i++) {
             for (int j = 0; j < ds.arcs; j++) {
                 if (ds.arcStart[j] == Integer.parseInt(path.get(i).getId())
@@ -87,15 +96,7 @@ public class OptPlan {
                 }
             }
         }
-}
-    
-    public int[] getIndex() {
         
-        return shortestPathList;
-    }
-
-    public int getCost() {
-         
        return pathCost;
   }
 }
