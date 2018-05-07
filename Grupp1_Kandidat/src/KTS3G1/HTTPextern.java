@@ -54,7 +54,8 @@ public class HTTPextern {
         {  
             if (http.datum[i] < http.datum[i]+1) //kollar så att vi tar in den senaste datan genom att gemföra datan
             {
-                if(http.platser[i]==)
+                if(http.platser[i]== http.paxplats)
+                    paxplats;
             }
         //om företagsgruppens id är lägre än en annan så  får den uppdraget
             }
