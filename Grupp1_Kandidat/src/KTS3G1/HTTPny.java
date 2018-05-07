@@ -21,12 +21,12 @@ public class HTTPny {
     private String gruppmessage;
     private String utmessage;
     
+    private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    
 
     public String plats;
     public String ID;
@@ -36,7 +36,10 @@ public class HTTPny {
     public int storlek;
     public int uppsizeInt;
     public int meddelandet;
-
+    int paxplats[];
+    int kostnad[];
+    String uppdrag[];
+    
     int[] startlist;
     int[] stopplist;
     
@@ -137,13 +140,11 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
+
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
              }
-             else{
-                 System.out.println("FEL");
-             }
+  
              
         }
            ds.slut = narmstaNod;
@@ -235,12 +236,9 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
+
                  narmstaPlats = destination[j];
                  narmstaNod = destNod2[j];
-             }
-             else{
-                 System.out.println("FEL");
              }
         }
            ds.slut = narmstaNod;
@@ -357,45 +355,82 @@ public class HTTPny {
             }
 
             inkommande.close();
+
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
             }
-            gruppmessage = inkommande_samlat.toString();
-            
-            
+           // gruppmessage = inkommande_samlat.toString();        
             String gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
             String[] sline;
-            String paxplats[] = new String[meddelandet];
-            String kostnad[] = new String[meddelandet];
-            String uppdrag[] = new String[meddelandet];
+            int datum[] = new int[meddelandet];
+            int tid[] = new int[meddelandet];
+            int iD[] = new int[meddelandet];
+            String resten[] = new String[meddelandet];
+            String info[] = new String [meddelandet];
+            paxplats = new int[meddelandet];
+            kostnad = new int[meddelandet];
+
+            uppdrag = new String[meddelandet];
 
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
             
+            //Splittar bort datum
+             for (int j = 1; j < meddelandet + 1; j++) {
+                sline = inmess.get(j).split(" ");
+                datum[j - 1] = Integer.parseInt(sline[0]);
+                resten[j - 1] = sline[1];
+               }
+            
+
+             //Splittar bort tiden
             for (int j = 1; j < meddelandet + 1; j++) {
-                sline = inmess.get(j).split("!");
-                paxplats[j - 1] = sline[0];
-                kostnad[j - 1] = sline[1];
-                uppdrag[j - 1] = sline[2];
+                sline = resten[j].split(";");
+                tid[j - 1] = Integer.parseInt(sline[0]);
+                iD[j - 1] = Integer.parseInt(sline[1]);   
+                info[j - 1]= sline[2];
+            }
+            
+            //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
+            for (int f = 1; f < meddelandet + 1; f++) {
+                sline = info[f].split("!");
+                paxplats[f - 1] = Integer.parseInt(sline[0].trim());
+                kostnad[f - 1] = Integer.parseInt(sline[1].trim());
+                uppdrag[f - 1] = sline[2];
             }
 
-            for (int i = 0; i < meddelandet; i++) {
+            //Splittar Vilka uppdrag
+     /*       for (int i = 0; i < meddelandet; i++) {
+
                 sline = uppdrag[i].split(",");
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
 
+              //   System.out.println(uppdrag1);
             }
-            cui.appendStatus3("Bästa uppdrag: " + paxplats + kostnad + uppdrag );
+*/
+           
+        //   uppdragsplatser = (paxplats + kostnad + uppdrag1 + uppdrag2);
+                for (int i = 0; i < meddelandet; i++) 
 
+            {
+                
+            op = new OptPlan(ds);
+            op.createPlan();
+           // System.out.println("Bästa uppdrag: " + uppdrag1 + uppdrag2 );
+           // cui.svaruppdrag("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            }
+               
         } catch (Exception k) {
-            System.out.print(k.toString());
+            System.out.print(k.toString()); 
         }
     }
 
     public void utmessages(String platser) {
-
-        platser = "A!400!1,2";
+     //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
+    platser = ("A!600!1,3");
 
         try { //vad vi hämtar hem från de anrda 
 
@@ -420,7 +455,7 @@ public class HTTPny {
             inkommande.close();
             
             for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
+                //System.out.println("Ink: " + utmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
 

@@ -12,12 +12,13 @@ public class Transceiver implements Runnable{
 RobotRutt RR;
 ControlUI cui;
 
-String lista = "vvhhrrvvhhrr";  // hårdkodad sträcka för att testa h,v,r
+String lista = "vvhhrrvvhhrr";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
 String kommando;
 String inskickat = "";
 String start = "s";
 String pickup = "p";
 int antal_passagerare;
+boolean ansluten = false; 
 public static String utfort;
 public static boolean erik= false;
 
@@ -29,9 +30,9 @@ public static boolean erik= false;
        try{
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
-           erik = true;
-           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
-        //String listan =  lista + pickup;
+           ansluten = true; 
+          // StreamConnection anslutning = (StreamConnection) Anslutning.service;
+          //listan =  lista + pickup;
 
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
