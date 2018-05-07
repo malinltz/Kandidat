@@ -742,7 +742,7 @@ public class ControlUI extends javax.swing.JFrame {
              http.listauppdrag(http.narmstaPlats);
              //http.tauppdrag("A", "1", "4", "1");
              http.inmessages();
-             http.utmessages("hej");
+             http.utmessages(http.grupp); //
             }
           // t1.start();
             //t2.start();

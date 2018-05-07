@@ -22,6 +22,7 @@ public class HTTPny {
     private String gruppmessage;
     private String utmessage;
     
+    private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
     public DataStore ds;
@@ -384,6 +385,7 @@ public class HTTPny {
                 resten[p - 1] = sline[1];
                }
             
+
              //Splittar bort tiden
             for (int j = 1; j < meddelandet + 1; j++) {
                 sline = resten[j].split(";");
@@ -404,15 +406,25 @@ public class HTTPny {
 /*
             //Splittar Vilka uppdrag (Behöves ej?)
             for (int i = 0; i < meddelandet; i++) {
+
                 sline = uppdrag[i].split(",");
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
 
              //cui.appendStatus4((kostnad[i] + uppdrag1[i] + uppdrag2[i]));
             }*/
-           
-            //cui.appendStatus4(Arrays.toString(kostnad) + Arrays.toString(uppdrag1) + Arrays.toString(uppdrag2));
 
+        //   uppdragsplatser = (paxplats + kostnad + uppdrag1 + uppdrag2);
+                for (int i = 0; i < meddelandet; i++) 
+            {
+                
+            op = new OptPlan(ds);
+            op.createPlan();
+           // System.out.println("Bästa uppdrag: " + uppdrag1 + uppdrag2 );
+            //cui.svaruppdrag("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            }
+               
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString()); 
         }
@@ -421,7 +433,7 @@ public class HTTPny {
     public void utmessages(String platser) {
 
      //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-     platser = ("A!600!1,3");
+    platser = ("A!600!1,3");
 
         try { //vad vi hämtar hem från de anrda 
 
