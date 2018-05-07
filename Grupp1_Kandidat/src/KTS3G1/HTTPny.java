@@ -358,7 +358,7 @@ public class HTTPny {
 
             inkommande.close();
             for (int k = 0; k < inmess.size(); k++) {
-                System.out.println("Ink: " + inmess.get(k));
+                //System.out.println("Ink: " + inmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
             
@@ -420,7 +420,7 @@ public class HTTPny {
             inkommande.close();
             
             for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
+                //System.out.println("Ink: " + utmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
 
