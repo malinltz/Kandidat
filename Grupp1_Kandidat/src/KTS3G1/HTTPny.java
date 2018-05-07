@@ -139,12 +139,8 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
-             }
-             else{
-                 System.out.println("FEL");
              }
              
         }
@@ -237,12 +233,8 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
                  narmstaPlats = destination[j];
                  narmstaNod = destNod2[j];
-             }
-             else{
-                 System.out.println("FEL");
              }
         }
            ds.slut = narmstaNod;
@@ -360,7 +352,7 @@ public class HTTPny {
 
             inkommande.close();
             for (int k = 0; k < inmess.size(); k++) {
-                System.out.println("Ink: " + inmess.get(k));
+                //System.out.println("Ink: " + inmess.get(k));
             }
          //   gruppmessage = inkommande_samlat.toString();
             
@@ -450,7 +442,7 @@ public class HTTPny {
             inkommande.close();
             
             for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
+                //System.out.println("Ink: " + utmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
 
