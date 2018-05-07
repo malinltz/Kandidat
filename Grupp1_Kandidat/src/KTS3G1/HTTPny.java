@@ -12,6 +12,7 @@ import java.net.URL;
 //import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
+import java.util.Arrays;
 
 public class HTTPny {
 
@@ -33,8 +34,12 @@ public class HTTPny {
     public String grupp;
     public String listaplats;
     public int storlek;
+    public String gruppess;
     public int uppsizeInt;
     public int meddelandet;
+    int paxplats[];
+    int kostnad[];
+    String uppdrag[];
 
     int[] startlist;
     int[] stopplist;
@@ -354,29 +359,29 @@ public class HTTPny {
                 System.out.println("Ink: " + inmess.get(k));
             }
             //gruppmessage = inkommande_samlat.toString();
-
             
-            
-            String gruppess = inmess.get(0);
+            gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
             String[] sline;
+            System.out.println("HEJSAN");
             int datum[] = new int[meddelandet];
             int tid[] = new int[meddelandet];
             int iD[] = new int[meddelandet];
             String resten[] = new String[meddelandet];
             String info[] = new String [meddelandet];
-            int paxplats[] = new int[meddelandet];
-            int kostnad[] = new int[meddelandet];
-            String uppdrag[] = new String[meddelandet];
-
+            paxplats = new int[meddelandet];
+            kostnad = new int[meddelandet];
+            uppdrag = new String[meddelandet];
+            
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
             
+            
             //Splittar bort datum
-             for (int j = 1; j < meddelandet + 1; j++) {
-                sline = inmess.get(j).split(" ");
-                datum[j - 1] = Integer.parseInt(sline[0]);
-                resten[j - 1] = sline[1];
+             for (int p = 1; p < meddelandet + 1; p++) {
+                sline = inmess.get(p).split(" ");
+                datum[p - 1] = Integer.parseInt(sline[0]);
+                resten[p - 1] = sline[1];
                }
             
              //Splittar bort tiden
@@ -393,21 +398,23 @@ public class HTTPny {
                 paxplats[f - 1] = Integer.parseInt(sline[0].trim());
                 kostnad[f - 1] = Integer.parseInt(sline[1].trim());
                 uppdrag[f - 1] = sline[2];
+                
+                cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
-
-            //Splittar Vilka uppdrag
+/*
+            //Splittar Vilka uppdrag (Behöves ej?)
             for (int i = 0; i < meddelandet; i++) {
                 sline = uppdrag[i].split(",");
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
 
-              //   System.out.println(uppdrag1);
-            }
+             //cui.appendStatus4((kostnad[i] + uppdrag1[i] + uppdrag2[i]));
+            }*/
            
-            cui.appendStatus3("Bästa uppdrag: "  + kostnad + uppdrag1 + uppdrag2 );
+            //cui.appendStatus4(Arrays.toString(kostnad) + Arrays.toString(uppdrag1) + Arrays.toString(uppdrag2));
 
         } catch (Exception k) {
-            System.out.print(k.toString()); 
+            System.out.print("HEJ MALIN " + k.toString()); 
         }
     }
 
