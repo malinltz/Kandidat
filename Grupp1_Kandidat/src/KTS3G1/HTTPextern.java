@@ -59,48 +59,35 @@ public class HTTPextern {
          
                 if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
                 {
+                    
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
                     {
+                        
                         if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
                            
                             {
-                              if(capacitet1==capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma
+                              if(capacitet1==capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
                               {
+                                  if else ( )
+                              }
+                                  
                               if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
                               { 
-                                  
-                              }
-                        }
-                    }
-                }
-            }
-        
-            }
-        
-            
-        for (int i = 0; i < http.meddelandet ; i++) // kolla hur kostnaden från en bilen till upphämtningsplatsen är
-        {
-            if (ID < http.) //jämför viåt id med id från de andra
-           
-            {
-               
-        for (int i = 0; i < http.meddelandet ; i++)  //jämför hur många uppdrag
-                
-                if (capacity < http.ut.size()) 
-                //
-                //jämför kapaciteten
-                //  if( op.pathCost < http.) // jämför minsta kostnad för oss med minsta kostnad för de anrda
-                // if( op.shortestPathList > http.utmess.size()) // jämför antalet uppdarg
-                {
-                    System.out.println(""); //
-                }
-         }
-        for (int i = 0; i < http.meddelandet ; i++) {
-        }
-           
-        }
-        System.out.println();
- 
-    }
+                                 if else (String.valueOf(http.paxplats) < (http.narmstaPlats))
+                                 {
+                                  //gå till nästa uppdrag
+                              
+                                 } 
+                                 else //ta uppdrag 
 
-}
+                              }
+                               //ta uppdrag 
+                        }
+                            //ta uppdrag 
+                    }
+                         //ta uppdrag 
+                }
+                     //ta uppdrag 
+            }
+   
+
