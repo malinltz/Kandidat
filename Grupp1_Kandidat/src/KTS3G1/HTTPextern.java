@@ -38,6 +38,7 @@ public class HTTPextern {
     int dist = 0;
     public String plats;
     int platsgrupp;
+    //int langd=3; 
 
     public HTTPextern(HTTPny http, DataStore ds) {
 
@@ -52,10 +53,19 @@ public class HTTPextern {
         
         for (int i = 0; i < http.meddelandet ; i++) // kolla om platsen är samma som en annan företagsgrupp
         {  
-            if (http.datum[i] < http.datum[i]+1) //kollar så att vi tar in den senaste datan genom att gemföra datan
-            {
+            //if ( < http.tid[i]+1) //kollar så att vi tar in den senaste datan genom att gemföra datan
+           // {
+                if(String.valueOf(http.paxplats).equals(http.narmstaPlats)){
+                    if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)){
+                        if(String.valueOf(http.uppdrag).equals(http.uppdragsid))
+                    }
+                else 
+                        }
+                    else 
+                    }
+                        else
+               paxplats;
                 if(http.platser[i]== http.paxplats)
-                    paxplats;
             }
         //om företagsgruppens id är lägre än en annan så  får den uppdraget
             }
@@ -63,7 +73,7 @@ public class HTTPextern {
             
         for (int i = 0; i < http.meddelandet ; i++) // kolla hur kostnaden från en bilen till upphämtningsplatsen är
         {
-            if (ID < http.ink.size()) //jämför viåt id med id från de andra
+            if (ID < http.) //jämför viåt id med id från de andra
            
             {
                
@@ -78,7 +88,8 @@ public class HTTPextern {
                     System.out.println(""); //
                 }
          }
-        for (int i = 0; i < http.meddelandet ; i++) {}
+        for (int i = 0; i < http.meddelandet ; i++) {
+        }
            
         }
         System.out.println();
