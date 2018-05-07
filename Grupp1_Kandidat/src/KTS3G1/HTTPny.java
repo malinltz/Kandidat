@@ -20,13 +20,15 @@ public class HTTPny {
     public String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
+    public String inmessa;
     
-    private String uppdragsplatser;
+  //  private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
+   // public HTTPextern httpex;
 
     public String plats;
     public String ID;
@@ -70,6 +72,9 @@ public class HTTPny {
         upp = new ArrayList<String>();
         inmess = new ArrayList<String>();
         utmess = new ArrayList<String>();
+        
+        
+    //  String  platser = (kostnad+ "!"+ );
     }
 
     public void Listaplats() {
@@ -319,7 +324,7 @@ public class HTTPny {
             inkommande.close();
            // for (int k = 0; k < utmess.size(); k++) {
            //     System.out.println("Ink: " + utmess.get(k));
-          //  }
+            //  }
             gruppmessage = inkommande_samlat.toString();
 
         } catch (Exception k) {
@@ -330,8 +335,10 @@ public class HTTPny {
 
     public void inmessages() {
 
+        String inmessa=  "!" + narmstaPlats +"!"+ lagstaKostnad + "!"+ID ;
+        
         try { //vad vi hämtar hem från de anrda 
-            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
+            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1"+ inmessa);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -407,17 +414,10 @@ public class HTTPny {
               //   System.out.println(uppdrag1);
             }
            
-        //   uppdragsplatser = (paxplats + kostnad + uppdrag1 + uppdrag2);
-                for (int i = 0; i < meddelandet; i++) 
-
-            {
-                
-            op = new OptPlan(ds);
-            op.createPlan();
-           // System.out.println("Bästa uppdrag: " + uppdrag1 + uppdrag2 );
-            cui.svaruppdrag("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
-            System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
-            }
+    
+            
+          //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
+            
                
         } catch (Exception k) {
             System.out.print(k.toString()); 
@@ -427,7 +427,8 @@ public class HTTPny {
     public void utmessages(String platser) {
 
      //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-    platser = ("A!600!1,3");
+    
+        platser= ("A!750!1,3"); // hämtar info från httpextern
 
         try { //vad vi hämtar hem från de anrda 
 

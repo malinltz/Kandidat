@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
+
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -735,7 +736,7 @@ public class ControlUI extends javax.swing.JFrame {
              http.listauppdrag(http.narmstaPlats);
              //http.tauppdrag("A", "1", "4", "1");
              http.inmessages();
-             http.utmessages(http.grupp); //
+             http.utmessages(http.inmessa); //
             }
           // t1.start();
             //t2.start();
