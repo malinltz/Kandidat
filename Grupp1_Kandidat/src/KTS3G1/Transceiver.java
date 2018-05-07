@@ -17,6 +17,7 @@ String inskickat = "";
 String start = "s";
 String pickup = "p";
 int antal_passagerare;
+boolean ansluten = false; 
 public static String utfort;
 
   public Transceiver() { 
@@ -30,7 +31,7 @@ public static String utfort;
            
            //001A7DDA7106	
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
- 
+           ansluten = true; 
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
         //listan =  lista + pickup;
 
