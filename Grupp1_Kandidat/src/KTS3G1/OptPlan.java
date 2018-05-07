@@ -76,8 +76,8 @@ public class OptPlan {
             //System.out.println(" " + x + ", " + y);
             //cui.appendOptText(nodePath); Funkar ej lol okej
         }
-        
-                                // Arcs in the shortest path
+       
+          // Arcs in the shortest path
         for (int i = 0; i < path.size() - 1; i++) {
             for (int j = 0; j < ds.arcs; j++) {
                 if (ds.arcStart[j] == Integer.parseInt(path.get(i).getId())
@@ -98,7 +98,7 @@ public class OptPlan {
     }
 
     public int getCost() {
-        
+       
        return pathCost;
   }
 }

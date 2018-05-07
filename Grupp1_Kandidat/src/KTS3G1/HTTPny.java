@@ -155,7 +155,7 @@ public class HTTPny {
                 op = new OptPlan(ds);
                 op.createPlan();
                 cui.simon = true;
-           ds.start = narmstaNod;
+           //ds.start = narmstaNod;
 
         } catch (Exception c) {
             System.out.print(c.toString());
