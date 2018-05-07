@@ -20,7 +20,6 @@ public class HTTPny {
     public String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
-    public int malin=0;
     
     public OptPlan op;
     OptPlan[] opt;
@@ -156,7 +155,7 @@ public class HTTPny {
                 op = new OptPlan(ds);
                 op.createPlan();
                 cui.simon = true;
-           //ds.start = ds.slut;
+           ds.start = narmstaNod;
 
         } catch (Exception c) {
             System.out.print(c.toString());

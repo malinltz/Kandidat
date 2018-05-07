@@ -107,15 +107,6 @@ public class ControlUI extends javax.swing.JFrame {
         return p;
     }
 
-    
-    //Används inte
-   /* void appendStatus3(String s) 
-    {
-        statusuppdTextArea.append("" + s + "\n");
-    }
-*/
-    //Vet inte om den använd
-
     //Används inte
     public void appendOptText(String s) 
     {

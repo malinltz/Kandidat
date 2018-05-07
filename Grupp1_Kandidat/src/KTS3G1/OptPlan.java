@@ -67,12 +67,12 @@ public class OptPlan {
         path = dijkstra.getPath(nodes.get(ds.slut-1));
          
         // Get shortest path
-        for (int i = 0; i < path.size(); i++) {
+        for (int i = 0; i < path.size(); i++) { 
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
 
-            x = ds.nodeX[shortestPathList[i] - 1];
-            y = ds.nodeY[shortestPathList[i] - 1];
-            String nodePath = (" " + x + ", " + y);
+            x = ds.nodeX[shortestPathList[i] - 1]; // DETTA ANVÄNDS EJ
+            y = ds.nodeY[shortestPathList[i] - 1]; // DETTA ANVÄNDS EJ
+            String nodePath = (" " + x + ", " + y); // DETTA ANVÄNDS EJ
             //System.out.println(" " + x + ", " + y);
             //cui.appendOptText(nodePath); Funkar ej lol okej
         }
