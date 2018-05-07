@@ -103,6 +103,13 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextArea2.append("" + s + "\n");
     }
+    
+    //Skriver ut uppdragsplatserna från metoden Listaplats
+    void appendStatus4(String s) 
+    {
+        jTextArea2.append("Vad alla andra tar: " + s + "\n");
+    }
+    
     public boolean atervant(boolean p) 
     {
         return p;
