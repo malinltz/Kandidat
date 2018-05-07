@@ -782,9 +782,9 @@ public class ControlUI extends javax.swing.JFrame {
       bluetoothAdress(badress);
       bluetoothchannel(kanal);
         
-      //Transceiver b1 = new Transceiver();
-      //Thread t6 = new Thread(b1);
-      //t6.start();
+      Transceiver b1 = new Transceiver();
+      Thread t6 = new Thread(b1);
+      t6.start();
       
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);

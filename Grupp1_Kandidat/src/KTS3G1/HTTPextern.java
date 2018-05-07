@@ -45,6 +45,14 @@ public class HTTPextern {
         sleepTime = 1000;
         
         int langd = 3; 
+       // http.plats
+       
+    /*   for(int i = 0; i < langd; i ++){
+           if(){
+               
+           }
+       }
+       */
         
         
     }

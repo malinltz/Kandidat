@@ -1,4 +1,4 @@
-/*package KTS3G1;
+package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -12,7 +12,7 @@ public class Transceiver implements Runnable{
 RobotRutt RR;
 ControlUI cui;
 
-//String lista = "hhvhvhhrrr";  // hårdkodad sträcka för att testa h,v,r
+String lista = "vvhhrrvvhhrr";  // hårdkodad sträcka för att testa h,v,r
 String kommando;
 String inskickat = "";
 String start = "s";
@@ -22,9 +22,8 @@ public static String utfort;
 public static boolean erik= false;
 
   public Transceiver() { 
-      
-      String lista = RobotRutt.rutt;
-      System.out.println("\n"+"lista = "+ lista);
+      // lista = RobotRutt.rutt;
+      System.out.println("\n"+"lista = "+ lista + "\n");
      
        while(true){
        try{
@@ -32,7 +31,7 @@ public static boolean erik= false;
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
            erik = true;
            // StreamConnection anslutning = (StreamConnection) Anslutning.service;
-        //listan =  lista + pickup;
+        //String listan =  lista + pickup;
 
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
@@ -77,17 +76,17 @@ public static boolean erik= false;
                 inskickat = "";
                
                 while(true){
-             // listan =  lista + pickup;
-                for(int i = 0; i < lista.length(); i++) {
+             String listan =  lista + pickup;
+                for(int i = 0; i < listan.length(); i++) {
                  utfort = null;
-                 kommando = String.valueOf(lista.charAt(i));
+                 kommando = String.valueOf(listan.charAt(i));
                  System.out.println(kommando);
                     while(true){
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
                       // System.out.println("Upprepar kommando");
-                       TimeUnit.MILLISECONDS.sleep(100);
+                     //  TimeUnit.MILLISECONDS.sleep(100);
                     } 
                     else if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
@@ -98,7 +97,7 @@ public static boolean erik= false;
                     else if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
                    //     cui.appendStatus("Avbryter while-loop och läser nästa kommando");
-                         utfort = String.valueOf(lista.charAt(i));
+                         utfort = String.valueOf(listan.charAt(i));
                         break;
                     }
                     else{
@@ -106,7 +105,7 @@ public static boolean erik= false;
                     } 
                 }
             }
-                if(lista.equals("")){
+                if(listan.equals("")){
                     break;
                   //  System.out.println("Uppdragslistan är tom");
                 }
@@ -122,4 +121,4 @@ public static boolean erik= false;
         }
        public void run (){
         }
-    }*/
+    }
