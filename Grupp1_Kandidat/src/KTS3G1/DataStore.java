@@ -22,7 +22,7 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-    public int start = 73;
+    public int start = 63; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt.
     public int slut;
     int[] arcColor;
 
@@ -91,8 +91,8 @@ public class DataStore {
             networkRead = true;  // Indicate that all network data is in place in the DataStore
             updateUIflag = true;
 
-            robotX = nodeX[start];
-            robotY = nodeY[start];
+            robotX = nodeX[start-1]; //Sätts till -1 för att få rätt startNod
+            robotY = nodeY[start-1]; //Sätts till -1 för att få rätt startNod
             
         } catch (Exception e) {
             e.printStackTrace();
