@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -122,4 +122,4 @@ public static boolean erik= false;
         }
        public void run (){
         }
-    }
+    }*/
