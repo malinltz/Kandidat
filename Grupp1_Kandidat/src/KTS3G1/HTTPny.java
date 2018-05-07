@@ -129,7 +129,6 @@ public class HTTPny {
                 ds.slut = stopplist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
-                op.getCost();
 
                 cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
                 
@@ -151,7 +150,6 @@ public class HTTPny {
            System.out.println("ds.Slut " + ds.slut);
                 op = new OptPlan(ds);
                 op.createPlan();
-                op.getCost();
                 cui.simon = true;
            //ds.start = ds.slut;
 
@@ -228,7 +226,6 @@ public class HTTPny {
                 ds.slut = destNod2[j];
                 op = new OptPlan(ds);
                 op.createPlan();
-                op.getCost();
 
                 cui.svarHTTP("Upp.Plats: " + destination[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
                 
@@ -250,7 +247,6 @@ public class HTTPny {
            System.out.println("ds.Slut " + ds.slut);
                 op = new OptPlan(ds);
                 op.createPlan();
-                op.getCost();
                 cui.simon = false;
            
 

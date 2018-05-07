@@ -731,7 +731,6 @@ public class ControlUI extends javax.swing.JFrame {
             
             op = new OptPlan(ds);
             op.createPlan();
-            op.getCost();
  
             RobotRutt r2 = new RobotRutt(ds, this, op);
             Thread t1 = new Thread(r2);
