@@ -59,35 +59,46 @@ public class HTTPextern {
          
                 if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
                 {
-                    
+                 
+                    else http.tauppdrag(); //ta uppdrag
+                }
+
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
                     {
-                        
+                        if else(http.kostnad < http.lagstaKostnad) 
+                                {
+                                    else (http.kostnad < http.lagstaKostnad) 
+                    }
                         if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
-                           
+                       
                             {
-                              if(capacitet1==capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
+                                if else ()
+                                        {
+                                        else
+                                            
+                              if(capacitet1 == capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
                               {
-                                  if else ( )
+                                  if else ( )//gå till nästa upphämtningsplats
                               }
+                              else //ta uppdrag 
                                   
                               if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
-                              { 
-                                 if else (String.valueOf(http.paxplats) < (http.narmstaPlats))
-                                 {
-                                  //gå till nästa uppdrag
-                              
-                                 } 
-                                 else //ta uppdrag 
+                              {
+                                    if else (String.valueOf(http.paxplats) < (http.narmstaPlats)) //gå till nästa upphämtningsplats
+                              } 
+                              else //ta uppdrag
+                                  
+                                  }
+                              else //ta uppdrag 
 
                               }
-                               //ta uppdrag 
+                             else  //ta uppdrag 
                         }
-                            //ta uppdrag 
+                         else   //ta uppdrag 
                     }
-                         //ta uppdrag 
+                else     //ta uppdrag 
                 }
-                     //ta uppdrag 
+        else       //ta uppdrag 
             }
    
 
