@@ -792,13 +792,17 @@ public class ControlUI extends javax.swing.JFrame {
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);
        }
-       /*
+       if (Transceiver.ansluten==true) //om det finns anslutning 
+       {
+            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+       }
+       
        if (Transceiver.ansluten == false)//om  anslutning bryts
        {
        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
        connectToWallE.setEnabled(true);
        connectToWallE.setSelected(true);
-       }*/
+       }
     }//GEN-LAST:event_connectToWallEActionPerformed
 
 
