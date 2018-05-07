@@ -714,7 +714,7 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             //startStopp.setBackground(Color.red);
-            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
+            
             anslut = true;
 
             http = new HTTPny(ds, op, this);
@@ -747,7 +747,7 @@ public class ControlUI extends javax.swing.JFrame {
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setBackground(new java.awt.Color(0, 255, 0));
-            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+            
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
@@ -793,15 +793,11 @@ public class ControlUI extends javax.swing.JFrame {
       connectToWallE.setSelected(false);
        }
        /*
-       if ()//om recivern tar emot något. Receiver.Anslutning.mottaget !=null??
-       jTextField1.setBackground(new java.awt.Color(0, 255, 0));
-       
-      while(true){
-          if(){ //om recivern inte får emot något. Receiver.Anslutning.mottaget =null??
-            connectToWallE.setEnabled(true);
-            connectToWallE.setSelected(true);
-            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
-              }
+       if (Transceiver.ansluten == false)//om  anslutning bryts
+       {
+       jTextField1.setBackground(new java.awt.Color(255, 0, 0));
+       connectToWallE.setEnabled(true);
+       connectToWallE.setSelected(true);
        }*/
     }//GEN-LAST:event_connectToWallEActionPerformed
 
