@@ -1,5 +1,7 @@
 package KTS3G1;
 
+
+
 import java.util.*;
 
 public class OptPlan {
