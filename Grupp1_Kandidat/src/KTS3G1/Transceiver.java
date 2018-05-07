@@ -11,27 +11,27 @@ import java.util.logging.Logger;
 public class Transceiver implements Runnable{
 RobotRutt RR;
 ControlUI cui;
-//String lista = "hhhrrhhhrhr";
+
+//String lista = "hhvhvhhrrr";  // hårdkodad sträcka för att testa h,v,r
 String kommando;
 String inskickat = "";
 String start = "s";
 String pickup = "p";
 int antal_passagerare;
 public static String utfort;
+public static boolean erik= false;
 
   public Transceiver() { 
       
-      String lista = RR.rutt;
+      String lista = RobotRutt.rutt;
       System.out.println("\n"+"lista = "+ lista);
      
        while(true){
        try{
            //201410149018:1
-           
-           //001A7DDA7106	
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
- 
-          // StreamConnection anslutning = (StreamConnection) Anslutning.service;
+           erik = true;
+           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
         //listan =  lista + pickup;
 
            PrintStream bluetooth_ut
@@ -102,7 +102,7 @@ public static String utfort;
                         break;
                     }
                     else{
-                        System.out.println("Spegling funkar ej, helvete då...");
+                        System.out.println("Spegling funkar ej...");
                     } 
                 }
             }

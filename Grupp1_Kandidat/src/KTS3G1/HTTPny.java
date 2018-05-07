@@ -17,10 +17,9 @@ public class HTTPny {
 
     public String message;
     public String uppdragslista;
-    String narmstaPlats;
+    public String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
-    public int malin=0;
     
     public OptPlan op;
     OptPlan[] opt;
@@ -36,9 +35,13 @@ public class HTTPny {
     public String listaplats;
     public int storlek;
     public int uppsizeInt;
+    public int meddelandet;
 
     int[] startlist;
     int[] stopplist;
+    
+    int []uppdrag1;
+    int []uppdrag2;
 
     String[] uppdragsid;
     String[] destination;
@@ -48,12 +51,13 @@ public class HTTPny {
     int[] pass;
     int[] samakning;
     private int sleepTime;
-    int narmstaNod = 0;
+    int narmstaNod;
+    double lagstaKostnad = 1000000;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
-    ArrayList<String> ut;
-    ArrayList<String> utmess;
+    ArrayList<String> inmess; //meddelandet in från företagsguppen
+    ArrayList<String> utmess; //meddelandet ut från oss till företagsgrupperna
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
@@ -63,7 +67,7 @@ public class HTTPny {
 
         ink = new ArrayList<String>();
         upp = new ArrayList<String>();
-        ut = new ArrayList<String>();
+        inmess = new ArrayList<String>();
         utmess = new ArrayList<String>();
     }
 
@@ -103,7 +107,7 @@ public class HTTPny {
             String[] sline;
             String platser[] = new String[storlek];
             String listans[] = new String[storlek];
-            double lagstaKostnad = 1000000;
+            
             
             startlist = new int[storlek];
             stopplist = new int[storlek];
@@ -123,8 +127,8 @@ public class HTTPny {
             }
             
             for (int j = 0; j < storlek; j++) {
-           
-                //System.out.println(ds.slut);
+                
+                
                 ds.slut = stopplist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
@@ -133,22 +137,27 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 
+                 System.out.println("RÄTT");
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
-                 ds.slut = narmstaNod;          //Funkar inte
-             }  
+             }
+             else{
+                 System.out.println("FEL");
+             }
+             
         }
-
+           ds.slut = narmstaNod;
+           
            System.out.println("Min value "+ lagstaKostnad);
            System.out.println("Plats "+ narmstaPlats);
            System.out.println("narmsta " + narmstaNod);
            System.out.println("ds.Slut " + ds.slut);
                 op = new OptPlan(ds);
                 op.createPlan();
+                cui.simon = true;
+           //ds.start = narmstaNod;
 
         } catch (Exception c) {
-
             System.out.print(c.toString());
         }
     }
@@ -156,8 +165,8 @@ public class HTTPny {
     public String listauppdrag(String plats) {
 
         try {
-
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
+            
             URL urlobjekt1 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
@@ -214,10 +223,36 @@ public class HTTPny {
             destNod1[j] =Integer.parseInt(slice[0]);
             destNod2[j] =Integer.parseInt(slice[1]);
             cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]); 
-            
-            //ds.arcStart[j] = destNod1[j];
-            //ds.arcEnd[j] = destNod2[j]; 
         }
+        
+        for (int j = 0; j < uppsizeInt; j++) {
+                
+                ds.slut = destNod2[j];
+                op = new OptPlan(ds);
+                op.createPlan();
+
+                cui.svarHTTP("Upp.Plats: " + destination[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
+                
+             if (op.pathCost < lagstaKostnad){
+                 lagstaKostnad = op.pathCost;
+                 System.out.println("RÄTT");
+                 narmstaPlats = destination[j];
+                 narmstaNod = destNod2[j];
+             }
+             else{
+                 System.out.println("FEL");
+             }
+        }
+           ds.slut = narmstaNod;
+           
+           System.out.println("Min value "+ lagstaKostnad);
+           System.out.println("Plats "+ narmstaPlats);
+           System.out.println("narmsta " + narmstaNod);
+           System.out.println("ds.Slut " + ds.slut);
+                op = new OptPlan(ds);
+                op.createPlan();
+                cui.simon = false;
+           
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
@@ -252,7 +287,7 @@ public class HTTPny {
 
             while ((inputLine = inkommande.readLine()) != null) {
                 response.append(inputLine);
-                ut.add(inputLine);
+                upp.add(inputLine);
             }
             inkommande.close();
             utmessage = response.toString();
@@ -289,9 +324,9 @@ public class HTTPny {
             }
 
             inkommande.close();
-            for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
-            }
+           // for (int k = 0; k < utmess.size(); k++) {
+           //     System.out.println("Ink: " + utmess.get(k));
+          //  }
             gruppmessage = inkommande_samlat.toString();
 
         } catch (Exception k) {
@@ -318,14 +353,40 @@ public class HTTPny {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
-                utmess.add(inkommande_text);
+                inmess.add(inkommande_text);
             }
 
             inkommande.close();
-            for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
+            for (int k = 0; k < inmess.size(); k++) {
+                System.out.println("Ink: " + inmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
+            
+            
+            String gruppess = inmess.get(0);
+            meddelandet = Integer.parseInt(gruppess);
+            String[] sline;
+            String paxplats[] = new String[meddelandet];
+            String kostnad[] = new String[meddelandet];
+            String uppdrag[] = new String[meddelandet];
+
+            uppdrag1 = new int[meddelandet];
+            uppdrag2 = new int[meddelandet];
+            
+            for (int j = 1; j < meddelandet + 1; j++) {
+                sline = inmess.get(j).split("!");
+                paxplats[j - 1] = sline[0];
+                kostnad[j - 1] = sline[1];
+                uppdrag[j - 1] = sline[2];
+            }
+
+            for (int i = 0; i < meddelandet; i++) {
+                sline = uppdrag[i].split(",");
+                uppdrag1[i] = Integer.parseInt(sline[0].trim());
+                uppdrag2[i] = Integer.parseInt(sline[1].trim());
+
+            }
+            cui.appendStatus3("Bästa uppdrag: " + paxplats + kostnad + uppdrag );
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -334,7 +395,7 @@ public class HTTPny {
 
     public void utmessages(String platser) {
 
-        platser = "A!400!1";
+        platser = "A!400!1,2";
 
         try { //vad vi hämtar hem från de anrda 
 

@@ -1,6 +1,7 @@
 package KTS3G1;
 
 import java.util.Random;
+import java.util.Arrays;
 
 
 public class GuiUpdate implements Runnable {
@@ -24,7 +25,7 @@ public class GuiUpdate implements Runnable {
             int i = 0;
             
             int[] kortaste = op.getIndex();
-
+            System.out.println(Arrays.toString(kortaste));
             while (kortaste[i] != 0) {
                 Thread.sleep(sleepTime);
 

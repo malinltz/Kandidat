@@ -34,6 +34,7 @@ public class ControlUI extends javax.swing.JFrame {
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
+    boolean simon = false;
     
     void lista(ArrayList k)
     {
@@ -105,15 +106,6 @@ public class ControlUI extends javax.swing.JFrame {
     {
         return p;
     }
-
-    
-    //Används inte
-   /* void appendStatus3(String s) 
-    {
-        statusuppdTextArea.append("" + s + "\n");
-    }
-*/
-    //Vet inte om den använd
 
     //Används inte
     public void appendOptText(String s) 
@@ -727,21 +719,27 @@ public class ControlUI extends javax.swing.JFrame {
 
             http = new HTTPny(ds, op, this);
             http.Listaplats();
-            http.listauppdrag("A");
-          //http.utmessages();
-          //http.inmessages();
-            http.tauppdrag("A", "1", "4", "1");
             
             op = new OptPlan(ds);
             op.createPlan();
  
             RobotRutt r2 = new RobotRutt(ds, this, op);
-            Thread t3 = new Thread(r2);
-            t3.start();
+            Thread t1 = new Thread(r2);
+            t1.start();
             
             GuiUpdate r1 = new GuiUpdate(ds, this, op);
             Thread t2 = new Thread(r1);
             t2.start();
+            
+            if(simon){
+             http.listauppdrag(http.narmstaPlats);
+             http.utmessages(http.narmstaPlats);
+             http.inmessages();
+             http.tauppdrag("A", "1", "4", "1");
+            
+            }
+          // t1.start();
+            //t2.start();
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -784,9 +782,9 @@ public class ControlUI extends javax.swing.JFrame {
       bluetoothAdress(badress);
       bluetoothchannel(kanal);
         
-      Transceiver b1 = new Transceiver();
-      Thread t6 = new Thread(b1);
-      t6.start();
+      //Transceiver b1 = new Transceiver();
+      //Thread t6 = new Thread(b1);
+      //t6.start();
       
       connectToWallE.setEnabled(false);
       connectToWallE.setSelected(false);
