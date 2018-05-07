@@ -42,6 +42,7 @@ public class HTTPny {
     
     int []uppdrag1;
     int []uppdrag2;
+   String datumer;
 
     String[] uppdragsid;
     String[] destination;
@@ -360,24 +361,36 @@ public class HTTPny {
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
             }
-            gruppmessage = inkommande_samlat.toString();
+         //   gruppmessage = inkommande_samlat.toString();
             
             
             String gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
             String[] sline;
-            String paxplats[] = new String[meddelandet];
-            String kostnad[] = new String[meddelandet];
+            int datum[] = new int[meddelandet];
+            int tid[] = new int[meddelandet];
+            String info[] = new String [meddelandet];
+            int paxplats[] = new int[meddelandet];
+            int kostnad[] = new int[meddelandet];
             String uppdrag[] = new String[meddelandet];
 
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
             
+             for (int j = 1; j < meddelandet + 1; j++) {
+                sline = inmess.get(j).split(" ");
+                datum[j - 1] = Integer.parseInt(sline[0]);
+                tid[j - 1] = Integer.parseInt(sline[1]);
+                info[j-1]= sline[2];
+                
+               }
+            
             for (int j = 1; j < meddelandet + 1; j++) {
-                sline = inmess.get(j).split("!");
-                paxplats[j - 1] = sline[0];
-                kostnad[j - 1] = sline[1];
+                sline = info[j].split("!");
+                paxplats[j - 1] = Integer.parseInt(sline[0].trim());
+                kostnad[j - 1] = Integer.parseInt(sline[1].trim());
                 uppdrag[j - 1] = sline[2];
+                
             }
 
             for (int i = 0; i < meddelandet; i++) {
@@ -385,17 +398,20 @@ public class HTTPny {
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
 
+              //   System.out.println(uppdrag1);
             }
-            cui.appendStatus3("Bästa uppdrag: " + paxplats + kostnad + uppdrag );
+           
+            cui.appendStatus3("Bästa uppdrag: "  + kostnad + uppdrag1 + uppdrag2 );
 
         } catch (Exception k) {
-            System.out.print(k.toString());
+            System.out.print(k.toString()); 
         }
     }
 
     public void utmessages(String platser) {
 
-        platser = "A!400!1,2";
+     //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
+     platser = ("A!600!1,3");
 
         try { //vad vi hämtar hem från de anrda 
 
