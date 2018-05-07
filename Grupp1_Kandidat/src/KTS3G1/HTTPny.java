@@ -138,12 +138,8 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
                  narmstaPlats = platser[j];
                  narmstaNod = stopplist[j];
-             }
-             else{
-                 System.out.println("FEL");
              }
              
         }
@@ -236,12 +232,8 @@ public class HTTPny {
                 
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
-                 System.out.println("RÄTT");
                  narmstaPlats = destination[j];
                  narmstaNod = destNod2[j];
-             }
-             else{
-                 System.out.println("FEL");
              }
         }
            ds.slut = narmstaNod;
