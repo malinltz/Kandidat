@@ -397,7 +397,7 @@ public class HTTPny {
             for (int j = 1; j < meddelandet + 1; j++) {
                 sline = resten[j].split(";");
                 tid[j - 1] = Integer.parseInt(sline[0]);
-                iD[j - 1] = Integer.parseInt(sline[1]);   
+                iD[j - 1] = Integer.parseInt(sline[1]); //ID för de som de andra företagsgrupperna
                 info[j - 1]= sline[2];
             }
             

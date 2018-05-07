@@ -39,6 +39,9 @@ public class HTTPextern {
     public String plats;
     int platsgrupp;
     //int langd=3; 
+    int capacitet4= 20; //fixt capacitet för grupp 4
+    int capacitet5= 50; //fixt capacitet för grupp 5
+    int capacitet1= 60; //fixt capacitet för grupp 1(vår grupp)
 
     public HTTPextern(HTTPny http, DataStore ds) {
 
@@ -51,23 +54,27 @@ public class HTTPextern {
 
        // platsgrupp = Integer.parseInt(http.plats);
         
-        for (int i = 0; i < http.meddelandet ; i++) // kolla om platsen är samma som en annan företagsgrupp
+        for (int i = 0; i < http.meddelandet ; i++) 
         {  
-            //if ( < http.tid[i]+1) //kollar så att vi tar in den senaste datan genom att gemföra datan
-           // {
-                if(String.valueOf(http.paxplats).equals(http.narmstaPlats)){
-                    if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)){
-                        if(String.valueOf(http.uppdrag).equals(http.uppdragsid))
-                    }
-                else 
+         
+                if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
+                {
+                    if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
+                    {
+                        if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
+                           
+                            {
+                              if(capacitet1==capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma
+                              {
+                              if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
+                              { 
+                                  
+                              }
                         }
-                    else 
                     }
-                        else
-               paxplats;
-                if(http.platser[i]== http.paxplats)
+                }
             }
-        //om företagsgruppens id är lägre än en annan så  får den uppdraget
+        
             }
         
             
