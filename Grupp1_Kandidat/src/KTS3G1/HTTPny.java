@@ -21,6 +21,7 @@ public class HTTPny {
     private String gruppmessage;
     private String utmessage;
     
+    private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
     public DataStore ds;
@@ -385,7 +386,8 @@ public class HTTPny {
                 
                }
             
-            for (int j = 1; j < meddelandet + 1; j++) {
+            for (int j = 1; j < meddelandet + 1; j++) 
+            {
                 sline = info[j].split("!");
                 paxplats[j - 1] = Integer.parseInt(sline[0].trim());
                 kostnad[j - 1] = Integer.parseInt(sline[1].trim());
@@ -393,7 +395,9 @@ public class HTTPny {
                 
             }
 
-            for (int i = 0; i < meddelandet; i++) {
+            for (int i = 0; i < meddelandet; i++) 
+                
+            {
                 sline = uppdrag[i].split(",");
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
@@ -401,8 +405,18 @@ public class HTTPny {
               //   System.out.println(uppdrag1);
             }
            
-            cui.appendStatus3("Bästa uppdrag: "  + kostnad + uppdrag1 + uppdrag2 );
+        //   uppdragsplatser = (paxplats + kostnad + uppdrag1 + uppdrag2);
+                for (int i = 0; i < meddelandet; i++) 
 
+            {
+                
+            op = new OptPlan(ds);
+            op.createPlan();
+           // System.out.println("Bästa uppdrag: " + uppdrag1 + uppdrag2 );
+            cui.svaruppdrag("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1[i] + uppdrag2[i]);
+            }
+               
         } catch (Exception k) {
             System.out.print(k.toString()); 
         }
@@ -411,7 +425,7 @@ public class HTTPny {
     public void utmessages(String platser) {
 
      //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-     platser = ("A!600!1,3");
+    platser = ("A!600!1,3");
 
         try { //vad vi hämtar hem från de anrda 
 

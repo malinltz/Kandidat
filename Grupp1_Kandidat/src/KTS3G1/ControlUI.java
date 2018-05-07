@@ -85,6 +85,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + p + "\n");
     }
 
+    void svaruppdrag(String p) 
+    {
+        statusuppdTextArea.append("" + p + "\n");
+    }
     //Skriver ut kördirektiv för Wall-E från RobotRutt
     void appendStatus(String s) 
     {
@@ -735,7 +739,7 @@ public class ControlUI extends javax.swing.JFrame {
              http.listauppdrag(http.narmstaPlats);
              http.tauppdrag("A", "1", "4", "1");
              http.inmessages();
-             http.utmessages("hej");
+             http.utmessages(http.grupp); //
             }
           // t1.start();
             //t2.start();
