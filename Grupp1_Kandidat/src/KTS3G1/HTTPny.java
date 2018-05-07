@@ -27,7 +27,6 @@ public class HTTPny {
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    
 
     public String plats;
     public String ID;
@@ -351,10 +350,12 @@ public class HTTPny {
             }
 
             inkommande.close();
+            
             for (int k = 0; k < inmess.size(); k++) {
-                //System.out.println("Ink: " + inmess.get(k));
+                System.out.println("Ink: " + inmess.get(k));
             }
-         //   gruppmessage = inkommande_samlat.toString();
+            //gruppmessage = inkommande_samlat.toString();
+
             
             
             String gruppess = inmess.get(0);
@@ -362,6 +363,8 @@ public class HTTPny {
             String[] sline;
             int datum[] = new int[meddelandet];
             int tid[] = new int[meddelandet];
+            int iD[] = new int[meddelandet];
+            String resten[] = new String[meddelandet];
             String info[] = new String [meddelandet];
             int paxplats[] = new int[meddelandet];
             int kostnad[] = new int[meddelandet];
@@ -370,26 +373,33 @@ public class HTTPny {
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
             
+            //Splittar bort datum
              for (int j = 1; j < meddelandet + 1; j++) {
                 sline = inmess.get(j).split(" ");
                 datum[j - 1] = Integer.parseInt(sline[0]);
-                tid[j - 1] = Integer.parseInt(sline[1]);
-                info[j-1]= sline[2];
-                
+                resten[j - 1] = sline[1];
                }
             
-            for (int j = 1; j < meddelandet + 1; j++) 
-            {
-                sline = info[j].split("!");
-                paxplats[j - 1] = Integer.parseInt(sline[0].trim());
-                kostnad[j - 1] = Integer.parseInt(sline[1].trim());
-                uppdrag[j - 1] = sline[2];
-                
+
+             //Splittar bort tiden
+            for (int j = 1; j < meddelandet + 1; j++) {
+                sline = resten[j].split(";");
+                tid[j - 1] = Integer.parseInt(sline[0]);
+                iD[j - 1] = Integer.parseInt(sline[1]);   
+                info[j - 1]= sline[2];
+            }
+            
+            //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
+            for (int f = 1; f < meddelandet + 1; f++) {
+                sline = info[f].split("!");
+                paxplats[f - 1] = Integer.parseInt(sline[0].trim());
+                kostnad[f - 1] = Integer.parseInt(sline[1].trim());
+                uppdrag[f - 1] = sline[2];
             }
 
-            for (int i = 0; i < meddelandet; i++) 
-                
-            {
+            //Splittar Vilka uppdrag
+            for (int i = 0; i < meddelandet; i++) {
+
                 sline = uppdrag[i].split(",");
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());

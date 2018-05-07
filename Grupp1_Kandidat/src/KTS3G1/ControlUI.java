@@ -85,10 +85,6 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("" + p + "\n");
     }
 
-    void svaruppdrag(String p) 
-    {
-        statusuppdTextArea.append("" + p + "\n");
-    }
     //Skriver ut kördirektiv för Wall-E från RobotRutt
     void appendStatus(String s) 
     {
