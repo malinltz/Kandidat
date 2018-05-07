@@ -748,8 +748,8 @@ public class ControlUI extends javax.swing.JFrame {
              http.tauppdrag("A", "1", "4", "1");
             
             }
-//            t1.start();
-//            t2.start();
+          // t1.start();
+            //t2.start();
 
          //  Transceiver b1 = new Transceiver();
          //  Thread t6 = new Thread(b1);

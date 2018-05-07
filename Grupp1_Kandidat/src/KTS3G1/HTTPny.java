@@ -17,7 +17,7 @@ public class HTTPny {
 
     public String message;
     public String uppdragslista;
-    String narmstaPlats;
+    public String narmstaPlats;
     private String gruppmessage;
     private String utmessage;
     public int malin=0;
@@ -36,9 +36,13 @@ public class HTTPny {
     public String listaplats;
     public int storlek;
     public int uppsizeInt;
+    public int meddelandet;
 
     int[] startlist;
     int[] stopplist;
+    
+    int []uppdrag1;
+    int []uppdrag2;
 
     String[] uppdragsid;
     String[] destination;
@@ -53,8 +57,8 @@ public class HTTPny {
 
     ArrayList<String> ink;
     ArrayList<String> upp;
-    ArrayList<String> ut;
-    ArrayList<String> utmess;
+    ArrayList<String> inmess; //meddelandet in från företagsguppen
+    ArrayList<String> utmess; //meddelandet ut från oss till företagsgrupperna
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
@@ -64,7 +68,7 @@ public class HTTPny {
 
         ink = new ArrayList<String>();
         upp = new ArrayList<String>();
-        ut = new ArrayList<String>();
+        inmess = new ArrayList<String>();
         utmess = new ArrayList<String>();
     }
 
@@ -142,6 +146,7 @@ public class HTTPny {
              else{
                  System.out.println("FEL");
              }
+             
         }
            ds.slut = narmstaNod;
            
@@ -287,7 +292,7 @@ public class HTTPny {
 
             while ((inputLine = inkommande.readLine()) != null) {
                 response.append(inputLine);
-                ut.add(inputLine);
+                upp.add(inputLine);
             }
             inkommande.close();
             utmessage = response.toString();
@@ -324,9 +329,9 @@ public class HTTPny {
             }
 
             inkommande.close();
-            for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
-            }
+           // for (int k = 0; k < utmess.size(); k++) {
+           //     System.out.println("Ink: " + utmess.get(k));
+          //  }
             gruppmessage = inkommande_samlat.toString();
 
         } catch (Exception k) {
@@ -353,14 +358,40 @@ public class HTTPny {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
-                utmess.add(inkommande_text);
+                inmess.add(inkommande_text);
             }
 
             inkommande.close();
-            for (int k = 0; k < utmess.size(); k++) {
-                System.out.println("Ink: " + utmess.get(k));
+            for (int k = 0; k < inmess.size(); k++) {
+                System.out.println("Ink: " + inmess.get(k));
             }
             gruppmessage = inkommande_samlat.toString();
+            
+            
+            String gruppess = inmess.get(0);
+            meddelandet = Integer.parseInt(gruppess);
+            String[] sline;
+            String paxplats[] = new String[meddelandet];
+            String kostnad[] = new String[meddelandet];
+            String uppdrag[] = new String[meddelandet];
+
+            uppdrag1 = new int[meddelandet];
+            uppdrag2 = new int[meddelandet];
+            
+            for (int j = 1; j < meddelandet + 1; j++) {
+                sline = inmess.get(j).split("!");
+                paxplats[j - 1] = sline[0];
+                kostnad[j - 1] = sline[1];
+                uppdrag[j - 1] = sline[2];
+            }
+
+            for (int i = 0; i < meddelandet; i++) {
+                sline = uppdrag[i].split(",");
+                uppdrag1[i] = Integer.parseInt(sline[0].trim());
+                uppdrag2[i] = Integer.parseInt(sline[1].trim());
+
+            }
+            cui.appendStatus3("Bästa uppdrag: " + paxplats + kostnad + uppdrag );
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -369,7 +400,7 @@ public class HTTPny {
 
     public void utmessages(String platser) {
 
-        platser = "A!400!1";
+        platser = "A!400!1,2";
 
         try { //vad vi hämtar hem från de anrda 
 
