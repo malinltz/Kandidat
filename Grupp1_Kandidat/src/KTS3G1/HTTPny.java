@@ -90,7 +90,7 @@ public class HTTPny implements Runnable {
     public void run() {
         try{
             
-        while(u < 1000){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+        while(ds.passeradenoder == u ){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
             
             Listaplats(); //Optimerar rutt till upphämtningsplats
              
