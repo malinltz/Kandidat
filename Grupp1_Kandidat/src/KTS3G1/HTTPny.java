@@ -344,38 +344,6 @@ public class HTTPny implements Runnable {
         return uppdrag_valt;
     }
 
-    public String aterstall(int Scenarionr) {
-
-        try { //vad vi hämtar hem från de andra 
-            String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
-
-            URL urlobjekt3 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
-            System.out.println("\nAnropar: " + url);
-
-            int mottagen_status = anslutning.getResponseCode();
-            System.out.println("Statuskod: " + mottagen_status);
-
-            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-            String inkommande_text = "";
-            StringBuffer inkommande_samlat = new StringBuffer();
-
-            while ((inkommande_text = inkommande.readLine()) != null) {
-                inkommande_samlat.append(inkommande_text);
-                ater.add(inkommande_text);
-            }
-
-            inkommande.close();
-            // for (int k = 0; k < utmess.size(); k++) {
-            //     System.out.println("Ink: " + utmess.get(k));
-            //  }
-          //  gruppmessage = inkommande_samlat.toString();
-
-        } catch (Exception k) {
-            System.out.print(k.toString());
-        }
-        return gruppmessage;
-    }
 
     public void inmessages() {
 
@@ -544,6 +512,39 @@ public class HTTPny implements Runnable {
         }
         return utmessage;
         //returnerar beviljas om uppdraget är kvar och annars nekas
+    }
+     
+    public String aterstall(int Scenarionr) {
+
+        try { //vad vi hämtar hem från de andra 
+            String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
+
+            URL urlobjekt3 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
+            System.out.println("\nAnropar: " + url);
+
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text = "";
+            StringBuffer inkommande_samlat = new StringBuffer();
+
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+                ater.add(inkommande_text);
+            }
+
+            inkommande.close();
+            // for (int k = 0; k < utmess.size(); k++) {
+            //     System.out.println("Ink: " + utmess.get(k));
+            //  }
+          //  gruppmessage = inkommande_samlat.toString();
+
+        } catch (Exception k) {
+            System.out.print(k.toString());
+        }
+        return gruppmessage;
     }
 
    /* public String newmesssage() {
