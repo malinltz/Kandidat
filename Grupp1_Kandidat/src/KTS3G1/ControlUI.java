@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
+
 public class ControlUI extends javax.swing.JFrame {
 
     DataStore ds;
@@ -108,6 +109,13 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextArea2.append("Vad alla andra tar: " + s + "\n");
     }
+    
+    //Skriver ut alla andras meddelande
+    void appendStatus5(String s) 
+    {
+        jTextField3.setText("Vad alla andra vill ha: " + s + "\n");
+    }
+    
     
     public boolean atervant(boolean p) 
     {
@@ -740,9 +748,9 @@ public class ControlUI extends javax.swing.JFrame {
             
             if(simon){
              http.listauppdrag(http.narmstaPlats);
-             //http.tauppdrag("A", "1", "4", "1");
              http.inmessages();
-             http.utmessages(http.grupp); //
+             http.utmessages(http.inmessa); //
+             http.tauppdrag("A", "1", "4", "1");
             }
           // t1.start();
             //t2.start();
@@ -800,6 +808,7 @@ public class ControlUI extends javax.swing.JFrame {
       connectToWallE.setSelected(false);
        }
        /*
+       while(true) {
        if (Transceiver.ansluten==true) //om det finns anslutning 
        {
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
@@ -810,6 +819,7 @@ public class ControlUI extends javax.swing.JFrame {
        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
        connectToWallE.setEnabled(true);
        connectToWallE.setSelected(true);
+       }
        }
        */
     }//GEN-LAST:event_connectToWallEActionPerformed
