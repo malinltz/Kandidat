@@ -43,7 +43,7 @@ public void run(){
                 {
                    ds.passeradenoder = ds.passeradenoder +1;
                    RobotRutt.rutt="";             //Tömmer kommandon när alla är körda
-                   ds.Number_of_passagers = 0;                   //Nollställer passagerarantal
+                   ds.Antal_passagerare = 0;                   //Nollställer passagerarantal
                  //  ds.passant  = new int[IntStorlek]; 
 
                }

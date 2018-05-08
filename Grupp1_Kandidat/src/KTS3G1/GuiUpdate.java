@@ -8,7 +8,7 @@ public class GuiUpdate{
     private int sleepTime;
     private static Random generator = new Random();
     public ControlUI cui;
-    public DataStore ds;
+    public DataStore ds; 
     public OptPlan op;
     public HTTPny http;
     public int[] kortaste;
