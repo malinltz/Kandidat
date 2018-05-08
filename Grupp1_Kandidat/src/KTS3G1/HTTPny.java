@@ -24,15 +24,12 @@ public class HTTPny implements Runnable {
     private String utmessage;
     public String inmessa;
 
-    //  private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
-    OptPlan pathOpt1;
-    OptPlan pathOpt2;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    public HTTPextern httpex;
+    //public HTTPextern httpex;
 
 
     public String plats;
