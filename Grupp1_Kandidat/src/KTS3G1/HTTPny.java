@@ -35,15 +35,16 @@ public class HTTPny {
     public String ID;
     public String passagerare;
     public String grupp;
-    public String listaplats;
-    public int storlek;
+    public String listaplats;//startnod eller? 
+    public int storlek; //
     public String gruppess;
-    public int uppsizeInt;
+    public int uppsizeInt; 
     public int meddelandet;
     
     int paxplats[];
     int kostnad[];
     String uppdrag[];
+    String uppdrag_valt; 
 
     public int[] startlist;
     public int[] stopplist;
@@ -293,16 +294,25 @@ public class HTTPny {
             inkommande.close();
             utmessage = response.toString();
 
-            //Skriver ut vilket uppdrag vi tagit i statusruta
-            cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+            
+            //väljer uppdrag 
+            for (int j=0; j<uppsizeInt; j++){
 
-            //counter för att räkna antalet passagerare, den ska räkna för varje uppdrag. fixa till 
-           // for (int k = 0; k < upp.size(); k++) {
-             //   passagerare.length();
-             //   pass[k];
-            //    k++;
-          //  }
+            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+            {
+            uppdrag_valt=uppdragsid[j];//vet inte riktigt vad denna gör 
+                
+                //Skriver ut vilket uppdrag vi tagit i statusruta
+                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
+                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+                    
+                break;
+                   
+            }
+            else if (j==uppsizeInt-1) {
+             cui.appendStatus("Vi kan inte ta emot fler");
+            }
+        }
 
         } catch (Exception e) {
             System.out.println(e.toString());
