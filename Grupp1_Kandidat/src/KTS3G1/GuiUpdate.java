@@ -26,8 +26,10 @@ public class GuiUpdate{
             kortaste[i] = op.shortestPathList[i];
             i++;
         }
-        kortaste[i] = http.narmstaNod3;
-        System.out.print("GUIUpdate: " + Arrays.toString(kortaste));
+
+        kortaste[i] = http.narmstaNod2;
+        System.out.print(" GUIUpdate: " + Arrays.toString(kortaste));
+
     }
 
     public void GuiUpdaterar() {

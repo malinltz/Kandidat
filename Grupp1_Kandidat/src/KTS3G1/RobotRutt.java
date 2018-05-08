@@ -33,7 +33,7 @@ public class RobotRutt {
             list[i] = op.shortestPathList[i];    
             i++;
         }
-        list[i] = http.narmstaNod3;
+        list[i] = http.narmstaNod2;
         System.out.print(" RobotRutt: " + Arrays.toString(list));
     }
     
@@ -47,6 +47,7 @@ public class RobotRutt {
             while(i <= list.length-2){
                 
                 if(list[i] == list[list.length-2]){
+                    //ds.start = http.narmstaNod;
                     break;
                 }
                         
@@ -175,8 +176,4 @@ public class RobotRutt {
         
         return rutt;
     }
-
-  //  public String gorutt() { 
-  //      return rutt;
-   // }
 }

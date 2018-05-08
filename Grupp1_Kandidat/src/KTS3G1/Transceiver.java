@@ -22,7 +22,7 @@ public static String utfort;
 
   public Transceiver() { 
       
-      String lista = RR.rutt;
+      String lista = RR.getRobotrutt();
       System.out.println("\n"+"lista = "+ lista);
      
        while(true){

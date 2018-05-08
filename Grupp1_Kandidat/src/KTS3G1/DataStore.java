@@ -23,10 +23,12 @@ public class DataStore {
     double robotX;
     double robotY;
     public int start = 63; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt.
+    public int robotPos = start;
     public int slut;
     public int startnod=0; 
     public int kapacitet =8;
     int[] arcColor;
+    int totPoang = 0;
 
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data

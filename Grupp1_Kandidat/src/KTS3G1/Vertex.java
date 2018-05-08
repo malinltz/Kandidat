@@ -5,7 +5,6 @@
  */
 package KTS3G1;
 
-
 /**
  *
  * @author malinlilliecreutz

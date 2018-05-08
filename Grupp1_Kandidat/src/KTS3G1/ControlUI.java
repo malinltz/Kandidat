@@ -56,10 +56,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("Taget uppdrag: " + "\n" + p + "\n");
     }
 
-    //Används inte
-    void showStatus(String p) 
+    //Används för poäng beräkning osv
+    void showStatus(int p) 
     {
-        jTextArea2.append("Uppdragsplats " + p + "\n");
+        statusuppdTextArea.append("Antal poäng " + p + "\n");
     }
 
     //Används inte
@@ -715,10 +715,10 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setText("Stop");
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             //startStopp.setBackground(Color.red);
-            
             anslut = true;
 
             http = new HTTPny(ds, op, this);
+
             http.Listaplats();
             
             op = new OptPlan(ds);
@@ -739,6 +739,8 @@ public class ControlUI extends javax.swing.JFrame {
             }
           // t1.start();
             //t2.start();
+            Thread t1 = new Thread(http);
+            t1.start();       
 
          //  Transceiver b1 = new Transceiver();
          //  Thread t6 = new Thread(b1);
@@ -747,7 +749,6 @@ public class ControlUI extends javax.swing.JFrame {
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
             startStopp.setBackground(new java.awt.Color(0, 255, 0));
-            
         }
 
     }//GEN-LAST:event_startStoppActionPerformed
