@@ -29,7 +29,7 @@ public class HTTPny {
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    public HTTPextern httpex;
+  //  public HTTPextern httpex;
 
     public String plats;
     public String ID;
