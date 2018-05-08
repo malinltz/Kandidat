@@ -688,8 +688,8 @@ public class ControlUI extends javax.swing.JFrame {
 
     private void startPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startPositionActionPerformed
 
-        if (startPosition.getText().equals("Återvänd till startposition")) {
-            startPosition.setText("Återvänder");
+        if (startPosition.getText().equals("Return Wall-E home")) {
+            startPosition.setText("Returning");
             //startPosition.setBackground(Color.red);
             //startPosition.setForeground(new java.awt.Color(255, 0, 0));
             startPosition.setEnabled(false);

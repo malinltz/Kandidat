@@ -40,11 +40,12 @@ public class HTTPny {
     public String gruppess;
     public int uppsizeInt; 
     public int meddelandet;
+    public int uppdrags_counter;
     
     int paxplats[];
     int kostnad[];
     String uppdrag[];
-    String uppdrag_valt; 
+    
 
     public int[] startlist;
     public int[] stopplist;
@@ -263,62 +264,7 @@ public class HTTPny {
         return uppdragslista;
     }
 
-    public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
-
-        try { //lägger upp uppdrag
-            String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
-
-            URL urlobjekt2 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
-
-            anslutning.setRequestMethod("POST");
-            anslutning.setDoOutput(true);
-
-            DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
-            wr.flush();
-            wr.close();
-
-            System.out.println("\nSending 'POST' request to URL : " + url);
-            int responseCode = anslutning.getResponseCode();
-            System.out.println("Statuskod: " + responseCode);
-
-            BufferedReader inkommande = new BufferedReader(
-                    new InputStreamReader(anslutning.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
-
-            while ((inputLine = inkommande.readLine()) != null) {
-                response.append(inputLine);
-                upp.add(inputLine);
-            }
-            inkommande.close();
-            utmessage = response.toString();
-
-            
-            //väljer uppdrag 
-            for (int j=0; j<uppsizeInt; j++){
-
-            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
-            {
-            uppdrag_valt=uppdragsid[j];//vet inte riktigt vad denna gör 
-                
-                //Skriver ut vilket uppdrag vi tagit i statusruta
-                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
-                    
-                break;
-                   
-            }
-            else if (j==uppsizeInt-1) {
-             cui.appendStatus("Vi kan inte ta emot fler");
-            }
-        }
-
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        return utmessage;
-    }
+   
 
     public String aterstall(int Scenarionr) {
 
@@ -480,6 +426,63 @@ public class HTTPny {
         } catch (Exception k) {
             System.out.print(k.toString());
         }
+    }
+     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
+
+        try { //lägger upp uppdrag
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
+
+            URL urlobjekt2 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
+
+            anslutning.setRequestMethod("POST");
+            anslutning.setDoOutput(true);
+
+            DataOutputStream wr = new DataOutputStream(anslutning.getOutputStream());
+            wr.flush();
+            wr.close();
+
+            System.out.println("\nSending 'POST' request to URL : " + url);
+            int responseCode = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + responseCode);
+
+            BufferedReader inkommande = new BufferedReader(
+                    new InputStreamReader(anslutning.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = inkommande.readLine()) != null) {
+                response.append(inputLine);
+                upp.add(inputLine);
+            }
+            inkommande.close();
+            utmessage = response.toString();
+
+            
+            //Här väljer vi uppdrag och kollar kapacitet 
+            for (int j=0; j<uppsizeInt; j++){
+
+            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+            {
+            ID=uppdragsid[j];//vet inte riktigt vad denna gör 
+            uppdrags_counter++;
+                //Skriver ut vilket uppdrag vi har tagit i statusruta
+                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
+                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+                    
+                break;
+                   
+            }
+            else if (j==uppsizeInt-1) //om kapaciteten är max 
+            {
+             cui.appendStatus("Vi kan inte ta emot fler");
+            }
+        }
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return utmessage;
     }
 
     public String newmesssage() {
