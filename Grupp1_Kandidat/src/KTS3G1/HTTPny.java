@@ -75,6 +75,7 @@ public class HTTPny implements Runnable {
     ArrayList<String> upp; // 
     ArrayList<String> inmess; //meddelandet in från företagsguppen
     ArrayList<String> utmess; //meddelandet ut från oss till företagsgrupperna
+    ArrayList<String> ater; //återsteller
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
@@ -86,6 +87,7 @@ public class HTTPny implements Runnable {
         upp = new ArrayList<String>(); // 
         inmess = new ArrayList<String>();//meddelandet in från företagsguppen
         utmess = new ArrayList<String>(); //meddelandet ut från oss till företagsgrupperna
+        ater = new ArrayList<String>() ; //återsteller
     }
 
     @Override 
@@ -360,7 +362,7 @@ public class HTTPny implements Runnable {
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
-                utmess.add(inkommande_text); //gör en annan arraylist?
+                ater.add(inkommande_text);
             }
 
             inkommande.close();
@@ -466,14 +468,14 @@ public class HTTPny implements Runnable {
         }
     }
 
-    public void utmessages(String platser) {
+    public void utmessages(String info) {
 
         //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-        platser = ("A!750!1,3"); // hämtar info från httpextern
+        info = ("A!750!1,3"); // det optimala valet för oss
 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + platser);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + info);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -502,9 +504,10 @@ public class HTTPny implements Runnable {
             System.out.print(k.toString());
         }
     }
-     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
+     public String tauppdrag(String plats, String ID, String passagerare, String grupp) { //hämtar från httpextern
 
         try { //lägger upp uppdrag
+            
             String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
 
             URL urlobjekt2 = new URL(url);
@@ -540,6 +543,7 @@ public class HTTPny implements Runnable {
             System.out.println(e.toString());
         }
         return utmessage;
+        //returnerar beviljas om uppdraget är kvar och annars nekas
     }
 
    /* public String newmesssage() {
