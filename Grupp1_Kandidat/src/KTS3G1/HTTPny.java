@@ -371,6 +371,9 @@ public class HTTPny {
 
             gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
+            
+            cui.appendStatus5(gruppess);
+            
             String[] sline;
             System.out.println("HEJSAN");
             int datum[] = new int[meddelandet];

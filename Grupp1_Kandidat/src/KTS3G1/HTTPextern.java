@@ -13,7 +13,7 @@ import java.net.URL;
 import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
 import java.util.ArrayList;
-
+*/
 /**
  *
  * @author malinlilliecreutz
@@ -60,9 +60,10 @@ public class HTTPextern {
                 if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
                 {
                  
-                    else System.out.println("Ta uppdraget"); //om det inte är samma så ta man uppdraget. 
+                    else {
+                    System.out.println("Ta uppdraget"); //om det inte är samma så ta man uppdraget. 
                     
-                    http.tauppdrag();
+                    http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
                 }
 
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
@@ -70,41 +71,54 @@ public class HTTPextern {
                         if else(http.kostnad < http.lagstaKostnad) //om kostnaden för de andra är mindre än lägsta kostnaden så får de andra uppdraget
                                  //går ut och ta näst bästa
                                 {
-                                    else (http.kostnad > http.lagstaKostnad) 
+                                    else
+                                    
+                                    http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
                     }
                         if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
                        
                             {
-                                if else ()
+                                if else ((http.uppdrag) < (http.uppdragsid))
+                                        //går ut och ta näst bästa
                                         {
-                                        else
+                                else 
+                                http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
                                             
                               if(capacitet1 == capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
                               {
-                                  if else ( )//gå till nästa upphämtningsplats
+                                  if else ( capacitet1< capacitet4 || capacitet1 < capacitet5)
+                            //gå till nästa upphämtningsplats
                               }
-                              else //ta uppdrag 
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag 
                                   
                               if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
                               {
-                                    if else (String.valueOf(http.paxplats) < (http.narmstaPlats)) //gå till nästa upphämtningsplats
+                                    if else (String.valueOf(http.paxplats) < (http.narmstaPlats)) 
+                                    //gå till nästa upphämtningsplats
                               } 
-                              else //ta uppdrag
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag
                                   
                                   }
-                              else //ta uppdrag 
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                            //ta uppdrag 
 
                               }
-                             else  //ta uppdrag 
+                             else  http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag 
                         }
-                         else   //ta uppdrag 
+                         else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                        //ta uppdrag 
                     }
         
-                else     //ta uppdrag 
+                else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                     }
+                //ta uppdrag 
                 }
     
-        else       //ta uppdrag 
-            }
-
+        
+        //ta uppdrag 
+            
 
 */

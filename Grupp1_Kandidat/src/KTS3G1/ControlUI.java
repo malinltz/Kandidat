@@ -110,6 +110,13 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.append("Vad alla andra tar: " + s + "\n");
     }
     
+    //Skriver ut alla andras meddelande
+    void appendStatus5(String s) 
+    {
+        jTextField3.setText("Vad alla andra vill ha: " + s + "\n");
+    }
+    
+    
     public boolean atervant(boolean p) 
     {
         return p;
