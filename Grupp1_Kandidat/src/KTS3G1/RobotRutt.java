@@ -46,6 +46,7 @@ public class RobotRutt implements Runnable {
             while(i <= list.length-2){
                 
                 if(list[i] == list[list.length-2]){
+                    //ds.start = http.narmstaNod;
                     break;
                 }
                         
