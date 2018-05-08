@@ -760,7 +760,7 @@ public class ControlUI extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
 
     }//GEN-LAST:event_jTextField1ActionPerformed
-      
+    
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
            String kanal = "1";
            jTextField6.setText(kanal);

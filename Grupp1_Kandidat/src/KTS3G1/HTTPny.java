@@ -31,6 +31,7 @@ public class HTTPny implements Runnable {
     public RobotRutt RR;
     public GuiUpdate gu;
     //public HTTPextern httpex;
+    int NumberOfpassengers; 
 
 
     public String plats;
@@ -44,7 +45,10 @@ public class HTTPny implements Runnable {
     public int meddelandet;
 
     int paxplats[];
+    
     int kostnad[];
+    int iD[];
+    
     String uppdrag[];
     String uppdrag_valt;
     public int uppdrags_counter;
@@ -72,10 +76,11 @@ public class HTTPny implements Runnable {
     double lagstaKostnad = 1000000;
     int u = 0;
 
-    ArrayList<String> ink;
-    ArrayList<String> upp;
+    ArrayList<String> ink; //alla inkommande platser
+    ArrayList<String> upp; // 
     ArrayList<String> inmess; //meddelandet in från företagsguppen
     ArrayList<String> utmess; //meddelandet ut från oss till företagsgrupperna
+    ArrayList<String> ater; //återsteller
 
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
@@ -83,18 +88,28 @@ public class HTTPny implements Runnable {
         this.cui = cui;
         sleepTime = 1000; //1000 millisekunder
 
-        ink = new ArrayList<String>();
-        upp = new ArrayList<String>();
-        inmess = new ArrayList<String>();
-        utmess = new ArrayList<String>();
+        ink = new ArrayList<String>(); //alla inkommande platser
+        upp = new ArrayList<String>(); // 
+        inmess = new ArrayList<String>();//meddelandet in från företagsguppen
+        utmess = new ArrayList<String>(); //meddelandet ut från oss till företagsgrupperna
+        ater = new ArrayList<String>() ; //återsteller
     }
 
     @Override 
     public void run() {
        
         try{
+
+
+            
+        while(ds.passeradenoder == u ){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+
             Thread.sleep(sleepTime);
-        while(u < 1){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+        
+
+            Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
+         //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+
             
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
@@ -119,13 +134,16 @@ public class HTTPny implements Runnable {
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
-            //int dummy;
-            //dummy = Integer.parseInt(uppdrag_valt);
-            //ds.totPoang = ds.totPoang + nuPoints[dummy+1];  //Här beräknar vi poäng för uppdraget
-            //cui.showStatus(ds.totPoang);
+             
+             //Räknar totala poängen för uppdragen. 
+                int dummy; 
+                dummy = (Integer.parseInt(uppdrag_valt));
+                ds.totPoang = ds.totPoang + ds.poang[dummy];
+                System.out.println("Totala poäng: " + ds.totPoang);
+                //cui.appendStatus(ds.poang.toString());
             
             //Någonstans här kolla antalet passagerare
-            
+            NumberOfpassengers = getPassagerare(Integer.parseInt(uppdrag_valt));
             //utmassage(String plats?) här kanske?
             
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
@@ -148,23 +166,28 @@ public class HTTPny implements Runnable {
                 
                 gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
                 gu.GuiUpdaterar();
-                
-                
+    
             }
             else {
-                System.out.println("Svar från hemsida: " + svaruppdrag);
+                svaruppdrag.equals("nekas");
+                //System.out.println("Svar från hemsida: " + svaruppdrag); //vilket uppdrag vi tar
             }
-            
+                System.out.println("Svar från hemsida: " + svaruppdrag); //vilket uppdrag vi tar
                 ds.start = narmstaNod4;
-                u++;
+                u++; //counter för antal uppdrag
                
-        } 
-        }catch (InterruptedException e) { 
-            System.out.print(e.toString()); 
+         
         }
+        }catch (InterruptedException e) {System.out.print(e.toString()); }
     }
 
-    public void Listaplats() {
+    
+    
+    
+
+
+    public void Listaplats() { // lista på alla besöksplatser.
+
 
         try { // Kopplar upp till listan och hämtar info och returnerar
             String url = ("http://tnk111.n7.se/listaplatser.php");
@@ -194,11 +217,11 @@ public class HTTPny implements Runnable {
                 cui.appendStatus3(ink.get(k));
             }
 
-            listaplats = ink.get(0);
-            storlek = Integer.parseInt(listaplats);
+            listaplats = ink.get(0); //delar upp infon i  en string
+            storlek = Integer.parseInt(listaplats); //gör om till en int
             String[] sline;
-            String platser[] = new String[storlek];
-            String listans[] = new String[storlek];
+            String platser[] = new String[storlek]; //skapar array för platser
+            String listans[] = new String[storlek]; //skapar array för listan
 
             startlist = new int[storlek];
             stopplist = new int[storlek];
@@ -254,13 +277,16 @@ public class HTTPny implements Runnable {
                     narmstaNod = startlist[j];
                     narmstaNod2 = stopplist[j];
                 }
+               // System.out.println("Bästa platsen är: " + narmstaPlats);
             }
+            
+            
         } catch (Exception c) {
             System.out.print(c.toString());
         }
     }
 
-    public String listauppdrag(String plats) {
+    public String listauppdrag(String plats) { //läser in alla uppdag på den platsen man befinner sig i.
 
         try {
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
@@ -335,7 +361,7 @@ public class HTTPny implements Runnable {
 
 
             
-            for (int j=0; j<uppsizeInt; j++){
+            for (int j=0; j <uppsizeInt; j++){
 
 
             if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
@@ -346,13 +372,12 @@ public class HTTPny implements Runnable {
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
-                    + ", Pass: " + pass); //error på pass? varför? 
-                            //+ ", Grupp: " + grupp + "");
+                    + ", Pass: " + pass + ", Grupp: 1"); //skriv om pass till en int
                     
                 break;
                    
             }
-            else if (j==(uppsizeInt-1)) //om kapaciteten är max 
+            else if (j == (uppsizeInt-1)) //om kapaciteten är max 
             {
              cui.appendStatus("Vi kan inte ta emot fler");
             }
@@ -364,39 +389,17 @@ public class HTTPny implements Runnable {
         }
         return uppdrag_valt;
     }
-
-    public String aterstall(int Scenarionr) {
-
-        try { //vad vi hämtar hem från de andra 
-            String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
-
-            URL urlobjekt3 = new URL(url);
-            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
-            System.out.println("\nAnropar: " + url);
-
-            int mottagen_status = anslutning.getResponseCode();
-            System.out.println("Statuskod: " + mottagen_status);
-
-            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
-            String inkommande_text = "";
-            StringBuffer inkommande_samlat = new StringBuffer();
-
-            while ((inkommande_text = inkommande.readLine()) != null) {
-                inkommande_samlat.append(inkommande_text);
-                utmess.add(inkommande_text);
-            }
-
-            inkommande.close();
-            // for (int k = 0; k < utmess.size(); k++) {
-            //     System.out.println("Ink: " + utmess.get(k));
-            //  }
-            gruppmessage = inkommande_samlat.toString();
-
-        } catch (Exception k) {
-            System.out.print(k.toString());
-        }
-        return gruppmessage;
+    public int getPassagerare(int uppdrag_valt){
+      
+      int passagerardummy = uppdrag_valt;
+       
+      ds.Antal_passagerare = pass[passagerardummy]; 
+      
+   
+        
+      return NumberOfpassengers; 
     }
+
 
     public void inmessages() {
 
@@ -437,7 +440,7 @@ public class HTTPny implements Runnable {
             System.out.println("HEJSAN");
             int datum[] = new int[meddelandet];
             int tid[] = new int[meddelandet];
-            int iD[] = new int[meddelandet];
+            iD = new int[meddelandet];
             String resten[] = new String[meddelandet];
             String info[] = new String[meddelandet];
             paxplats = new int[meddelandet];
@@ -466,14 +469,13 @@ public class HTTPny implements Runnable {
             //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
             for (int f = 1; f < meddelandet + 1; f++) {
                 sline = info[f].split("!");
-                paxplats[f - 1] = Integer.parseInt(sline[0].trim());
-                kostnad[f - 1] = Integer.parseInt(sline[1].trim());
+                paxplats[f - 1] = Integer.parseInt(sline[0]);
+                kostnad[f - 1] = Integer.parseInt(sline[1]);
                 uppdrag[f - 1] = sline[2];
 
                 cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
                 
             }
-
 /*
 =======
 >>>>>>> 487ee0a50034b8d45cc3b29595eff648fd8cefea
@@ -485,8 +487,6 @@ public class HTTPny implements Runnable {
                 uppdrag1[i] = Integer.parseInt(sline[0].trim());
                 uppdrag2[i] = Integer.parseInt(sline[1].trim());
 
-<<<<<<< HEAD
-<<<<<<< HEAD
               //   System.out.println(uppdrag1);
             }
 */
@@ -516,14 +516,16 @@ public class HTTPny implements Runnable {
         }
     }
 
-    public void utmessages(String platser) {
-        // platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-        platser = ("A!750!1,3"); // hämtar info från httpextern
+    public void utmessages(String info) {
+
+        //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
+        info = ("A!750!1,3"); // det optimala valet för oss
+
 
 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + platser);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + info);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -552,9 +554,10 @@ public class HTTPny implements Runnable {
             System.out.print(k.toString());
         }
     }
-     public String tauppdrag(String plats, String ID, String passagerare, String grupp) {
+     public String tauppdrag(String plats, String ID, String passagerare, String grupp) { //hämtar från httpextern
 
         try { //lägger upp uppdrag
+            
             String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
 
             URL urlobjekt2 = new URL(url);
@@ -584,15 +587,48 @@ public class HTTPny implements Runnable {
             utmessage = response.toString();
 
             
-            //Här väljer vi uppdrag och kollar kapacitet 
-            
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         return utmessage;
+        //returnerar beviljas om uppdraget är kvar och annars nekas
+    }
+     
+    public String aterstall(int Scenarionr) {
+
+        try { //vad vi hämtar hem från de andra 
+            String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
+
+            URL urlobjekt3 = new URL(url);
+            HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
+            System.out.println("\nAnropar: " + url);
+
+            int mottagen_status = anslutning.getResponseCode();
+            System.out.println("Statuskod: " + mottagen_status);
+
+            BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
+            String inkommande_text = "";
+            StringBuffer inkommande_samlat = new StringBuffer();
+
+            while ((inkommande_text = inkommande.readLine()) != null) {
+                inkommande_samlat.append(inkommande_text);
+                ater.add(inkommande_text);
+            }
+
+            inkommande.close();
+            // for (int k = 0; k < utmess.size(); k++) {
+            //     System.out.println("Ink: " + utmess.get(k));
+            //  }
+          //  gruppmessage = inkommande_samlat.toString();
+
+        } catch (Exception k) {
+            System.out.print(k.toString());
+        }
+        return gruppmessage;
+        //blir beviljas eller nekas
     }
 
-    public String newmesssage() {
+   /* public String newmesssage() {
 
         return message;
     }
@@ -606,5 +642,6 @@ public class HTTPny implements Runnable {
 
         return gruppmessage;
     }
+*/
 
 }

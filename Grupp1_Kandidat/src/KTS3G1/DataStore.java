@@ -29,6 +29,10 @@ public class DataStore {
     public int kapacitet =8;
     int[] arcColor;
     int totPoang = 0;
+    int [] poang; 
+    int Antal_passagerare=0; 
+     int passeradenoder=0;
+     int starta=0; 
 
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data
@@ -41,6 +45,7 @@ public class DataStore {
         arcEnd = new int[1000];
         arcCost = new int[1000];
         arcColor = new int[1000];
+       
         
         atervant = false; 
         networkRead = false;
