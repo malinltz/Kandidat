@@ -26,7 +26,7 @@ public class GuiUpdate implements Runnable {
             kortaste[i] = op.shortestPathList[i];
             i++;
         }
-        kortaste[i] = http.narmstaNod3;
+        kortaste[i] = http.narmstaNod2;
         System.out.print(" GUIUpdate: " + Arrays.toString(kortaste));
     }
 

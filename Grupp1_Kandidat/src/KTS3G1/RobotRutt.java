@@ -34,7 +34,7 @@ public class RobotRutt implements Runnable {
             list[i] = op.shortestPathList[i];    
             i++;
         }
-        list[i] = http.narmstaNod3;
+        list[i] = http.narmstaNod2;
         System.out.print(" RobotRutt: " + Arrays.toString(list));
     }
     
@@ -159,9 +159,9 @@ public class RobotRutt implements Runnable {
         int nodilistan=0;   
             while(true){
         if (Transceiver.utfort!=null){
-            nodilistan++;
             cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-           op.startupp=list[nodilistan];
+            nodilistan++;
+        
         }
         if(Transceiver.utfort.equals("p")){
             nodilistan = 0;

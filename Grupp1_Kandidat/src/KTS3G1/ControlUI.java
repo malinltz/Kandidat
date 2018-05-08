@@ -56,10 +56,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("Taget uppdrag: " + "\n" + p + "\n");
     }
 
-    //Används inte
-    void showStatus(String p) 
+    //Används för poäng beräkning osv
+    void showStatus(int p) 
     {
-        jTextArea2.append("Uppdragsplats " + p + "\n");
+        statusuppdTextArea.append("Antal poäng " + p + "\n");
     }
 
     //Används inte
@@ -738,23 +738,6 @@ public class ControlUI extends javax.swing.JFrame {
             op = new OptPlan(ds);
             op.createPlan();
  
-            RobotRutt r2 = new RobotRutt(ds, this, op, http);
-            Thread t1 = new Thread(r2);
-            t1.start();
-            
-            GuiUpdate r1 = new GuiUpdate(ds, this, op, http);
-            Thread t2 = new Thread(r1);
-            t2.start();
-            
-            if(simon){
-             http.listauppdrag(http.narmstaPlats);
-             http.inmessages();
-             http.utmessages(http.inmessa); //
-             http.tauppdrag("A", "1", "4", "1");
-            }
-          // t1.start();
-            //t2.start();
-
          //  Transceiver b1 = new Transceiver();
          //  Thread t6 = new Thread(b1);
          //  t6.start();

@@ -12,9 +12,10 @@ import java.net.URL;
 //import java.util.Arrays;
 import java.util.ArrayList;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
-public class HTTPny {
+public class HTTPny implements Runnable {
 
     public String message;
     public String uppdragslista;
@@ -26,10 +27,12 @@ public class HTTPny {
     //  private String uppdragsplatser;
     public OptPlan op;
     OptPlan[] opt;
+    OptPlan pathOpt1;
+    OptPlan pathOpt2;
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    // public HTTPextern httpex;
+    public HTTPextern httpex;
 
     public String plats;
     public String ID;
@@ -38,19 +41,19 @@ public class HTTPny {
     public String listaplats;//startnod eller? 
     public int storlek; //
     public String gruppess;
-    public int uppsizeInt; 
+    public int uppsizeInt;
     public int meddelandet;
-    
+
     int paxplats[];
     int kostnad[];
     String uppdrag[];
-    String uppdrag_valt; 
+    String uppdrag_valt;
 
     public int[] startlist;
     public int[] stopplist;
-    
-    int []uppdrag1;
-    int []uppdrag2;
+
+    int[] uppdrag1;
+    int[] uppdrag2;
     String datumer;
 
     String[] uppdragsid;
@@ -65,6 +68,7 @@ public class HTTPny {
     public int narmstaNod2;
     public int narmstaNod3;
     double lagstaKostnad = 1000000;
+    int u = 0;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -81,8 +85,79 @@ public class HTTPny {
         upp = new ArrayList<String>();
         inmess = new ArrayList<String>();
         utmess = new ArrayList<String>();
+    }
 
-        //  String  platser = (kostnad+ "!"+ );
+    @Override 
+    public void run() {
+        try{
+            
+        while(u < 1000){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+            
+            Listaplats(); //Optimerar rutt till upphämtningsplats
+             
+            utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
+            
+            //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
+            //httpex.exprotokoll();
+            //Ger oss en upphämtningsplats
+            
+            ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder
+            ds.slut = narmstaNod;
+            
+            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+            op.createPlan();
+            
+            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+            
+            //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
+            //t2.start();
+            
+            uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+            
+            int dummy;
+            dummy = Integer.parseInt(uppdrag_valt);
+            ds.totPoang = ds.totPoang + nuPoints[dummy];  //Här beräknar vi poäng för uppdraget
+            cui.showStatus(ds.totPoang);
+            
+            //Någonstans här kolla antalet passagerare
+            
+            //utmassage(String plats?) här kanske?
+            
+            String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+            
+            if (svaruppdrag.equals("beviljas")){
+                
+                for(int j=0; j <128; j++){    //128 stycken bågar totalt? Stämmer detta? pls kolla någon.
+                    ds.arcColor[j] = 0;
+                }
+                
+                
+                ds.start = stopplist[Integer.parseInt(uppdrag_valt)-1];
+                ds.slut = destNod1[Integer.parseInt(uppdrag_valt)-1];
+                
+                op = new OptPlan(ds);
+                op.createPlan();
+                
+                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                
+                //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan.
+                //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
+                //t2.start();
+                
+                
+            }
+            else {System.out.println("Svar från hemsida: " + svaruppdrag);
+            }
+            
+                ds.start = destNod1[Integer.parseInt(uppdrag_valt)-1];
+                u++;
+    
+             
+        } 
+        }catch (NumberFormatException e) { 
+            System.out.print(e.toString()); 
+        }
     }
 
     public void Listaplats() {
@@ -137,33 +212,22 @@ public class HTTPny {
 
             }
 
-            for (int j = 0; j < storlek; j++) {              
+            for (int j = 0; j < storlek; j++) {
                 
+                ds.start = ds.robotPos; 
                 ds.slut = startlist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
 
-                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: "  + op.pathCost);
-                
-             if (op.pathCost < lagstaKostnad){
-                 lagstaKostnad = op.pathCost;
-                 narmstaPlats = platser[j];
-                 narmstaNod = startlist[j];
-                 narmstaNod2 = stopplist[j];
-             }    
-        }
-           ds.slut = narmstaNod;
-           narmstaNod3 = narmstaNod2;
-           
-           System.out.println("Min value "+ lagstaKostnad);
-           System.out.println("Plats "+ narmstaPlats);
-           System.out.println("narmstaNod: " + narmstaNod);
+                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
-                op = new OptPlan(ds);
-                op.createPlan();
-                cui.simon = true;
-           //ds.start = narmstaNod;
-
+                if (op.pathCost < lagstaKostnad) {
+                    lagstaKostnad = op.pathCost;
+                    narmstaPlats = platser[j];
+                    narmstaNod = startlist[j];
+                    narmstaNod2 = stopplist[j];
+                }
+            }
         } catch (Exception c) {
             System.out.print(c.toString());
         }
@@ -195,6 +259,7 @@ public class HTTPny {
             for (int k = 0; k < upp.size(); k++) {
                 //System.out.println("Uppdrag: " + upp.get(k));
             }
+            while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
 
             uppdragslista = inkommande_samlat.toString();
 
@@ -218,6 +283,8 @@ public class HTTPny {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);
+                
+                cui.hallplatsuppdrag("Uppdrag som finns kvar: ");
 
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
@@ -234,7 +301,7 @@ public class HTTPny {
 
             for (int j = 0; j < uppsizeInt; j++) {
 
-                ds.slut = destNod2[j];
+                ds.slut = destNod1[j];
                 op = new OptPlan(ds);
                 op.createPlan();
 
@@ -243,18 +310,11 @@ public class HTTPny {
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
                     narmstaPlats = destination[j];
-                    narmstaNod = destNod2[j];
+                    narmstaNod = destNod1[j];
+                    narmstaNod2 = destNod2[j];
                 }
             }
-            ds.slut = narmstaNod;
-
-            System.out.println("Min value " + lagstaKostnad);
-            System.out.println("Plats " + narmstaPlats);
-            System.out.println("narmsta " + narmstaNod);
-            System.out.println("ds.Slut " + ds.slut);
-            op = new OptPlan(ds);
-            op.createPlan();
-            cui.simon = false;
+        }
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
@@ -294,24 +354,23 @@ public class HTTPny {
             inkommande.close();
             utmessage = response.toString();
 
-            
             //väljer uppdrag 
-            for (int j=0; j<uppsizeInt; j++){
+            for (int j = 0; j < uppsizeInt; j++) {
 
-            if (pass[j]<=ds.kapacitet) {
-                
-                
-                //Skriver ut vilket uppdrag vi tagit i statusruta
+                if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    uppdrag_valt = uppdragsid[j];//vet inte riktigt vad denna gör 
+
+                    //Skriver ut vilket uppdrag vi tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
-                break;
-                
-                   
+                            + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+
+                    break;
+
+                } else if (j == uppsizeInt - 1) {
+                    cui.appendStatus("Vi kan inte ta emot fler");
+                }
             }
-            else if (j==upp.size()-1) {
-             cui.appendStatus("Vi kan inte ta emot fler");
-            }
-        }
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -384,9 +443,9 @@ public class HTTPny {
 
             gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
-            
+
             cui.appendStatus5(gruppess);
-            
+
             String[] sline;
             System.out.println("HEJSAN");
             int datum[] = new int[meddelandet];
