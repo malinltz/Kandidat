@@ -9,32 +9,47 @@ public class RobotRutt implements Runnable {
 
     private int sleepTime;
     private static Random generator = new Random();
-    private ControlUI cui;
-    private DataStore ds;
-    private OptPlan op;
+    public ControlUI cui;
+    public DataStore ds;
+    public OptPlan op;
+    public HTTPny http;
     public static String rutt = "";
-    public int[] list;
     public int go;
+    public int[] list;
 
     //Transceiver tc; 
 
 
-    public RobotRutt(DataStore ds, ControlUI cui, OptPlan op) {
+    public RobotRutt(DataStore ds, ControlUI cui, OptPlan op, HTTPny http) {
 
         this.cui = cui;
         this.ds = ds;
         this.op = op;
+        this.http = http;
         sleepTime = 1000; //1000 millisekunder
-
-        list = op.getIndex();
+        
+        list = new int[op.path.size()+1];
+        int i = 0;
+        while (op.shortestPathList[i] != 0) {
+            list[i] = op.shortestPathList[i];    
+            i++;
+        }
+        list[i] = http.narmstaNod3;
+        System.out.print(" RobotRutt: " + Arrays.toString(list));
     }
+    
     public void run() {
         try {
             
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
-            while(list[i+2] != 0){
-
+            while(i <= list.length-2){
+                
+                if(list[i] == list[list.length-2]){
+                    break;
+                }
+                        
+                
                 if((ds.nodeX[list[i+1]-1] - ds.nodeX[list[i]-1] > 0) && (ds.nodeY[list[i+1]-1] - ds.nodeY[list[i]-1] == 0)) //Öst
                 {
                     //Kollar på nästa två noder

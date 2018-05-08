@@ -730,11 +730,11 @@ public class ControlUI extends javax.swing.JFrame {
             op = new OptPlan(ds);
             op.createPlan();
  
-            RobotRutt r2 = new RobotRutt(ds, this, op);
+            RobotRutt r2 = new RobotRutt(ds, this, op, http);
             Thread t1 = new Thread(r2);
             t1.start();
             
-            GuiUpdate r1 = new GuiUpdate(ds, this, op);
+            GuiUpdate r1 = new GuiUpdate(ds, this, op, http);
             Thread t2 = new Thread(r1);
             t2.start();
             

@@ -38,12 +38,13 @@ public class HTTPny {
     public String gruppess;
     public int uppsizeInt;
     public int meddelandet;
+    
     int paxplats[];
     int kostnad[];
     String uppdrag[];
 
-    int[] startlist;
-    int[] stopplist;
+    public int[] startlist;
+    public int[] stopplist;
     
     int []uppdrag1;
     int []uppdrag2;
@@ -57,7 +58,9 @@ public class HTTPny {
     int[] pass;
     int[] samakning;
     private int sleepTime;
-    int narmstaNod;
+    public int narmstaNod;
+    public int narmstaNod2;
+    public int narmstaNod3;
     double lagstaKostnad = 1000000;
 
     ArrayList<String> ink;
@@ -135,7 +138,7 @@ public class HTTPny {
             for (int j = 0; j < storlek; j++) {
                 
                 
-                ds.slut = stopplist[j];
+                ds.slut = startlist[j];
                 op = new OptPlan(ds);
                 op.createPlan();
 
@@ -144,16 +147,17 @@ public class HTTPny {
              if (op.pathCost < lagstaKostnad){
                  lagstaKostnad = op.pathCost;
                  narmstaPlats = platser[j];
-                 narmstaNod = stopplist[j];
-             }
-             
+                 narmstaNod = startlist[j];
+                 narmstaNod2 = stopplist[j];
+             }    
         }
            ds.slut = narmstaNod;
+           narmstaNod3 = narmstaNod2;
            
            System.out.println("Min value "+ lagstaKostnad);
            System.out.println("Plats "+ narmstaPlats);
-           System.out.println("narmsta " + narmstaNod);
-           System.out.println("ds.Slut " + ds.slut);
+           System.out.println("narmstaNod: " + narmstaNod);
+
                 op = new OptPlan(ds);
                 op.createPlan();
                 cui.simon = true;
