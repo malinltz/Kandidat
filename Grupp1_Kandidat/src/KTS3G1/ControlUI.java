@@ -771,8 +771,8 @@ public class ControlUI extends javax.swing.JFrame {
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
        if (connectToWallE.getText().equals("Connect")){
            
-      String badress="201410149018"; 
-      String kanal = "1";
+      String badress="201410149018"; //adressen för bluetooth
+      String kanal = "1"; //adressen för kanalen
       bluetoothAdress(badress);
       bluetoothchannel(kanal);
         
