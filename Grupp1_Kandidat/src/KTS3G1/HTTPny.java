@@ -47,6 +47,8 @@ public class HTTPny implements Runnable {
     int paxplats[];
     
     int kostnad[];
+    int iD[];
+    
     String uppdrag[];
     String uppdrag_valt;
     public int uppdrags_counter;
@@ -350,7 +352,7 @@ public class HTTPny implements Runnable {
                 break;
                    
             }
-            else if (j== (uppsizeInt-1)) //om kapaciteten är max 
+            else if (j == (uppsizeInt-1)) //om kapaciteten är max 
             {
              cui.appendStatus("Vi kan inte ta emot fler");
             }
@@ -412,7 +414,7 @@ public class HTTPny implements Runnable {
             System.out.println("HEJSAN");
             int datum[] = new int[meddelandet];
             int tid[] = new int[meddelandet];
-            int iD[] = new int[meddelandet];
+            iD = new int[meddelandet];
             String resten[] = new String[meddelandet];
             String info[] = new String[meddelandet];
             paxplats = new int[meddelandet];
@@ -440,23 +442,15 @@ public class HTTPny implements Runnable {
             //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
             for (int f = 1; f < meddelandet + 1; f++) {
                 sline = info[f].split("!");
-                paxplats[f - 1] = Integer.parseInt(sline[0].trim());
-                kostnad[f - 1] = Integer.parseInt(sline[1].trim());
+                paxplats[f - 1] = Integer.parseInt(sline[0]);
+                kostnad[f - 1] = Integer.parseInt(sline[1]);
                 uppdrag[f - 1] = sline[2];
 
                 cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
                 
             }
 
-            //Splittar Vilka uppdrag (Behöves ej?)
-            for (int i = 0; i < meddelandet; i++) {
 
-                sline = uppdrag[i].split(",");
-                uppdrag1[i] = Integer.parseInt(sline[0].trim());
-                uppdrag2[i] = Integer.parseInt(sline[1].trim());
-
-                //   System.out.println(uppdrag1);
-            }
 
             cui.messagegrupper(gruppess);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
@@ -534,8 +528,6 @@ public class HTTPny implements Runnable {
             utmessage = response.toString();
 
             
-            
-            
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -574,6 +566,7 @@ public class HTTPny implements Runnable {
             System.out.print(k.toString());
         }
         return gruppmessage;
+        //blir beviljas eller nekas
     }
 
    /* public String newmesssage() {
