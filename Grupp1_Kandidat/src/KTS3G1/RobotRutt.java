@@ -176,8 +176,4 @@ public class RobotRutt {
         
         return rutt;
     }
-
-  //  public String gorutt() { 
-  //      return rutt;
-   // }
 }
