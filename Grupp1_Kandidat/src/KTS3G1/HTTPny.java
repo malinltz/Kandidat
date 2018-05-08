@@ -107,6 +107,8 @@ public class HTTPny implements Runnable {
             op.createPlan();
             
             //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+            RR = new RobotRutt(ds, cui, op, this);
+            RR.goRobotrutt();
             
             //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
             //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
@@ -139,6 +141,8 @@ public class HTTPny implements Runnable {
                 op.createPlan();
                 
                 //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                RR = new RobotRutt(ds, cui, op, this);
+                RR.goRobotrutt();
                 
                 //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan.
                 //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
@@ -149,7 +153,7 @@ public class HTTPny implements Runnable {
             else {System.out.println("Svar från hemsida: " + svaruppdrag);
             }
             
-                ds.start = destNod1[Integer.parseInt(uppdrag_valt)-1];
+                ds.start = destNod2[Integer.parseInt(uppdrag_valt)-1];
                 u++;
     
              
@@ -297,27 +301,22 @@ public class HTTPny implements Runnable {
                 destNod2[j] = Integer.parseInt(slice[1]);
                 cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]);
             }
+            
+            narmstaNod = destNod1[0];
+            narmstaNod2 = destNod2[0];
+            
+            op = new OptPlan(ds);
+            op.createPlan();
+            lagstaKostnad = op.pathCost;
 
-            for (int j = 0; j < uppsizeInt; j++) {
+            cui.svarHTTP("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
-                ds.slut = destNod1[j];
-                op = new OptPlan(ds);
-                op.createPlan();
-
-                cui.svarHTTP("Upp.Plats: " + destination[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
-
-                if (op.pathCost < lagstaKostnad) {
-                    lagstaKostnad = op.pathCost;
-                    narmstaPlats = destination[j];
-                    narmstaNod = destNod1[j];
-                    narmstaNod2 = destNod2[j];
-                }
-            }
+            
             for (int j=0; j<uppsizeInt; j++){
 
             if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
             {
-            uppdrag_valt=uppdragsid[j];//vet inte riktigt vad denna gör 
+            uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + ID
@@ -339,7 +338,7 @@ public class HTTPny implements Runnable {
             System.out.print("Fel: " + c.toString());
 
         }
-        return uppdragslista;
+        return uppdrag_valt;
     }
 
     public String aterstall(int Scenarionr) {
