@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author malinlilliecreutz
  **/
 
-
+/*
 public class HTTPextern {
 
     public OptPlan op;
@@ -54,20 +54,23 @@ public class HTTPextern {
 
        // platsgrupp = Integer.parseInt(http.plats);
         
-        for (int i = 0; i < http.meddelandet ; i++) 
+        for (int i = 0; i < http.meddelandet ; i++)  //kollar hela meddelandet
         {  
          
                 if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
                 {
                  
-                    else http.tauppdrag(); //ta uppdrag
+                    else System.out.println("Ta uppdraget"); //om det inte är samma så ta man uppdraget. 
+                    
+                    http.tauppdrag();
                 }
 
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
                     {
-                        if else(http.kostnad < http.lagstaKostnad) 
+                        if else(http.kostnad < http.lagstaKostnad) //om kostnaden för de andra är mindre än lägsta kostnaden så får de andra uppdraget
+                                 //går ut och ta näst bästa
                                 {
-                                    else (http.kostnad < http.lagstaKostnad) 
+                                    else (http.kostnad > http.lagstaKostnad) 
                     }
                         if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
                        
@@ -96,9 +99,12 @@ public class HTTPextern {
                         }
                          else   //ta uppdrag 
                     }
+        
                 else     //ta uppdrag 
                 }
+    
         else       //ta uppdrag 
             }
-   
 
+
+*/
