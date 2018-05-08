@@ -298,17 +298,18 @@ public class HTTPny {
             //väljer uppdrag 
             for (int j=0; j<uppsizeInt; j++){
 
-            if (pass[j]<=ds.kapacitet) {
-                
+            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+            {
+            uppdrag_valt=uppdragsid[j];//vet inte riktigt vad denna gör 
                 
                 //Skriver ut vilket uppdrag vi tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + ID
                     + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+                    
                 break;
-                
                    
             }
-            else if (j==upp.size()-1) {
+            else if (j==uppsizeInt-1) {
              cui.appendStatus("Vi kan inte ta emot fler");
             }
         }
