@@ -37,7 +37,7 @@ public class HTTPny implements Runnable {
    // public String ID;
     public String passagerare;
     public String grupp;
-    public String listaplats;//startnod eller? 
+    public String listaplats;
     public int storlek; //
     public String gruppess;
     public int uppsizeInt;
@@ -67,6 +67,7 @@ public class HTTPny implements Runnable {
     public int narmstaNod;
     public int narmstaNod2;
     public int narmstaNod3;
+    public int narmstaNod4;
     double lagstaKostnad = 1000000;
     int u = 0;
 
@@ -134,8 +135,8 @@ public class HTTPny implements Runnable {
                     ds.arcColor[j] = 0;
                 }
                 
-                ds.start = stopplist[Integer.parseInt(uppdrag_valt)-1];
-                ds.slut = destNod1[Integer.parseInt(uppdrag_valt)-1];
+                ds.start = narmstaNod2;
+                ds.slut = narmstaNod3;
                 
                 op = new OptPlan(ds);
                 op.createPlan();
@@ -153,7 +154,7 @@ public class HTTPny implements Runnable {
                 System.out.println("Svar från hemsida: " + svaruppdrag);
             }
             
-                ds.start = narmstaNod2;
+                ds.start = narmstaNod4;
                 u++;
                
         } 
@@ -298,8 +299,8 @@ public class HTTPny implements Runnable {
                 cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]);
             }
             
-            narmstaNod = destNod1[0];
-            narmstaNod2 = destNod2[0];
+            narmstaNod3 = destNod1[0];
+            narmstaNod4 = destNod2[0];
             
             op = new OptPlan(ds);
             op.createPlan();
