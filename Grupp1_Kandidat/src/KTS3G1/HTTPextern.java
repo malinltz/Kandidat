@@ -126,6 +126,17 @@ public class HTTPextern {
         
         //ta uppdrag 
             
+for(int i = 0; i < 3;i++){
+                              if(i==0){
+                                  for(int j = 0; j < dummer.length; j++){
+                                      uppd_lista1.add(dummer[j]);
+                                      
+                                  }
+                              }
+        
+    }
+
+
 
 
 }

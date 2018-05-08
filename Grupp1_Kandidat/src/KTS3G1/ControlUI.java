@@ -726,7 +726,7 @@ public class ControlUI extends javax.swing.JFrame {
  
            
             RR = new RobotRutt(ds, this, op, http);
-            RR.getRobotrutt();
+            RR.goRobotrutt();
             
             GU = new GuiUpdate(ds, this, op, http);
             GU.GuiUpdaterar();

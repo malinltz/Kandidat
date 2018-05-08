@@ -32,7 +32,6 @@ public class KTS3G1 {
          */
         ds.setFileName("streets.txt");
         ds.readNet();
-        //ds.nodeX
         
         /*
          * Initialize and show the GUI. The constructor gets access to the DataStore

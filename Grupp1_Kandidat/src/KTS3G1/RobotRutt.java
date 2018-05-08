@@ -27,21 +27,20 @@ public class RobotRutt {
         this.http = http;
         sleepTime = 1000; //1000 millisekunder
         
-        list = new int[op.path.size()+1];
-        int i = 0;
-        while (op.shortestPathList[i] != 0) {
-            list[i] = op.shortestPathList[i];    
-            i++;
-        }
-        list[i] = http.narmstaNod2;
-        System.out.print(" RobotRutt: " + Arrays.toString(list));
     }
     
-    public String getRobotrutt() {
+    public void goRobotrutt() {
+        System.out.print(" RobotRutt: ");
+        list = new int[op.path.size()+1];
+        int j = 0;
+        while (op.shortestPathList[j] != 0) {
+            list[j] = op.shortestPathList[j];    
+            j++;
+        }
+        list[j] = http.narmstaNod2;
+        System.out.print(" RobotRutt: " + Arrays.toString(list));
         
         
-     //   try {
-            
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
             while(i <= list.length-2){
@@ -49,8 +48,7 @@ public class RobotRutt {
                 if(list[i] == list[list.length-2]){
                     //ds.start = http.narmstaNod;
                     break;
-                }
-                        
+                }   
                 
                 if((ds.nodeX[list[i+1]-1] - ds.nodeX[list[i]-1] > 0) && (ds.nodeY[list[i+1]-1] - ds.nodeY[list[i]-1] == 0)) //Öst
                 {
@@ -174,6 +172,6 @@ public class RobotRutt {
         cui.appendStatus("Wall-E är nu klar!");
         cui.appendStatus2(rutt);
         
-        return rutt;
+        //return rutt;
     }
 }
