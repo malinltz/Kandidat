@@ -14,6 +14,7 @@ import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
 import java.util.ArrayList;
 */
+
 /**
  *
  * @author malinlilliecreutz
@@ -50,10 +51,15 @@ public class HTTPextern {
         sleepTime = 1000;
     }
 
+    
+    //bubble sort 
+    //linked list
     public void exprotokoll() {
 
        // platsgrupp = Integer.parseInt(http.plats);
         
+       //kör idbaserat istället
+       //går inte ut utan sätter att ni inte får ta det uppdraget
         for (int i = 0; i < http.meddelandet ; i++)  //kollar hela meddelandet
         {  
          
@@ -63,7 +69,7 @@ public class HTTPextern {
                     else {
                     System.out.println("Ta uppdraget"); //om det inte är samma så ta man uppdraget. 
                     
-                    http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                   // http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
                 }
 
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
@@ -121,4 +127,6 @@ public class HTTPextern {
         //ta uppdrag 
             
 
+
+}
 */

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
 
-public class RobotRutt implements Runnable {
+public class RobotRutt {
 
     private int sleepTime;
     private static Random generator = new Random();
@@ -16,8 +16,7 @@ public class RobotRutt implements Runnable {
     public static String rutt = "";
     public int go;
     public int[] list;
-
-    //Transceiver tc; 
+   // public Transceiver tc; 
 
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op, HTTPny http) {
@@ -38,8 +37,10 @@ public class RobotRutt implements Runnable {
         System.out.print(" RobotRutt: " + Arrays.toString(list));
     }
     
-    public void run() {
-        try {
+    public String getRobotrutt() {
+        
+        
+     //   try {
             
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
@@ -161,21 +162,22 @@ public class RobotRutt implements Runnable {
         if (Transceiver.utfort!=null){
             cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
             nodilistan++;
-        
         }
         if(Transceiver.utfort.equals("p")){
             nodilistan = 0;
             cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
         }
-         
-        }*/
+ }*/
  
-            }catch (NumberFormatException exception) {
-        }
+           // }catch (NumberFormatException exception) {
+      //  }
         cui.appendStatus("Wall-E är nu klar!");
         cui.appendStatus2(rutt);
-    }
-    public String gorutt() { 
+        
         return rutt;
     }
+
+  //  public String gorutt() { 
+  //      return rutt;
+   // }
 }
