@@ -62,12 +62,13 @@ public class HTTPny implements Runnable {
     int[] destNod2;
     int[] pass;
     int[] samakning;
-    private int sleepTime;
+    private int sleepTime = 1000;
     public int narmstaNod;
     public int narmstaNod2;
     public int narmstaNod3;
     double lagstaKostnad = 1000000;
     int u = 0;
+    boolean kuk = true;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -89,11 +90,11 @@ public class HTTPny implements Runnable {
     @Override 
     public void run() {
         try{
-            
-        while(u < 1000){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+            Thread.sleep(sleepTime);
+        while(u < 1){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
             
             Listaplats(); //Optimerar rutt till upphämtningsplats
-             
+            
             utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
             
             //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
@@ -110,16 +111,16 @@ public class HTTPny implements Runnable {
             RR = new RobotRutt(ds, cui, op, this);
             RR.goRobotrutt();
             
-            //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-            //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
-            //t2.start();
+            GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
+            t2.start();
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
-            int dummy;
-            dummy = Integer.parseInt(uppdrag_valt);
-            ds.totPoang = ds.totPoang + nuPoints[dummy];  //Här beräknar vi poäng för uppdraget
-            cui.showStatus(ds.totPoang);
+            //int dummy;
+            //dummy = Integer.parseInt(uppdrag_valt);
+            //ds.totPoang = ds.totPoang + nuPoints[dummy+1];  //Här beräknar vi poäng för uppdraget
+            //cui.showStatus(ds.totPoang);
             
             //Någonstans här kolla antalet passagerare
             
@@ -129,7 +130,7 @@ public class HTTPny implements Runnable {
             
             if (svaruppdrag.equals("beviljas")){
                 
-                for(int j=0; j <128; j++){    //128 stycken bågar totalt? Stämmer detta? pls kolla någon.
+                for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
                 
@@ -150,15 +151,15 @@ public class HTTPny implements Runnable {
                 
                 
             }
-            else {System.out.println("Svar från hemsida: " + svaruppdrag);
+            else {
+                System.out.println("Svar från hemsida: " + svaruppdrag);
             }
             
-                ds.start = destNod2[Integer.parseInt(uppdrag_valt)-1];
+                ds.start = narmstaNod2;
                 u++;
-    
-             
+               
         } 
-        }catch (NumberFormatException e) { 
+        }catch (InterruptedException e) { 
             System.out.print(e.toString()); 
         }
     }
@@ -222,7 +223,7 @@ public class HTTPny implements Runnable {
                 op = new OptPlan(ds);
                 op.createPlan();
 
-                cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
+                //cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
@@ -259,10 +260,7 @@ public class HTTPny implements Runnable {
             }
             inkommande.close();
 
-            for (int k = 0; k < upp.size(); k++) {
-                //System.out.println("Uppdrag: " + upp.get(k));
-            }
-            while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
+            //while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
 
             uppdragslista = inkommande_samlat.toString();
 
@@ -330,9 +328,6 @@ public class HTTPny implements Runnable {
              cui.appendStatus("Vi kan inte ta emot fler");
             }
         }
-        }
-            
-
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
