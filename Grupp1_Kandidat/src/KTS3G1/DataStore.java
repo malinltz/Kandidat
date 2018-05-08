@@ -29,7 +29,8 @@ public class DataStore {
     public int kapacitet =8;
     int[] arcColor;
     int totPoang = 0;
-     int Number_of_passagers=0; 
+    int [] poang; 
+    int Antal_passagerare=0; 
      int passeradenoder=0;
      int starta=0; 
 
