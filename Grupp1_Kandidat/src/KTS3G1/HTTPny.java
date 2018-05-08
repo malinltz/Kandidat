@@ -50,6 +50,7 @@ public class HTTPny implements Runnable {
     String uppdrag[];
     String uppdrag_valt;
     public int uppdrags_counter;
+    
 
     public int[] startlist;
     public int[] stopplist;
