@@ -2,7 +2,7 @@ package KTS3G1;
 
 
 public class AGV_instruktioner implements Runnable{
-long start;  
+  
 DataStore ds;
 ControlUI cui;
       

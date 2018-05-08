@@ -55,8 +55,9 @@ public class HTTPextern {
         this.ds = ds;
         dummy="";
         uppdragG1= new ArrayList <String>();
-        uppdragG4= new ArrayList <String>();
-        uppdragG5= new ArrayList <String>();
+   
+           uppdragG4= new ArrayList <String>();
+           uppdragG5= new ArrayList <String>();
     
      //   sleepTime = 1000;
         
