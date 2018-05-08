@@ -96,7 +96,7 @@ public class HTTPny implements Runnable {
     public void run() {
        
         try{
-            
+
 
             
         while(ds.passeradenoder == u ){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
@@ -125,13 +125,12 @@ public class HTTPny implements Runnable {
             //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
             RR = new RobotRutt(ds, cui, op, this);
             RR.goRobotrutt();
-           
+            
             gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
             gu.GuiUpdaterar();
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-             }
-        
+            
              
              //Räknar totala poängen för uppdragen. 
                 int dummy; 
