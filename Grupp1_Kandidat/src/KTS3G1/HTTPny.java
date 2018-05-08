@@ -316,7 +316,27 @@ public class HTTPny implements Runnable {
                     narmstaNod2 = destNod2[j];
                 }
             }
+            for (int j=0; j<uppsizeInt; j++){
+
+            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+            {
+            uppdrag_valt=uppdragsid[j];//vet inte riktigt vad denna gör 
+            
+                //Skriver ut vilket uppdrag vi har tagit i statusruta
+                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
+                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+                    
+                break;
+                   
+            }
+            else if (j==(uppsizeInt-1)) //om kapaciteten är max 
+            {
+             cui.appendStatus("Vi kan inte ta emot fler");
+            }
         }
+        }
+            
+
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
@@ -517,25 +537,7 @@ public class HTTPny implements Runnable {
 
             
             //Här väljer vi uppdrag och kollar kapacitet 
-            for (int j=0; j<uppsizeInt; j++){
-
-            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
-            {
-            ID=uppdragsid[j];//vet inte riktigt vad denna gör 
-            uppdrags_counter++;
-                //Skriver ut vilket uppdrag vi har tagit i statusruta
-                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
-                    
-                break;
-                   
-            }
-            else if (j==uppsizeInt-1) //om kapaciteten är max 
-            {
-             cui.appendStatus("Vi kan inte ta emot fler");
-            }
-        }
-
+            
         } catch (Exception e) {
             System.out.println(e.toString());
         }
