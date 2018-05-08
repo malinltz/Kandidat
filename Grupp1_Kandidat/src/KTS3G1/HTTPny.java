@@ -466,7 +466,7 @@ public class HTTPny {
             {
             ID=uppdragsid[j];//vet inte riktigt vad denna gör 
             uppdrags_counter++;
-                //Skriver ut vilket uppdrag vi tagit i statusruta
+                //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + ID
                     + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
                     

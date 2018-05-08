@@ -34,20 +34,20 @@ public class OptPlan {
          nodes = new ArrayList<Vertex>();
          edges = new ArrayList<Edge>();
           
-         /*
-            if (ds.atervant){
-            slut = startnod; //startnoden;
-            ds.atervant=false;
-            
-        start=nuvarande nod som man är på väg till ;  
-        }
-            else{
          
-       String[] sline;
+//            if (ds.atervant){
+//            ds.slut = ds.startnod; //startnoden;
+//            ds.atervant=false;
+//            
+//        
+//        }
+//            else{
+         
+       //String[] sline;
 
-         http.startlist=Double.parseDouble(sline[0].trim());
-         http.stopplist=Double.parseDouble(sline[1].trim());
-*/
+      //   http.startlist=Double.parseDouble(sline[0].trim());
+        // http.stopplist=Double.parseDouble(sline[1].trim());
+
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
@@ -86,6 +86,7 @@ public class OptPlan {
                 }
             }
         }
+      // }
 }
     
     public int[] getIndex() {
