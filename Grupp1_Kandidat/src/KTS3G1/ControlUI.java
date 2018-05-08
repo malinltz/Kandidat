@@ -718,13 +718,11 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
 
             http = new HTTPny(ds, op, this);
-
             http.Listaplats();
             
             op = new OptPlan(ds);
             op.createPlan();
- 
-           
+
             RR = new RobotRutt(ds, this, op, http);
             RR.goRobotrutt();
             
