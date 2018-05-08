@@ -24,6 +24,8 @@ public class DataStore {
     double robotY;
     public int start = 63; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt.
     public int slut;
+    public int startnod=0; 
+    public int kapacitet =10; 
     int[] arcColor;
 
     public DataStore() {
