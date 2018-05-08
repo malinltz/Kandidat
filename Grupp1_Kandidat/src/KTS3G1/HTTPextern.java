@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -14,10 +15,13 @@ import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author malinlilliecreutz
  */
+
+/*
 
 public class HTTPextern {
 
@@ -37,6 +41,10 @@ public class HTTPextern {
     int dist = 0;
     public String plats;
     int platsgrupp;
+    //int langd=3; 
+    int capacitet4= 20; //fixt capacitet för grupp 4
+    int capacitet5= 50; //fixt capacitet för grupp 5
+    int capacitet1= 60; //fixt capacitet för grupp 1(vår grupp)
 
     public HTTPextern(HTTPny http, DataStore ds) {
 
@@ -54,111 +62,91 @@ public class HTTPextern {
        }
        */
         
-        
-    }
- 
-}
-    /*public void exprotokoll() {
-
-        platsgrupp = Integer.parseInt(http.plats);
-        
-        for (int i = 0; i < platsgrupp ; i++) // kolla om platsen är samma som en annan företagsgrupp
-        {  
-            if ( ){
-        //om företagsgruppens id är lägre än en annan så  får den uppdraget
-            }
-        
-            
-        for (int i = 0; i < platsgrupp ; i++) // kolla hur kostnaden från en bilen till upphämtningsplatsen är
-        {
-            if (ID < http.ink.size()) //jämför viåt id med id från de andra
-           
-            {
-               
-        for (int i = 0; i < platsgrupp ; i++)  //jämför hur många uppdrag
-                
-                if (capacity < http.ut.size()) 
-                //
-                //jämför kapaciteten
-                //  if( op.pathCost < http.) // jämför minsta kostnad för oss med minsta kostnad för de anrda
-                // if( op.shortestPathList > http.utmess.size()) // jämför antalet uppdarg
-                {
-                    System.out.println(""); //
-                }
-            }
-        }
-        System.out.println();
-        System.out.println();
-
-        //  http.platser;
-        //  http.plats1;
-        //  http.plats2;
-        //  http.plats3;
-    }
-
-}*/
-
-
-/*public Uppdrag(DataStore ds) { 
-        aterstall("1");
-        this.ds = ds;
-        listaplatser();
-        valtUppdrag = listauppdrag(narmstaPlats);           //Skickar in upphämtningsplats, skickar ut vilket uppdrag vi väljer
-        pax = getPassagerare(valtUppdrag);                  //Skickar ut passagerarantal på det valda uppdraget
-        oppis1path = new ArrayList<Integer>();
-        oppis2path = new ArrayList<Integer>();
-        oppispath = new ArrayList<Integer>();
-        
-       String svaruppdrag = tauppdrag(narmstaPlats, valtUppdrag, pax, ds.grupp);
-       
-            if (svaruppdrag.equals("beviljas")){
-                
-                for(int i=0; i <128; i++){
-            
-                    ds.arcColor[i] = 0;           
-            }
-                
-            ds.startRutt = ds.robotpos;        
-            ds.slutRutt = linkNod2[Integer.parseInt(valtUppdrag)-1];
-                             
-            oppis1 = new OptPlan(ds);
-            oppis1path = oppis1.createPlan();
-  
-            ds.startRutt = linkNod1[Integer.parseInt(valtUppdrag)-1];       
-            ds.slutRutt = destNod1[Integer.parseInt(valtUppdrag)-1];
-                             
-            oppis2 = new OptPlan(ds);
-            oppis2path = oppis2.createPlan();
-
-
-
-           oppis2 = new OptPlan(ds);
-            oppis2path = oppis2.createPlan();
-               
-            
-            for ( int i = 0; i < oppis1path.size(); i++ ){
-            oppispath.add(oppis1path.get(i));
-            }
-             System.out.println("Oppis1path: " + oppis1path);  
-            
-              for ( int i = 2; i < oppis2path.size(); i++ ){
-            oppispath.add(oppis2path.get(i));
-            } 
-             System.out.println("Oppis2path: " + oppis2path);    
-              
-            System.out.println("Oppispath: " + oppispath);  
-            
-            opt = new OptPlan(ds);
-            opt.compass(oppispath);
-            
-            ds.cui.repaint();
-  
-        }
-        else {System.out.println("Svar från hemsida: " + svaruppdrag);}
-        
-        aterstall("1");
+ /*
     
-    }*/
+    //bubble sort 
+    //linked list
+    public void exprotokoll() {
 
-      
+       // platsgrupp = Integer.parseInt(http.plats);
+        
+       //kör idbaserat istället
+       //går inte ut utan sätter att ni inte får ta det uppdraget
+        for (int i = 0; i < http.meddelandet ; i++)  //kollar hela meddelandet
+        {  
+         
+                if(String.valueOf(http.paxplats).equals(http.narmstaPlats)) // kolla om platsen är samma som en annan företagsgrupp
+                {
+                 
+                    else {
+                    System.out.println("Ta uppdraget"); //om det inte är samma så ta man uppdraget. 
+                    
+                   // http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                }
 
+                    if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
+                    {
+                        if else(http.kostnad < http.lagstaKostnad) //om kostnaden för de andra är mindre än lägsta kostnaden så får de andra uppdraget
+                                 //går ut och ta näst bästa
+                                {
+                                    else
+                                    
+                                    http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                    }
+                        if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
+                       
+                            {
+                                if else ((http.uppdrag) < (http.uppdragsid))
+                                        //går ut och ta näst bästa
+                                        {
+                                else 
+                                http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                            
+                              if(capacitet1 == capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
+                              {
+                                  if else ( capacitet1< capacitet4 || capacitet1 < capacitet5)
+                            //gå till nästa upphämtningsplats
+                              }
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag 
+                                  
+                              if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
+                              {
+                                    if else (String.valueOf(http.paxplats) < (http.narmstaPlats)) 
+                                    //gå till nästa upphämtningsplats
+                              } 
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag
+                                  
+                                  }
+                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                            //ta uppdrag 
+
+                              }
+                             else  http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                                //ta uppdrag 
+                        }
+                         else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                        //ta uppdrag 
+                    }
+        
+                else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
+                     }
+                //ta uppdrag 
+                }
+   
+        
+        //ta uppdrag 
+            
+for(int i = 0; i < 3;i++){
+                              if(i==0){
+                                  for(int j = 0; j < dummer.length; j++){
+                                      uppd_lista1.add(dummer[j]);
+                                      
+                                  }
+                              }
+        
+    }
+
+
+*/

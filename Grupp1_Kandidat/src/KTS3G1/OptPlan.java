@@ -18,6 +18,7 @@ public class OptPlan {
 
     public int[] shortestPathList = new int[1000];
     public int[] shortestPathListupp = new int[1000];
+    public int[] shortestlist;
     
     int pathCost = 0;
     double x = 0;
@@ -33,20 +34,20 @@ public class OptPlan {
          nodes = new ArrayList<Vertex>();
          edges = new ArrayList<Edge>();
           
-         /*
-            if (ds.atervant){
-            slut = startnod; //startnoden;
-            ds.atervant=false;
-            
-        start=nuvarande nod som man är på väg till ;  
-        }
-            else{
          
-       String[] sline;
+//            if (ds.atervant){
+//            ds.slut = ds.startnod; //startnoden;
+//            ds.atervant=false;
+//            
+//        
+//        }
+//           else{
+         
+        // String[] sline;
 
-         http.startlist=Double.parseDouble(sline[0].trim());
-         http.stopplist=Double.parseDouble(sline[1].trim());
-*/
+        // http.startlist=Double.parseDouble(sline[0].trim());
+        // http.stopplist=Double.parseDouble(sline[1].trim());
+
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {
@@ -69,13 +70,8 @@ public class OptPlan {
         // Get shortest path
         for (int i = 0; i < path.size(); i++) { 
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
-
-            x = ds.nodeX[shortestPathList[i] - 1]; // DETTA ANVÄNDS EJ
-            y = ds.nodeY[shortestPathList[i] - 1]; // DETTA ANVÄNDS EJ
-            String nodePath = (" " + x + ", " + y); // DETTA ANVÄNDS EJ
-            //System.out.println(" " + x + ", " + y);
-            //cui.appendOptText(nodePath); Funkar ej lol okej
         }
+        
        
           // Arcs in the shortest path
         for (int i = 0; i < path.size() - 1; i++) {
@@ -90,10 +86,11 @@ public class OptPlan {
                 }
             }
         }
+      // }
 }
     
     public int[] getIndex() {
-        
+ 
         return shortestPathList;
     }
 
