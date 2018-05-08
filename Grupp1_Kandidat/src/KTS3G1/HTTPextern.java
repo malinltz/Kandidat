@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author malinlilliecreutz
  */
- 
+
 public class HTTPextern {
 
     public OptPlan op;
@@ -44,10 +44,10 @@ public class HTTPextern {
         this.ds = ds;
         sleepTime = 1000;
         
-        int langd = 3; 
+     //   int langd = 3; 
        // http.plats
        
-    /*   for(int i = 0; i < langd; i ++){
+   /*   for(int i = 0; i < langd; i ++){
            if(){
                
            }

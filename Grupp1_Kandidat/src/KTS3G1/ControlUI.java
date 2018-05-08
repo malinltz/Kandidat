@@ -102,6 +102,13 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextArea2.append("" + s + "\n");
     }
+    
+    //Skriver ut uppdragsplatserna från metoden Listaplats
+    void appendStatus4(String s) 
+    {
+        jTextArea2.append("Vad alla andra tar: " + s + "\n");
+    }
+    
     public boolean atervant(boolean p) 
     {
         return p;
@@ -253,7 +260,7 @@ public class ControlUI extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Chalkboard", 1, 14)); // NOI18N
         jLabel7.setText("Bluetoothkanal");
 
-        jTextField7.setEditable(false);
+        jTextField7.setEditable(true);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -733,13 +740,7 @@ public class ControlUI extends javax.swing.JFrame {
             
             if(simon){
              http.listauppdrag(http.narmstaPlats);
-
-             http.utmessages(http.narmstaPlats);
-             http.inmessages();
              http.tauppdrag("A", "1", "4", "1");
-            
-
-             //http.tauppdrag("A", "1", "4", "1");
              http.inmessages();
              http.utmessages(http.grupp); //
 
@@ -766,9 +767,12 @@ public class ControlUI extends javax.swing.JFrame {
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
         // ActionListener lyssnar = null; 
-        //blueAdress = jTextField7.getText();
-        //blueAdress = blueAdress.replace(":", "");
-        //jTextField7.addActionListener(lyssnar);
+       // blueAdress = jTextField7.getText();
+       // blueAdress = blueAdress.replace(":", "");
+       // jTextField7.addActionListener(lyssnar);
+           String badress="201410149018"; 
+           String kanal = "1";
+           jTextField7.setText(badress);
 
     }//GEN-LAST:event_jTextField7ActionPerformed
 
@@ -781,35 +785,35 @@ public class ControlUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void connectToWallEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectToWallEActionPerformed
-       if (connectToWallE.getText().equals("Connect")){
-           
-      String badress="201410149018"; 
-      String kanal = "1";
-      bluetoothAdress(badress);
-      bluetoothchannel(kanal);
-        
+     //  if (connectToWallE.getText().equals("Connect")){
+
+    //  bluetoothAdress(badress);
+      //bluetoothchannel(kanal);
+      
       Transceiver b1 = new Transceiver();
       Thread t6 = new Thread(b1);
       t6.start();
       
-      connectToWallE.setEnabled(false);
-      connectToWallE.setSelected(false);
-       }
-       /*
+    //  connectToWallE.setEnabled(false);
+    //  connectToWallE.setSelected(false);
+       while(true){
        if (Transceiver.ansluten==true) //om det finns anslutning 
        {
+            System.out.println("KOMMER HIT1");
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
        }
        
        if (Transceiver.ansluten == false)//om  anslutning bryts
        {
+           System.out.println("KOMMER HIT2");
        jTextField1.setBackground(new java.awt.Color(255, 0, 0));
        connectToWallE.setEnabled(true);
        connectToWallE.setSelected(true);
        }
-       */
+    //  }
+       }
     }//GEN-LAST:event_connectToWallEActionPerformed
-
+       
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

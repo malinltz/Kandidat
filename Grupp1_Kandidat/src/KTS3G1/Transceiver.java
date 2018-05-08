@@ -9,21 +9,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
-RobotRutt RR;
-ControlUI cui;
+String lista = "hph";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
 
-String lista = "vvhhrrvvhhrr";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
 String kommando;
 String inskickat = "";
 String start = "s";
 String pickup = "p";
-int antal_passagerare;
-boolean ansluten = false; 
+public static boolean ansluten = false; 
 public static String utfort;
-public static boolean erik= false;
+int ant_pass = 4;
+String antal_passagerare;
+
 
   public Transceiver() { 
-      // lista = RobotRutt.rutt;
+    //  lista = RobotRutt.rutt;
       System.out.println("\n"+"lista = "+ lista + "\n");
      
        while(true){
@@ -58,11 +57,13 @@ public static boolean erik= false;
                 for(int i = 0; i< 5;i++){
                    int j = fem - i;
                    if(starten){
-                    System.out.println("AGV värmer upp, startar om " + j + " sekunder" );
+                    System.out.println("AGV värmer upp..." );
+                    System.out.println("T-minus " + j + " sekunder");
                   //  cui.appendStatus("AGV värmer upp, startar om " + j + "sekunder");
                     starten = false;
                    } else{
-                       System.out.println(j + "...");
+                       System.out.println("T-minus " + j + "...");
+                       
                  //      cui.appendStatus(j + "...");
                    }
                       TimeUnit.MILLISECONDS.sleep(1000); 
@@ -76,24 +77,32 @@ public static boolean erik= false;
                 System.out.println("Mottaget : "  + inskickat);
                 inskickat = "";
                
-                while(true){
-             String listan =  lista + pickup;
+                
+                antal_passagerare = String.valueOf(ant_pass);
+                String listan =  lista + pickup;
                 for(int i = 0; i < listan.length(); i++) {
                  utfort = null;
                  kommando = String.valueOf(listan.charAt(i));
                  System.out.println(kommando);
+                 
                     while(true){
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
+                         
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
                       // System.out.println("Upprepar kommando");
-                     //  TimeUnit.MILLISECONDS.sleep(100);
+                      TimeUnit.MILLISECONDS.sleep(100);
                     } 
+ 
                     else if(inskickat.equals("b")){          // AGV är i "point of no return"
                         System.out.println("AVG har upptäckt en skylt, PONR");
                 //        cui.appendStatus("AGV har upptäckt en skylt, PONR");
                         
                         kommando = "w";
+                    }
+                    else if(inskickat.equals("n")){  // n = numbers, AGV vill veta antalet passagerare i AGV.
+                        kommando = antal_passagerare; // Skickar antal passagerare
+                        System.out.println("Antalet passagerare = " + kommando);
                     }
                     else if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
@@ -101,10 +110,16 @@ public static boolean erik= false;
                          utfort = String.valueOf(listan.charAt(i));
                         break;
                     }
+                    else if(inskickat.equals("q")){
+                        System.out.println("AGV står stilla");
+                        kommando = String.valueOf(listan.charAt(i));
+                        System.out.println("Upprepar kommandot: " + kommando);
+                        
+                    }
                     else{
                         System.out.println("Spegling funkar ej...");
                     } 
-                }
+                
             }
                 if(listan.equals("")){
                     break;
