@@ -41,11 +41,11 @@ public class OptPlan {
 //            
 //        
 //        }
-//            else{
+//           else{
          
-       //String[] sline;
+        // String[] sline;
 
-      //   http.startlist=Double.parseDouble(sline[0].trim());
+        // http.startlist=Double.parseDouble(sline[0].trim());
         // http.stopplist=Double.parseDouble(sline[1].trim());
 
 

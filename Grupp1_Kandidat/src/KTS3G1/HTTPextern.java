@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
 
+
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
  *
  * @author malinlilliecreutz
  **/
-
 /*
 public class HTTPextern {
 
@@ -126,6 +126,17 @@ public class HTTPextern {
         
         //ta uppdrag 
             
+for(int i = 0; i < 3;i++){
+                              if(i==0){
+                                  for(int j = 0; j < dummer.length; j++){
+                                      uppd_lista1.add(dummer[j]);
+                                      
+                                  }
+                              }
+        
+    }
+
+
 
 
 }

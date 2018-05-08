@@ -29,11 +29,12 @@ public class HTTPny implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
+    public GuiUpdate gu;
     //public HTTPextern httpex;
 
 
     public String plats;
-    public String ID;
+   // public String ID;
     public String passagerare;
     public String grupp;
     public String listaplats;//startnod eller? 
@@ -68,7 +69,6 @@ public class HTTPny implements Runnable {
     public int narmstaNod3;
     double lagstaKostnad = 1000000;
     int u = 0;
-    boolean kuk = true;
 
     ArrayList<String> ink;
     ArrayList<String> upp;
@@ -89,6 +89,7 @@ public class HTTPny implements Runnable {
 
     @Override 
     public void run() {
+       
         try{
             Thread.sleep(sleepTime);
         while(u < 1){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
@@ -111,9 +112,8 @@ public class HTTPny implements Runnable {
             RR = new RobotRutt(ds, cui, op, this);
             RR.goRobotrutt();
             
-            GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-            Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
-            t2.start();
+            gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            gu.GuiUpdaterar();
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
@@ -134,7 +134,6 @@ public class HTTPny implements Runnable {
                     ds.arcColor[j] = 0;
                 }
                 
-                
                 ds.start = stopplist[Integer.parseInt(uppdrag_valt)-1];
                 ds.slut = destNod1[Integer.parseInt(uppdrag_valt)-1];
                 
@@ -145,9 +144,8 @@ public class HTTPny implements Runnable {
                 RR = new RobotRutt(ds, cui, op, this);
                 RR.goRobotrutt();
                 
-                //GuiUpdate r1 = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan.
-                //Thread t2 = new Thread(r1); //Måste lägga till i GuiUpdate om AGV utfört ett direktiv så uppdateras kartan.
-                //t2.start();
+                gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+                gu.GuiUpdaterar();
                 
                 
             }
@@ -309,16 +307,21 @@ public class HTTPny implements Runnable {
 
             cui.svarHTTP("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
+
             
             for (int j=0; j<uppsizeInt; j++){
 
-            if (pass[j]<=ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+
+            if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
             {
+
             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
+
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
-                    cui.tauppdrag("Plats: " + plats + ", ID: " + ID
-                    + ", Pass: " + passagerare + ", Grupp: " + grupp + "");
+                    cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                    + ", Pass: " + pass); //error på pass? varför? 
+                            //+ ", Grupp: " + grupp + "");
                     
                 break;
                    
@@ -371,9 +374,10 @@ public class HTTPny implements Runnable {
 
     public void inmessages() {
 
-        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + ID;
+        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt;
 
         try { //vad vi hämtar hem från de anrda 
+            
             String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1" + inmessa);
 
             URL urlobjekt3 = new URL(url);

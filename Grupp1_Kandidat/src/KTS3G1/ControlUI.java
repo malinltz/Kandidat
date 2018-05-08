@@ -18,7 +18,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-
+    GuiUpdate GU;
     //Transceiver tc;
 
     /**
@@ -718,6 +718,27 @@ public class ControlUI extends javax.swing.JFrame {
             anslut = true;
 
             http = new HTTPny(ds, op, this);
+
+            http.Listaplats();
+            
+            op = new OptPlan(ds);
+            op.createPlan();
+ 
+           
+            RR = new RobotRutt(ds, this, op, http);
+            RR.goRobotrutt();
+            
+            GU = new GuiUpdate(ds, this, op, http);
+            GU.GuiUpdaterar();
+            
+            if(simon){
+             http.listauppdrag(http.narmstaPlats);
+             http.inmessages();
+             http.utmessages(http.inmessa); //
+             http.tauppdrag("A", "1", "4", "1");
+            }
+          // t1.start();
+            //t2.start();
             Thread t1 = new Thread(http);
             t1.start();       
 
