@@ -3,7 +3,7 @@ package KTS3G1;
 import java.util.Random;
 import java.util.Arrays;
 
-public class GuiUpdate implements Runnable {
+public class GuiUpdate{
 
     private int sleepTime;
     private static Random generator = new Random();
@@ -27,11 +27,11 @@ public class GuiUpdate implements Runnable {
             i++;
         }
         kortaste[i] = http.narmstaNod3;
-        System.out.print(" GUIUpdate: " + Arrays.toString(kortaste));
+        System.out.print("GUIUpdate: " + Arrays.toString(kortaste));
     }
 
-    public void run() {
-        try {
+    public void GuiUpdaterar() {
+        
 
             int i = 0;
 
@@ -42,7 +42,7 @@ public class GuiUpdate implements Runnable {
                     break;
                 }
                 
-                Thread.sleep(sleepTime);
+               // Thread.sleep(sleepTime);
 
                 ds.robotX = (int) (ds.nodeX[kortaste[i] - 1]);
                 ds.robotY = (int) (ds.nodeY[kortaste[i] - 1]);
@@ -51,8 +51,9 @@ public class GuiUpdate implements Runnable {
                 cui.repaint();
             }
 
-        } catch (InterruptedException exception) {
-        }
+        
+     
         System.out.println("Wall-E är nu KLAR");
     }
+    
 }
