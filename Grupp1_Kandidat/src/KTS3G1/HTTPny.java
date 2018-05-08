@@ -31,6 +31,7 @@ public class HTTPny implements Runnable {
     public RobotRutt RR;
     public GuiUpdate gu;
     //public HTTPextern httpex;
+    int NumberOfpassengers; 
 
 
     public String plats;
@@ -44,6 +45,7 @@ public class HTTPny implements Runnable {
     public int meddelandet;
 
     int paxplats[];
+    
     int kostnad[];
     String uppdrag[];
     String uppdrag_valt;
@@ -94,8 +96,17 @@ public class HTTPny implements Runnable {
     public void run() {
        
         try{
+
+
+            
+        while(ds.passeradenoder == u ){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+
+            Thread.sleep(sleepTime);
+        
+
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
-        while(u < 1){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+         //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+
             
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
@@ -120,13 +131,16 @@ public class HTTPny implements Runnable {
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
-            //int dummy;
-            //dummy = Integer.parseInt(uppdrag_valt);
-            //ds.totPoang = ds.totPoang + nuPoints[dummy+1];  //Här beräknar vi poäng för uppdraget
-            //cui.showStatus(ds.totPoang);
+             
+             //Räknar totala poängen för uppdragen. 
+                int dummy; 
+                dummy = (Integer.parseInt(uppdrag_valt));
+                ds.totPoang = ds.totPoang + ds.poang[dummy];
+                System.out.println("Totala poäng: " + ds.totPoang);
+                //cui.appendStatus(ds.poang.toString());
             
             //Någonstans här kolla antalet passagerare
-            
+            NumberOfpassengers = getPassagerare(Integer.parseInt(uppdrag_valt));
             //utmassage(String plats?) här kanske?
             
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
@@ -159,13 +173,18 @@ public class HTTPny implements Runnable {
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
                
-        } 
-        }catch (InterruptedException e) { 
-            System.out.print(e.toString()); 
+         
         }
+        }catch (InterruptedException e) {System.out.print(e.toString()); }
     }
 
+    
+    
+    
+
+
     public void Listaplats() { // lista på alla besöksplatser.
+
 
         try { // Kopplar upp till listan och hämtar info och returnerar
             String url = ("http://tnk111.n7.se/listaplatser.php");
@@ -343,6 +362,16 @@ public class HTTPny implements Runnable {
         }
         return uppdrag_valt;
     }
+    public int getPassagerare(int uppdrag_valt){
+      
+      int passagerardummy = uppdrag_valt;
+       
+      ds.Antal_passagerare = pass[passagerardummy]; 
+      
+   
+        
+      return NumberOfpassengers; 
+    }
 
 
     public void inmessages() {
@@ -505,7 +534,7 @@ public class HTTPny implements Runnable {
             utmessage = response.toString();
 
             
-            //Här väljer vi uppdrag och kollar kapacitet 
+            
             
         } catch (Exception e) {
             System.out.println(e.toString());
