@@ -376,7 +376,7 @@ public class HTTPny {
             gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
             
-            cui.appendStatus5(gruppess);
+            
             
             String[] sline;
             System.out.println("HEJSAN");
@@ -415,6 +415,7 @@ public class HTTPny {
                 uppdrag[f - 1] = sline[2];
 
                 cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
+                
             }
 
             //Splittar Vilka uppdrag (Behöves ej?)
@@ -427,6 +428,7 @@ public class HTTPny {
                 //   System.out.println(uppdrag1);
             }
 
+            cui.messagegrupper(gruppess);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
