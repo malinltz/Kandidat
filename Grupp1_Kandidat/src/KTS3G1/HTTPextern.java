@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+
 
 package KTS3G1;
 
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  *
  * @author malinlilliecreutz
-*/
+
 
 public class HTTPextern {
 
@@ -68,13 +68,14 @@ public class HTTPextern {
                
            }
        }
-       */
+       
+       
         
     }
     
     //bubble sort 
     //linked list
-    public void exprotokoll() {
+    public String exprotokoll() {
 
        // platsgrupp = Integer.parseInt(http.plats);
         
@@ -125,7 +126,7 @@ public class HTTPextern {
             }
              
         }
-      //  return "HKJHK"; //uppdragG1;
+       return "HKJHK"; //uppdragG1;
       
     }
 }

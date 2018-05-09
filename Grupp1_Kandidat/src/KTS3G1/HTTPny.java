@@ -29,7 +29,7 @@ public class HTTPny implements Runnable {
     public ControlUI cui;
     public RobotRutt RR;
     public GuiUpdate gu;
-    //public HTTPextern httpex;
+   // public HTTPextern httpex;
     int NumberOfpassengers; 
 
 
@@ -137,7 +137,11 @@ public class HTTPny implements Runnable {
             utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
             inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-             
+            
+           // httpex= new HTTPextern(this, ds);
+           // httpex.exprotokoll();
+            
+           // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
             
             if (svaruppdrag.equals("beviljas")){
@@ -480,7 +484,7 @@ public class HTTPny implements Runnable {
 
     public void utmessages() {
 
-        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
+        String inmessa = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
 
         try { //vad vi hämtar hem från de anrda 
 
@@ -514,12 +518,12 @@ public class HTTPny implements Runnable {
     }
     
      public String tauppdrag(String plats, int ID, int passagerare, String grupp) { //hämtar från httpextern
-        /* 
-        plats= httpex.paxplats;
-        ID= httpex.
-        passagerare=httpex;
-        grupp=httpex;
-*/
+         
+        // exprotokoll()
+    //plats = httpex.plats;
+    //ID= httpex.uppdragG1.size();
+       
+
 
         try { //lägger upp uppdrag
             
@@ -587,6 +591,7 @@ public class HTTPny implements Runnable {
             //     System.out.println("Ink: " + utmess.get(k));
             //  }
           //  gruppmessage = inkommande_samlat.toString();
+          System.out.print("Återställer");
 
         } catch (Exception k) {
             System.out.print(k.toString());
