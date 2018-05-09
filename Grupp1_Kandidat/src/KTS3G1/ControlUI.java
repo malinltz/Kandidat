@@ -241,7 +241,6 @@ public class ControlUI extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-
         jLabel1.setFont(new java.awt.Font("Chalkboard", 1, 14)); // NOI18N
         jLabel1.setText("Status hos andra AGVer:");
 
@@ -734,9 +733,9 @@ public class ControlUI extends javax.swing.JFrame {
              http.inmessages();
              http.utmessages(http.grupp); 
            // http.utmessages(http.inmessa); //
-  
+
             }
-          // t1.start();
+            //t1.start();
             //t2.start();
             Thread t1 = new Thread(http);
             t1.start();       
@@ -771,7 +770,7 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t6 = new Thread(b1);
             t6.start();
             
-        if (tc.isAnslut()){ //om det finns anslutning 
+        if (Transceiver.anslut){ //om det finns anslutning 
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
        }else 
             jTextField1.setBackground(new java.awt.Color(255, 0, 0));

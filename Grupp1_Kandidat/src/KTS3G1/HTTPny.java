@@ -48,7 +48,6 @@ public class HTTPny implements Runnable {
     
     int kostnad[];
     int iD[];
-    
     String uppdrag[];
     String uppdrag_valt;
     public int uppdrags_counter;
@@ -110,7 +109,6 @@ public class HTTPny implements Runnable {
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
          //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
 
-            
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
             utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
@@ -377,7 +375,7 @@ public class HTTPny implements Runnable {
                 break;
                    
             }
-            else if (j == (uppsizeInt-1)) //om kapaciteten är max 
+            else if (j== (uppsizeInt-1)) //om kapaciteten är max 
             {
              cui.appendStatus("Vi kan inte ta emot fler");
             }
@@ -595,6 +593,8 @@ public class HTTPny implements Runnable {
     }
      
     public String aterstall(int Scenarionr) {
+        
+       cui.appendStatus("\nÅterställer.");
 
         try { //vad vi hämtar hem från de andra 
             String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);

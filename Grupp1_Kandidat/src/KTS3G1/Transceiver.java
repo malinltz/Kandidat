@@ -20,13 +20,7 @@ public static String utfort;
 int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;
-private boolean ansluten;
 
-
-
-public boolean isAnslut(){
-    return this.ansluten;
-}
 
   public Transceiver() { 
       
