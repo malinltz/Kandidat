@@ -32,7 +32,7 @@ public class DataStore {
     int totPoang = 0;
     int [] poang; 
     int Antal_passagerare=0; 
-     int passeradenoder=0;
+    public int passeradenoder;
      int starta=0; 
 
     public DataStore() {

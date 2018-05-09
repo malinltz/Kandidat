@@ -137,6 +137,8 @@ public class HTTPny implements Runnable {
             Thread t2 = new Thread(gu);
             t2.start();
             
+            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+            
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
             utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
@@ -492,7 +494,9 @@ public class HTTPny implements Runnable {
 
     public void utmessages() {
 
+
         String inmessa = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
+
 
         try { //vad vi hämtar hem från de anrda 
 

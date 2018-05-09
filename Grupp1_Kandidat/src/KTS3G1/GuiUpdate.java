@@ -1,3 +1,4 @@
+/*
 package KTS3G1;
 
 import java.util.Random;
@@ -21,6 +22,7 @@ public class GuiUpdate implements Runnable{
         sleepTime = 1000;
 
         kortaste = new int[op.path.size() + 1];
+        
         int i = 0;
         while (op.shortestPathList[i] != 0) {
             kortaste[i] = op.shortestPathList[i];
@@ -32,12 +34,12 @@ public class GuiUpdate implements Runnable{
 @Override
     public void run() {
         int i = 0;
-        /*
+        
 while(true){
             
             if (Transceiver.utfort!=null){
                 cui.appendStatus("Walle har nu passerat nod"+ kortaste[i]);
-                
+                ds.passeradenoder =kortaste[i];
                 if(kortaste[i] == kortaste[kortaste.length-1]){
                     //Få bågen som Wall-E befinner sig på att blinka här kanske ? lol
                     System.out.println("BREAKS");
@@ -60,7 +62,6 @@ while(true){
             }
         }
         System.out.println("Wall-E är nu KLAR");*/
-    }
+    
 
     
-}
