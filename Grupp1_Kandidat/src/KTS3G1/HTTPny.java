@@ -101,7 +101,7 @@ public class HTTPny implements Runnable {
 
 
             
-        while(ds.passeradenoder == u ){ //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+        while(ds.passeradenoder == u ){ 
 
             Thread.sleep(sleepTime);
         
@@ -135,10 +135,10 @@ public class HTTPny implements Runnable {
             
              
              //Räknar totala poängen för uppdragen. 
-                int dummy; 
-                dummy = (Integer.parseInt(uppdrag_valt));
-                ds.totPoang = ds.totPoang + ds.poang[dummy];
-                System.out.println("Totala poäng: " + ds.totPoang);
+                //int dummy; 
+                //dummy = (Integer.parseInt(uppdrag_valt));
+               // ds.totPoang = ds.totPoang + ds.poang[dummy];
+               // System.out.println("Totala poäng: " + ds.totPoang);
                 //cui.appendStatus(ds.poang.toString());
             
             //Någonstans här kolla antalet passagerare
@@ -174,19 +174,12 @@ public class HTTPny implements Runnable {
                 System.out.println("Svar från hemsida: " + svaruppdrag); //vilket uppdrag vi tar
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
-               
-         
+
         }
         }catch (InterruptedException e) {System.out.print(e.toString()); }
     }
 
-    
-    
-    
-
-
     public void Listaplats() { // lista på alla besöksplatser.
-
 
         try { // Kopplar upp till listan och hämtar info och returnerar
             String url = ("http://tnk111.n7.se/listaplatser.php");
@@ -211,10 +204,10 @@ public class HTTPny implements Runnable {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                //System.out.println("Upphämtningsplatser: " + ink.get(k));
-
+                //System.out.println(ink.get(k));
                 cui.appendStatus3(ink.get(k));
             }
+            
 
             listaplats = ink.get(0); //delar upp infon i  en string
             storlek = Integer.parseInt(listaplats); //gör om till en int
@@ -235,7 +228,6 @@ public class HTTPny implements Runnable {
                 sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
-
             }
 
             for (int j = 0; j < storlek; j++) {
@@ -245,7 +237,7 @@ public class HTTPny implements Runnable {
                 op = new OptPlan(ds);
                 op.createPlan();
 
-                //cui.svarHTTP("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
+                cui.platserListan("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
@@ -253,7 +245,6 @@ public class HTTPny implements Runnable {
                     narmstaNod = startlist[j];
                     narmstaNod2 = stopplist[j];
                 }
-               // System.out.println("Bästa platsen är: " + narmstaPlats);
             }
             
             
@@ -301,6 +292,7 @@ public class HTTPny implements Runnable {
             destNod1 = new int[uppsizeInt];
             destNod2 = new int[uppsizeInt];
 
+            cui.hallplatsuppdrag("Uppdrag som finns kvar: ");
             //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
             for (int k = 1; k < uppsizeInt + 1; k++) {
                 slice = upp.get(k).split(";");
@@ -308,9 +300,7 @@ public class HTTPny implements Runnable {
                 destination[k - 1] = slice[1];
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
-                nuPoints[k - 1] = Integer.parseInt(slice[4]);
-                
-                cui.hallplatsuppdrag("Uppdrag som finns kvar: ");
+                nuPoints[k - 1] = Integer.parseInt(slice[4]);     
 
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
@@ -322,7 +312,6 @@ public class HTTPny implements Runnable {
                 slice = destination[j].split(",");
                 destNod1[j] = Integer.parseInt(slice[0]);
                 destNod2[j] = Integer.parseInt(slice[1]);
-                cui.destination("Dest. mellan noderna: " + destNod1[j] + " & " + destNod2[j]);
             }
             
             narmstaNod3 = destNod1[0];
@@ -331,9 +320,9 @@ public class HTTPny implements Runnable {
             op = new OptPlan(ds);
             op.createPlan();
             lagstaKostnad = op.pathCost;
-
-            cui.svarHTTP("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
-
+            //Dessa nedan behöver inte användas
+            //cui.bastaPlats(":");
+            //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
             
             for (int j=0; j <uppsizeInt; j++){
@@ -347,14 +336,14 @@ public class HTTPny implements Runnable {
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
-                    + ", Pass: " + pass + ", Grupp: 1"); //skriv om pass till en int
+                    + ", Pass: " + Arrays.toString(pass) + ", Grupp: 1"); 
                     
                 break;
                    
             }
             else if (j == (uppsizeInt-1)) //om kapaciteten är max 
             {
-             cui.appendStatus("Vi kan inte ta emot fler");
+             cui.maxPass("Passagerargränsen är max");
             }
         }
 
@@ -368,7 +357,7 @@ public class HTTPny implements Runnable {
       
       int passagerardummy = uppdrag_valt;
        
-      ds.Antal_passagerare = pass[passagerardummy]; 
+      ds.Antal_passagerare = pass[passagerardummy];  //Funkar inte, blir error.
       
    
         
@@ -449,8 +438,6 @@ public class HTTPny implements Runnable {
                 cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
                 
             }
-
-
 
             cui.messagegrupper(gruppess);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
@@ -568,21 +555,4 @@ public class HTTPny implements Runnable {
         return gruppmessage;
         //blir beviljas eller nekas
     }
-
-   /* public String newmesssage() {
-
-        return message;
-    }
-
-    public String getutmesssage() {
-
-        return utmessage;
-    }
-
-    public String gruppmessages() {
-
-        return gruppmessage;
-    }
-*/
-
 }
