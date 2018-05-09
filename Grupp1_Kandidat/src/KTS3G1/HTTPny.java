@@ -341,9 +341,11 @@ public class HTTPny implements Runnable {
                 
             
             passagerare = pass[j];
-                    
+            ds.Antal_passagerare=ds.Antal_passagerare+passagerare;
+                   // System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
+                   // System.out.println("I morgon är en annan dag"+passagerare);
             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
-            System.out.println(uppdrag_valt);
+            //System.out.println(uppdrag_valt);
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt

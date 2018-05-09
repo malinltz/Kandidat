@@ -25,7 +25,7 @@ RobotRutt RR;
   public Transceiver() { 
       
      /* 
-      String lista = RR.rutt;
+      String lista = RR.rutteN;
       System.out.println("\n"+"lista = "+ lista);
 
        while(true){
