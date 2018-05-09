@@ -150,13 +150,13 @@ public static boolean returnanslut(){
           }*/
         }
        public void run (){
-      String lista = RR.rutt;
-      System.out.println("\n"+"lista = "+ lista);
+
+     
 
        while(true){
+                 String lista = RR.rutt;
+                 System.out.println("\n"+"lista = "+ lista);
        try{
-           TimeUnit.SECONDS.sleep(2);
-           
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
            anslut = true;
