@@ -134,7 +134,8 @@ public class HTTPny implements Runnable {
             RR.goRobotrutt();
             
             gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-            gu.GuiUpdaterar();
+            Thread t2 = new Thread(gu);
+            t2.start();
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
@@ -162,7 +163,6 @@ public class HTTPny implements Runnable {
                 RR.goRobotrutt();
                 
                 gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-                gu.GuiUpdaterar();
     
             }
             else {
