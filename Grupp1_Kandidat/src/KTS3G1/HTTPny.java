@@ -36,7 +36,7 @@ public class HTTPny implements Runnable {
 
     public String plats;
    // public String ID;
-    public String passagerare;
+    public int passagerare;
     public String grupp;
     public String listaplats;
     public int storlek; //
@@ -101,10 +101,8 @@ public class HTTPny implements Runnable {
 
 
             
-        while(ds.passeradenoder == u ){ 
 
-            Thread.sleep(sleepTime);
-        
+        while(u < 1){ 
 
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
          //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
@@ -141,7 +139,7 @@ public class HTTPny implements Runnable {
                 //cui.appendStatus(ds.poang.toString());
             
             //Någonstans här kolla antalet passagerare
-            NumberOfpassengers = getPassagerare(Integer.parseInt(uppdrag_valt));
+           // NumberOfpassengers = getPassagerare(Integer.parseInt(uppdrag_valt));
             //utmassage(String plats?) här kanske?
             
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
@@ -167,10 +165,9 @@ public class HTTPny implements Runnable {
     
             }
             else {
-                svaruppdrag.equals("nekas");
-                //System.out.println("Svar från hemsida: " + svaruppdrag); //vilket uppdrag vi tar
+                System.out.println("Svar från hemsida1: " + svaruppdrag); //vilket uppdrag vi tar
             }
-                System.out.println("Svar från hemsida: " + svaruppdrag); //vilket uppdrag vi tar
+                System.out.println("Svar från hemsida2: " + svaruppdrag); //vilket uppdrag vi tar
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
 
@@ -327,13 +324,15 @@ public class HTTPny implements Runnable {
 
             if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
             {
-
+            
+            passagerare = pass[j];
+                    
             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
 
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
-                    + ", Pass: " + Arrays.toString(pass) + ", Grupp: 1"); 
+                    + ", Pass: " + passagerare + ", Grupp: 1"); 
                     
                 break;
                    
@@ -350,7 +349,7 @@ public class HTTPny implements Runnable {
         }
         return uppdrag_valt;
     }
-    public int getPassagerare(int uppdrag_valt){
+   /* public int getPassagerare(int uppdrag_valt){
       
       int passagerardummy = uppdrag_valt;
        
@@ -359,7 +358,7 @@ public class HTTPny implements Runnable {
    
         
       return NumberOfpassengers; 
-    }
+    }*/
 
 
     public void inmessages() {
@@ -496,11 +495,11 @@ public class HTTPny implements Runnable {
             System.out.print(k.toString());
         }
     }
-     public String tauppdrag(String plats, String ID, String passagerare, String grupp) { //hämtar från httpextern
+     public String tauppdrag(String plats, String ID, int passagerare, String grupp) { //hämtar från httpextern
 
         try { //lägger upp uppdrag
             
-            String url = ("http://tnk111.n7.se/tauppdrag.php?plats" + plats + "&id" + ID + "&passagerare=" + passagerare + "&grupp" + grupp);
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats=" + plats + "&id=" + ID + "&passagerare=" + passagerare + "&grupp=" + grupp);
 
             URL urlobjekt2 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();

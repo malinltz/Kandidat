@@ -27,7 +27,6 @@ RobotRutt RR;
          this.anslut = anslut;
      }
     }
-
  */
 
 public static boolean returnanslut(){
@@ -147,7 +146,7 @@ public static boolean returnanslut(){
            } catch (InterruptedException ex) {
                Logger.getLogger(Transceiver.class.getName()).log(Level.SEVERE, null, ex);
            } 
-          }*/
+          }*/ 
         }
        public void run (){
 
