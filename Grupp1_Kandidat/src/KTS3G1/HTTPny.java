@@ -113,6 +113,8 @@ public class HTTPny implements Runnable {
             
             utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
             
+            inmessages();
+            
             //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
             //httpex.exprotokoll();
             //Ger oss en upphämtningsplats
