@@ -96,7 +96,7 @@ public class HTTPextern {
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
    
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) { //kollar vilken plats som är bäst
             if (i != 0) {
                 if (http.paxplats[i] == http.paxplats[1]) {
                     //Kolla hur det är med kostnaderna
@@ -108,13 +108,12 @@ public class HTTPextern {
                             //Då vill att den gruppen ska få det och då måste vi byta uppdrag 
                         }
                     }
-                    // Else: Då vill vi inte göra något för då ska v ta det uppdraget.
-
+                   
                 }
             }
              
         }
-        return "hej";
+        return "okej"; //uppdragG1;
       
     }
 }
