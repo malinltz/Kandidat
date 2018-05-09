@@ -48,17 +48,17 @@ public class HTTPny implements Runnable {
     
     int kostnad[];
     int iD[];
-    
     String uppdrag[];
     String uppdrag_valt;
     public int uppdrags_counter;
    
     public int[] startlist;
     public int[] stopplist;
-
+    
     int[] uppdrag1;
     int[] uppdrag2;
     String datumer;
+
 
     String[] uppdragsid;
     String[] destination;
@@ -109,7 +109,6 @@ public class HTTPny implements Runnable {
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
          //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
 
-            
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
             utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
@@ -237,8 +236,6 @@ public class HTTPny implements Runnable {
                 op = new OptPlan(ds);
                 op.createPlan();
 
-                cui.platserListan("Upp.Plats: " + platser[j] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
-
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
                     narmstaPlats = platser[j];
@@ -341,7 +338,7 @@ public class HTTPny implements Runnable {
                 break;
                    
             }
-            else if (j == (uppsizeInt-1)) //om kapaciteten är max 
+            else if (j== (uppsizeInt-1)) //om kapaciteten är max 
             {
              cui.maxPass("Passagerargränsen är max");
             }
@@ -394,6 +391,7 @@ public class HTTPny implements Runnable {
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
             }
+
             //gruppmessage = inkommande_samlat.toString();
 
             gruppess = inmess.get(0);
@@ -408,8 +406,9 @@ public class HTTPny implements Runnable {
             String info[] = new String[meddelandet];
             paxplats = new int[meddelandet];
             kostnad = new int[meddelandet];
-            uppdrag = new String[meddelandet];
 
+
+            uppdrag = new String[meddelandet];
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
 
@@ -438,6 +437,19 @@ public class HTTPny implements Runnable {
                 cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
                 
             }
+/*
+            //Splittar Vilka uppdrag (Behöves ej?)
+            for (int i = 0; i < meddelandet; i++) {
+
+                sline = uppdrag[i].split(",");
+                uppdrag1[i] = Integer.parseInt(sline[0].trim());
+                uppdrag2[i] = Integer.parseInt(sline[1].trim());
+
+              //   System.out.println(uppdrag1);
+            }
+*/ 
+
+             //cui.appendStatus4((kostnad[i] + uppdrag1[i] + uppdrag2[i]));
 
             cui.messagegrupper(gruppess);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
@@ -450,6 +462,8 @@ public class HTTPny implements Runnable {
 
         //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
         info = ("A!750!1,3"); // det optimala valet för oss
+
+
 
         try { //vad vi hämtar hem från de anrda 
 
@@ -523,6 +537,8 @@ public class HTTPny implements Runnable {
     }
      
     public String aterstall(int Scenarionr) {
+        
+       cui.appendStatus("\nÅterställer.");
 
         try { //vad vi hämtar hem från de andra 
             String url = ("http://tnk111.n7.se/aterstall.php?scenario=" + Scenarionr);
