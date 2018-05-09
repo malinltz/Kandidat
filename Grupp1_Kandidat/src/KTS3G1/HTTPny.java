@@ -411,37 +411,39 @@ public class HTTPny implements Runnable {
             
             inkommande.close();
 
+            
+            String[] sline;
+            
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
                 cui.messagegrupper(inmess.get(k));
-                inmess.get(k).split(";");
+                sline = inmess.get(k).split(";");
+                
                 //skriv ut i rutan
             }
             
             //gruppmessage = inkommande_samlat.toString();
           
-            gruppess = inmess.get(0);
-         System.out.println(gruppess);
-            meddelandet = inmess.size();
-            System.out.println("HEJSAN3");
-            String[] sline;
+         //   gruppess = inmess.get(0);
+       
+           // System.out.println(gruppess);
+              meddelandet = inmess.size();
+          //  System.out.println("HEJSAN3");
             
-          //  datum = new int[meddelandet];
+
+            //datum = new int[meddelandet];
             resten = new String[meddelandet];
             
             tid = new int[meddelandet];
             iD = new int[meddelandet];
-            
-          
             info= new String[meddelandet];
             
             paxplats = new int[meddelandet];
             kostnad = new int[meddelandet];
             uppdrag = new String[meddelandet];
-            
-            
-            uppdrag1 = new int[meddelandet];
-            uppdrag2 = new int[meddelandet];
+  
+           //uppdrag1 = new int[meddelandet];
+           //uppdrag2 = new int[meddelandet];
 
             //Splittar bort datum
          /*   for (int p = 1; p < meddelandet + 1; p++) {
@@ -531,12 +533,13 @@ public class HTTPny implements Runnable {
     
   public String tauppdrag(String plats, int ID, int passagerare, String grupp) { //hämtar från httpextern
          
-        // exprotokoll()
+    //exprotokoll()
     //plats = httpex.plats;
     //ID= httpex.uppdragG1.size();
        
-
-
+    //sätt in någon typ av loop så den bara kör när vi är på platsen.   
+    //while ( boolean =true){}
+ 
         try { //lägger upp uppdrag
             
             String url = ("http://tnk111.n7.se/tauppdrag.php?plats=" + plats + "&id=" + ID + "&passagerare=" + passagerare + "&grupp=1" );
