@@ -38,7 +38,7 @@ public class RobotRutt {
             j++;
         }
         list[j] = http.narmstaNod2;
-        System.out.print(" RobotRutt: " + Arrays.toString(list));
+        //System.out.print(" RobotRutt: " + Arrays.toString(list));
         
         
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");

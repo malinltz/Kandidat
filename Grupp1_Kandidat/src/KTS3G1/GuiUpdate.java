@@ -28,7 +28,7 @@ public class GuiUpdate{
         }
 
         kortaste[i] = http.narmstaNod2;
-        System.out.print(" GUIUpdate: " + Arrays.toString(kortaste));
+        //System.out.print(" GUIUpdate: " + Arrays.toString(kortaste));
 
     }
 

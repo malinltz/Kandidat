@@ -1,4 +1,4 @@
-package KTS3G1;
+/*package KTS3G1;
 
 import java.io.*;
 import javax.microedition.io.*;
@@ -136,7 +136,7 @@ RobotRutt RR;
            } catch (InterruptedException ex) {
                Logger.getLogger(Transceiver.class.getName()).log(Level.SEVERE, null, ex);
            } 
-          }*/
+          }*/ /*
         }
        public void run (){
       String lista = RR.rutt;
@@ -256,4 +256,4 @@ RobotRutt RR;
         }
 
        
-    }
+    }*/
