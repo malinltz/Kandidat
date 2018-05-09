@@ -49,7 +49,7 @@ public class HTTPny implements Runnable {
     int kostnad[];
     int iD[];
     String uppdrag[];
-    String uppdrag_valt;
+    public int uppdrag_valt;
     public int uppdrags_counter;
    
     public int[] startlist;
@@ -60,7 +60,7 @@ public class HTTPny implements Runnable {
     String datumer;
 
 
-    String[] uppdragsid;
+    public int[] uppdragsid;
     String[] destination;
     int[] nuPoints;
     int[] destNod1;
@@ -247,7 +247,7 @@ public class HTTPny implements Runnable {
         }
     }
 
-    public String listauppdrag(String plats) { //läser in alla uppdag på den platsen man befinner sig i.
+    public int listauppdrag(String plats) { //läser in alla uppdag på den platsen man befinner sig i.
 
         try {
             String url = ("http://tnk111.n7.se/listauppdrag.php?plats=" + plats);
@@ -278,7 +278,7 @@ public class HTTPny implements Runnable {
             String uppsize = upp.get(0);
             uppsizeInt = Integer.parseInt(uppsize);
             String[] slice;
-            uppdragsid = new String[uppsizeInt];
+            uppdragsid = new int[uppsizeInt];
             destination = new String[uppsizeInt];
             pass = new int[uppsizeInt];
             samakning = new int[uppsizeInt];
@@ -290,7 +290,7 @@ public class HTTPny implements Runnable {
             //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
             for (int k = 1; k < uppsizeInt + 1; k++) {
                 slice = upp.get(k).split(";");
-                uppdragsid[k - 1] = slice[0];
+                uppdragsid[k - 1] = Integer.parseInt(slice[0]);
                 destination[k - 1] = slice[1];
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
@@ -363,9 +363,9 @@ public class HTTPny implements Runnable {
 
     public void inmessages() {
 
-        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt;
+        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
 
-        try { //vad vi hämtar hem från de anrda 
+        try { //vad vi hämtar hem från de anrda från hemsidan 
             
             String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1" + inmessa);
 
@@ -495,7 +495,7 @@ public class HTTPny implements Runnable {
             System.out.print(k.toString());
         }
     }
-     public String tauppdrag(String plats, String ID, int passagerare, String grupp) { //hämtar från httpextern
+     public String tauppdrag(String plats, int ID, int passagerare, String grupp) { //hämtar från httpextern
 
         try { //lägger upp uppdrag
             

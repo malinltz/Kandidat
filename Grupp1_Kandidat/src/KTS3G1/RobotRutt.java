@@ -43,6 +43,7 @@ public class RobotRutt {
         
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
+           // rutt = "";
             while(i <= list.length-2){
                 
                 if(list[i] == list[list.length-2]){
