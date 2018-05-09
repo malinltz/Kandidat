@@ -1,6 +1,7 @@
 
 package KTS3G1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.List;
@@ -13,7 +14,6 @@ public class RobotRutt {
     public DataStore ds;
     public OptPlan op;
     public HTTPny http;
-    public static String rutt;
     public int go;
     public int[] list;
    // public Transceiver tc; 
@@ -30,6 +30,9 @@ public class RobotRutt {
     }
     
     public void goRobotrutt() {
+        ArrayList<String> rutt = new ArrayList<String>();
+        rutt.clear();
+        
         list = new int[op.path.size()+1];
         int j = 0;
         while (op.shortestPathList[j] != 0) {
@@ -40,7 +43,6 @@ public class RobotRutt {
         
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
-            rutt = "";
             while(i <= list.length-2){
                 
                 if(list[i] == list[list.length-2]){
@@ -53,22 +55,22 @@ public class RobotRutt {
                     //Kollar på nästa två noder
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i]-1] == 0)) //Kör rakt fram
                     {
-                        rutt = rutt + Character.toString('r');
+                        rutt.add("r");
                         cui.appendStatus("Fortsätt framåt");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör höger
                     {
-                        rutt = rutt + Character.toString('h');
+                        rutt.add("h");
                         cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör vänster
                     {
-                        rutt = rutt + Character.toString('v');
+                        rutt.add("v");
                         cui.appendStatus("Kör vänster");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör framåt
                     {
-                        rutt = rutt + Character.toString('r');
+                        rutt.add("r");
                         cui.appendStatus("Fortsätt framåt");
                     }
                     }        
@@ -78,17 +80,17 @@ public class RobotRutt {
                     //Kollar på nästa två noder
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör framåt
                     {
-                        rutt = rutt + Character.toString('r');
+                        rutt.add("r");
                         cui.appendStatus("Fortsätt framåt");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör höger
                     {
-                        rutt = rutt + Character.toString('h');
+                        rutt.add("h");
                         cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör vänster
                     {
-                        rutt = rutt + Character.toString('v');
+                        rutt.add("v");
                         cui.appendStatus("Kör vänster");
                     }
                 }
@@ -97,27 +99,27 @@ public class RobotRutt {
                 {
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör framåt
                     {
-                        rutt = rutt + Character.toString('r');
+                        rutt.add("r");
                         cui.appendStatus("Fortsätt framåt");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör höger
                     {
-                         rutt = rutt + Character.toString('h');
+                         rutt.add("h");
                          cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör vänster
                     {
-                         rutt = rutt + Character.toString('v');
+                         rutt.add("v");
                          cui.appendStatus("Kör vänster");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Sned sväng höger
                     {
-                         rutt = rutt + Character.toString('h');
+                         rutt.add("h");
                          cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Sned sväng vänster
                     {
-                         rutt = rutt + Character.toString('v');
+                         rutt.add("v");
                          cui.appendStatus("Kör vänster");
                     }
                 }
@@ -126,62 +128,99 @@ public class RobotRutt {
                 {
                     if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör framåt
                     {
-                         rutt = rutt + Character.toString('r');
+                         rutt.add("r");
                          cui.appendStatus("Fortsätt framåt");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör höger
                     {
-                         rutt = rutt + Character.toString('h');
+                         rutt.add("h");
                          cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] == 0)) //Kör vänster
                     {
-                         rutt = rutt + Character.toString('v');
+                         rutt.add("v");
                          cui.appendStatus("Kör vänster");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] > 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Sned sväng vänster
                     {
-                         rutt = rutt + Character.toString('v');
+                         rutt.add("v");
                          cui.appendStatus("Kör vänster");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] < 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Sned sväng höger
                     {
-                         rutt = rutt + Character.toString('h');
+                         rutt.add("h");
                          cui.appendStatus("Kör höger");
                     }
                 }
                 i++;
             }
-/*
-        int nodilistan=0;   
-            while(true){
-        if (Transceiver.utfort!=null){
-            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
-            nodilistan++;
-        }
-        if(Transceiver.utfort.equals("p")){
-            nodilistan = 0;
-            cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
-        }
- }*/
- 
-           // }catch (NumberFormatException exception) {
-      //  }
-      
-      
-      
-      //Ser till så att bara var tredje kommando skickas.
-        int r = 0;
-        String rutteN = "";
-        String kommandis = "";
-        while (r < rutt.length()) {
-            kommandis = String.valueOf(rutt.charAt(r));
-            rutteN = rutteN + kommandis;
-            r++;
-            r++;
-            r++;
-        }      
-      
+            
+     //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
+     System.out.println("Kortade kommandon innan 1: " + rutt);
+     for (int e = 0; e < rutt.size()-2; e++){
+         int kCount = rutt.size();
+         
+        //Ersätt rvr med v
+        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("r")){
+            System.out.println("2.");
+             rutt.remove(e);     //Ta bort första r:et
+             rutt.remove(e+2);     //Ta bort andra r:et
+             kCount = kCount - 2;
+         }
+        //Ersätt rv med v
+        else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v")){
+             System.out.println("1.");
+            rutt.remove(e+1);     //Ta bort r:et
+            kCount = kCount - 1;
+         }
+        //Ersätt vr med v
+          else if (rutt.get(e).equals("v") && rutt.get(e+1).equals("r")){
+              System.out.println("3.");
+              rutt.remove(e+1);   //Ta bort r:et
+              kCount = kCount - 1;
+         } 
+        if (i == kCount){            
+               System.out.println("Breakat vid i 1 = " + i);
+               break;
+           }
+     }
+     System.out.println("Kortade kommandon efter: " + rutt);
+     
+     
+     //Gör så att HÖGERsvängarna funkar i ruttkommandonen.
+     System.out.println("Kortade kommandon innan 2: " + rutt);
+     for (int e = 0; e < rutt.size()-2; e++){
+         int kkCount = rutt.size();
+         
+        //Ersätt rhr med h
+        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h") &&  rutt.get(e+2).equals("r")){
+            System.out.println("2.");
+             rutt.remove(e);     //Ta bort första r:et
+             rutt.remove(e+2);     //Ta bort andra r:et
+             kkCount = kkCount - 2;
+         }
+        //Ersätt rh med h
+        else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h")){
+             System.out.println("1.");
+            rutt.remove(e+1);     //Ta bort r:et
+            kkCount = kkCount - 1;
+         }
+        //Ersätt hr med h
+          else if (rutt.get(e).equals("h") && rutt.get(e+1).equals("r")){
+              System.out.println("3.");
+              rutt.remove(e+1);   //Ta bort r:et
+              kkCount = kkCount - 1;
+         } 
+        if (i == kkCount){            
+               System.out.println("Breakat vid i 2 = " + i);
+               break;
+           }
+     }
+     System.out.println("Kortade kommandon efter: " + rutt);
+
+     //Gör om rutten från ArrayList till String
+     String rutteN = String.join(", ", rutt);
+     
         cui.appendStatus("Wall-E är nu klar!");
         cui.appendStatus2(rutteN);
     }
