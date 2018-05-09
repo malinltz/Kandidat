@@ -695,7 +695,9 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-            ds.atervant = true; 
+                            
+            ds.slut = ds.startnod; //startnoden;
+            ds.start =ds.passeradenoder;
                 
                 
             }
