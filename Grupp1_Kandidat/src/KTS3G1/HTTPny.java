@@ -172,6 +172,7 @@ public class HTTPny implements Runnable {
                 System.out.println("Svar från hemsida2: " + svaruppdrag); //vilket uppdrag vi tar
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
+                aterstall(1);
 
         }
         }catch (InterruptedException e) {System.out.print(e.toString()); }
@@ -320,17 +321,17 @@ public class HTTPny implements Runnable {
             //cui.bastaPlats(":");
             //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
-            
             for (int j=0; j <uppsizeInt; j++){
 
-
+                    
+                
             if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
             {
             
             passagerare = pass[j];
                     
             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
-
+            System.out.println(uppdrag_valt);
             
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
                     cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
