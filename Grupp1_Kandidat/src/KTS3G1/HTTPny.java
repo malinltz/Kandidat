@@ -98,10 +98,6 @@ public class HTTPny implements Runnable {
     public void run() {
        
         try{
-
-
-            
-
         while(u < 1){ 
 
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
@@ -130,7 +126,6 @@ public class HTTPny implements Runnable {
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
-             
              //Räknar totala poängen för uppdragen. 
                 //int dummy; 
                 //dummy = (Integer.parseInt(uppdrag_valt));
