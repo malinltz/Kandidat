@@ -774,7 +774,7 @@ public class ControlUI extends javax.swing.JFrame {
             Thread t6 = new Thread(b1);
             t6.start();
             
-        if (Transceiver.anslut){ //om det finns anslutning 
+        if (Transceiver.returnanslut()){ //om det finns anslutning 
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));
        }else 
             jTextField1.setBackground(new java.awt.Color(255, 0, 0));
