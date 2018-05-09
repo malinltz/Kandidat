@@ -21,7 +21,14 @@ int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;
 
+ /*class kontrollen {
+     boolean anslut;
+     public void setValue(boolean anslut){
+         this.anslut = anslut;
+     }
+    }
 
+ */
   public Transceiver() { 
       
      /* 
@@ -145,10 +152,10 @@ RobotRutt RR;
        while(true){
        try{
            TimeUnit.SECONDS.sleep(2);
-           anslut = true; 
+           
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
-           anslut = true; 
+           anslut = true;
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
 
            PrintStream bluetooth_ut
@@ -198,7 +205,7 @@ RobotRutt RR;
                
                 
                 antal_passagerare = String.valueOf(ant_pass);
-                String listan =  lista + pickup;
+                String listan =  lista; // Ska vara String listan = lista + pickup; Har inga pickups under generalrep.
                 for(int i = 0; i < listan.length(); i++) {
                  utfort = null;
                  kommando = String.valueOf(listan.charAt(i));
@@ -254,6 +261,4 @@ RobotRutt RR;
            } 
           }
         }
-
-       
     }
