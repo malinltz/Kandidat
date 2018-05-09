@@ -223,5 +223,9 @@ public class RobotRutt {
      
         cui.appendStatus("Wall-E är nu klar!");
         cui.appendStatus2(rutteN);
+        
+        String rutteN2 = rutteN.replaceAll("\\s","");
+        String rutteN3 = rutteN2.replace(",", "");
+        System.out.println(" " + rutteN3);
     }
 }
