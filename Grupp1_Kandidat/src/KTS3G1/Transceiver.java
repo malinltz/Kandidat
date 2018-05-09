@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
-//String lista = "hph";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
+String lista = "hrrhrhrrh";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
 
 String kommando;
 String inskickat = "";
@@ -149,11 +149,9 @@ public static boolean returnanslut(){
           }*/ 
         }
        public void run (){
-
-     
-
+           
        while(true){
-                 String lista = RR.rutt;
+                // String lista = RR.rutt;
                  System.out.println("\n"+"lista = "+ lista);
        try{
            //201410149018:1
@@ -206,7 +204,9 @@ public static boolean returnanslut(){
                 System.out.println("Mottaget : "  + inskickat);
                 inskickat = "";
                
-                
+              //  while(RR.rutt !=null){
+               //  String lista = RR.rutt;
+                // System.out.println("\n"+"lista = "+ lista);
                 antal_passagerare = String.valueOf(ant_pass);
                 String listan =  lista; // Ska vara String listan = lista + pickup; Har inga pickups under generalrep.
                 for(int i = 0; i < listan.length(); i++) {
@@ -220,7 +220,7 @@ public static boolean returnanslut(){
                          
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
                       // System.out.println("Upprepar kommando");
-                      TimeUnit.MILLISECONDS.sleep(100);
+                    //  TimeUnit.MILLISECONDS.sleep(100);
                     } 
  
                     else if(inskickat.equals("b")){          // AGV är i "point of no return"
@@ -255,6 +255,7 @@ public static boolean returnanslut(){
                   //  System.out.println("Uppdragslistan är tom");
                 }
             }
+         //  }
          anslutning.close();
            
            } catch (IOException e){

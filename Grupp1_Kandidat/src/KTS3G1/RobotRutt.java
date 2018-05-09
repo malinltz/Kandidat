@@ -13,7 +13,7 @@ public class RobotRutt {
     public DataStore ds;
     public OptPlan op;
     public HTTPny http;
-    public static String rutt = "";
+    public static String rutt;
     public int go;
     public int[] list;
    // public Transceiver tc; 
@@ -43,7 +43,7 @@ public class RobotRutt {
         
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
-           // rutt = "";
+            rutt = "";
             while(i <= list.length-2){
                 
                 if(list[i] == list[list.length-2]){
@@ -154,6 +154,7 @@ public class RobotRutt {
                     }
                 }
                 i++;
+                
             }
 /*
         int nodilistan=0;   
