@@ -33,9 +33,23 @@ public class GuiUpdate{
     }
 
     public void GuiUpdaterar() {
-        
 
             int i = 0;
+            
+            //Denna ska vara här tror jag
+            /*
+        int nodilistan=0;   
+            while(true){
+        if (Transceiver.utfort!=null){
+            cui.appendStatus("Walle har nu passerat nod"+list[nodilistan]);
+            nodilistan++;
+        }
+        if(Transceiver.utfort.equals("p")){
+            nodilistan = 0;
+            cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
+        }
+ }*/
+            
 
             while (i <= kortaste.length-2) {
                 

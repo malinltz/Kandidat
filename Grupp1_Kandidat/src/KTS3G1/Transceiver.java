@@ -16,33 +16,25 @@ String inskickat = "";
 String start = "s";
 String pickup = "p";
 public static boolean anslut = false; 
-public static String utfort;
+//public static String utfort;
 int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;
-
- /*class kontrollen {
-     boolean anslut;
-     public void setValue(boolean anslut){
-         this.anslut = anslut;
-     }
-    }
- */
 
 public static boolean returnanslut(){
     return anslut;
 }
   public Transceiver() { 
       
-     /* 
-      String lista = RR.rutt;
+     /*
+     // String lista = RR.rutteN;
       System.out.println("\n"+"lista = "+ lista);
 
        while(true){
        try{
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
-           ansluten = true; 
+           //ansluten = true; 
           // StreamConnection anslutning = (StreamConnection) Anslutning.service;
 
            PrintStream bluetooth_ut
@@ -146,13 +138,13 @@ public static boolean returnanslut(){
            } catch (InterruptedException ex) {
                Logger.getLogger(Transceiver.class.getName()).log(Level.SEVERE, null, ex);
            } 
-          }*/ 
+          }*/
         }
        public void run (){
            
        while(true){
-                // String lista = RR.rutt;
-                 System.out.println("\n"+"lista = "+ lista);
+                // String lista = RR.rutteN3;
+                 System.out.println("\n"+"lista i tc = "+ lista);
        try{
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
@@ -190,7 +182,6 @@ public static boolean returnanslut(){
                     starten = false;
                    } else{
                        System.out.println("T-minus " + j + "...");
-                       
                  //      cui.appendStatus(j + "...");
                    }
                       TimeUnit.MILLISECONDS.sleep(1000); 
@@ -200,33 +191,26 @@ public static boolean returnanslut(){
                 TimeUnit.MILLISECONDS.sleep(50);
                 inskickat = bluetooth_in.readLine();
                 
-                System.out.println("Skickat : "  + kommando);
-                System.out.println("Mottaget : "  + inskickat);
+                System.out.println("Skickat: "  + kommando);
+                System.out.println("Mottaget: "  + inskickat);
                 inskickat = "";
-               
-              //  while(RR.rutt !=null){
-               //  String lista = RR.rutt;
-                // System.out.println("\n"+"lista = "+ lista);
+                
                 antal_passagerare = String.valueOf(ant_pass);
                 String listan =  lista; // Ska vara String listan = lista + pickup; Har inga pickups under generalrep.
                 for(int i = 0; i < listan.length(); i++) {
-                 utfort = null;
+                // utfort = null;
                  kommando = String.valueOf(listan.charAt(i));
                  System.out.println(kommando);
-                 
                     while(true){
                          bluetooth_ut.print(kommando);
                          inskickat = bluetooth_in.readLine();
-                         
                     if(inskickat.equals(kommando)){      //Skickar vad AGV ska utföra härnäst
                       // System.out.println("Upprepar kommando");
-                    //  TimeUnit.MILLISECONDS.sleep(100);
+                      TimeUnit.MILLISECONDS.sleep(100);
                     } 
- 
                     else if(inskickat.equals("b")){          // AGV är i "point of no return"
-                        System.out.println("AVG har upptäckt en skylt, PONR");
+                        System.out.println("AGV har upptäckt en skylt, PONR");
                 //        cui.appendStatus("AGV har upptäckt en skylt, PONR");
-                        
                         kommando = "w";
                     }
                     else if(inskickat.equals("n")){  // n = numbers, AGV vill veta antalet passagerare i AGV.
@@ -236,7 +220,7 @@ public static boolean returnanslut(){
                     else if(inskickat.equals("k")){         // AGV är klar med kommandot. 
                          System.out.println("Avbryter while-loop och läser nästa kommando");
                    //     cui.appendStatus("Avbryter while-loop och läser nästa kommando");
-                         utfort = String.valueOf(listan.charAt(i));
+                       //  utfort = String.valueOf(listan.charAt(i));
                         break;
                     }
                     else if(inskickat.equals("q")){
@@ -247,21 +231,16 @@ public static boolean returnanslut(){
                     }
                     else{
                         System.out.println("Spegling funkar ej...");
-                    } 
-                
-            }
-                if(listan.equals("")){
-                    break;
-                  //  System.out.println("Uppdragslistan är tom");
+                    }                
                 }
             }
-         //  }
+           
          anslutning.close();
            
            } catch (IOException e){
                         System.out.print(e.toString());
            } catch (InterruptedException ex) {
-               Logger.getLogger(Transceiver.class.getName()).log(Level.SEVERE, null, ex);
+             
            } 
           }
         }
