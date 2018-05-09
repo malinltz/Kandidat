@@ -38,11 +38,14 @@ public class HTTPny implements Runnable {
     public int passagerare;
     public String grupp;
     public String listaplats;
+    public String gruppess;
     public int storlek; //
     public int uppsizeInt;
     public int meddelandet;
 
     int paxplats[];
+    public int datum [] ;
+    public int tid [];
     
     int kostnad[];
     int iD[];
@@ -60,6 +63,9 @@ public class HTTPny implements Runnable {
 
     public int[] uppdragsid;
     String[] destination;
+    
+    String [] resten;
+    String [] info;
     int[] nuPoints;
     int[] destNod1;
     int[] destNod2;
@@ -70,7 +76,7 @@ public class HTTPny implements Runnable {
     public int narmstaNod2;
     public int narmstaNod3;
     public int narmstaNod4;
-    double lagstaKostnad = 1000000;
+    int lagstaKostnad = 1000000;
     int u = 0;
 
     ArrayList<String> ink; //alla inkommande platser
@@ -105,11 +111,9 @@ public class HTTPny implements Runnable {
 
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
-         //   utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+           // utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
-         //   inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-            
-           
+           // inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
             
             //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
             //httpex.exprotokoll();
@@ -138,17 +142,6 @@ public class HTTPny implements Runnable {
             
             inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
              
-             //Räknar totala poängen för uppdragen. 
-                //int dummy; 
-                //dummy = (Integer.parseInt(uppdrag_valt));
-               // ds.totPoang = ds.totPoang + ds.poang[dummy];
-               // System.out.println("Totala poäng: " + ds.totPoang);
-                //cui.appendStatus(ds.poang.toString());
-            
-            //Någonstans här kolla antalet passagerare
-           // NumberOfpassengers = getPassagerare(Integer.parseInt(uppdrag_valt));
-            //utmassage(String plats?) här kanske?
-            
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
             
             if (svaruppdrag.equals("beviljas")){
@@ -177,6 +170,7 @@ public class HTTPny implements Runnable {
             }
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
+               // ds.poang ++;
                 
                 aterstall(1);
 
@@ -333,6 +327,22 @@ public class HTTPny implements Runnable {
                 
             if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
             {
+                
+                     /* //Räknar totala poängen för uppdragen. 
+            
+              int  dummy; 
+              dummy = uppdrag_valt;
+              ds.totPoang = ds.totPoang + ds.poang[dummy];
+              System.out.println("Totala poäng: " + ds.totPoang);
+            
+            
+            //Någonstans här kolla antalet passagerare
+                NumberOfpassengers = getPassagerare(uppdrag_valt);
+                System.out.println(NumberOfpassengers);
+            //utmassage(String plats?) här kanske?
+            */
+            
+                
             
             passagerare = pass[j];
             ds.Antal_passagerare=ds.Antal_passagerare+passagerare;
@@ -362,17 +372,15 @@ public class HTTPny implements Runnable {
         return uppdrag_valt;
         
     }
-   /* public int getPassagerare(int uppdrag_valt){
+  /*  public int getPassagerare(int uppdrag_valt){
       
       int passagerardummy = uppdrag_valt;
        
       ds.Antal_passagerare = pass[passagerardummy];  //Funkar inte, blir error.
-      
-   
         
       return NumberOfpassengers; 
-    }*/
-
+    }
+*/
 
     public void inmessages() {
         
@@ -399,25 +407,31 @@ public class HTTPny implements Runnable {
 
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
+                cui.messagegrupper(inmess.get(k));
+                //skriv ut i rutan
             }
 
             //gruppmessage = inkommande_samlat.toString();
-            System.out.println("HEJSAN");
-            String gruppess = inmess.get(0);
+          
+            gruppess = inmess.get(0);
             meddelandet = Integer.parseInt(gruppess);
-            System.out.println("HEJSAN");
+            System.out.println("HEJSAN3");
             String[] sline;
             
-            int datum[] = new int[meddelandet];
-            int tid[] = new int[meddelandet];
+            datum = new int[meddelandet];
+            resten = new String[meddelandet];
+            
+            tid = new int[meddelandet];
             iD = new int[meddelandet];
-            String resten[] = new String[meddelandet];
-            String info[] = new String[meddelandet];
+            
+          
+            info= new String[meddelandet];
+            
             paxplats = new int[meddelandet];
             kostnad = new int[meddelandet];
-
-
             uppdrag = new String[meddelandet];
+            
+            
             uppdrag1 = new int[meddelandet];
             uppdrag2 = new int[meddelandet];
 
@@ -464,6 +478,7 @@ public class HTTPny implements Runnable {
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
+          //  System.out.print(meddelandet);
         }
     }
 
@@ -503,10 +518,16 @@ public class HTTPny implements Runnable {
     }
     
      public String tauppdrag(String plats, int ID, int passagerare, String grupp) { //hämtar från httpextern
+        /* 
+        plats= httpex.paxplats;
+        ID= httpex.
+        passagerare=httpex;
+        grupp=httpex;
+*/
 
         try { //lägger upp uppdrag
             
-            String url = ("http://tnk111.n7.se/tauppdrag.php?plats=" + plats + "&id=" + ID + "&passagerare=" + passagerare + "&grupp=" + grupp);
+            String url = ("http://tnk111.n7.se/tauppdrag.php?plats=" + plats + "&id=" + ID + "&passagerare=" + passagerare + "&grupp=1" );
 
             URL urlobjekt2 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt2.openConnection();
