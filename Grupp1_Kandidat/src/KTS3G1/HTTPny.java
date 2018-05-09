@@ -20,7 +20,6 @@ public class HTTPny implements Runnable {
     public String message;
     public String uppdragslista;
     public String narmstaPlats;
-    private String gruppmessage;
     private String utmessage;
     public String inmessa;
 
@@ -40,7 +39,6 @@ public class HTTPny implements Runnable {
     public String grupp;
     public String listaplats;
     public int storlek; //
-    public String gruppess;
     public int uppsizeInt;
     public int meddelandet;
 
@@ -98,22 +96,20 @@ public class HTTPny implements Runnable {
     public void run() {
        
         try{
-
-
             
         while(u < 1){ 
 
-            Thread.sleep(sleepTime);
-        
 
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
          //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
 
             Listaplats(); //Optimerar rutt till upphämtningsplats
             
-            utmessages(narmstaPlats); //Laddar upp vilken upphämtningsplats vi vill ha
+         //   utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
-            inmessages();
+         //   inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+            
+           
             
             //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
             //httpex.exprotokoll();
@@ -134,6 +130,9 @@ public class HTTPny implements Runnable {
             
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
+            utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+            
+            inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
              
              //Räknar totala poängen för uppdragen. 
                 //int dummy; 
@@ -149,7 +148,8 @@ public class HTTPny implements Runnable {
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
             
             if (svaruppdrag.equals("beviljas")){
-                
+                System.out.println("Svar från hemsida: " + svaruppdrag);
+                 
                 for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
@@ -169,11 +169,11 @@ public class HTTPny implements Runnable {
     
             }
             else {
-                System.out.println("Svar från hemsida1: " + svaruppdrag); //vilket uppdrag vi tar
+                System.out.println("Svar från hemsida: " + svaruppdrag);
             }
-                System.out.println("Svar från hemsida2: " + svaruppdrag); //vilket uppdrag vi tar
                 ds.start = narmstaNod4;
                 u++; //counter för antal uppdrag
+                
                 aterstall(1);
 
         }
@@ -350,9 +350,11 @@ public class HTTPny implements Runnable {
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
+            System.out.println("uhejhej");
 
         }
         return uppdrag_valt;
+        
     }
    /* public int getPassagerare(int uppdrag_valt){
       
@@ -367,12 +369,9 @@ public class HTTPny implements Runnable {
 
 
     public void inmessages() {
-
-        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
-
+        
         try { //vad vi hämtar hem från de anrda från hemsidan 
-            
-            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1" + inmessa);
+            String url = ("http://tnk111.n7.se/getmessage.php?messagetype=1");
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -397,12 +396,12 @@ public class HTTPny implements Runnable {
             }
 
             //gruppmessage = inkommande_samlat.toString();
-
-            gruppess = inmess.get(0);
-            meddelandet = Integer.parseInt(gruppess);
-
-            String[] sline;
             System.out.println("HEJSAN");
+            String gruppess = inmess.get(0);
+            meddelandet = Integer.parseInt(gruppess);
+            System.out.println("HEJSAN");
+            String[] sline;
+            
             int datum[] = new int[meddelandet];
             int tid[] = new int[meddelandet];
             iD = new int[meddelandet];
@@ -438,7 +437,7 @@ public class HTTPny implements Runnable {
                 kostnad[f - 1] = Integer.parseInt(sline[1]);
                 uppdrag[f - 1] = sline[2];
 
-                cui.appendStatus4(paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
+                cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
                 
             }
 /*
@@ -455,23 +454,20 @@ public class HTTPny implements Runnable {
 
              //cui.appendStatus4((kostnad[i] + uppdrag1[i] + uppdrag2[i]));
 
-            cui.messagegrupper(gruppess);
+            //cui.messagegrupper(gruppess);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
         }
     }
 
-    public void utmessages(String info) {
+    public void utmessages() {
 
-        //   platser = ( paxplats + "!" + kostnad + "!" + uppdrag) ;
-        info = ("A!750!1,3"); // det optimala valet för oss
-
-
+        String inmessa = "!" + narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar
 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + info);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + inmessa);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -494,12 +490,12 @@ public class HTTPny implements Runnable {
             for (int k = 0; k < utmess.size(); k++) {
                 //System.out.println("Ink: " + utmess.get(k));
             }
-            gruppmessage = inkommande_samlat.toString();
 
         } catch (Exception k) {
             System.out.print(k.toString());
         }
     }
+    
      public String tauppdrag(String plats, int ID, int passagerare, String grupp) { //hämtar från httpextern
 
         try { //lägger upp uppdrag
@@ -540,7 +536,7 @@ public class HTTPny implements Runnable {
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
      
-    public String aterstall(int Scenarionr) {
+    public void aterstall(int Scenarionr) {
         
        cui.appendStatus("\nÅterställer.");
 
@@ -572,7 +568,6 @@ public class HTTPny implements Runnable {
         } catch (Exception k) {
             System.out.print(k.toString());
         }
-        return gruppmessage;
         //blir beviljas eller nekas
     }
 }
