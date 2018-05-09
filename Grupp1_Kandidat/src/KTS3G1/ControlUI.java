@@ -38,12 +38,6 @@ public class ControlUI extends javax.swing.JFrame {
     String valtUppdrag = "";
     boolean simon = false;
     
-    void lista(ArrayList k)
-    {
-    jTextArea2.append("Uppdragsplats " + k + "\n");
-    }
-
-    
     //Används för listauppdrag metod i HTTPny
     void listauppdrag(ArrayList k)
     {
@@ -74,19 +68,26 @@ public class ControlUI extends javax.swing.JFrame {
     {
         jTextArea2.append("" + p + "\n");
     }
-    
-    //Används för listauppdrag i HTTP för att skriva ut noder
-    void destination(String p) 
+
+    //Används för att lista ut alla platser, kostnader start och slutnoder dit osv.
+    void platserListan(String p) 
     {
         jTextArea2.append("" + p + "\n");
     }
-
-    //Används inte
-    void svarHTTP(String p) 
+    
+    //Skriver ut att vi inte kan ta uppdraget pga Max passagerare.
+    void maxPass(String p) 
     {
         statusuppdTextArea.append("" + p + "\n");
     }
     
+    //Används för att lista ut uppdraget vi ska ta.
+    void bastaPlats(String p) 
+    {
+        jTextArea2.append("" + p + "\n");
+    }
+     
+    //Vad alla andra AGV gör -rutan.
       void messagegrupper(String p) 
     {
         jTextArea3.append("" + p + "\n");
@@ -111,7 +112,7 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea2.append("" + s + "\n");
     }
     
-    //Skriver ut uppdragsplatserna från metoden Listaplats
+    //Används i inmessage för att skriva ut vilka uppdrag som de andra vill göra
     void appendStatus4(String s) 
     {
         jTextArea2.append("Vad alla andra tar: " + s + "\n");
@@ -127,6 +128,7 @@ public class ControlUI extends javax.swing.JFrame {
     {
         statusuppdTextArea.append(s);
     }
+    
     void upphamtningsplats(String b) 
     {
         upphamtningsplats = upphamtningsplats + b + "\n";
