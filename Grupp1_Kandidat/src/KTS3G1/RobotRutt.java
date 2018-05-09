@@ -30,7 +30,6 @@ public class RobotRutt {
     }
     
     public void goRobotrutt() {
-        System.out.print(" RobotRutt: ");
         list = new int[op.path.size()+1];
         int j = 0;
         while (op.shortestPathList[j] != 0) {
@@ -38,8 +37,6 @@ public class RobotRutt {
             j++;
         }
         list[j] = http.narmstaNod2;
-        //System.out.print(" RobotRutt: " + Arrays.toString(list));
-        
         
             cui.appendStatus("Hello, hej! Nu börjar Wall-E köra: ");
             int i = 0;
@@ -86,12 +83,12 @@ public class RobotRutt {
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] > 0)) //Kör höger
                     {
-                        rutt = rutt + Character.toString('v');
+                        rutt = rutt + Character.toString('h');
                         cui.appendStatus("Kör höger");
                     }
                     else if((ds.nodeX[list[i+2]-1] - ds.nodeX[list[i+1]-1] == 0) && (ds.nodeY[list[i+2]-1] - ds.nodeY[list[i+1]-1] < 0)) //Kör vänster
                     {
-                        rutt = rutt + Character.toString('h');
+                        rutt = rutt + Character.toString('v');
                         cui.appendStatus("Kör vänster");
                     }
                 }
@@ -170,9 +167,22 @@ public class RobotRutt {
  
            // }catch (NumberFormatException exception) {
       //  }
+      
+      
+      
+      //Ser till så att bara var tredje kommando skickas.
+        int r = 0;
+        String rutteN = "";
+        String kommandis = "";
+        while (r < rutt.length()) {
+            kommandis = String.valueOf(rutt.charAt(r));
+            rutteN = rutteN + kommandis;
+            r++;
+            r++;
+            r++;
+        }      
+      
         cui.appendStatus("Wall-E är nu klar!");
-        cui.appendStatus2(rutt);
-        
-        //return rutt;
+        cui.appendStatus2(rutteN);
     }
 }
