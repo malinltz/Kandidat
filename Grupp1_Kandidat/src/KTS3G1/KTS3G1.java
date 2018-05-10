@@ -12,7 +12,7 @@ public class KTS3G1 {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-    //HTTPextern hx;
+   // HTTPextern httpex;
     //Transceiver tc; 
     //Reciver re;   
 

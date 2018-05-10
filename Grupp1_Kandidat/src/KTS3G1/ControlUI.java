@@ -20,6 +20,7 @@ public class ControlUI extends javax.swing.JFrame {
     OptPlan op;
     RobotRutt RR;
     GuiUpdate GU;
+   // HTTPextern hx;
     //Transceiver tc;
 
     /**
@@ -692,7 +693,9 @@ public class ControlUI extends javax.swing.JFrame {
             startPosition.setEnabled(false);
             startPosition.setSelected(false);
 
-            ds.atervant = true; 
+                            
+            ds.slut = ds.startnod; //startnoden;
+            ds.start =ds.passeradenoder;
                 
                 
             }

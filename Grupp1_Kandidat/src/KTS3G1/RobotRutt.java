@@ -164,20 +164,20 @@ public class RobotRutt {
          
         //Ersätt rvr med v
         if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("r")){
-            System.out.println("2.");
+            System.out.println("1v.");
              rutt.remove(e);     //Ta bort första r:et
              rutt.remove(e+2);     //Ta bort andra r:et
              kCount = kCount - 2;
          }
         //Ersätt rv med v
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v")){
-             System.out.println("1.");
+             System.out.println("2v.");
             rutt.remove(e+1);     //Ta bort r:et
             kCount = kCount - 1;
          }
         //Ersätt vr med v
           else if (rutt.get(e).equals("v") && rutt.get(e+1).equals("r")){
-              System.out.println("3.");
+              System.out.println("3v.");
               rutt.remove(e+1);   //Ta bort r:et
               kCount = kCount - 1;
          } 
@@ -196,20 +196,20 @@ public class RobotRutt {
          
         //Ersätt rhr med h
         if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h") &&  rutt.get(e+2).equals("r")){
-            System.out.println("2.");
+            System.out.println("1h.");
              rutt.remove(e);     //Ta bort första r:et
              rutt.remove(e+2);     //Ta bort andra r:et
              kkCount = kkCount - 2;
          }
         //Ersätt rh med h
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h")){
-             System.out.println("1.");
+             System.out.println("2h.");
             rutt.remove(e+1);     //Ta bort r:et
             kkCount = kkCount - 1;
          }
         //Ersätt hr med h
           else if (rutt.get(e).equals("h") && rutt.get(e+1).equals("r")){
-              System.out.println("3.");
+              System.out.println("3h.");
               rutt.remove(e+1);   //Ta bort r:et
               kkCount = kkCount - 1;
          } 

@@ -22,7 +22,8 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-    public int start = 63; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt.
+
+    public int start = 15; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt./63
     public int robotPos = start;
     public int slut;
     public int startnod=0; 
@@ -31,7 +32,7 @@ public class DataStore {
     int totPoang = 0;
     int [] poang; 
     int Antal_passagerare=0; 
-     int passeradenoder=0;
+    public int passeradenoder;
      int starta=0; 
 
     public DataStore() {

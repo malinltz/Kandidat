@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
-String lista = "hrrhrhrrh";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
+String lista = "hhvvhhrhrrh";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
 
 String kommando;
 String inskickat = "";
@@ -24,6 +24,7 @@ RobotRutt RR;
 public static boolean returnanslut(){
     return anslut;
 }
+
   public Transceiver() { 
       
      /*
