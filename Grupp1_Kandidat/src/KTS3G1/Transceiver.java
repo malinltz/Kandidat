@@ -16,7 +16,7 @@ String inskickat = "";
 String start = "s";
 String pickup = "p";
 public static boolean anslut = false; 
-//public static String utfort;
+public static String utfort;
 int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;

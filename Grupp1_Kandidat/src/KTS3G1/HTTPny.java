@@ -42,10 +42,11 @@ public class HTTPny implements Runnable {
     public int storlek; //
     public int uppsizeInt;
     public int meddelandet;
+    public String [] gruppmessage;
 
-    int paxplats[];
-    public int datum [] ;
-    public int tid [];
+    int [] paxplats;
+   // String datum [];
+    String [] tid ;
     
     int kostnad[];
     int iD[];
@@ -410,86 +411,83 @@ public class HTTPny implements Runnable {
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
                 inmess.add(inkommande_text);
+                
             }
-            
             inkommande.close();
-
             
-            String[] sline;
+           // gruppmessage = inkommande_samlat.toString();
+             
+             
+
+            //Variabler för uppdragslistan
+          //  String uppsize = upp.get(0);
+          //  uppsizeInt = Integer.parseInt(uppsize);
+            
             
             for (int k = 0; k < inmess.size(); k++) {
                 System.out.println("Ink: " + inmess.get(k));
                 cui.messagegrupper(inmess.get(k));
-                sline = inmess.get(k).split(";");
+                //sline = inmess.get(k).split(";");
                 
                 //skriv ut i rutan
             }
             
-            //gruppmessage = inkommande_samlat.toString();
+            String[] sline;
+             
+           // gruppmessage = inkommande_samlat.toString();
           
-         //   gruppess = inmess.get(0);
-       
-           // System.out.println(gruppess);
-              meddelandet = inmess.size();
-          //  System.out.println("HEJSAN3");
+            //gruppess = inmess.get(0);
+   
+            meddelandet = inmess.size();
             
-
-            //datum = new int[meddelandet];
+            //det blir tre för vi tar in tre rader
+        System.out.println(meddelandet+ "KHJH"); //blir tre som vi vill
+       // System.out.println(gruppmessage.length+ "KHJHdasfd"); //blir 1
+        
             resten = new String[meddelandet];
-            
-            tid = new int[meddelandet];
+            tid = new String[meddelandet];
             iD = new int[meddelandet];
             info= new String[meddelandet];
             
             paxplats = new int[meddelandet];
             kostnad = new int[meddelandet];
             uppdrag = new String[meddelandet];
-  
+ 
            //uppdrag1 = new int[meddelandet];
            //uppdrag2 = new int[meddelandet];
 
             //Splittar bort datum
-         /*   for (int p = 1; p < meddelandet + 1; p++) {
-                sline = inmess.get(p).split(" ");
-                datum[p - 1] = Integer.parseInt(sline[0]);
-                resten[p - 1] = sline[1];
+            for (int p = 0; p < meddelandet ; p++) {
+              
+          //  String uppsize = upp.get(0);
+          //  uppsizeInt = Integer.parseInt(uppsize);
+                 
+                sline = inmess.get(p).split(";");
+                tid[p] = sline[0];
+                resten[p] = sline[1];
             }
-            */
-
+            
             //Splittar bort tiden
-            for (int j = 1; j < meddelandet + 1; j++) {
+            for (int j = 0; j < meddelandet; j++) {
                 sline = resten[j].split(";");
-                tid[j - 1] = Integer.parseInt(sline[0]);
-                iD[j - 1] = Integer.parseInt(sline[1]); //ID för de som de andra företagsgrupperna
-                info[j - 1] = sline[2];
-                System.out.println("ID "+iD[j-1]+ " info " + info[j-1]);
-            }
-
-            //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
-            for (int f = 1; f < meddelandet + 1; f++) {
-                sline = info[f].split("!");
-                paxplats[f - 1] = Integer.parseInt(sline[0]);
-                kostnad[f - 1] = Integer.parseInt(sline[1]);
-                uppdrag[f - 1] = sline[2];
-
-                cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
+                 
+                iD[j] = Integer.parseInt(sline[0]); //ID för de som de andra företagsgrupperna
                 
+                info[j] = sline[1];//här ligger nu felet!! why
+                System.out.println("asfasvga");
+               // System.out.println("ID "+iD + " info " + info);
             }
-/*
-            //Splittar Vilka uppdrag (Behöves ej?)
-            for (int i = 0; i < meddelandet; i++) {
-
-                sline = uppdrag[i].split(",");
-                uppdrag1[i] = Integer.parseInt(sline[0].trim());
-                uppdrag2[i] = Integer.parseInt(sline[1].trim());
-
-              //   System.out.println(uppdrag1);
+       
+            //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
+            for (int f = 0; f < meddelandet; f++) {
+                sline = info[f].split("!");
+                paxplats[f] = Integer.parseInt(sline[0]);
+                kostnad[f] = Integer.parseInt(sline[1]);
+                uppdrag[f] = sline[2];
             }
-*/ 
-
-             //cui.appendStatus4((kostnad[i] + uppdrag1[i] + uppdrag2[i]));
-
-            //cui.messagegrupper(gruppess);
+            
+             cui.messagegrupper(iD + " " + paxplats + " " + kostnad + " " + uppdrag);
+;           System.out.println( iD + " " + paxplats + " " + kostnad + " " + uppdrag);
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());

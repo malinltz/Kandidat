@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.Random;
@@ -61,7 +61,9 @@ while(true){
                 break;
             }
         }
-        System.out.println("Wall-E är nu KLAR");*/
+        System.out.println("Wall-E är nu KLAR");
+        
     
-
+    }
+}
     
