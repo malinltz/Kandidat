@@ -157,7 +157,7 @@ public class RobotRutt {
             }
             
             
-            
+     System.out.println("list1 " + Arrays.toString(list));
      //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
      System.out.println("Kortade kommandon innan 1: " + rutt);
      for (int e = 0; e < rutt.size()-2; e++){
@@ -206,7 +206,8 @@ public class RobotRutt {
              rutt.remove(e);     //Ta bort första r:et
              rutt.remove(e+2);     //Ta bort andra r:et
              kkCount = kkCount - 2;
-             list[e+1] = 0;
+             list[e] = 0;
+             list[e+2] = 0;
          }
         //Ersätt rh med h
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h")){
@@ -228,7 +229,11 @@ public class RobotRutt {
            }
      }
      System.out.println("Kortade kommandon efter: " + rutt);
+
      try{
+
+     System.out.println("list2 " + Arrays.toString(list));
+
      //Tar bort nollrader ur list. Använd senare i GuiUpdate.
      guiUp = new int[list.length];
         int h = 0;
