@@ -334,52 +334,67 @@ public class HTTPny implements Runnable {
             for (int j=0; j <uppsizeInt; j++){
 
                     
-                
+                uppdrag_valt=uppdragsid[j] ;
+                uppdrag_valt2 = uppdragsid[j+1];
             if (samakning[j]==0)
             {
-                uppdrag_valt=uppdragsid[j] ;
+            
+                if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=ds.totPoang+nuPoints[j];
+                    System.out.println("Totala poäng: " + ds.totPoang);
+              
+                }   
+                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
+                    //måste ta bort den andel passagerare som vi tagit från uppdraget
+                    System.out.println("Totala poäng: " + ds.totPoang);
+                }
+    
+              //Någonstans här kolla antalet passagerare
+
+                // uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
+            
+             //samåkningen ska funka om det är 1 och inte om den är 0. 
+                
+                else if(samakning[j]==1){ 
+                     
                 if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
                     System.out.println("Totala poäng: " + ds.totPoang);
                     
-                //
+                    if(pass[j+1]<=ds.kapacitet)
+                    {
+                    
+                    ds.totPoang=ds.totPoang+nuPoints[j+1];
+                    System.out.println("Totala poäng: " + ds.totPoang);
+                    }
+                   // uppdrag_valt=uppdragsid[j] ;
+               
                 }   
-                if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
-                    ds.totPoang=((pass[j]-ds.kapacitet)/nuPoints[j])+ds.totPoang;
+                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
                     System.out.println("Totala poäng: " + ds.totPoang);
                 }
-                     /* //Räknar totala poängen för uppdragen. 
-            
-              //Någonstans här kolla antalet passagerare
-                NumberOfpassengers = getPassagerare(uppdrag_valt);
-                System.out.println(NumberOfpassengers);
-            //utmassage(String plats?) här kanske?
-            */
-             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
-            
-             //samåkningen ska funka om det är 1 och inte om den är 0. 
+                      
+                           
+                }      
+                       
+                    }
                 
-                if (samakning[j] == 1)
-                {       uppdrag_valt=uppdragsid[j] ;
-                        uppdrag_valt2 =uppdragsid[j+1];
-                        if(pass[j] <= ds.kapacitet)
-                        {
-                         ds.totPoang=ds.totPoang+nuPoints[j];
-                          System.out.println("Totala poäng: " + ds.totPoang);   
-                        }
-                        
                 
-                }
-                else break;
+            
+                
                 
             
             passagerare = pass[j];
             ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
-                   // System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
-                   // System.out.println("I morgon är en annan dag"+passagerare);
+                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
+                   System.out.println("I morgon är en annan dag"+passagerare);
            
                
             //System.out.println(uppdrag_valt);
@@ -392,12 +407,12 @@ public class HTTPny implements Runnable {
                    
             }
             
-        }
+        
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
             System.out.println("uhejhej");
-
+            
         }
         return uppdrag_valt;
         
