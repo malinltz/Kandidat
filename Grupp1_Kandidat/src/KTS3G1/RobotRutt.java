@@ -16,9 +16,10 @@ public class RobotRutt {
     public HTTPny http;
     public int go;
     public int[] list;
-    int[] guiUp2;
+    public static String rutteN3;
+    public int[] guiUp;
+
    // public Transceiver tc; 
-    ArrayList<int[]> guiUp;
     ArrayList<String> rutt;
 
     public RobotRutt(DataStore ds, ControlUI cui, OptPlan op, HTTPny http) {
@@ -158,11 +159,12 @@ public class RobotRutt {
                     }
                 }
                 i++;
+                
             }
 
      
             
-     guiUp = new ArrayList<>(Arrays.asList(list));
+     //guiUp = new ArrayList<>(Arrays.asList(list));
 
      //System.out.println("rutt " + rutt);
      //System.out.println("guiUp " + guiUp);
@@ -246,13 +248,23 @@ public class RobotRutt {
      //guiUp2 = guiUp.toArray(new int[][guiUp.size()]);
      //System.out.println("guiUp2: " + Arrays.toString(guiUp2));
      
+     System.out.println("Kortade kommandon efter: " + rutt);
+
+
+     System.out.println("list2 " + Arrays.toString(list));
+
+
+
+   
      String rutteN = String.join(", ", rutt); //Gör om rutten från ArrayList till String
      
         cui.appendStatus("Wall-E är nu klar!");
         cui.appendStatus2(rutteN);
         
         String rutteN2 = rutteN.replaceAll("\\s","");
-        String rutteN3 = rutteN2.replace(",", "");
-        System.out.println("" + rutteN3);
+
+        rutteN3 = rutteN2.replace(",", "");
+        System.out.println(" " + rutteN3);
     }
-}
+  }
+
