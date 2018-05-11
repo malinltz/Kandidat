@@ -31,8 +31,8 @@ public class HTTPny implements Runnable {
     public GuiUpdate gu;
    // public HTTPextern httpex;
     int NumberOfpassengers; 
-
-
+     int antal_passa = 0;
+     
     public String plats;
    // public String ID;
     public int passagerare;
@@ -80,7 +80,7 @@ public class HTTPny implements Runnable {
     public int narmstaNod4;
     int lagstaKostnad = 1000000;
     int u = 0;
-
+    boolean plocka_upp = false;
     ArrayList<String> ink; //alla inkommande platser
     ArrayList<String> upp; // 
     ArrayList<String> inmess; //meddelandet in från företagsguppen
@@ -104,10 +104,7 @@ public class HTTPny implements Runnable {
     public void run() {
        
         try{
-            
         while(u < 1){ 
-
-
             Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
          //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
 
@@ -144,14 +141,21 @@ public class HTTPny implements Runnable {
             uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
             utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-            
             inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+
+             //Räknar totala poängen för uppdragen. 
+                //int dummy; 
+                //dummy = (Integer.parseInt(uppdrag_valt));
+               // ds.totPoang = ds.totPoang + ds.poang[dummy];
+               // System.out.println("Totala poäng: " + ds.totPoang);
+                //cui.appendStatus(ds.poang.toString());
             
            // httpex= new HTTPextern(this, ds);
            // httpex.exprotokoll();
             
            // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+            // HEJ HALLÅ NU JÄVLAR PLOCKAR VI FOLK!!!!
             
             if (svaruppdrag.equals("beviljas")){
                 System.out.println("Svar från hemsida: " + svaruppdrag);
@@ -215,7 +219,6 @@ public class HTTPny implements Runnable {
                 cui.appendStatus3(ink.get(k));
             }
             
-
             listaplats = ink.get(0); //delar upp infon i  en string
             storlek = Integer.parseInt(listaplats); //gör om till en int
             String[] sline;
@@ -230,13 +233,11 @@ public class HTTPny implements Runnable {
                 platser[j - 1] = sline[0];
                 listans[j - 1] = sline[1];
             }
-
             for (int i = 0; i < storlek; i++) {
                 sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
             }
-
             for (int j = 0; j < storlek; j++) {
                 
                 ds.start = ds.robotPos; 
@@ -306,8 +307,6 @@ public class HTTPny implements Runnable {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);     
-                
-               
                 
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
@@ -543,7 +542,9 @@ public class HTTPny implements Runnable {
             }
             
              cui.messagegrupper(iD + " " + paxplats + " " + kostnad + " " + uppdrag);
-             System.out.println( iD + " " + paxplats + " " + kostnad + " " + uppdrag);
+
+            System.out.println( iD + " " + paxplats + " " + kostnad + " " + uppdrag);
+
             //  System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
@@ -634,7 +635,22 @@ public class HTTPny implements Runnable {
         return utmessage;
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
-
+  
+   
+  public int numPassa (int passagerare){
+        
+           if(antal_passa == 0){    // AGV är tom, inga passagerare finns i bilen. Enbart passagerare kan "gå in i AGV".
+              antal_passa = antal_passa + passagerare;
+  }
+           if(plocka_upp == true){   //Finns redan passagerare i bilen.
+              antal_passa = antal_passa + passagerare;
+           }
+              else if (plocka_upp == false){
+                antal_passa = antal_passa - passagerare;
+           } 
+           plocka_upp = false;
+      return antal_passa;
+  }
      
     public void aterstall(int Scenarionr) {
         

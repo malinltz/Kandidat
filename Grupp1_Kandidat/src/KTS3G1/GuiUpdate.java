@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.Random;
@@ -58,8 +58,12 @@ public class GuiUpdate implements Runnable{
             }
         }
         System.out.println("Wall-E är nu KLAR");
+
+        
+    
     }
 }
-    */
+
+   
 
     
