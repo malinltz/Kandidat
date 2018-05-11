@@ -29,8 +29,11 @@ public class HTTPny implements Runnable {
     public ControlUI cui;
     public RobotRutt RR;
     public GuiUpdate gu;
-    // public HTTPextern httpex;
-    int NumberOfpassengers;
+
+   // public HTTPextern httpex;
+    int NumberOfpassengers; 
+     int antal_passa = 0;
+     
 
     public String plats;
     // public String ID;
@@ -78,7 +81,7 @@ public class HTTPny implements Runnable {
     public int narmstaNod4;
     int lagstaKostnad = 1000000;
     int u = 0;
-
+    boolean plocka_upp = false;
     ArrayList<String> ink; //alla inkommande platser
     ArrayList<String> upp; // 
     ArrayList<String> inmess; //meddelandet in från företagsguppen
@@ -101,6 +104,7 @@ public class HTTPny implements Runnable {
     @Override
     public void run() {
 
+
         try {
 
             while (u < 1) {
@@ -119,6 +123,7 @@ public class HTTPny implements Runnable {
                 ds.slut = narmstaNod;
 
                 for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+
                     ds.arcColor[j] = 0;
                 }
 
@@ -221,13 +226,11 @@ public class HTTPny implements Runnable {
                 platser[j - 1] = sline[0];
                 listans[j - 1] = sline[1];
             }
-
             for (int i = 0; i < storlek; i++) {
                 sline = listans[i].split(",");
                 startlist[i] = Integer.parseInt(sline[0].trim());
                 stopplist[i] = Integer.parseInt(sline[1].trim());
             }
-
             for (int j = 0; j < storlek; j++) {
 
                 ds.start = ds.robotPos;
@@ -295,7 +298,6 @@ public class HTTPny implements Runnable {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);
-
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
                         + ", Pass: " + pass[k - 1] + ", Sam: " + samakning[k - 1]
@@ -351,22 +353,39 @@ public class HTTPny implements Runnable {
                 if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
+                  ds.kapacitet=ds.kapacitet-pass[j];
+                    System.out.println("Antal passsagerare: " + ds.kapacitet);
                     System.out.println("Totala poäng3: " + ds.totPoang);
-                    
-                    if(pass[j+1]<=ds.kapacitet)
+                    if (samakning[j+1]==1){
+                        System.out.println("Samåkning3: " + samakning[j]); 
+                        
+                     if(pass[j+1]<=ds.kapacitet)
                     {
-                    
+                    ds.kapacitet=ds.kapacitet-pass[j];
                     ds.totPoang=ds.totPoang+nuPoints[j+1];
                     System.out.println("Totala poäng4: " + ds.totPoang);
-                    }
+                    }   
+                    
+                     else if(pass[j+1]>(ds.kapacitet)){
+                         
+                         ds.kapacitet=ds.kapacitet-pass[j];
+                        ds.Antal_passagerare=pass[j+1]-ds.kapacitet;
+                         ds.totPoang=(((pass[j+1]-ds.Antal_passagerare)/(pass[j+1]))*(nuPoints[j+1]))+ds.totPoang;
+                         System.out.println("Totala poäng5: " + ds.totPoang);
+                     }
+                         //0
+                    
                    // uppdrag_valt=uppdragsid[j] ;
                
                 }   
-                else if (pass[j+1] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
-                    ds.totPoang=(((pass[j+1]-ds.kapacitet)/pass[j+1])*nuPoints[j+1])+ds.totPoang;
+                    
+                    ds.Antal_passagerare=pass[j]-ds.kapacitet; 
+                    System.out.println("ds.antal passagerare: " + ds.Antal_passagerare);
+                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
-                    System.out.println("Totala poäng5: " + ds.totPoang);
+                    System.out.println("Totala poäng6: " + ds.totPoang);
                 }
                       
                            
@@ -379,8 +398,8 @@ public class HTTPny implements Runnable {
                 
                 
             
-//            passagerare = pass[j];
-//            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+            passagerare = pass[j];
+            
 //                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
 //                   System.out.println("I morgon är en annan dag"+passagerare);
            
@@ -393,6 +412,10 @@ public class HTTPny implements Runnable {
 
                 break;
 
+            }
+
+            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+        
             }
 
         } catch (Exception c) {
@@ -490,7 +513,7 @@ public class HTTPny implements Runnable {
                 uppdrag[f] = sline[1];
                 System.out.print("HEJ MALIN " + kostnad[f]);
             }
-            
+
               for (int f = 0; f < meddelandet; f++) {
                 sline = uppdrag[f].split(",");
                 // System.out.println("asfasvga");
@@ -502,6 +525,7 @@ public class HTTPny implements Runnable {
             cui.messagegrupper(iD.length + " " + paxplats.length + " " + kostnad + " " + uppdrag);
          //   System.out.println(iD + " " + paxplats + " " + kostnad + " " + uppdrag);
             // System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
+
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
             //  System.out.print(meddelandet);
@@ -587,6 +611,21 @@ public class HTTPny implements Runnable {
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
 
+  public int numPassa (int passagerare){
+        
+           if(antal_passa == 0){    // AGV är tom, inga passagerare finns i bilen. Enbart passagerare kan "gå in i AGV".
+              antal_passa = antal_passa + passagerare;
+  }
+           if(plocka_upp == true){   //Finns redan passagerare i bilen.
+              antal_passa = antal_passa + passagerare;
+           }
+              else if (plocka_upp == false){
+                antal_passa = antal_passa - passagerare;
+           } 
+           plocka_upp = false;
+      return antal_passa;
+  }
+     
     public void aterstall(int Scenarionr) {
 
         cui.appendStatus("\nÅterställer.");

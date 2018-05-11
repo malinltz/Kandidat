@@ -92,7 +92,7 @@ public class HTTPextern {
                 for (int j = 0; j < dummer.length; j++) {
                     uppdragG1.add((dummer[j]));
                 }
-            } //Ändra ordning här breoend epå ordning i HTTP
+            } //Ändra ordning här breoende på ordning i HTTP
             else if (i == 1) {
                 for (int j = 0; j < dummer.length; j++) {
                     uppdragG4.add((dummer[j]));

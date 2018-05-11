@@ -16,6 +16,7 @@ public class RobotRutt {
     public HTTPny http;
     public int go;
     public int[] list;
+    public static String rutteN3;
     public int[] guiUp;
    // public Transceiver tc; 
 
@@ -154,6 +155,7 @@ public class RobotRutt {
                     }
                 }
                 i++;
+                
             }
             
             
@@ -249,6 +251,11 @@ public class RobotRutt {
         cui.appendStatus2(rutteN);
         
         String rutteN2 = rutteN.replaceAll("\\s","");
+<<<<<<< HEAD
+        rutteN3 = rutteN2.replace(",", "");
+        System.out.println(" " + rutteN3);
+    }
+=======
         String rutteN3 = rutteN2.replace(",", "");
         System.out.println("" + rutteN3);
 
@@ -256,5 +263,4 @@ public class RobotRutt {
 
      }catch(Exception e) {}
      }
-
 }

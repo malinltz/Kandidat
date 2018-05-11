@@ -58,8 +58,13 @@ public class GuiUpdate implements Runnable{
             }
         }
         System.out.println("Wall-E är nu KLAR");
+
+        
+    
     }
 }
-    */
+
+   
 
     
+*/
