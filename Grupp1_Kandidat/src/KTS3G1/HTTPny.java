@@ -342,11 +342,11 @@ public class HTTPny implements Runnable {
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
                     System.out.println("Totala poäng1: " + ds.totPoang);
-              
+                    ds.kapacitet=pass[j]-ds.kapacitet;
                 }   
                 else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
-                {
-                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
+                {   ds.Antal_passagerare=pass[j];
+                    ds.totPoang=((ds.Antal_passagerare/(pass[j]))*(nuPoints[j]))+ds.totPoang;
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
                     System.out.println("Totala poäng2: " + ds.totPoang);
                 }
