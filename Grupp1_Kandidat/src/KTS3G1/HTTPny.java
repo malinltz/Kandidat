@@ -508,22 +508,20 @@ public class HTTPny implements Runnable {
                 sline = resten[f].split("!");
                 
                 paxplats[f] = sline[0];
-                 System.out.println("asfasvga");
-                kostnad[f] = sline[0];
-                uppdrag[f] = sline[1];
-                System.out.print("HEJ MALIN " + kostnad[f]);
+                kostnad[f] = sline[1];
+                uppdrag[f] = sline[2];
+             // System.out.println(uppdrag[f]);
             }
 
               for (int f = 0; f < meddelandet; f++) {
                 sline = uppdrag[f].split(",");
-                // System.out.println("asfasvga");
-                uppdrag1[f] = Integer.parseInt(sline[0]);
-                uppdrag2[f] = Integer.parseInt(sline[1]);
-              
+                 System.out.println(uppdrag[f]);
+                //uppdrag1[f] = Integer.parseInt(sline[0]);
+               // uppdrag2[f] = Integer.parseInt(sline[1]);
+               cui.messagegrupper(iD[f]+ " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
-
-            cui.messagegrupper(iD.length + " " + paxplats.length + " " + kostnad + " " + uppdrag);
-         //   System.out.println(iD + " " + paxplats + " " + kostnad + " " + uppdrag);
+            
+            // System.out.println(iD.length + " " + paxplats.length + " " + kostnad.length + " " + uppdrag.length);
             // System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
 
         } catch (Exception k) {
