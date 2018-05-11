@@ -373,7 +373,7 @@ public class HTTPny implements Runnable {
                         
                 
                 }
-                else break;
+              //  else break;
                 
             
             passagerare = pass[j];
