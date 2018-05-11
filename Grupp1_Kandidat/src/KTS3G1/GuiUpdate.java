@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.util.Random;
@@ -62,4 +62,4 @@ public class GuiUpdate implements Runnable{
 }
     
 
-    
+    */

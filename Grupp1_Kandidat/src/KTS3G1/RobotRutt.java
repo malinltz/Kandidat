@@ -228,7 +228,7 @@ public class RobotRutt {
            }
      }
      System.out.println("Kortade kommandon efter: " + rutt);
-     
+     try{
      //Tar bort nollrader ur list. Använd senare i GuiUpdate.
      guiUp = new int[list.length];
         int h = 0;
@@ -246,5 +246,6 @@ public class RobotRutt {
         String rutteN2 = rutteN.replaceAll("\\s","");
         String rutteN3 = rutteN2.replace(",", "");
         System.out.println("" + rutteN3);
-    }
+     }catch(Exception e) {}
+     }
 }
