@@ -335,6 +335,7 @@ public class HTTPny implements Runnable {
 
                     
                 uppdrag_valt=uppdragsid[j] ;
+                uppdrag_valt2 = uppdragsid[j+1];
             if (samakning[j]==0)
             {
             
@@ -342,8 +343,7 @@ public class HTTPny implements Runnable {
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
                     System.out.println("Totala poäng: " + ds.totPoang);
-                    
-                //
+              
                 }   
                 else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
@@ -351,14 +351,10 @@ public class HTTPny implements Runnable {
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
                     System.out.println("Totala poäng: " + ds.totPoang);
                 }
-                      
-            
+    
               //Någonstans här kolla antalet passagerare
-               // NumberOfpassengers = getPassagerare(uppdrag_valt);
-                //System.out.println(NumberOfpassengers);
-            //utmassage(String plats?) här kanske?
-            
-//             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
+
+                // uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
             
              //samåkningen ska funka om det är 1 och inte om den är 0. 
                 
@@ -368,9 +364,15 @@ public class HTTPny implements Runnable {
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
                     System.out.println("Totala poäng: " + ds.totPoang);
-                    uppdrag_valt=uppdragsid[j] ;
-                    uppdrag_valt2 =uppdragsid[j+1];
-                //
+                    
+                    if(pass[j+1]<=ds.kapacitet)
+                    {
+                    
+                    ds.totPoang=ds.totPoang+nuPoints[j+1];
+                    System.out.println("Totala poäng: " + ds.totPoang);
+                    }
+                   // uppdrag_valt=uppdragsid[j] ;
+               
                 }   
                 else if (pass[j+1] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {

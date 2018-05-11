@@ -235,14 +235,14 @@ public class RobotRutt {
      System.out.println("list2 " + Arrays.toString(list));
 
      //Tar bort nollrader ur list. Använd senare i GuiUpdate.
-     guiUp = new int[list.length];
+ /*    guiUp = new int[list.length];
         int h = 0;
         while (list[h] != 0) {
             guiUp[h] = list[h];    
             h++;
         }
 
-     
+   
      String rutteN = String.join(", ", rutt); //Gör om rutten från ArrayList till String
      
         cui.appendStatus("Wall-E är nu klar!");
@@ -251,6 +251,10 @@ public class RobotRutt {
         String rutteN2 = rutteN.replaceAll("\\s","");
         String rutteN3 = rutteN2.replace(",", "");
         System.out.println("" + rutteN3);
+
+   */ 
+
      }catch(Exception e) {}
      }
+
 }
