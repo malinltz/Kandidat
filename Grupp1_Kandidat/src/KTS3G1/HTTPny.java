@@ -363,22 +363,39 @@ public class HTTPny implements Runnable {
                 if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
+                  ds.kapacitet=ds.kapacitet-pass[j];
+                    System.out.println("Antal passsagerare: " + ds.kapacitet);
                     System.out.println("Totala poäng3: " + ds.totPoang);
-                    
-                    if(pass[j+1]<=ds.kapacitet)
+                    if (samakning[j+1]==1){
+                        System.out.println("Samåkning3: " + samakning[j]); 
+                        
+                     if(pass[j+1]<=ds.kapacitet)
                     {
-                    
+                    ds.kapacitet=ds.kapacitet-pass[j];
                     ds.totPoang=ds.totPoang+nuPoints[j+1];
                     System.out.println("Totala poäng4: " + ds.totPoang);
-                    }
+                    }   
+                    
+                     else if(pass[j+1]>(ds.kapacitet)){
+                         
+                         ds.kapacitet=ds.kapacitet-pass[j];
+                        ds.Antal_passagerare=pass[j+1]-ds.kapacitet;
+                         ds.totPoang=(((pass[j+1]-ds.Antal_passagerare)/(pass[j+1]))*(nuPoints[j+1]))+ds.totPoang;
+                         System.out.println("Totala poäng5: " + ds.totPoang);
+                     }
+                         //0
+                    
                    // uppdrag_valt=uppdragsid[j] ;
                
                 }   
-                else if (pass[j+1] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
-                    ds.totPoang=(((pass[j+1]-ds.kapacitet)/pass[j+1])*nuPoints[j+1])+ds.totPoang;
+                    
+                    ds.Antal_passagerare=pass[j]-ds.kapacitet; 
+                    System.out.println("ds.antal passagerare: " + ds.Antal_passagerare);
+                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
-                    System.out.println("Totala poäng5: " + ds.totPoang);
+                    System.out.println("Totala poäng6: " + ds.totPoang);
                 }
                       
                            
@@ -391,8 +408,8 @@ public class HTTPny implements Runnable {
                 
                 
             
-//            passagerare = pass[j];
-//            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+            passagerare = pass[j];
+            
 //                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
 //                   System.out.println("I morgon är en annan dag"+passagerare);
            
@@ -406,9 +423,9 @@ public class HTTPny implements Runnable {
                 break;
                    
             }
-            
+            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
         
-
+            }
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
             System.out.println("uhejhej");
