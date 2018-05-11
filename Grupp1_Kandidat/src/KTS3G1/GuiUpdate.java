@@ -34,9 +34,9 @@ public class GuiUpdate implements Runnable{
         //RR.guiUp hämtas från RobotRutt och är en kopia av List endast med noderna som vi får ACK av.
             
             if (Transceiver.utfort != null){
-                cui.appendStatus("Walle har nu passerat nod" + RR.guiUp[i]);
-                ds.passeradenoder =RR.guiUp[i];
-                if(RR.guiUp[i] == RR.guiUp[RR.guiUp.length-1]){
+                cui.appendStatus("Walle har nu passerat nod" + RR.guiUp2[i]);
+                ds.passeradenoder =RR.guiUp2[i];
+                if(RR.guiUp[i] == RR.guiUp2[RR.guiUp2.length-1]){
                     //Få bågen som Wall-E befinner sig på att blinka här kanske ? lol
                     System.out.println("BREAKS");
                     break;
@@ -44,8 +44,8 @@ public class GuiUpdate implements Runnable{
             
                 //Thread.sleep(sleepTime);
 
-                ds.robotX = (int) (ds.nodeX[RR.guiUp[i] - 1]);
-                ds.robotY = (int) (ds.nodeY[RR.guiUp[i] - 1]);
+                ds.robotX = (int) (ds.nodeX[RR.guiUp2[i] - 1]);
+                ds.robotY = (int) (ds.nodeY[RR.guiUp2[i] - 1]);
 
                 i++;
                 cui.repaint();
@@ -60,6 +60,6 @@ public class GuiUpdate implements Runnable{
         System.out.println("Wall-E är nu KLAR");
     }
 }
-    */
-
     
+    
+*/

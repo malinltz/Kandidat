@@ -16,9 +16,7 @@ public class OptPlan {
     public HTTPny http;
     
 
-    public int[] shortestPathList = new int[1000];
-    public int[] shortestPathListupp = new int[1000];
-    public int[] shortestlist;
+    public int[] shortestPathList;
     
     int pathCost = 0;
     double x = 0;
@@ -27,27 +25,13 @@ public class OptPlan {
     public OptPlan(DataStore ds) {
         this.ds = ds;
 
+        shortestPathList = new int[1000];        
     }
 
     public void createPlan() {
-      
+        
          nodes = new ArrayList<Vertex>();
          edges = new ArrayList<Edge>();
-          
-         
-//            if (ds.atervant){
-//            ds.slut = ds.startnod; //startnoden;
-//            ds.atervant=false;
-//            
-//        
-//        }
-//           else{
-         
-        // String[] sline;
-
-        // http.startlist=Double.parseDouble(sline[0].trim());
-        // http.stopplist=Double.parseDouble(sline[1].trim());
-
 
         // Set up network
         for (int i = 0; i < ds.nodes; i++) {

@@ -123,6 +123,8 @@ public class HTTPny implements Runnable {
             
             ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder
             ds.slut = narmstaNod;
+            System.out.println("ds.start " + ds.start);
+            System.out.println("ds.slut " + ds.slut);
             
             for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
@@ -162,6 +164,8 @@ public class HTTPny implements Runnable {
                 
                 ds.start = narmstaNod2;
                 ds.slut = narmstaNod3;
+                System.out.println("ds.start " + ds.start);
+                System.out.println("ds.slut " + ds.slut);
                 
                 op = new OptPlan(ds);
                 op.createPlan();
@@ -177,6 +181,8 @@ public class HTTPny implements Runnable {
                 System.out.println("Svar från hemsida: " + svaruppdrag);
             }
                 ds.start = narmstaNod4;
+                System.out.println("ds.start " + ds.start);
+                System.out.println("ds.slut " + ds.slut);
                 u++; //counter för antal uppdrag
                // ds.poang ++;
                 
