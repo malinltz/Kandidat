@@ -155,7 +155,7 @@ public class HTTPny implements Runnable {
             
            // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
-            // HEJ HALLÅ NU JÄVLAR PLOCKAR VI FOLK!!!!
+            plocka_upp = true;
             
             if (svaruppdrag.equals("beviljas")){
                 System.out.println("Svar från hemsida: " + svaruppdrag);
