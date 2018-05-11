@@ -372,9 +372,9 @@ public class HTTPny implements Runnable {
                     uppdrag_valt2 =uppdragsid[j+1];
                 //
                 }   
-                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                else if (pass[j+1] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
-                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
+                    ds.totPoang=(((pass[j+1]-ds.kapacitet)/pass[j+1])*nuPoints[j+1])+ds.totPoang;
                     //måste ta bort den andel passagerare som vi tagit från uppdraget
                     System.out.println("Totala poäng: " + ds.totPoang);
                 }
@@ -389,10 +389,10 @@ public class HTTPny implements Runnable {
                 
                 
             
-            passagerare = pass[j];
-            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
-                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
-                   System.out.println("I morgon är en annan dag"+passagerare);
+//            passagerare = pass[j];
+//            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+//                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
+//                   System.out.println("I morgon är en annan dag"+passagerare);
            
                
             //System.out.println(uppdrag_valt);
