@@ -28,11 +28,10 @@ public class HTTPny implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    public GuiUpdate gu;
-
-   // public HTTPextern httpex;
+   //public GuiUpdate gu;
+    public HTTPextern httpex;
     int NumberOfpassengers; 
-     int antal_passa = 0;
+    int antal_passa = 0;
      
 
     public String plats;
@@ -144,8 +143,8 @@ public class HTTPny implements Runnable {
 
                 inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
 
-                // httpex= new HTTPextern(this, ds);
-                // httpex.exprotokoll();
+                 httpex= new HTTPextern(this, ds);
+                 httpex.exprotokoll();
                 // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
@@ -166,7 +165,7 @@ public class HTTPny implements Runnable {
                     RR = new RobotRutt(ds, cui, op, this);
                     RR.goRobotrutt();
 
-                    gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+                   // gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
 
                 } else {
                     System.out.println("Svar från hemsida: " + svaruppdrag);

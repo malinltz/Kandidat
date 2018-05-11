@@ -2,8 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
-
+ */
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -15,12 +14,10 @@ import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
 import java.util.ArrayList;
 
-
 /**
  *
  * @author malinlilliecreutz
-
-
+ */
 public class HTTPextern {
 
     public OptPlan op;
@@ -30,9 +27,9 @@ public class HTTPextern {
     int capacity = 3; //exempel på kapacitet
     int ID = 1;
     int[] messagetyp;
-    private String [] dummer;
-  //  private String [] platserna;
-   // String url;
+    private String[] dummer;
+    //  private String [] platserna;
+    // String url;
     String dummy;
     String message;
     String test;
@@ -40,64 +37,58 @@ public class HTTPextern {
     public String plats;
     int platsgrupp;
     //int langd=3; 
-    int capacitet4= 20; //fixt capacitet för grupp 4
-    int capacitet5= 50; //fixt capacitet för grupp 5
-    int capacitet1= 60; //fixt capacitet för grupp 1(vår grupp)
-    
-    ArrayList <String> uppdragG1;
-    ArrayList <String> uppdragG4;
-    ArrayList <String> uppdragG5;
+    int capacitet4 = 20; //fixt capacitet för grupp 4
+    int capacitet5 = 50; //fixt capacitet för grupp 5
+    int capacitet1 = 60; //fixt capacitet för grupp 1(vår grupp)
+
+    ArrayList<String> uppdragG1;
+    ArrayList<String> uppdragG4;
+    ArrayList<String> uppdragG5;
 
     public HTTPextern(HTTPny http, DataStore ds) {
 
         this.http = http;
         this.ds = ds;
-        dummy="";
-        uppdragG1= new ArrayList <String>();
-   
-           uppdragG4= new ArrayList <String>();
-           uppdragG5= new ArrayList <String>();
-    
-     //   sleepTime = 1000;
-        
-     //   int langd = 3; 
-       // http.plats
-       
-   /*  for(int i = 0; i < langd; i ++){
+        dummy = "";
+        uppdragG1 = new ArrayList<String>();
+
+        uppdragG4 = new ArrayList<String>();
+        uppdragG5 = new ArrayList<String>();
+
+        //   sleepTime = 1000;
+        //   int langd = 3; 
+        // http.plats
+        /*  for(int i = 0; i < langd; i ++){
            if(){
                
            }
        }
-       
-       
-        
+  
+         */
     }
-    
+
     //bubble sort 
     //linked list
     public String exprotokoll() {
 
-       // platsgrupp = Integer.parseInt(http.plats);
-        
-       //kör idbaserat istället
-       //går inte ut utan sätter att ni inte får ta det uppdraget
-                   //Splittar Vilka uppdrag (Behöves ej?)
-          
-       
-       
-      //Kolla vilka uddrag respektive grupp ska göra
-        for (int i = 0; i < 3; i++) {
+        // platsgrupp = Integer.parseInt(http.plats);
+        //kör idbaserat istället
+        //går inte ut utan sätter att ni inte får ta det uppdraget
+        //Splittar Vilka uppdrag (Behöves ej?)
+        //Kolla vilka uddrag respektive grupp ska göra
+        //måste kolla på idnummer
+        for (int i = 0; i < http.meddelandet; i++) {
             dummer = http.uppdrag[i].split(",");
-            if (i == 0) {
+            if (http.iD[i] == 1) {
                 for (int j = 0; j < dummer.length; j++) {
                     uppdragG1.add((dummer[j]));
                 }
             } //Ändra ordning här breoende på ordning i HTTP
-            else if (i == 1) {
+            else if (http.iD[i] == 4) {
                 for (int j = 0; j < dummer.length; j++) {
                     uppdragG4.add((dummer[j]));
                 }
-            } else if (i == 2) {
+            } else if (http.iD[i] == 5) {
                 for (int j = 0; j < dummer.length; j++) {
                     uppdragG5.add((dummer[j]));
                 }
@@ -108,14 +99,21 @@ public class HTTPextern {
         System.out.println("Grupp 4 Uppdrag" + uppdragG4);
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
-   
-        for (int i = 0; i < 3; i++) { //kollar vilken plats som är bäst
-            if (i != 0) {
+    //    return "halsjfjalf";
+
+    
+
+        
+        for (int i = 0; i < 3; i++)
+        { //kollar vilken plats som är bäst
+            if (i != 0) 
+            {
                 if (http.paxplats[i] == http.paxplats[1]) {
                     //Kolla hur det är med kostnaderna
-                    if (http.kostnad[i] < http.kostnad[0])
-                    { 
-                    } else if (http.kostnad[i] < http.kostnad[0]) {
+                   // if (http.kostnad[i] < http.kostnad[0])
+                  //  { 
+                  //  } 
+                   // else if (http.kostnad[i] > http.kostnad[0]) {
                         //Då vill vi jämföra grupp-ID
                         if (http.iD[i] < http.iD[0]) {
                             //Då vill att den gruppen ska få det och då måste vi byta uppdrag 
@@ -124,15 +122,14 @@ public class HTTPextern {
                    
                 }
             }
-             
+          return "HKJHK"; //uppdragG1;   
         }
-       return "HKJHK"; //uppdragG1;
+       
       
     }
-}
-        
 
-/*
+        /*
+
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
                     {
                         if else(http.kostnad < http.lagstaKostnad) //om kostnaden för de andra är mindre än lägsta kostnaden så får de andra uppdraget
