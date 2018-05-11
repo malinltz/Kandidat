@@ -132,9 +132,9 @@ public class HTTPny implements Runnable {
             RR = new RobotRutt(ds, cui, op, this);
             RR.goRobotrutt();
             
-            gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-            Thread t2 = new Thread(gu);
-            t2.start();
+            //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            //Thread t2 = new Thread(gu);
+            //t2.start();
             
             //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
             
@@ -331,42 +331,69 @@ public class HTTPny implements Runnable {
             //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
 
             for (int j=0; j <uppsizeInt; j++){
-
+                System.out.println("Samåkning0: " + samakning[j]); 
                     
-                
-            if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                uppdrag_valt=uppdragsid[j] ;
+                uppdrag_valt2 = uppdragsid[j+1];
+            if (samakning[j]==0)
             {
-                
-                     /* //Räknar totala poängen för uppdragen. 
             
-              int  dummy; 
-              dummy = uppdrag_valt;
-              ds.totPoang = ds.totPoang + ds.poang[dummy];
-              System.out.println("Totala poäng: " + ds.totPoang);
-            
-            
-            //Någonstans här kolla antalet passagerare
-                NumberOfpassengers = getPassagerare(uppdrag_valt);
-                System.out.println(NumberOfpassengers);
-            //utmassage(String plats?) här kanske?
-            */
-             uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
+                if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=ds.totPoang+nuPoints[j];
+                    System.out.println("Totala poäng1: " + ds.totPoang);
+              
+                }   
+                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=(((pass[j]-ds.kapacitet)/pass[j])*nuPoints[j])+ds.totPoang;
+                    //måste ta bort den andel passagerare som vi tagit från uppdraget
+                    System.out.println("Totala poäng2: " + ds.totPoang);
+                }
+            }
+              //Någonstans här kolla antalet passagerare
+
+                // uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
             
              //samåkningen ska funka om det är 1 och inte om den är 0. 
                 
-                if (samakning[j] == 1)
-                {       uppdrag_valt=uppdragsid[j] ;
-                        uppdrag_valt2 =uppdragsid[j+1];
-                        
-                
+                else if(samakning[j]==1){ 
+                    System.out.println("Samåkning1: " + samakning[j]); 
+                if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=ds.totPoang+nuPoints[j];
+                    System.out.println("Totala poäng3: " + ds.totPoang);
+                    
+                    if(pass[j+1]<=ds.kapacitet)
+                    {
+                    
+                    ds.totPoang=ds.totPoang+nuPoints[j+1];
+                    System.out.println("Totala poäng4: " + ds.totPoang);
+                    }
+                   // uppdrag_valt=uppdragsid[j] ;
+               
+                }   
+                else if (pass[j+1] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                {
+                    ds.totPoang=(((pass[j+1]-ds.kapacitet)/pass[j+1])*nuPoints[j+1])+ds.totPoang;
+                    //måste ta bort den andel passagerare som vi tagit från uppdraget
+                    System.out.println("Totala poäng5: " + ds.totPoang);
                 }
-                else break;
+                      
+                           
+                }      
+                       
+                    
+                
                 
             
-            passagerare = pass[j];
-            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
-                   // System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
-                   // System.out.println("I morgon är en annan dag"+passagerare);
+                
+                
+            
+//            passagerare = pass[j];
+//            ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+//                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
+//                   System.out.println("I morgon är en annan dag"+passagerare);
            
                
             //System.out.println(uppdrag_valt);
@@ -378,16 +405,13 @@ public class HTTPny implements Runnable {
                 break;
                    
             }
-            else if (j== (uppsizeInt-1)) //om kapaciteten är max 
-            {
-             cui.maxPass("Passagerargränsen är max");
-            }
-        }
+            
+        
 
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
             System.out.println("uhejhej");
-
+            
         }
         return uppdrag_valt;
         
@@ -451,7 +475,7 @@ public class HTTPny implements Runnable {
             meddelandet = inmess.size();
             
             //det blir tre för vi tar in tre rader
-        System.out.println(meddelandet+ "KHJH"); //blir tre som vi vill
+      //  System.out.println(meddelandet+ "KHJH"); //blir tre som vi vill
        // System.out.println(gruppmessage.length+ "KHJHdasfd"); //blir 1
         
             resten = new String[meddelandet];
@@ -474,11 +498,14 @@ public class HTTPny implements Runnable {
                  
                 sline = inmess.get(p).split(";");
                 tid[p] = sline[0];
-                resten[p] = sline[1];
+                iD[p]=Integer.parseInt(sline[1]);
+                resten[p] = sline[2];
+                
+                System.out.println(resten[p]);//här ligger nu felet!! why
             }
             
             //Splittar bort tiden
-            for (int j = 0; j < meddelandet; j++) {
+           /* for (int j = 0; j < meddelandet; j++) {
                 sline = resten[j].split(";");
                  
                 iD[j] = Integer.parseInt(sline[0]); //ID för de som de andra företagsgrupperna
@@ -487,6 +514,7 @@ public class HTTPny implements Runnable {
                 System.out.println("asfasvga");
                // System.out.println("ID "+iD + " info " + info);
             }
+*/
        
             //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
             for (int f = 0; f < meddelandet; f++) {
