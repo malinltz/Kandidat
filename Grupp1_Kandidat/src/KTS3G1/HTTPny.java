@@ -362,25 +362,29 @@ public class HTTPny implements Runnable {
                 if(pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                 {
                     ds.totPoang=ds.totPoang+nuPoints[j];
-                  ds.kapacitet=ds.kapacitet-pass[j];
-                    System.out.println("Antal passsagerare: " + ds.kapacitet);
+                  ds.kapacitet=ds.kapacitet-pass[j];//borde bli två
+                    System.out.println("Kapacitet 1: " + ds.kapacitet);
                     System.out.println("Totala poäng3: " + ds.totPoang);
                     if (samakning[j+1]==1){
-                        System.out.println("Samåkning3: " + samakning[j]); 
+                        System.out.println("Samåkning3: " + samakning[j+1]);//1 
                         
-                     if(pass[j+1]<=ds.kapacitet)
+                     if(pass[j+1]<=ds.kapacitet)//3<=2
                     {
                     ds.kapacitet=ds.kapacitet-pass[j];
                     ds.totPoang=ds.totPoang+nuPoints[j+1];
                     System.out.println("Totala poäng4: " + ds.totPoang);
                     }   
                     
-                     else if(pass[j+1]>(ds.kapacitet)){
+                     else if(pass[j+1]>(ds.kapacitet)) // 3>2
+                     { 
                          
-                         ds.kapacitet=ds.kapacitet-pass[j];
+                        ds.kapacitet=pass[j]-ds.kapacitet; // 
+                        System.out.println("Kapacitet 2: " + ds.kapacitet);
                         ds.Antal_passagerare=pass[j+1]-ds.kapacitet;
+                        System.out.println("Antal passagerare: " + ds.Antal_passagerare);
                          ds.totPoang=(((pass[j+1]-ds.Antal_passagerare)/(pass[j+1]))*(nuPoints[j+1]))+ds.totPoang;
                          System.out.println("Totala poäng5: " + ds.totPoang);
+                         
                      }
                          //0
                     

@@ -729,9 +729,9 @@ public class ControlUI extends javax.swing.JFrame {
            String badress="201410149018"; 
            jTextField7.setText(badress);
           
-            Transceiver b1 = new Transceiver();
-            Thread t6 = new Thread(b1);
-            t6.start();
+//            Transceiver b1 = new Transceiver();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
             
     /*    if (Transceiver.returnanslut()){ //om det finns anslutning 
 
