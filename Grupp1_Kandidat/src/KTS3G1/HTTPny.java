@@ -378,11 +378,11 @@ public class HTTPny implements Runnable {
                      else if(pass[j+1]>(ds.kapacitet)) // 3>2
                      { 
                          
-                        ds.kapacitet=pass[j]-ds.kapacitet; // 
+                        ds.kapacitet=(pass[j]-ds.kapacitet)-ds.kapacitet; //borde bli noll  
                         System.out.println("Kapacitet 2: " + ds.kapacitet);
-                        ds.Antal_passagerare=pass[j+1]-ds.kapacitet;
+                        ds.Antal_passagerare=pass[j+1]+pass[j];
                         System.out.println("Antal passagerare: " + ds.Antal_passagerare);
-                         ds.totPoang=(((pass[j+1]-ds.Antal_passagerare)/(pass[j+1]))*(nuPoints[j+1]))+ds.totPoang;
+                         ds.totPoang=((ds.Antal_passagerare/(pass[j+1]))*(nuPoints[j+1]))+ds.totPoang;
                          System.out.println("Totala poäng5: " + ds.totPoang);
                          
                      }
@@ -391,7 +391,7 @@ public class HTTPny implements Runnable {
                    // uppdrag_valt=uppdragsid[j] ;
                
                 }   
-                else if (pass[j] > ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                else if (pass[j] > ds.kapacitet)//4>2
                 {
                     
                     ds.Antal_passagerare=pass[j]-ds.kapacitet; 
