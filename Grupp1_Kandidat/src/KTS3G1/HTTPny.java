@@ -452,7 +452,7 @@ public class HTTPny implements Runnable {
             meddelandet = inmess.size();
             
             //det blir tre för vi tar in tre rader
-        System.out.println(meddelandet+ "KHJH"); //blir tre som vi vill
+      //  System.out.println(meddelandet+ "KHJH"); //blir tre som vi vill
        // System.out.println(gruppmessage.length+ "KHJHdasfd"); //blir 1
         
             resten = new String[meddelandet];
@@ -475,11 +475,14 @@ public class HTTPny implements Runnable {
                  
                 sline = inmess.get(p).split(";");
                 tid[p] = sline[0];
-                resten[p] = sline[1];
+                iD[p]=Integer.parseInt(sline[1]);
+                resten[p] = sline[2];
+                
+                System.out.println(resten[p]);//här ligger nu felet!! why
             }
             
             //Splittar bort tiden
-            for (int j = 0; j < meddelandet; j++) {
+           /* for (int j = 0; j < meddelandet; j++) {
                 sline = resten[j].split(";");
                  
                 iD[j] = Integer.parseInt(sline[0]); //ID för de som de andra företagsgrupperna
@@ -488,6 +491,7 @@ public class HTTPny implements Runnable {
                 System.out.println("asfasvga");
                // System.out.println("ID "+iD + " info " + info);
             }
+*/
        
             //Splittar Plats, Kostnad och Vilka uppdrag de vill göra
             for (int f = 0; f < meddelandet; f++) {
