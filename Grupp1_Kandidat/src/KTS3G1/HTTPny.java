@@ -521,7 +521,7 @@ public class HTTPny implements Runnable {
                cui.messagegrupper(iD[f]+ " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
             
-            // System.out.println(iD.length + " " + paxplats.length + " " + kostnad.length + " " + uppdrag.length);
+         // System.out.println(iD.length + " " + paxplats.length + " " + kostnad.length + " " + uppdrag.length);
             // System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
 
         } catch (Exception k) {
