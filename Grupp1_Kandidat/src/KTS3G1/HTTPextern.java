@@ -13,11 +13,10 @@ import java.net.URL;
 import java.io.DataOutputStream;
 //import java.util.regex.Pattern;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-/**
- *
- * @author malinlilliecreutz
- */
+
 public class HTTPextern {
 
     public OptPlan op;
@@ -30,6 +29,7 @@ public class HTTPextern {
     private String[] dummer;
     //  private String [] platserna;
     // String url;
+    String[] uppdrLista;
     String dummy;
     String message;
     String test;
@@ -44,6 +44,7 @@ public class HTTPextern {
     ArrayList<String> uppdragG1;
     ArrayList<String> uppdragG4;
     ArrayList<String> uppdragG5;
+    ArrayList<String> ejUppdrag;
 
     public HTTPextern(HTTPny http, DataStore ds) {
 
@@ -51,32 +52,14 @@ public class HTTPextern {
         this.ds = ds;
         dummy = "";
         uppdragG1 = new ArrayList<String>();
-
         uppdragG4 = new ArrayList<String>();
         uppdragG5 = new ArrayList<String>();
-
-        //   sleepTime = 1000;
-        //   int langd = 3; 
-        // http.plats
-        /*  for(int i = 0; i < langd; i ++){
-           if(){
-               
-           }
-       }
-  
-         */
+        ejUppdrag = new ArrayList<String>();
     }
 
-    //bubble sort 
-    //linked list
-    public String exprotokoll() {
+    public void exprotokoll() {
 
-        // platsgrupp = Integer.parseInt(http.plats);
-        //kör idbaserat istället
-        //går inte ut utan sätter att ni inte får ta det uppdraget
-        //Splittar Vilka uppdrag (Behöves ej?)
-        //Kolla vilka uddrag respektive grupp ska göra
-        //måste kolla på idnummer
+        
         for (int i = 0; i < http.meddelandet; i++) {
             dummer = http.uppdrag[i].split(",");
             if (http.iD[i] == 1) {
@@ -99,35 +82,84 @@ public class HTTPextern {
         System.out.println("Grupp 4 Uppdrag" + uppdragG4);
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
-
-
-    
-
-        
-        for (int i = 0; i < http.meddelandet; i++)
+        ejUppdrag.clear();
+        for (int i = 0; i < 3; i++) //Tre grupper.
         { //kollar vilken plats som är bäst
+            
             if (http.iD[i] != 1) 
             {
+                //Jämför om fler grupper vill ha samma plats.
                 if (http.paxplats[i] == http.paxplats[1]) {
+                    
                     //Kolla hur det är med kostnaderna
-                   // if (http.kostnad[i] < http.kostnad[0])
-                  //  { 
-                  //  } 
-                   // else if (http.kostnad[i] > http.kostnad[0]) {
+                   if (Integer.parseInt(http.kostnad[i]) < Integer.parseInt(http.kostnad[0])) { 
+                        
+                       //Lägga till här att vi inte kan få den uppdragsplatsen.
+                       if (i == 0) {
+                          for (int j = 0; j < uppdragG4.size(); j++) {
+                             if (!ejUppdrag.contains(j)) {
+                                  ejUppdrag.add(String.valueOf(j));
+
+                                 }
+                                }
+                            } else if (i == 2) {
+                          for (int j = 0; j < uppdragG5.size(); j++) {
+                             if (!ejUppdrag.contains(Integer.parseInt(uppdragG5.get(j)))) {
+                                 ejUppdrag.add(uppdragG5.get(j));
+
+                                 }
+                                }
+                            }
+                    }
+                   else if (Integer.parseInt(http.kostnad[i]) == Integer.parseInt(http.kostnad[0])) {
+                       
                         //Då vill vi jämföra grupp-ID
                         if (http.iD[i] < http.iD[0]) {
-                            //Då vill att den gruppen ska få det och då måste vi byta uppdrag 
+                            
+                           //Lägga till här att vi inte kan få den uppdragsplatsen.
+                       if (i == 0) {
+                          for (int j = 0; j < uppdragG4.size(); j++) {
+                             if (!ejUppdrag.contains(j)) {
+                                  ejUppdrag.add(String.valueOf(j));
+
+                                 }
+                                }
+                            } else if (i == 2) {
+                          for (int j = 0; j < uppdragG5.size(); j++) {
+                             if (!ejUppdrag.contains(uppdragG5.get(j))) {
+                                 ejUppdrag.add(uppdragG5.get(j));
+
+                                 }
+                                }
+                            }
+                        }
+                   else{
+                           System.out.println("Vi fick uppdraget!");
                         }
                     }
                    
                 }
             }
-          return "HKJHK"; //uppdragG1;   
         }
-       
+        //Gör om till ArrayList
+      List<String> wordList = Arrays.asList(http.uppdrag);  
       
-    }
-
+ 
+        //Här tar den bort de uppdrag som de andra grupperna fick
+         for (int k = 0; k < wordList.size(); k++) {
+            for (int j = 0; j < ejUppdrag.size(); j++) {
+               if (wordList.get(k) == ejUppdrag.get(j)) {
+                   wordList.remove(k);
+           }
+        }
+     }
+         
+         //Gör om till Array String igen.
+      uppdrLista = wordList.stream().toArray(String[]::new);
+         
+         
+  }   
+}
         /*
 
                     if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 

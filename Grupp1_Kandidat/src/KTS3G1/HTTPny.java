@@ -146,8 +146,10 @@ public class HTTPny implements Runnable {
             
             inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
             
-           // httpex= new HTTPextern(this, ds);
-           // httpex.exprotokoll();
+            httpex= new HTTPextern(this, ds);
+            httpex.exprotokoll();
+            
+            System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
             
            // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
             String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
@@ -518,9 +520,7 @@ public class HTTPny implements Runnable {
                 // uppdrag2[f] = Integer.parseInt(sline[1]);
                 cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
-
-            // System.out.println(iD.length + " " + paxplats.length + " " + kostnad.length + " " + uppdrag.length);
-            // System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
+            
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
             //  System.out.print(meddelandet);
