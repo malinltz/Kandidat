@@ -54,13 +54,14 @@ public class HTTPny implements Runnable {
     public int uppdrag_valt;
     public int uppdrag_valt2;
     public int uppdrag_valt3;
+    public String allauppdrag;
 
     public int[] startlist;
     public int[] stopplist;
 
     int[] uppdrag1;
     int[] uppdrag2;
-    int[] allauppdrag; 
+    
     String datumer;
 
     public int[] uppdragsid;
@@ -146,10 +147,10 @@ public class HTTPny implements Runnable {
             
             inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
             
-            httpex= new HTTPextern(this, ds);
-            httpex.exprotokoll();
+           // httpex= new HTTPextern(this, ds);
+           // httpex.exprotokoll();
             
-            System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
+           // System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
 
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
@@ -330,7 +331,7 @@ public class HTTPny implements Runnable {
             for (int j = 0; j < uppsizeInt; j++) {
 
                 uppdrag_valt = uppdragsid[j];
-                uppdrag_valt2 = uppdragsid[j + 1];
+                uppdrag_valt2 = uppdragsid[j +1];
             
 
                 if (samakning[j] == 0) {
@@ -342,7 +343,7 @@ public class HTTPny implements Runnable {
                         ds.kapacitet = ds.kapacitet - pass[j];
                         uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
                         System.out.println(ds.kapacitet);
-                    } else if (pass[j] > ds.kapacitet && ds.kapacitet >= 0)//kollar kapacitet jämfört med passagerare 
+                    } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
 
@@ -364,7 +365,7 @@ public class HTTPny implements Runnable {
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j];
-                        ds.kapacitet =  ds.kapacitet- pass[j];
+                       
                         ds.totPoang = ds.Antal_passagerare;
                         //borde bli två
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
@@ -396,7 +397,6 @@ public class HTTPny implements Runnable {
                         }
                            } 
                         
-
                     } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
@@ -418,15 +418,21 @@ public class HTTPny implements Runnable {
                     System.out.println("Antal passagerare: " + ds.Antal_passagerare);
 
                     System.out.println("Totala poäng: " + ds.totPoang);
+                    
+                    passagerare = ds.Antal_passagerare;
+              
+                    
+                    
                 }
                 
-             passagerare = ds.Antal_passagerare;
+               
+           
                 System.out.println("bä");
                   //Skriver ut vilket uppdrag vi har tagit i statusruta
 
             cui.tauppdrag(
-                    "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
-                    + ", Pass: " + passagerare + ", Grupp: 1");
+                    "Plats: " + plats + ", ID: " + uppdrag_valt + ","+ uppdrag_valt2 +
+                     ", Pass: " + passagerare + ", Grupp: 1");
             }
 
           
