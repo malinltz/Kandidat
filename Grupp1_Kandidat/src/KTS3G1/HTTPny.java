@@ -107,21 +107,26 @@ public class HTTPny implements Runnable {
 
             while (u < 1) {
 
-                Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
-                //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+                 Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
+                 //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
 
-                Listaplats(); //Optimerar rutt till upphämtningsplats
-
-                // utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-                // inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-                //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
-                //httpex.exprotokoll();
-                //Ger oss en upphämtningsplats
-                if (u < 1) {
+                 Listaplats(); //Optimerar rutt till upphämtningsplats
+            
+                 utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+            
+                 inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+            
+                 httpex= new HTTPextern(this, ds);
+                 httpex.exprotokoll();
+                 
+                 if (u < 1) {
                     ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
                 }
-
-                ds.slut = narmstaNod;
+                 ds.slut = narmstaNod;
+                 
+                 uppdrag_valt = listauppdrag(httpex.uppdragViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+            
+                 System.out.println("BAJS PÅ TORSTEN " + httpex.uppdragViFick2);
             
             for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
@@ -139,17 +144,6 @@ public class HTTPny implements Runnable {
             //t2.start();
             
             //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-            
-            uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-            
-            utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-            
-            inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-            
-            httpex= new HTTPextern(this, ds);
-            httpex.exprotokoll();
-            
-            System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
 
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
