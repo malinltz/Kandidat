@@ -157,13 +157,8 @@ public class RobotRutt {
                          cui.appendStatus("Kör höger");
                     }
                 }
-                i++;
-                
+                i++;                
             }
-
-     list[list.length-1] = 0;
-     System.out.print(Arrays.toString(list));
-     System.out.println("\nrutt " + rutt);
      
                              //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
      for (int e = 0; e < rutt.size()-2; e++){
@@ -174,22 +169,18 @@ public class RobotRutt {
              rutt.remove(e);     //Ta bort första r:et
              rutt.remove(e+1);     //Ta bort andra r:et
              kCount = kCount - 2;
-             list[e+1] = 0;
-             list[e+2] = 0;
          }
         //Ersätt rv med v
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v")){
              System.out.println("2v.");
             rutt.remove(e);     //Ta bort r:et
             kCount = kCount - 1;
-            list[e+1] = 0;
          }
         //Ersätt vr med v
           else if (rutt.get(e).equals("v") && rutt.get(e+1).equals("r")){
               System.out.println("3v.");
               rutt.remove(e+1);   //Ta bort r:et
               kCount = kCount - 1;
-              list[e+1] = 0;
          } 
         if (e == kCount){            
                System.out.println("Breakat vid i 1 = " + i);
@@ -206,45 +197,25 @@ public class RobotRutt {
              rutt.remove(e);     //Ta bort första r:et
              rutt.remove(e+1);     //Ta bort andra r:et
              kkCount = kkCount - 2;
-             list[e+1] = 0;
-             list[e+2] = 0;
          }
         //Ersätt rh med h
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("h")){
              System.out.println("2h.");
             rutt.remove(e);     //Ta bort r:et
             kkCount = kkCount - 1;
-           list[e+1] = 0;
          }
         //Ersätt hr med h
           else if (rutt.get(e).equals("h") && rutt.get(e+1).equals("r")){
               System.out.println("3h.");
               rutt.remove(e+1);   //Ta bort r:et
               kkCount = kkCount - 1;
-              list[e+1] = 0;
          } 
         if (i == kkCount){            
                System.out.println("Breakat vid i 2 = " + i);
                break;
            }
      }
-
-     //Fördelar nollrader sist i arrayen.
-     list2 = new int[list.length];
-        int j = 0;
-        int jj = 0;
-        while (j < list.length) {
-            if(list[j] != 0){
-               list2[jj] = list[j]; 
-               jj++;
-            }   
-            j++;
-        }
-     System.out.print(Arrays.toString(list2)+"\n");
-     
-     
      System.out.println("Kortade kommandon efter: " + rutt);
-     System.out.println("list2 " + Arrays.toString(list2));
 
      String rutteN = String.join(", ", rutt); //Gör om rutten från ArrayList till String
      

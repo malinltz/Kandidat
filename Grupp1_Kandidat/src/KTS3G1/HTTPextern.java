@@ -30,7 +30,8 @@ public class HTTPextern {
     private String[] dummer;
     //  private String [] platserna;
     // String url;
-    String[] uppdrLista;
+    String[] uppdragViFick;
+    String uppdragViFick2;
     String dummy;
     String message;
     String test;
@@ -136,10 +137,13 @@ public class HTTPextern {
                             }
                         }
                    else{
-                           System.out.println("Vi fick uppdraget!");
+                           uppdragViFick2 = http.narmstaPlats;
                         }
                     }
                    
+                }
+                else {
+                    uppdragViFick2 = http.narmstaPlats;
                 }
             }
         }
@@ -157,9 +161,9 @@ public class HTTPextern {
      }
          
          //Gör om till Array String igen.
-      uppdrLista = wordList.stream().toArray(String[]::new);
+      uppdragViFick = wordList.stream().toArray(String[]::new);
          
-         
+      uppdragViFick2 = String.join(",", uppdragViFick);
   }   
 }
 */
