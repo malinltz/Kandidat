@@ -103,7 +103,6 @@ public class HTTPny implements Runnable {
     @Override
     public void run() {
 
-
         try {
 
             while (u < 1) {
