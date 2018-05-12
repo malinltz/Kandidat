@@ -122,31 +122,35 @@ public class HTTPny implements Runnable {
                 }
 
                 ds.slut = narmstaNod;
-
-                for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+            
+            for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
+            
+            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+            op.createPlan();
+            
+            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+            RR = new RobotRutt(ds, cui, op, this);
+            RR.goRobotrutt();
+            
+            //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            //Thread t2 = new Thread(gu);
+            //t2.start();
+            
+            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+            
+            uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+            
+            utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+            
+            inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+            
+            httpex= new HTTPextern(this, ds);
+            httpex.exprotokoll();
+            
+            System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
 
-                op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
-                op.createPlan();
-
-                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                RR = new RobotRutt(ds, cui, op, this);
-                RR.goRobotrutt();
-
-                //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-                //Thread t2 = new Thread(gu);
-                //t2.start();
-                //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-                uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-
-                utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-
-                inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-
-                // httpex= new HTTPextern(this, ds);
-                // httpex.exprotokoll();
-                // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
                 if (svaruppdrag.equals("beviljas")) {
@@ -167,6 +171,7 @@ public class HTTPny implements Runnable {
                     RR.goRobotrutt();
 
                     //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+                    
                 } else {
                     System.out.println("Svar från hemsida: " + svaruppdrag);
                 }
@@ -492,7 +497,7 @@ public class HTTPny implements Runnable {
             //uppdrag2 = new int[meddelandet];
             //Splittar bort datum
             for (int p = 0; p < meddelandet; p++) {
-
+                 System.out.println("HEEEJ" + inmess.get(p));
                 //  String uppsize = upp.get(0);
                 //  uppsizeInt = Integer.parseInt(uppsize);
                 sline = inmess.get(p).split(";");
@@ -518,9 +523,7 @@ public class HTTPny implements Runnable {
                 // uppdrag2[f] = Integer.parseInt(sline[1]);
                 cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
-
-            // System.out.println(iD.length + " " + paxplats.length + " " + kostnad.length + " " + uppdrag.length);
-            // System.out.println("Bästa uppdrag: " + paxplats[i] + kostnad[i] + uppdrag1 + uppdrag2);
+            
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
             //  System.out.print(meddelandet);
