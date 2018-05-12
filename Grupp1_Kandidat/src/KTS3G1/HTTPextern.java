@@ -99,14 +99,14 @@ public class HTTPextern {
         System.out.println("Grupp 4 Uppdrag" + uppdragG4);
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
-    //    return "halsjfjalf";
+
 
     
 
         
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < http.meddelandet; i++)
         { //kollar vilken plats som är bäst
-            if (i != 0) 
+            if (http.iD[i] != 1) 
             {
                 if (http.paxplats[i] == http.paxplats[1]) {
                     //Kolla hur det är med kostnaderna

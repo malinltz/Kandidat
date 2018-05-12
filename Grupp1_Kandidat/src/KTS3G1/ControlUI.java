@@ -19,7 +19,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-    GuiUpdate GU;
+    //GuiUpdate GU;
    // HTTPextern hx;
     //Transceiver tc;
 
