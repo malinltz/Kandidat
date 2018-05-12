@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.Random;
@@ -31,8 +31,8 @@ public class GuiUpdate implements Runnable{
         
     while(true){ //Behövs ingen try-catch om inte Sleeptime används.
         
-        //RR.guiUp hämtas från RobotRutt och är en kopia av List endast med noderna som vi får ACK av.
-            
+
+            /*
             if (Transceiver.utfort != null){
                 cui.appendStatus("Walle har nu passerat nod" + RR.guiUp2[i]);
                 ds.passeradenoder =RR.guiUp2[i];
@@ -52,17 +52,16 @@ public class GuiUpdate implements Runnable{
                 cui.repaint();
 
             }
+        */
             
             if(Transceiver.utfort.equals("p")){
-                cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
+                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+                
+                ds.robotX = (int) (ds.nodeX[ds.slut - 1]);
+                ds.robotY = (int) (ds.nodeY[ds.slut - 1]);
+                cui.repaint();
                 break;
-            }
-            
+            }        
         }
-        System.out.println("Wall-E är nu KLAR");
-
-        
-    
     }
 }
-*/
