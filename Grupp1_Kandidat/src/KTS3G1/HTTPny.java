@@ -116,48 +116,51 @@ public class HTTPny implements Runnable {
                 //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
                 //httpex.exprotokoll();
                 //Ger oss en upphämtningsplats
-                ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder
+                if (u < 1){
+                   ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
+                }
+                
                 ds.slut = narmstaNod;
-                System.out.println("ds.start " + ds.start);
-                System.out.println("ds.slut " + ds.slut);
 
-                for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+            
+            for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                    ds.arcColor[j] = 0;
+                }
+            
+            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+            op.createPlan();
+            
+            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+            RR = new RobotRutt(ds, cui, op, this);
+            RR.goRobotrutt();
+            
+            //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            //Thread t2 = new Thread(gu);
+            //t2.start();
+            
+            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+            
+            uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+            
+            utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+            
+            inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+            
+           // httpex= new HTTPextern(this, ds);
+           // httpex.exprotokoll();
+            
+           // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
+            String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+            
+            if (svaruppdrag.equals("beviljas")){
+                System.out.println("Svar från hemsida: " + svaruppdrag);
+                 
+                for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
 
-                op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
-                op.createPlan();
-
-                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                RR = new RobotRutt(ds, cui, op, this);
-                RR.goRobotrutt();
-
-                //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-                //Thread t2 = new Thread(gu);
-                //t2.start();
-                //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-                uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-
-                utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-
-                inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-
-                // httpex= new HTTPextern(this, ds);
-                // httpex.exprotokoll();
-                // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
-                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
-
-                if (svaruppdrag.equals("beviljas")) {
-                    System.out.println("Svar från hemsida: " + svaruppdrag);
-
-                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
-                        ds.arcColor[j] = 0;
-                    }
-
                     ds.start = narmstaNod2;
                     ds.slut = narmstaNod3;
-                    System.out.println("ds.start " + ds.start);
-                    System.out.println("ds.slut " + ds.slut);
 
                     op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
                     op.createPlan();
@@ -170,6 +173,7 @@ public class HTTPny implements Runnable {
                 } else {
                     System.out.println("Svar från hemsida: " + svaruppdrag);
                 }
+            
                 ds.start = narmstaNod4;
                 System.out.println("ds.start " + ds.start);
                 System.out.println("ds.slut " + ds.slut);
