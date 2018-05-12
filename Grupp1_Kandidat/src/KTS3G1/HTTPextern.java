@@ -84,6 +84,7 @@ public class HTTPextern {
         
         ejUppdrag.clear();
         for (int i = 0; i < 3; i++) //Tre grupper.
+
         { //kollar vilken plats som är bäst
             
             if (http.iD[i] != 1) 

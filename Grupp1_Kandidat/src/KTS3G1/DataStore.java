@@ -27,9 +27,9 @@ public class DataStore {
     public int robotPos = start;
     public int slut;
     public int startnod=0; 
-    public int kapacitet= 2;
+    public int kapacitet=1;
     int[] arcColor;
-    int totPoang = 0;
+    int totPoang;
     int [] poang; 
     int Antal_passagerare=0; 
     public int passeradenoder;
