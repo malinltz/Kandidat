@@ -60,6 +60,7 @@ public class HTTPny implements Runnable {
 
     int[] uppdrag1;
     int[] uppdrag2;
+    int[] allauppdrag; 
     String datumer;
 
     public int[] uppdragsid;
@@ -325,6 +326,7 @@ public class HTTPny implements Runnable {
 
                 uppdrag_valt = uppdragsid[j];
                 uppdrag_valt2 = uppdragsid[j + 1];
+            
 
                 if (samakning[j] == 0) {
                     System.out.println("Samåkning0: " + samakning[j]);
@@ -351,23 +353,21 @@ public class HTTPny implements Runnable {
                         break;
                     }
 
-                } //Någonstans här kolla antalet passagerare
-                // uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
-                //samåkningen ska funka om det är 1 och inte om den är 0. 
+                } 
                 else if (samakning[j] == 1) {
                     System.out.println("Samåkning1: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j];
-                        ds.kapacitet = pass[j] - ds.kapacitet;
-                        ds.totPoang = ds.totPoang + nuPoints[j];
+                        ds.kapacitet =  ds.kapacitet- pass[j];
+                        ds.totPoang = ds.Antal_passagerare;
                         //borde bli två
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
                         System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                         if (samakning[j + 1] == 1) {
                             System.out.println("Samåkning 1.2: " + samakning[j + 1]);//1 
 
-                            if (pass[j + 1] <= ds.kapacitet)//3<=2
+                            if (pass[j + 1] <= ds.kapacitet)
                             {
                                 ds.Antal_passagerare = pass[j + 1] + pass[j];
                                 ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
@@ -412,29 +412,26 @@ public class HTTPny implements Runnable {
 
                     System.out.println("Antal passagerare: " + ds.Antal_passagerare);
 
-                    System.out.println("Totala poäng5: " + ds.totPoang);
+                    System.out.println("Totala poäng: " + ds.totPoang);
                 }
-                //0
-
-                // uppdrag_valt=uppdragsid[j] ;
-                //om uppdrag två inte vill samarbeta 
+                
+             passagerare = ds.Antal_passagerare;
                 System.out.println("bä");
-            }
-
-            passagerare = ds.Antal_passagerare;
-//               
-            //Skriver ut vilket uppdrag vi har tagit i statusruta
+                  //Skriver ut vilket uppdrag vi har tagit i statusruta
 
             cui.tauppdrag(
                     "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
                     + ", Pass: " + passagerare + ", Grupp: 1");
+            }
+
+          
 
             //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
 
         }
-        System.out.print(uppdrag_valt);
+    
         return uppdrag_valt;
         
     }
