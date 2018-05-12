@@ -136,7 +136,7 @@ public class HTTPextern {
                             }
                         }
                    else{
-                           System.out.println("Vi fick uppdraget!");
+                           uppdragViFick2 = http.narmstaPlats;
                         }
                     }
                    
