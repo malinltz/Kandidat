@@ -100,9 +100,6 @@ public class HTTPextern {
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
 
-
-    
-
         
         for (int i = 0; i < http.meddelandet; i++)
         { //kollar vilken plats som är bäst

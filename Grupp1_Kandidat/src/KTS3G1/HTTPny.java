@@ -116,48 +116,44 @@ public class HTTPny implements Runnable {
                 //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
                 //httpex.exprotokoll();
                 //Ger oss en upphämtningsplats
-                if (u < 1){
-                   ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
+                if (u < 1) {
+                    ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
                 }
-                
+
                 ds.slut = narmstaNod;
 
-            
-            for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
-            
-            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
-            op.createPlan();
-            
-            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-            RR = new RobotRutt(ds, cui, op, this);
-            RR.goRobotrutt();
-            
-            //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-            //Thread t2 = new Thread(gu);
-            //t2.start();
-            
-            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-            
-            uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-            
-            utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-            
-            inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-            
-           // httpex= new HTTPextern(this, ds);
-           // httpex.exprotokoll();
-            
-           // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
-            String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
-            
-            if (svaruppdrag.equals("beviljas")){
-                System.out.println("Svar från hemsida: " + svaruppdrag);
-                 
-                for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
-                    ds.arcColor[j] = 0;
-                }
+
+                op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+                op.createPlan();
+
+                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                RR = new RobotRutt(ds, cui, op, this);
+                RR.goRobotrutt();
+
+                //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+                //Thread t2 = new Thread(gu);
+                //t2.start();
+                //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+                uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+
+                utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+
+                inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+
+                // httpex= new HTTPextern(this, ds);
+                // httpex.exprotokoll();
+                // String svaruppdrag = tauppdrag(httpex.plats, httpex.ID , passagerare, "1"); //Plats, ID, Passagerare, Grupp
+                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+
+                if (svaruppdrag.equals("beviljas")) {
+                    System.out.println("Svar från hemsida: " + svaruppdrag);
+
+                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                        ds.arcColor[j] = 0;
+                    }
 
                     ds.start = narmstaNod2;
                     ds.slut = narmstaNod3;
@@ -173,7 +169,7 @@ public class HTTPny implements Runnable {
                 } else {
                     System.out.println("Svar från hemsida: " + svaruppdrag);
                 }
-            
+
                 ds.start = narmstaNod4;
                 System.out.println("ds.start " + ds.start);
                 System.out.println("ds.slut " + ds.slut);
@@ -329,31 +325,32 @@ public class HTTPny implements Runnable {
 
                 uppdrag_valt = uppdragsid[j];
                 uppdrag_valt2 = uppdragsid[j + 1];
-                
+
                 if (samakning[j] == 0) {
                     System.out.println("Samåkning0: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.totPoang = ds.totPoang + nuPoints[j]; //plussar på poängen 
                         System.out.println("Totala poäng kap större 0: " + ds.totPoang);
-                        ds.kapacitet = ds.kapacitet-pass[j];
+                        ds.kapacitet = ds.kapacitet - pass[j];
                         uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
                         System.out.println(ds.kapacitet);
                     } else if (pass[j] > ds.kapacitet && ds.kapacitet >= 0)//kollar kapacitet jämfört med passagerare 
                     {
-                        ds.Antal_passagerare= pass[j]-ds.kapacitet;
-                        
-                        ds.kapacitet= ds.Antal_passagerare-ds.kapacitet;
+                        ds.Antal_passagerare = pass[j] - ds.kapacitet;
+
+                        ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                         // System.out.println(nuPoints[j] + "hlkasdjlfsk");
                         // System.out.println(pass[j] + "hlkasdjlfsk");
                         ds.totPoang = ds.Antal_passagerare;
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
                         System.out.println("Totala poäng kap mindre 0: " + ds.totPoang);
-                        System.out.println(ds.Antal_passagerare );
-                        
-                    } else 
+                        System.out.println(ds.Antal_passagerare);
+
+                    } else {
                         break;
-                    
+                    }
+
                 } //Någonstans här kolla antalet passagerare
                 // uppdrag_valt=uppdragsid[j]; //Väljer uppdraget som är bäst för oss.
                 //samåkningen ska funka om det är 1 och inte om den är 0. 
@@ -361,84 +358,87 @@ public class HTTPny implements Runnable {
                     System.out.println("Samåkning1: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
+                        ds.Antal_passagerare = pass[j];
+                        ds.kapacitet = pass[j] - ds.kapacitet;
                         ds.totPoang = ds.totPoang + nuPoints[j];
-                        ds.kapacitet = ds.kapacitet - pass[j];//borde bli två
+                        //borde bli två
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
-                        System.out.println("Totala poäng3: " + ds.totPoang);
+                        System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                         if (samakning[j + 1] == 1) {
-                            System.out.println("Samåkning3: " + samakning[j + 1]);//1 
+                            System.out.println("Samåkning 1.2: " + samakning[j + 1]);//1 
 
                             if (pass[j + 1] <= ds.kapacitet)//3<=2
                             {
-                                ds.kapacitet = ds.kapacitet - pass[j];
-                                ds.totPoang = ds.totPoang + nuPoints[j + 1];
-                                System.out.println("Totala poäng4: " + ds.totPoang);
-                                if (ds.kapacitet == 0) {
-                                    ds.kapacitet = ds.kapacitet + 1;
-                                }
-                                System.out.println("Totala poäng7: " + ds.totPoang);
-                            } else if (pass[j + 1] > (ds.kapacitet)) // 3>2
-                            {
-
-                                ds.kapacitet = (pass[j] + pass[j + 1]) - ds.kapacitet; //borde bli noll  
-                                System.out.println("Kapacitet 2: " + ds.kapacitet);
                                 ds.Antal_passagerare = pass[j + 1] + pass[j];
-                                System.out.println("Antal passagerare: " + ds.Antal_passagerare);
-                                ds.totPoang = ((ds.Antal_passagerare / (pass[j + 1])) * (nuPoints[j + 1])) + ds.totPoang;
-                                System.out.println("Totala poäng5: " + ds.totPoang);
+                                ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
+                                ds.totPoang = ds.Antal_passagerare;
+                                System.out.println("Totala poäng kap större 1: " + ds.totPoang);
+
+                            } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {    
+                                ds.Antal_passagerare = pass[j + 1] - ds.kapacitet;
+
+                                ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
+                                // System.out.println(nuPoints[j] + "hlkasdjlfsk");
+                                // System.out.println(pass[j] + "hlkasdjlfsk");
+                                ds.totPoang = ds.Antal_passagerare;
+                                //måste ta bort den andel passagerare som vi tagit från uppdraget
+                                System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
+
                             }
-                            //0
-
-                            // uppdrag_valt=uppdragsid[j] ;
-                        } //om uppdrag två inte vill samarbeta 
-                        else if (samakning[j + 1] == 0) {
-                            ds.totPoang = ds.totPoang + nuPoints[j];
-                            ds.kapacitet = pass[j] - ds.kapacitet;
-                            uppdrag_valt3 = 0;
-                        } else if (pass[j] > ds.kapacitet)//4>2
-                        {
-
-                            ds.Antal_passagerare = pass[j] - ds.kapacitet;
-                            System.out.println("ds.antal passagerare: " + ds.Antal_passagerare);
-                            ds.totPoang = (((ds.Antal_passagerare) / pass[j]) * nuPoints[j]) + ds.totPoang;
-                            //måste ta bort den andel passagerare som vi tagit från uppdraget
-                            System.out.println("Totala poäng6: " + ds.totPoang);
+                            else //om samakaning[j+1]=0
+                        {  // remove(Object uppdrag_valt);
+                            break;
                         }
+                           } 
+                        
 
+                    } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
+                    {
+                        ds.Antal_passagerare = pass[j] - ds.kapacitet;
+
+                        ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
+                        // System.out.println(nuPoints[j] + "hlkasdjlfsk");
+                        // System.out.println(pass[j] + "hlkasdjlfsk");
+                        ds.totPoang = ds.Antal_passagerare;
+                        //måste ta bort den andel passagerare som vi tagit från uppdraget
+                        System.out.println("Totala poäng kap mindre 1: " + ds.totPoang);
+                        System.out.println(ds.Antal_passagerare);
+
+                    } else { //om kapaciteten är < 0
+                        break;
                     }
-                    //samåkningen ska funka om det är 1    
+
+                    System.out.println("slutkap" + ds.kapacitet);
+
+                    System.out.println("Antal passagerare: " + ds.Antal_passagerare);
+
+                    System.out.println("Totala poäng5: " + ds.totPoang);
                 }
+                //0
 
-                passagerare = pass[j];
-//                  System.out.println("hejhejhejhejehjehjeh"+ds.Antal_passagerare);
-//                   System.out.println("I morgon är en annan dag"+passagerare);
-                //System.out.println(uppdrag_valt);
-                //Skriver ut vilket uppdrag vi har tagit i statusruta
-                cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
-                        + ", Pass: " + passagerare + ", Grupp: 1");
-                break;
-
-                //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
+                // uppdrag_valt=uppdragsid[j] ;
+                //om uppdrag två inte vill samarbeta 
+                System.out.println("bä");
             }
 
+            passagerare = ds.Antal_passagerare;
+//               
+            //Skriver ut vilket uppdrag vi har tagit i statusruta
+
+            cui.tauppdrag(
+                    "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
+                    + ", Pass: " + passagerare + ", Grupp: 1");
+
+            //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
-            System.out.println("uhejhej");
 
         }
+        System.out.print(uppdrag_valt);
         return uppdrag_valt;
-
-    }
-
-    /*  public int getPassagerare(int uppdrag_valt){
-      
-      int passagerardummy = uppdrag_valt;
-       
-      ds.Antal_passagerare = pass[passagerardummy];  //Funkar inte, blir error.
         
-      return NumberOfpassengers; 
     }
-     */
+    
     public void inmessages() {
 
         try { //vad vi hämtar hem från de anrda från hemsidan 
