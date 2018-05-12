@@ -29,10 +29,9 @@ public class HTTPny implements Runnable {
     public ControlUI cui;
     public RobotRutt RR;
     public GuiUpdate gu;
-
-   // public HTTPextern httpex;
+    public HTTPextern httpex;
     int NumberOfpassengers; 
-     int antal_passa = 0;
+    int antal_passa = 0;
      
 
     public String plats;
