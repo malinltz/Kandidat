@@ -117,7 +117,10 @@ public class HTTPny implements Runnable {
                 //Här någonstans checkar den vilken uppdragsplats vi får från externa protokollet.
                 //httpex.exprotokoll();
                 //Ger oss en upphämtningsplats
-                ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder
+                if (u < 1){
+                   ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
+                }
+                
                 ds.slut = narmstaNod;
             System.out.println("ds.start " + ds.start);
             System.out.println("ds.slut " + ds.slut);
@@ -133,7 +136,7 @@ public class HTTPny implements Runnable {
             RR = new RobotRutt(ds, cui, op, this);
             RR.goRobotrutt();
             
-            gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+            //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
             //Thread t2 = new Thread(gu);
             //t2.start();
             
@@ -170,7 +173,7 @@ public class HTTPny implements Runnable {
                 RR = new RobotRutt(ds, cui, op, this);
                 RR.goRobotrutt();
 
-                gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
+                //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
 
                 } else {
                     System.out.println("Svar från hemsida: " + svaruppdrag);

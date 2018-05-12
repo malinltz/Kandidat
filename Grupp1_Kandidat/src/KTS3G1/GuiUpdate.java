@@ -39,6 +39,7 @@ public class GuiUpdate implements Runnable{
                 if(RR.guiUp[i] == RR.guiUp2[RR.guiUp2.length-1]){
                     //Få bågen som Wall-E befinner sig på att blinka här kanske ? lol
                     System.out.println("BREAKS");
+                    
                     break;
                 }
             
@@ -56,6 +57,7 @@ public class GuiUpdate implements Runnable{
                 cui.appendStatus("Walle har nu lämnat/plockat upp passagerare");
                 break;
             }
+            
         }
         System.out.println("Wall-E är nu KLAR");
 
@@ -63,5 +65,4 @@ public class GuiUpdate implements Runnable{
     
     }
 }
-
 */
