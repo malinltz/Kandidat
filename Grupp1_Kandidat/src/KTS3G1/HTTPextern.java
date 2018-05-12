@@ -84,10 +84,10 @@ public class HTTPextern {
         
         ejUppdrag.clear();
         for (int i = 0; i < 3; i++) //Tre grupper.
-
+            
         { //kollar vilken plats som är bäst
             
-            if (http.iD[i] != 1) 
+            if (http.iD[i] != 1) //Får felmeddelande för att ID=1 (vår grupp) är den enda som ligger uppe.
             {
                 //Jämför om fler grupper vill ha samma plats.
                 if (http.paxplats[i] == http.paxplats[1]) {
@@ -161,63 +161,3 @@ public class HTTPextern {
          
   }   
 }
-        /*
-
-                    if(String.valueOf(http.kostnad).equals(http.lagstaKostnad)) // kolla om kostnaden är samma fär 
-                    {
-                        if else(http.kostnad < http.lagstaKostnad) //om kostnaden för de andra är mindre än lägsta kostnaden så får de andra uppdraget
-                                 //går ut och ta näst bästa
-                                {
-                                    else
-                                    
-                                    http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                    }
-                        if(String.valueOf(http.uppdrag).equals(http.uppdragsid)) //kolla om antalet uppdrag är samm
-                       
-                            {
-                                if else ((http.uppdrag) < (http.uppdragsid))
-                                        //går ut och ta näst bästa
-                                        {
-                                else 
-                                http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                                            
-                              if(capacitet1 == capacitet4 || capacitet5 == capacitet1) //kolla om antalet uppdragsid är samma från den gruppen
-                              {
-                                  if else ( capacitet1< capacitet4 || capacitet1 < capacitet5)
-                            //gå till nästa upphämtningsplats
-                              }
-                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                                //ta uppdrag 
-                                  
-                              if(String.valueOf(http.ID > ID )//om företagsgruppens id är lägre än en annan så  får den uppdraget
-                              {
-                                    if else (String.valueOf(http.paxplats) < (http.narmstaPlats)) 
-                                    //gå till nästa upphämtningsplats
-                              } 
-                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                                //ta uppdrag
-                                  
-                                  }
-                              else http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                            //ta uppdrag 
-
-                              }
-                             else  http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                                //ta uppdrag 
-                        }
-                         else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                        //ta uppdrag 
-                    }
-        
-                else   http.tauppdrag(plats, ID, passagerare, grupp); //kör att man ska ta uppdraget
-                     }
-                //ta uppdrag 
-                
-                return 
-                }
-   
-        
-        //ta uppdrag 
-
-
-*/

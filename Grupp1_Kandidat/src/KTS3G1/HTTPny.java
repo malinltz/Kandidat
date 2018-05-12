@@ -500,7 +500,7 @@ public class HTTPny implements Runnable {
             //uppdrag2 = new int[meddelandet];
             //Splittar bort datum
             for (int p = 0; p < meddelandet; p++) {
-
+                 System.out.println("HEEEJ" + inmess.get(p));
                 //  String uppsize = upp.get(0);
                 //  uppsizeInt = Integer.parseInt(uppsize);
                 sline = inmess.get(p).split(";");
