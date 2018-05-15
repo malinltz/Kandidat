@@ -340,7 +340,7 @@ public class HTTPny implements Runnable {
                         ds.kapacitet = ds.kapacitet - pass[j];
                         //uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
                         System.out.println(ds.kapacitet);
-                        
+                        passagerare=ds.Antal_passagerare;
                         cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
                       
@@ -357,11 +357,13 @@ public class HTTPny implements Runnable {
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
                         System.out.println("Totala poäng kap mindre 0: " + ds.totPoang);
                         System.out.println(ds.Antal_passagerare);
-                        
+                        passagerare=ds.Antal_passagerare;
                         cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
 
-                    } else cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                    } else
+                        passagerare=ds.Antal_passagerare;
+                        cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
                     {
                         break;
@@ -390,7 +392,7 @@ public class HTTPny implements Runnable {
                                 ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                                 ds.totPoang = ds.Antal_passagerare;
                                 System.out.println("Totala poäng kap större 1: " + ds.totPoang);
-                                
+                                passagerare=ds.Antal_passagerare;
                                 cui.tauppdrag(
                                 "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
                                 + ", Pass: " + passagerare + ", Grupp: 1");
@@ -404,12 +406,14 @@ public class HTTPny implements Runnable {
                                 ds.totPoang = ds.Antal_passagerare;
                                 //måste ta bort den andel passagerare som vi tagit från uppdraget
                                 System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
-                                
+                                passagerare=ds.Antal_passagerare;
                                 cui.tauppdrag(
                                 "Plats: " + plats + ", ID: " + uppdrag_valt+ "," + uppdrag_valt2
                                 + ", Pass: " + passagerare + ", Grupp: 1");
 
-                            } else cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                            } else
+                                passagerare=ds.Antal_passagerare;
+                                cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
                                 //om samakaning[j+1]=0
                             {  // remove(Object uppdrag_valt);
