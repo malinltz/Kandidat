@@ -28,7 +28,7 @@ public class HTTPny implements Runnable {
     public DataStore ds;
     public ControlUI cui;
     public RobotRutt RR;
-    // public GuiUpdate gu;
+    public GuiUpdate gu;
     public HTTPextern httpex;
     int NumberOfpassengers;
     int antal_passa = 0;
@@ -108,83 +108,79 @@ public class HTTPny implements Runnable {
 
             while (u < 1) {
 
-                Thread.sleep(sleepTime); //hur länge det ska vara en fördröjning
-                //Måste ändras från 1000 till vad de nu ska va för att fortsätta köra..?
+                 Thread.sleep(sleepTime); //Behöver vi fördröjning?            
 
-                Listaplats(); //Optimerar rutt till upphämtningsplats
-
-                utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-
-                inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-
-                //   httpex= new HTTPextern(this, ds);
-                //  httpex.exprotokoll();
-                /*   if (u < 1) {
-                    ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
-                }
-                 ds.slut = narmstaNod;
-                 
-                 uppdrag_valt = listauppdrag(httpex.uppdragViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+                 Listaplats(); //Optimerar rutt till upphämtningsplats
             
-                 System.out.println("BAJS PÅ TORSTEN " + httpex.uppdragViFick2);
-                 */
-                for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                 utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
+            
+                 inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
+            
+                 httpex= new HTTPextern(this, ds); //Använder Externa för att bestämma vilken plats vi får
+                 httpex.exprotokoll();
+                 
+                 if (u < 1) {
+                    ds.start = ds.robotPos; //Uppdaterar AGV:ns startnod i första iterationen endast
+                }
+                 ds.slut = narmstaNod; //Uppdaterar AGV:ns slutnod
+                 
+            
+            for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
+            cui.repaint(); //Repaintar
+            
+            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+            op.createPlan();
+            
+            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+            RR = new RobotRutt(ds, cui, op, this); 
+            RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+            
+            gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
+            Thread t2 = new Thread(gu);
+            t2.start();
+            
+            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+            if(Transceiver.utfort.equals("p")){
+                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+                
+                uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
 
-                op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
-                op.createPlan();
-
-                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                RR = new RobotRutt(ds, cui, op, this);
-                RR.goRobotrutt();
-
-                //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-                //Thread t2 = new Thread(gu);
-                //t2.start();
-                //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-                uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-
-                utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
-
-                inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-
-                // httpex= new HTTPextern(this, ds);
-                // httpex.exprotokoll();
-                // System.out.println("BAJS PÅ TORSTEN " + Arrays.toString(httpex.uppdrLista));
+                //Här tar vi uppdrag!!
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
-                if (svaruppdrag.equals("beviljas")) {
+                if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
                     System.out.println("Svar från hemsida: " + svaruppdrag);
 
                     for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                         ds.arcColor[j] = 0;
                     }
+                    cui.repaint(); //Repaintar
 
-                    ds.start = narmstaNod2;
-                    ds.slut = narmstaNod3;
+                    ds.start = narmstaNod2; //Sätter nya startnod
+                    ds.slut = narmstaNod3; //Sätter ny slutnod
 
-                    op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
                     op.createPlan();
 
                     //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
                     RR = new RobotRutt(ds, cui, op, this);
-                    RR.goRobotrutt();
+                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
 
-                    //gu = new GuiUpdate(ds, cui, op, this); //Ritar ut roboten på kartan. 
-                } else {
+                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
+                    
+                } else { //OM VI INTE KAN TA UPPDRAGET
                     System.out.println("Svar från hemsida: " + svaruppdrag);
                 }
 
-                ds.start = narmstaNod4;
-                System.out.println("ds.start " + ds.start);
-                System.out.println("ds.slut " + ds.slut);
+                ds.start = narmstaNod4; //Updaterat startnod
                 u++; //counter för antal uppdrag
                 // ds.poang ++;
 
-                aterstall(1);
-
+                aterstall(1); //Behövs återställa?
             }
+          }
         } catch (InterruptedException e) {
             System.out.print(e.toString());
         }

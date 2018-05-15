@@ -1,9 +1,10 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
+
 package KTS3G1;
 
 import java.io.BufferedReader;
@@ -30,8 +31,8 @@ public class HTTPextern {
     private String[] dummer;
     //  private String [] platserna;
     // String url;
-    String[] uppdragViFick;
-    String uppdragViFick2;
+    String[] platsViFick1;
+    String platsViFick2;
     String dummy;
     String message;
     String test;
@@ -137,13 +138,13 @@ public class HTTPextern {
                             }
                         }
                    else{
-                           uppdragViFick2 = http.narmstaPlats;
+                           platsViFick2 = http.narmstaPlats;
                         }
                     }
                    
                 }
                 else {
-                    uppdragViFick2 = http.narmstaPlats;
+                    platsViFick2 = http.narmstaPlats;
                 }
             }
         }
@@ -161,9 +162,10 @@ public class HTTPextern {
      }
          
          //Gör om till Array String igen.
-      uppdragViFick = wordList.stream().toArray(String[]::new);
+      platsViFick1 = wordList.stream().toArray(String[]::new);
          
-      uppdragViFick2 = String.join(",", uppdragViFick);
+      platsViFick2 = String.join(",", platsViFick1);
   }   
 }
-*/
+
+
