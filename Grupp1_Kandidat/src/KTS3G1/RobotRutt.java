@@ -40,6 +40,8 @@ public class RobotRutt {
             j++;
         }
         list[j] = http.narmstaNod2;
+        //list[j+1]= http.narmastNod5; 
+
     }
     
     public void goRobotrutt() {

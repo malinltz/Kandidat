@@ -28,7 +28,7 @@ public class HTTPny implements Runnable {
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
-    public RobotRutt RR;
+   // public RobotRutt RR;
    // public GuiUpdate gu;
     public HTTPextern httpex;
     int NumberOfpassengers;
@@ -181,10 +181,42 @@ public class HTTPny implements Runnable {
 //                    System.out.println("Svar från hemsida: " + svaruppdrag);
 //                }
 
-                //ds.start = narmstaNod4; //Updaterat startnod
-                    uppdrag_valt2=listauppdrag(narmstaPlats);
-                    
-//                u++; //counter för antal uppdrag
+                    ds.start = narmstaNod4; //Updaterat startnod
+                    uppdrag_valt2 = listauppdrag(narmstaPlats);
+               //     while(true){ //Letar efter en Pick-Up
+//                
+//            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+//            if(Transceiver.utfort.equals("p")){
+//                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+//                
+//                uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+//
+//                //Här tar vi uppdrag!!
+//                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+//
+//                if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
+//                    System.out.println("Svar från hemsida: " + svaruppdrag);
+//
+//                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+//                        ds.arcColor[j] = 0;
+//                    }
+//                    cui.repaint(); //Repaintar
+//
+//                    ds.start = narmstaNod2; //Sätter nya startnod
+//                    ds.slut = narmstaNod3; //Sätter ny slutnod
+//
+//                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
+//                    op.createPlan();
+//
+//                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+//                    RR = new RobotRutt(ds, cui, op, this);
+//                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+//
+//                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
+//                    
+//                } else { //OM VI INTE KAN TA UPPDRAGET
+                    //behöver veta att det sker en pickup
+                u++; //counter för antal uppdrag
 //                // ds.poang ++;
 //
  //                 aterstall(1); //Behövs återställa?
@@ -282,13 +314,14 @@ public class HTTPny implements Runnable {
             BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
             String inkommande_text;
             StringBuffer inkommande_samlat = new StringBuffer();
+            System.out.println("t");   
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
                 upp.add(inkommande_text);
             }
             inkommande.close();
-
+            System.out.println("o");  
             //while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
             uppdragslista = inkommande_samlat.toString();
 
@@ -324,10 +357,12 @@ public class HTTPny implements Runnable {
                 slice = destination[j].split(",");
                 destNod1[j] = Integer.parseInt(slice[0]);
                 destNod2[j] = Integer.parseInt(slice[1]);
+                 System.out.println(destNod2[j]);  
             }
 
             narmstaNod3 = destNod1[0];
             narmstaNod4 = destNod2[0];
+             
             
               for (int j = 0; j <uppsizeInt ; j++) {
 
@@ -342,6 +377,7 @@ public class HTTPny implements Runnable {
                     narmstaPlats = destination[j];
                     narmstaNod3 = startlist[j];
                     narmstaNod4 = stopplist[j];
+                   
                 }
             }
             
@@ -355,15 +391,18 @@ public class HTTPny implements Runnable {
                 uppdrag_valt2 = uppdragsid[j + 1];
 
                 if (samakning[j] == 0) {
+                      
+                    
                     System.out.println("Samåkning0: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
+                        
                     {
                         ds.totPoang = ds.totPoang + nuPoints[j]; //plussar på poängen 
                         System.out.println("Totala poäng kap större 0: " + ds.totPoang);
                         ds.kapacitet = ds.kapacitet - pass[j];
                         //uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
                         System.out.println(ds.kapacitet);
-                        passagerare=ds.Antal_passagerare;
+                        passagerare = ds.Antal_passagerare;
                         cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
                       
@@ -417,6 +456,7 @@ public class HTTPny implements Runnable {
                                 ds.totPoang = ds.Antal_passagerare;
                                 System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                                 passagerare=ds.Antal_passagerare;
+                                
                                 cui.tauppdrag(
                                 "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
                                 + ", Pass: " + passagerare + ", Grupp: 1");
