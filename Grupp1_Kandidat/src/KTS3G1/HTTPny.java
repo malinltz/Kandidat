@@ -469,6 +469,8 @@ public class HTTPny implements Runnable {
 
                 }
 
+               // destination[j]<destination[j+1];
+               //kolla så den lägsta sträckan till destination j är mindre eller större än destination j+1
                 System.out.println("bä");
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
 
