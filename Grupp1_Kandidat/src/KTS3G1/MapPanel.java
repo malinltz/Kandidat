@@ -69,6 +69,15 @@ public class MapPanel extends JPanel {
                 //Beräknar bågkostnader
                 dist = (int) Math.round(Math.hypot((ds.nodeX[ds.arcStart[i] - 1] - ds.nodeX[ds.arcEnd[i] - 1]), (ds.nodeY[ds.arcStart[i] - 1] - ds.nodeY[ds.arcEnd[i] - 1])));
                 ds.arcCost[i] = dist;
+                
+                //EVENTUELLT SÄTTA DEN SNEA BÅGEN TILL MAXKOSTNAD HÄR
+                if(ds.arcStart[i] == 36 && ds.arcEnd[i] == 31){
+                    ds.arcCost[i] = 100000;
+                }
+                if(ds.arcStart[i] == 30 && ds.arcEnd[i] == 33){
+                    ds.arcCost[i] = 100000;
+                }
+                
                 //Om bågkostnaderna är lika med 1 sätt dem röda.
                 if (ds.arcColor[i] == 1) {
                     g.setColor(RED_COLOR);
@@ -79,6 +88,7 @@ public class MapPanel extends JPanel {
                 }
                 g.drawLine(x1, height - y1, x2, height - y2);
 
+                //HÅRDKODAT VISUALISERING AV UPPHÄMTNINGSPLATSER
                 if (ds.arcStart[i] == 24 && ds.arcEnd[i] == 19) {
                     g.setColor(PURPLE_COLOR);
                     g.drawString(String.valueOf("A"), (x1 + x2) / 2, ((height - y1) + (height - y2)) / 2);
