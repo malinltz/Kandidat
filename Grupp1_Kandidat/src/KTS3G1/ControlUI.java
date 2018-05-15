@@ -21,7 +21,7 @@ public class ControlUI extends javax.swing.JFrame {
     RobotRutt RR;
     //GuiUpdate GU;
    // HTTPextern hx;
-    //Transceiver tc;
+    Transceiver tr;
 
     /**
      * Creates new form ControlUI
@@ -730,16 +730,10 @@ public class ControlUI extends javax.swing.JFrame {
            jTextField7.setText(badress);
 
           
-//            Transceiver b1 = new Transceiver();
-//            Thread t6 = new Thread(b1);
-//            t6.start();
-            
+           Transceiver b1 = new Transceiver();
+           Thread t6 = new Thread(b1);
+           t6.start();
 
-        /*  
-            Transceiver b1 = new Transceiver();
-            Thread t6 = new Thread(b1);
-            t6.start();
-        */    
 
     /*    if (Transceiver.returnanslut()){ //om det finns anslutning 
 

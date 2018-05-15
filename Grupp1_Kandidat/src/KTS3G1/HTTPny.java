@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class HTTPny implements Runnable {
-
+    private boolean status;
     public String message;
     public String uppdragslista;
     public String narmstaPlats;
@@ -30,6 +30,7 @@ public class HTTPny implements Runnable {
     public RobotRutt RR;
     public GuiUpdate gu;
     public HTTPextern httpex;
+    public Transceiver tr;
     int NumberOfpassengers;
     int antal_passa = 0;
 
@@ -43,7 +44,7 @@ public class HTTPny implements Runnable {
     public int uppsizeInt;
     public int meddelandet;
     public String[] gruppmessage;
-
+    
     String[] paxplats;
     // String datum [];
     String[] tid;
@@ -59,6 +60,11 @@ public class HTTPny implements Runnable {
     public int[] startlist;
     public int[] stopplist;
 
+    
+    boolean pickUp = false;
+    
+    
+    
     int[] uppdrag1;
     int[] uppdrag2;
 
@@ -66,7 +72,7 @@ public class HTTPny implements Runnable {
 
     public int[] uppdragsid;
     String[] destination;
-
+    
     String[] resten;
     String[] info;
     int[] nuPoints;
@@ -92,8 +98,9 @@ public class HTTPny implements Runnable {
         this.ds = ds;
         this.op = op;
         this.cui = cui;
+        Transceiver tc = new Transceiver(); //tog bort is
         sleepTime = 1000; //1000 millisekunder
-
+        
         ink = new ArrayList<String>(); //alla inkommande platser
         upp = new ArrayList<String>(); // 
         inmess = new ArrayList<String>();//meddelandet in från företagsguppen
@@ -108,7 +115,7 @@ public class HTTPny implements Runnable {
 
             while (u < 1) {
 
-                 Thread.sleep(sleepTime); //Behöver vi fördröjning?            
+                // Thread.sleep(sleepTime); //Behöver vi fördröjning?            
 
                  Listaplats(); //Optimerar rutt till upphämtningsplats
                  
@@ -117,7 +124,8 @@ public class HTTPny implements Runnable {
                  utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
                  inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
-            
+          
+                 numPassa();
                  httpex= new HTTPextern(this, ds); //Använder Externa för att bestämma vilken plats vi får
                  httpex.exprotokoll();
                  
@@ -144,15 +152,22 @@ public class HTTPny implements Runnable {
             Thread t2 = new Thread(gu);
             t2.start();
             
+            Thread.sleep(5000); //Behöver vi fördröjning?     
             while(true){ //Letar efter en Pick-Up
                 
-       //     IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-            if(Transceiver.utfort.equals("p")){
+               // System.out.println("INLÄST i HTTPny = " + Transceiver.utfort);
+       //    IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+            
+            if(pickUp){
+            //if(Transceiver.utfort.equals("p")){
                 cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+                System.out.println("LÄST PICKUP + " + Transceiver.utfort);
+                System.out.println("Läst Utfört funkade inte");
+                
                 
                 uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-
-            //    Här tar vi uppdrag!!
+                
+                //    Här tar vi uppdrag!!
                 String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
 
                 if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
@@ -168,12 +183,12 @@ public class HTTPny implements Runnable {
 
                     op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
                     op.createPlan();
-
-                  //  Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                    
+                    //  Här kallas transiever, men den körs redan eftersom det är en TRÅD.
                     RR = new RobotRutt(ds, cui, op, this);
                     RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
-
-                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
+                    
+                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på
                     
                 } else { //OM VI INTE KAN TA UPPDRAGET
                     System.out.println("Svar från hemsida: " + svaruppdrag);
@@ -181,10 +196,15 @@ public class HTTPny implements Runnable {
 
                 ds.start = narmstaNod4; //Updaterat startnod
                 u++; //counter för antal uppdrag
-                 //ds.poang ++;
+                //ds.poang ++;
 
                 aterstall(1); //Behövs återställa?
+            
+                pickUp = false;
+                
+
                 break;
+            } else {
             }
            }
           }
@@ -193,7 +213,6 @@ public class HTTPny implements Runnable {
 
         }
     }
-
     public void Listaplats() { // lista på alla besöksplatser.
 
         try { // Kopplar upp till listan och hämtar info och returnerar
@@ -649,7 +668,7 @@ public class HTTPny implements Runnable {
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
 
-    public int numPassa(int passagerare) {
+    public int numPassa() {
 
         if (antal_passa == 0) {    // AGV är tom, inga passagerare finns i bilen. Enbart passagerare kan "gå in i AGV".
             antal_passa = antal_passa + passagerare;
@@ -698,4 +717,12 @@ public class HTTPny implements Runnable {
         }
         //blir beviljas eller nekas
     }
+    
+    public void setBoolean(boolean bool){
+        this.pickUp = bool;
+    }
+    public boolean getBoolean(){
+        return pickUp;
+    }
+            
 }

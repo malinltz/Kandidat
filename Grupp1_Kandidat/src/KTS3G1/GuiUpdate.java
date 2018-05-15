@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.Random;
@@ -11,6 +11,7 @@ public class GuiUpdate implements Runnable{
     public ControlUI cui;
     public DataStore ds; 
     public OptPlan op;
+    public Transceiver tr;
     public HTTPny http;
     public RobotRutt RR;
     public int[] kortaste;
@@ -51,7 +52,7 @@ public class GuiUpdate implements Runnable{
                 i++;
                 cui.repaint();
 
-            }
+            }*/
         
             
             if(Transceiver.utfort.equals("p")){
@@ -65,4 +66,3 @@ public class GuiUpdate implements Runnable{
         }
     }
 }
-*/

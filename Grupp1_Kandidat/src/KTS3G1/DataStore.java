@@ -35,6 +35,7 @@ public class DataStore {
     public int passeradenoder;
      int starta=0; 
 
+
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data
         nodes = 0;
@@ -51,6 +52,7 @@ public class DataStore {
         atervant = false; 
         networkRead = false;
         updateUIflag = false;
+        
     }
 
     public void setFileName(String newFileName) {
@@ -60,6 +62,7 @@ public class DataStore {
     public String getFileName() {
         return fileName;
     }
+    
 
     public void readNet() {
         String line;
