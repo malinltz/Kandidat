@@ -111,6 +111,8 @@ public class HTTPny implements Runnable {
                  Thread.sleep(sleepTime); //Behöver vi fördröjning?            
 
                  Listaplats(); //Optimerar rutt till upphämtningsplats
+                 
+                 uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
                  utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
