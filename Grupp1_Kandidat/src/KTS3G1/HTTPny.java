@@ -27,8 +27,8 @@ public class HTTPny implements Runnable {
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
-    public RobotRutt RR;
-    public GuiUpdate gu;
+    //public RobotRutt RR;
+   // public GuiUpdate gu;
     public HTTPextern httpex;
     int NumberOfpassengers;
     int antal_passa = 0;
@@ -118,8 +118,8 @@ public class HTTPny implements Runnable {
             
                  inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
             
-                 httpex= new HTTPextern(this, ds); //Använder Externa för att bestämma vilken plats vi får
-                 httpex.exprotokoll();
+               //  httpex= new HTTPextern(this, ds); //Använder Externa för att bestämma vilken plats vi får
+              //   httpex.exprotokoll();
                  
                  if (u < 1) {
                     ds.start = ds.robotPos; //Uppdaterar AGV:ns startnod i första iterationen endast
@@ -136,12 +136,12 @@ public class HTTPny implements Runnable {
             op.createPlan();
             
             //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-            RR = new RobotRutt(ds, cui, op, this); 
-            RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+          //  RR = new RobotRutt(ds, cui, op, this); 
+          //  RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
             
-            gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
-            Thread t2 = new Thread(gu);
-            t2.start();
+          //  gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
+           // Thread t2 = new Thread(gu);
+           // t2.start();
             
 //            while(true){ //Letar efter en Pick-Up
 //                
@@ -322,10 +322,23 @@ public class HTTPny implements Runnable {
 
             narmstaNod3 = destNod1[0];
             narmstaNod4 = destNod2[0];
+            
+              for (int j = 0; j <uppsizeInt ; j++) {
 
-            op = new OptPlan(ds);
-            op.createPlan();
-            lagstaKostnad = op.pathCost;
+                ds.start = ds.robotPos;
+                ds.slut = startlist[j];
+                op = new OptPlan(ds);
+                op.createPlan();
+                lagstaKostnad = op.pathCost;
+
+                if (op.pathCost < lagstaKostnad) {
+                    lagstaKostnad = op.pathCost;
+                    narmstaPlats = destination[j];
+                    narmstaNod3 = startlist[j];
+                    narmstaNod4 = stopplist[j];
+                }
+            }
+            
             //Dessa nedan behöver inte användas
             //cui.bastaPlats(":");
             //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);

@@ -6,8 +6,8 @@ import java.util.*;
 
 public class OptPlan {
 
-    ControlUI cui;
-    RobotRutt RR; 
+   // ControlUI cui;
+   // RobotRutt RR; 
    
     private List<Vertex> nodes;
     private List<Edge> edges;
