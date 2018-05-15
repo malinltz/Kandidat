@@ -19,7 +19,7 @@ public class ControlUI extends javax.swing.JFrame {
     HTTPny http;
     OptPlan op;
     RobotRutt RR;
-    GuiUpdate GU;
+    //GuiUpdate GU;
    // HTTPextern hx;
     //Transceiver tc;
 
@@ -728,11 +728,19 @@ public class ControlUI extends javax.swing.JFrame {
            jTextField6.setText(kanal);
            String badress="201410149018"; 
            jTextField7.setText(badress);
+
           
+//            Transceiver b1 = new Transceiver();
+//            Thread t6 = new Thread(b1);
+//            t6.start();
+            
+
+        /*  
             Transceiver b1 = new Transceiver();
             Thread t6 = new Thread(b1);
             t6.start();
-            
+        */    
+
     /*    if (Transceiver.returnanslut()){ //om det finns anslutning 
 
             jTextField1.setBackground(new java.awt.Color(0, 255, 0));

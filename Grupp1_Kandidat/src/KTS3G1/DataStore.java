@@ -23,13 +23,13 @@ public class DataStore {
     double robotX;
     double robotY;
 
-    public int start = 15; //Startposition. Måste ändras till förgående uppdrags slutposition på något sätt./63
+    public int start = 7; //Startposition. Måste ändras 
     public int robotPos = start;
     public int slut;
     public int startnod=0; 
-    public int kapacitet= 6;
+    public int kapacitet= 5;
     int[] arcColor;
-    int totPoang = 0;
+    int totPoang;
     int [] poang; 
     int Antal_passagerare=0; 
     public int passeradenoder;
