@@ -117,10 +117,10 @@ public class HTTPny implements Runnable {
             
                  inmessages(); //Hämtar in vilken upphämtningsplats de andra vill ha.
             
-                 httpex= new HTTPextern(this, ds);
-                 httpex.exprotokoll();
+              //   httpex= new HTTPextern(this, ds);
+               //  httpex.exprotokoll();
                  
-                 if (u < 1) {
+              /*   if (u < 1) {
                     ds.start = ds.robotPos; //Uppdaterar robotens start och slutnoder 
                 }
                  ds.slut = narmstaNod;
@@ -128,7 +128,7 @@ public class HTTPny implements Runnable {
                  uppdrag_valt = listauppdrag(httpex.uppdragViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
                  System.out.println("BAJS PÅ TORSTEN " + httpex.uppdragViFick2);
-            
+        */
             for(int j=0; j <128; j++){    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                     ds.arcColor[j] = 0;
                 }
@@ -354,8 +354,9 @@ public class HTTPny implements Runnable {
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
 
-                        ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
-                        // System.out.println(nuPoints[j] + "hlkasdjlfsk");
+                        ds.kapacitet = ds.kapacitet- ds.Antal_passagerare; //ska bli noll
+                        
+                        System.out.println(ds.kapacitet);
                         // System.out.println(pass[j] + "hlkasdjlfsk");
                         ds.totPoang = ds.Antal_passagerare;
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
@@ -383,6 +384,7 @@ public class HTTPny implements Runnable {
                             if (pass[j + 1] <= ds.kapacitet)
                             {
                                 ds.Antal_passagerare = pass[j + 1] + pass[j];
+                                
                                 ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                                 ds.totPoang = ds.Antal_passagerare;
                                 System.out.println("Totala poäng kap större 1: " + ds.totPoang);
@@ -390,7 +392,8 @@ public class HTTPny implements Runnable {
                             } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {    
                                 ds.Antal_passagerare = pass[j + 1] - ds.kapacitet;
 
-                                ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
+                                
+                                ds.kapacitet = ds.kapacitet- ds.Antal_passagerare;
                                 // System.out.println(nuPoints[j] + "hlkasdjlfsk");
                                 // System.out.println(pass[j] + "hlkasdjlfsk");
                                 ds.totPoang = ds.Antal_passagerare;
@@ -407,6 +410,7 @@ public class HTTPny implements Runnable {
                     } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
+                        ds.kapacitet = ds.kapacitet- ds.Antal_passagerare;
 
                         ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                         // System.out.println(nuPoints[j] + "hlkasdjlfsk");
