@@ -70,7 +70,18 @@ public class OptPlan {
                 }
             }
         }
-      // }
+      
+        //Tar bort U-Svängar
+        for (int j = 0; j < path.size(); j++) {
+            
+            if(ds.arcCost[j] + ds.arcCost[j+1] + ds.arcCost[j+2] == 90){
+                
+                
+            }
+        }
+        
+        
+        
 }
     
     public int[] getIndex() {

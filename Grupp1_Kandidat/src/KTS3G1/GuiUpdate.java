@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.util.Random;
@@ -52,7 +52,7 @@ public class GuiUpdate implements Runnable{
                 cui.repaint();
 
             }
-        */
+        
             
             if(Transceiver.utfort.equals("p")){
                 cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
@@ -65,3 +65,4 @@ public class GuiUpdate implements Runnable{
         }
     }
 }
+*/
