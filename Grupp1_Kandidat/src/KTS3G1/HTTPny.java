@@ -54,13 +54,14 @@ public class HTTPny implements Runnable {
     public int uppdrag_valt;
     public int uppdrag_valt2;
     public int uppdrag_valt3;
+    public String allauppdrag;
 
     public int[] startlist;
     public int[] stopplist;
 
     int[] uppdrag1;
     int[] uppdrag2;
-    int[] allauppdrag; 
+
     String datumer;
 
     public int[] uppdragsid;
@@ -300,6 +301,7 @@ public class HTTPny implements Runnable {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);
+
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
                         + ", Pass: " + pass[k - 1] + ", Sam: " + samakning[k - 1]
@@ -326,7 +328,6 @@ public class HTTPny implements Runnable {
 
                 uppdrag_valt = uppdragsid[j];
                 uppdrag_valt2 = uppdragsid[j + 1];
-            
 
                 if (samakning[j] == 0) {
                     System.out.println("Samåkning0: " + samakning[j]);
@@ -335,66 +336,90 @@ public class HTTPny implements Runnable {
                         ds.totPoang = ds.totPoang + nuPoints[j]; //plussar på poängen 
                         System.out.println("Totala poäng kap större 0: " + ds.totPoang);
                         ds.kapacitet = ds.kapacitet - pass[j];
-                        uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
+                        //uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
                         System.out.println(ds.kapacitet);
-                    } else if (pass[j] > ds.kapacitet && ds.kapacitet >= 0)//kollar kapacitet jämfört med passagerare 
+                        
+                        cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                + ", Pass: " + passagerare + ", Grupp: 1");
+                      
+
+                    } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
 
-                        ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
-                        // System.out.println(nuPoints[j] + "hlkasdjlfsk");
+                        ds.kapacitet = ds.kapacitet - ds.Antal_passagerare; //ska bli noll
+
+                        System.out.println(ds.kapacitet);
                         // System.out.println(pass[j] + "hlkasdjlfsk");
                         ds.totPoang = ds.Antal_passagerare;
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
                         System.out.println("Totala poäng kap mindre 0: " + ds.totPoang);
                         System.out.println(ds.Antal_passagerare);
+                        
+                        cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                + ", Pass: " + passagerare + ", Grupp: 1");
 
-                    } else {
+                    } else cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                + ", Pass: " + passagerare + ", Grupp: 1");
+                    {
                         break;
                     }
-
-                } 
-                else if (samakning[j] == 1) {
+                 
+                } else if (samakning[j] == 1) {
+                    
                     System.out.println("Samåkning1: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j];
-                        ds.kapacitet =  ds.kapacitet- pass[j];
+
                         ds.totPoang = ds.Antal_passagerare;
-                        //borde bli två
+                        
+                        ds.kapacitet = ds.kapacitet - pass[j];
+
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
+
                         System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                         if (samakning[j + 1] == 1) {
                             System.out.println("Samåkning 1.2: " + samakning[j + 1]);//1 
 
-                            if (pass[j + 1] <= ds.kapacitet)
-                            {
+                            if (pass[j + 1] <= ds.kapacitet) {
                                 ds.Antal_passagerare = pass[j + 1] + pass[j];
+
                                 ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                                 ds.totPoang = ds.Antal_passagerare;
                                 System.out.println("Totala poäng kap större 1: " + ds.totPoang);
+                                
+                                cui.tauppdrag(
+                                "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
+                                + ", Pass: " + passagerare + ", Grupp: 1");
 
-                            } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {    
+                            } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {
                                 ds.Antal_passagerare = pass[j + 1] - ds.kapacitet;
 
-                                ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
+                                ds.kapacitet = ds.kapacitet - ds.Antal_passagerare;
                                 // System.out.println(nuPoints[j] + "hlkasdjlfsk");
                                 // System.out.println(pass[j] + "hlkasdjlfsk");
                                 ds.totPoang = ds.Antal_passagerare;
                                 //måste ta bort den andel passagerare som vi tagit från uppdraget
                                 System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
+                                
+                                cui.tauppdrag(
+                                "Plats: " + plats + ", ID: " + uppdrag_valt+ "," + uppdrag_valt2
+                                + ", Pass: " + passagerare + ", Grupp: 1");
 
+                            } else cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                + ", Pass: " + passagerare + ", Grupp: 1");
+                                //om samakaning[j+1]=0
+                            {  // remove(Object uppdrag_valt);
+                                break;
                             }
-                            else //om samakaning[j+1]=0
-                        {  // remove(Object uppdrag_valt);
-                            break;
+                              
                         }
-                           } 
-                        
 
                     } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j] - ds.kapacitet;
+                        ds.kapacitet = ds.kapacitet - ds.Antal_passagerare;
 
                         ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                         // System.out.println(nuPoints[j] + "hlkasdjlfsk");
@@ -403,6 +428,9 @@ public class HTTPny implements Runnable {
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
                         System.out.println("Totala poäng kap mindre 1: " + ds.totPoang);
                         System.out.println(ds.Antal_passagerare);
+                        
+                        cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                + ", Pass: " + passagerare + ", Grupp: 1");
 
                     } else { //om kapaciteten är < 0
                         break;
@@ -413,29 +441,29 @@ public class HTTPny implements Runnable {
                     System.out.println("Antal passagerare: " + ds.Antal_passagerare);
 
                     System.out.println("Totala poäng: " + ds.totPoang);
+
+                    passagerare = ds.Antal_passagerare;
+
                 }
-                
-             passagerare = ds.Antal_passagerare;
+
                 System.out.println("bä");
-                  //Skriver ut vilket uppdrag vi har tagit i statusruta
+                //Skriver ut vilket uppdrag vi har tagit i statusruta
 
-            cui.tauppdrag(
-                    "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
-                    + ", Pass: " + passagerare + ", Grupp: 1");
+                // cui.tauppdrag(//flyttar på den så den skriver ut rätt
+                //        "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
+                //        + ", Pass: " + passagerare + ", Grupp: 1");
             }
-
-          
 
             //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
 
         }
-    
+
         return uppdrag_valt;
-        
+
     }
-    
+
     public void inmessages() {
 
         try { //vad vi hämtar hem från de anrda från hemsidan 
@@ -492,7 +520,7 @@ public class HTTPny implements Runnable {
             //uppdrag2 = new int[meddelandet];
             //Splittar bort datum
             for (int p = 0; p < meddelandet; p++) {
-                 System.out.println("HEEEJ" + inmess.get(p));
+                System.out.println("HEEEJ" + inmess.get(p));
                 //  String uppsize = upp.get(0);
                 //  uppsizeInt = Integer.parseInt(uppsize);
                 sline = inmess.get(p).split(";");
@@ -518,7 +546,7 @@ public class HTTPny implements Runnable {
                 // uppdrag2[f] = Integer.parseInt(sline[1]);
                 cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
             }
-            
+
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
             //  System.out.print(meddelandet);
