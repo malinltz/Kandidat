@@ -86,9 +86,7 @@ public class HTTPextern {
         System.out.println("Grupp 5 Uppdrag" + uppdragG5);
         
         ejUppdrag.clear();
-        for (int i = 0; i < 3; i++) //Tre grupper.
-            
-        { //kollar vilken plats som är bäst
+        for (int i = 0; i < 3; i++){ //Tre grupper
             
             if (http.iD[i] != 1) //Får felmeddelande för att ID=1 (vår grupp) är den enda som ligger uppe.
             {
@@ -140,8 +138,22 @@ public class HTTPextern {
                    else{
                            platsViFick2 = http.narmstaPlats;
                         }
-                    }
-                   
+                    
+                        //LÄGGA TILL om antal uppdrag en grupp vill ha
+                        if(uppdragG5.size() == uppdragG1.size()){
+                            
+                            //Beräkna kapaciteten här
+                            
+                          }
+                        else if(uppdragG4.size() == uppdragG1.size()){
+                            
+                            //Beräkna kapaciteten här
+                            
+                        }
+                        else{
+                            
+                        }
+                  }
                 }
                 else {
                     platsViFick2 = http.narmstaPlats;

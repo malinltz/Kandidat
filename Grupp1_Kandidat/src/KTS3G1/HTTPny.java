@@ -143,6 +143,8 @@ public class HTTPny implements Runnable {
             Thread t2 = new Thread(gu);
             t2.start();
             
+            while(true){ //Letar efter en Pick-Up
+                
             //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
             if(Transceiver.utfort.equals("p")){
                 cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
@@ -181,7 +183,9 @@ public class HTTPny implements Runnable {
                 // ds.poang ++;
 
                 aterstall(1); //Behövs återställa?
+                break;
             }
+           }
           }
         } catch (InterruptedException e) {
             System.out.print(e.toString());
