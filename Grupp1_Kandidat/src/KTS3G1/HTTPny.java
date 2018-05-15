@@ -54,17 +54,12 @@ public class HTTPny implements Runnable {
     String uppdrag[];
     public int uppdrag_valt;
     public int uppdrag_valt2;
-    public int uppdrag_valt3;
     public String allauppdrag;
-
     public int[] startlist;
     public int[] stopplist;
-
     int[] uppdrag1;
     int[] uppdrag2;
-
     String datumer;
-
     public int[] uppdragsid;
     String[] destination;
 
@@ -216,7 +211,7 @@ public class HTTPny implements Runnable {
 //                    
 //                } else { //OM VI INTE KAN TA UPPDRAGET
                     //behöver veta att det sker en pickup
-                u++; //counter för antal uppdrag
+                //u++; //counter för antal uppdrag
 //                // ds.poang ++;
 //
  //                 aterstall(1); //Behövs återställa?
@@ -324,7 +319,7 @@ public class HTTPny implements Runnable {
             System.out.println("o");  
             //while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
             uppdragslista = inkommande_samlat.toString();
-
+            System.out.println("r");
             //Variabler för uppdragslistan
             String uppsize = upp.get(0);
             uppsizeInt = Integer.parseInt(uppsize);
@@ -336,7 +331,7 @@ public class HTTPny implements Runnable {
             nuPoints = new int[uppsizeInt];
             destNod1 = new int[uppsizeInt];
             destNod2 = new int[uppsizeInt];
-
+            System.out.println("s");
             cui.hallplatsuppdrag("Uppdrag som finns kvar: ");
             //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
             for (int k = 1; k < uppsizeInt + 1; k++) {
@@ -346,24 +341,25 @@ public class HTTPny implements Runnable {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);
-
+                System.out.println("t");
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
                 cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
                         + ", Pass: " + pass[k - 1] + ", Sam: " + samakning[k - 1]
                         + ", P: " + nuPoints[k - 1] + "");
             }
-
+            System.out.println("e");
             for (int j = 0; j < uppsizeInt; j++) {
                 slice = destination[j].split(",");
                 destNod1[j] = Integer.parseInt(slice[0]);
                 destNod2[j] = Integer.parseInt(slice[1]);
                  System.out.println(destNod2[j]);  
+            System.out.println("n");
             }
 
             narmstaNod3 = destNod1[0];
             narmstaNod4 = destNod2[0];
              
-            
+            System.out.println("s");
               for (int j = 0; j <uppsizeInt ; j++) {
 
                 ds.start = ds.robotPos;
@@ -371,20 +367,20 @@ public class HTTPny implements Runnable {
                 op = new OptPlan(ds);
                 op.createPlan();
                 lagstaKostnad = op.pathCost;
-
+                System.out.println("o");
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
                     narmstaPlats = destination[j];
                     narmstaNod3 = startlist[j];
                     narmstaNod4 = stopplist[j];
-                   
+                   System.out.println("n");
                 }
             }
             
             //Dessa nedan behöver inte användas
             //cui.bastaPlats(":");
             //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
-
+            System.out.println("hshsdhsd");
             for (int j = 0; j < uppsizeInt; j++) {
 
                 uppdrag_valt = uppdragsid[j];
@@ -392,7 +388,7 @@ public class HTTPny implements Runnable {
 
                 if (samakning[j] == 0) {
                       
-                    
+                    System.out.println("frfewewe");
                     System.out.println("Samåkning0: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                         
@@ -442,7 +438,6 @@ public class HTTPny implements Runnable {
                         
                         ds.kapacitet = ds.kapacitet - pass[j];
                         
-
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
 
                         System.out.println("Totala poäng kap större 1: " + ds.totPoang);
@@ -462,12 +457,12 @@ public class HTTPny implements Runnable {
                                 + ", Pass: " + passagerare + ", Grupp: 1");
 
                             } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {
-                                ds.Antal_passagerare = pass[j + 1] - (pass[j+1]-ds.kapacitet);
+                                ds.Antal_passagerare = pass[j] + ds.kapacitet;
 
-                                ds.kapacitet = ds.kapacitet - ds.Antal_passagerare;
+                                ds.kapacitet = ds.kapacitet - (ds.Antal_passagerare-pass[j]);//ska bli noll
                                 // System.out.println(nuPoints[j] + "hlkasdjlfsk");
                                 // System.out.println(pass[j] + "hlkasdjlfsk");
-                                ds.totPoang = ds.Antal_passagerare;
+                                ds.totPoang =ds.Antal_passagerare;
                                 //måste ta bort den andel passagerare som vi tagit från uppdraget
                                 System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
                                 passagerare=ds.Antal_passagerare;
@@ -632,10 +627,10 @@ public class HTTPny implements Runnable {
     public void utmessages() {
 
         String inmessa = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt + "," + uppdrag_valt2; //Vi lägger upp vad vi önskar
-
+        String inmessa2 = "A!300!2,3";
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + inmessa);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=5&messagetype=1&message=" + inmessa2);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
