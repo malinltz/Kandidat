@@ -143,49 +143,49 @@ public class HTTPny implements Runnable {
             Thread t2 = new Thread(gu);
             t2.start();
             
-            while(true){ //Letar efter en Pick-Up
-                
-            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-            if(Transceiver.utfort.equals("p")){
-                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
-                
-                uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-
-                //Här tar vi uppdrag!!
-                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
-
-                if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
-                    System.out.println("Svar från hemsida: " + svaruppdrag);
-
-                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
-                        ds.arcColor[j] = 0;
-                    }
-                    cui.repaint(); //Repaintar
-
-                    ds.start = narmstaNod2; //Sätter nya startnod
-                    ds.slut = narmstaNod3; //Sätter ny slutnod
-
-                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
-                    op.createPlan();
-
-                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                    RR = new RobotRutt(ds, cui, op, this);
-                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
-
-                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
-                    
-                } else { //OM VI INTE KAN TA UPPDRAGET
-                    System.out.println("Svar från hemsida: " + svaruppdrag);
-                }
-
-                ds.start = narmstaNod4; //Updaterat startnod
-                u++; //counter för antal uppdrag
-                // ds.poang ++;
-
-                aterstall(1); //Behövs återställa?
-                break;
-            }
-           }
+//            while(true){ //Letar efter en Pick-Up
+//                
+//            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+//            if(Transceiver.utfort.equals("p")){
+//                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+//                
+//                uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+//
+//                //Här tar vi uppdrag!!
+//                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+//
+//                if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
+//                    System.out.println("Svar från hemsida: " + svaruppdrag);
+//
+//                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+//                        ds.arcColor[j] = 0;
+//                    }
+//                    cui.repaint(); //Repaintar
+//
+//                    ds.start = narmstaNod2; //Sätter nya startnod
+//                    ds.slut = narmstaNod3; //Sätter ny slutnod
+//
+//                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
+//                    op.createPlan();
+//
+//                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+//                    RR = new RobotRutt(ds, cui, op, this);
+//                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+//
+//                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
+//                    
+//                } else { //OM VI INTE KAN TA UPPDRAGET
+//                    System.out.println("Svar från hemsida: " + svaruppdrag);
+//                }
+//
+//                ds.start = narmstaNod4; //Updaterat startnod
+//                u++; //counter för antal uppdrag
+//                // ds.poang ++;
+//
+//                aterstall(1); //Behövs återställa?
+//                break;
+//            }
+//           }
           }
         } catch (InterruptedException e) {
             System.out.print(e.toString());
@@ -402,7 +402,7 @@ public class HTTPny implements Runnable {
                                 + ", Pass: " + passagerare + ", Grupp: 1");
 
                             } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {
-                                ds.Antal_passagerare = pass[j + 1] - ds.kapacitet;
+                                ds.Antal_passagerare = pass[j + 1] - (pass[j+1]-ds.kapacitet);
 
                                 ds.kapacitet = ds.kapacitet - ds.Antal_passagerare;
                                 // System.out.println(nuPoints[j] + "hlkasdjlfsk");
