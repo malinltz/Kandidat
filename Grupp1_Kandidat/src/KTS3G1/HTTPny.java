@@ -20,6 +20,7 @@ public class HTTPny implements Runnable {
     public String message;
     public String uppdragslista;
     public String narmstaPlats;
+    public String narmstaPlats2;
     private String utmessage;
     public String inmessa;
 
@@ -27,7 +28,7 @@ public class HTTPny implements Runnable {
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
-    //public RobotRutt RR;
+    public RobotRutt RR;
    // public GuiUpdate gu;
     public HTTPextern httpex;
     int NumberOfpassengers;
@@ -79,6 +80,8 @@ public class HTTPny implements Runnable {
     public int narmstaNod2;
     public int narmstaNod3;
     public int narmstaNod4;
+    public int narmstaNod5;
+    public int narmstaNod6;
     int lagstaKostnad = 1000000;
     int u = 0;
     boolean plocka_upp = false;
@@ -92,6 +95,7 @@ public class HTTPny implements Runnable {
         this.ds = ds;
         this.op = op;
         this.cui = cui;
+        
         sleepTime = 1000; //1000 millisekunder
 
         ink = new ArrayList<String>(); //alla inkommande platser
@@ -111,8 +115,7 @@ public class HTTPny implements Runnable {
                  Thread.sleep(sleepTime); //Behöver vi fördröjning?            
 
                  Listaplats(); //Optimerar rutt till upphämtningsplats
-                 
-                 uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+               uppdrag_valt= listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
             
                  utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
             
@@ -177,15 +180,18 @@ public class HTTPny implements Runnable {
 //                } else { //OM VI INTE KAN TA UPPDRAGET
 //                    System.out.println("Svar från hemsida: " + svaruppdrag);
 //                }
-//
-//                ds.start = narmstaNod4; //Updaterat startnod
+
+                //ds.start = narmstaNod4; //Updaterat startnod
+                    uppdrag_valt2=listauppdrag(narmstaPlats);
+                    
 //                u++; //counter för antal uppdrag
 //                // ds.poang ++;
 //
-//                aterstall(1); //Behövs återställa?
+ //                 aterstall(1); //Behövs återställa?
 //                break;
 //            }
 //           }
+        break; 
           }
         } catch (InterruptedException e) {
             System.out.print(e.toString());
@@ -396,6 +402,7 @@ public class HTTPny implements Runnable {
                         ds.totPoang = ds.Antal_passagerare;
                         
                         ds.kapacitet = ds.kapacitet - pass[j];
+                        
 
                         System.out.println("Kapacitet 1: " + ds.kapacitet);
 
@@ -471,14 +478,19 @@ public class HTTPny implements Runnable {
 
                 System.out.println("bä");
                 //Skriver ut vilket uppdrag vi har tagit i statusruta
+                 
+
+                
+                }
+            
 
                 // cui.tauppdrag(//flyttar på den så den skriver ut rätt
                 //        "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
                 //        + ", Pass: " + passagerare + ", Grupp: 1");
-            }
-
+            
+    
             //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
-        } catch (Exception c) {
+} catch (Exception c) {
             System.out.print("Fel: " + c.toString());
 
         }
