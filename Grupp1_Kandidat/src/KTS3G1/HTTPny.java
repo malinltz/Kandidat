@@ -502,7 +502,7 @@ public class HTTPny implements Runnable {
                     //System.out.println("Totala poäng: " + ds.totPoang);
 
                     passagerare = ds.Antal_passagerare;
-
+                }
             }
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
