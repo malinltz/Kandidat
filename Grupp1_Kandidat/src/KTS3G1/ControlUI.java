@@ -50,10 +50,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("Antal poäng " + p + "\n");
     }
 
-    //Används inte
+    //Används för att beskriva när optimering utförs
     void showStatus2(String p) 
     {
-        jTextArea2.append("Antal upphämtningsplatser " + p + "\n");
+        statusuppdTextArea.append("" + p + "\n");
     }
     
     //Används för listauppdrag i HTTP för att skriva ut alla uppdrag på en hållsplats

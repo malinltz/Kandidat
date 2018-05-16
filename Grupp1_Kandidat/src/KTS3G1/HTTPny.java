@@ -131,7 +131,7 @@ public class HTTPny implements Runnable {
                 }
                 cui.repaint(); //Repaintar
 
-                op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
+                op = new OptPlan(ds,cui); //Optimerar till den plats vi blev tilldelade
                 op.createPlan();
 
                 //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
@@ -162,7 +162,7 @@ public class HTTPny implements Runnable {
 //                    ds.start = narmstaNod2; //Sätter nya startnod
 //                    ds.slut = narmstaNod3; //Sätter ny slutnod
 //
-//                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
+//                    op = new OptPlan(ds,cui); //Optimerar till det/dem uppdrag som vi valt
 //                    op.createPlan();
 //
 //                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
@@ -198,7 +198,7 @@ public class HTTPny implements Runnable {
                 ds.start = narmstaNod5; //Sätter nya startnod
                 ds.slut = narmstaNod6; //Sätter ny slutnod
 //
-//                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
+//                    op = new OptPlan(ds,cui); //Optimerar till det/dem uppdrag som vi valt
 //                    op.createPlan();
 //
 //                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
@@ -274,7 +274,7 @@ public class HTTPny implements Runnable {
 
                 ds.start = ds.robotPos;
                 ds.slut = startlist[j];
-                op = new OptPlan(ds);
+                op = new OptPlan(ds,cui);
                 op.createPlan();
 
                 if (op.pathCost < lagstaKostnad) {
@@ -360,7 +360,7 @@ public class HTTPny implements Runnable {
 
                 ds.start = ds.robotPos;
                 ds.slut = startlist[j];
-                op = new OptPlan(ds);
+                op = new OptPlan(ds,cui);
                 op.createPlan();
                 lagstaKostnad = op.pathCost;
 

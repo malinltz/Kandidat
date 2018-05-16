@@ -6,7 +6,7 @@ import java.util.*;
 
 public class OptPlan {
 
-   // ControlUI cui;
+    
    // RobotRutt RR; 
    
     private List<Vertex> nodes;
@@ -14,6 +14,7 @@ public class OptPlan {
     public LinkedList<Vertex> path;
     public DataStore ds;
     public HTTPny http;
+    public ControlUI cui;
     
 
     public int[] shortestPathList;
@@ -22,8 +23,9 @@ public class OptPlan {
     double x = 0;
     double y = 0;
 
-    public OptPlan(DataStore ds) {
+    public OptPlan(DataStore ds, ControlUI cui) {
         this.ds = ds;
+        this.cui = cui;
 
         shortestPathList = new int[1000];        
     }
@@ -51,6 +53,8 @@ public class OptPlan {
         dijkstra.execute(nodes.get(ds.start-1));
         path = dijkstra.getPath(nodes.get(ds.slut-1));
          
+        cui.showStatus2("Optimering av rutt utförs.");
+        
         // Get shortest path
         for (int i = 0; i < path.size(); i++) { 
             shortestPathList[i] = Integer.parseInt(path.get(i).getId());
