@@ -147,7 +147,7 @@ public class HTTPextern {
             }
         }
         //Gör om till ArrayList
-        List<String> wordList = Arrays.asList(http.uppdrag);
+        List<String> wordList = Arrays.asList(http.platser);
 
         //Här tar den bort de uppdrag som de andra grupperna fick
         for (int k = 0; k < wordList.size(); k++) {

@@ -11,7 +11,7 @@ public class KTS3G1 {
     ControlUI cui;
     HTTPny http;
     OptPlan op;
-    RobotRutt RR;
+   // RobotRutt RR;
    // HTTPextern httpex;
     //Transceiver tc; 
     //Reciver re;   

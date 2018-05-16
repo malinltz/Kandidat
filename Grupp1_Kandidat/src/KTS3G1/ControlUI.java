@@ -18,7 +18,7 @@ public class ControlUI extends javax.swing.JFrame {
     ControlUI cui;
     HTTPny http;
     OptPlan op;
-    RobotRutt RR;
+    // RobotRutt RR;
     //GuiUpdate GU;
    // HTTPextern hx;
     Transceiver tr;
@@ -695,10 +695,11 @@ public class ControlUI extends javax.swing.JFrame {
             startStopp.setForeground(new java.awt.Color(255, 0, 0));
             //startStopp.setBackground(Color.red);
             anslut = true;
-
+            
             http = new HTTPny(ds, op, this);
             Thread t1 = new Thread(http);
-            t1.start();       
+            t1.start();
+            
 
         } else if (startStopp.getText().equals("Stop")) {
             startStopp.setText("Start");
@@ -730,7 +731,7 @@ public class ControlUI extends javax.swing.JFrame {
            jTextField7.setText(badress);
 
           
-           Transceiver b1 = new Transceiver();
+           Transceiver b1 = new Transceiver(http);
            Thread t6 = new Thread(b1);
            t6.start();
 

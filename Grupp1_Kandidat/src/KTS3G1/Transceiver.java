@@ -11,21 +11,20 @@ import java.util.logging.Logger;
 
 public class Transceiver implements Runnable{
 //String lista = "hhvvhhrhrrh";  // hårdkodad sträcka för att testa h,v,r. Ska åka 2 varv på banan.
-
 String kommando;
 String inskickat = "";
 String start = "s";
 String pickup = "p";
-public static boolean anslut = false; 
+private boolean anslut = false; 
 public static String utfort = "";
 //int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;
 HTTPny http;
-DataStore ds;
 
-
-
+public Transceiver (HTTPny http){
+    this.http = http;
+}
        public void run (){
            
        while(true){
@@ -33,7 +32,7 @@ DataStore ds;
        try{
            //201410149018:1
            StreamConnection anslutning = (StreamConnection) Connector.open("btspp://201410149018:1");
-           anslut = true;
+           
 
            PrintStream bluetooth_ut
                     = new PrintStream(anslutning.openOutputStream());
@@ -106,8 +105,8 @@ DataStore ds;
                          utfort = String.valueOf(listan.charAt(i));
                          System.out.println("Utfört = " + utfort);
                          if(utfort.equals("p")){
-                             http.pickUp = true;
-                             System.out.println("pickUp i tc: " + http.pickUp);
+                             http.test = true;
+                          //   System.out.println("pickUp i tc: " + http.pickUp);
                          }
                         break;
                     }

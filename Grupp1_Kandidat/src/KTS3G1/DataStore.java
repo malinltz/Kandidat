@@ -22,7 +22,7 @@ public class DataStore {
     boolean atervant; 
     double robotX;
     double robotY;
-
+    
     public int start = 7; //Startposition. Måste ändras 
     public int robotPos = start;
     public int slut;
@@ -62,8 +62,7 @@ public class DataStore {
     public String getFileName() {
         return fileName;
     }
-    
-
+  
     public void readNet() {
         String line;
 
@@ -111,4 +110,5 @@ public class DataStore {
             e.printStackTrace();
         }
     }
+    
 }
