@@ -13,16 +13,10 @@ import java.util.concurrent.TimeUnit;
 
 
 public class ControlUI extends javax.swing.JFrame {
-    //Transceiver tc;
     DataStore ds;
     ControlUI cui;
     HTTPny http;
     OptPlan op;
-    // RobotRutt RR;
-    //GuiUpdate GU;
-   // HTTPextern hx;
-    //Transceiver tc;
-
     /**
      * Creates new form ControlUI
      */
@@ -36,7 +30,6 @@ public class ControlUI extends javax.swing.JFrame {
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
-    boolean simon = false;
     
     //Används för listauppdrag metod i HTTPny
     void listauppdrag(ArrayList k)
@@ -733,20 +726,7 @@ public class ControlUI extends javax.swing.JFrame {
 //            Transceiver b1 = new Transceiver();
 //            Thread t6 = new Thread(b1);
 //            t6.start();
-            
 
-        /*  
-            Transceiver b1 = new Transceiver();
-            Thread t6 = new Thread(b1);
-            t6.start();
-        */    
-
-    /*    if (Transceiver.returnanslut()){ //om det finns anslutning 
-
-            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
-       }else 
-            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
-          */
     }//GEN-LAST:event_connectToWallEActionPerformed
 
     private void numberPassangerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberPassangerActionPerformed

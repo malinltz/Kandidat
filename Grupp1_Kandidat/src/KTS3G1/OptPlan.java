@@ -79,9 +79,6 @@ public class OptPlan {
                 
             }
         }
-        
-        
-        
 }
     
     public int[] getIndex() {
