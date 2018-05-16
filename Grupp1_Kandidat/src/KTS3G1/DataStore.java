@@ -37,7 +37,7 @@ public class DataStore {
     int visualPassenger=0;
     String visualPassenger2;
     public int passeradenoder;
-     int starta=0; 
+    int starta=0; 
 
     public DataStore() {
         // Initialize the datastore with fixed size arrays for storing the network data

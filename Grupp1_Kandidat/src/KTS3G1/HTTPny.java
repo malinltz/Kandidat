@@ -29,7 +29,7 @@ public class HTTPny implements Runnable {
     OptPlan[] opt;
     public DataStore ds;
     public ControlUI cui;
-    // public RobotRutt RR;
+    public RobotRutt RR;
     // public GuiUpdate gu;
     public HTTPextern httpex;
     int NumberOfpassengers;
@@ -135,8 +135,8 @@ public class HTTPny implements Runnable {
                 op.createPlan();
 
                 //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                //  RR = new RobotRutt(ds, cui, op, this); 
-                //  RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+                  RR = new RobotRutt(ds, cui, op, this); 
+                  RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
                 //  gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
                 // Thread t2 = new Thread(gu);
                 // t2.start();

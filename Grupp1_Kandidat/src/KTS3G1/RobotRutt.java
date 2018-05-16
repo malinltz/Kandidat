@@ -1,4 +1,4 @@
-/*
+
 package KTS3G1;
 
 import java.util.ArrayList;
@@ -161,6 +161,36 @@ public class RobotRutt {
                 }
                 i++;                
             }
+            System.out.println(rutt);
+            
+            
+            
+                                            //GÖR U-SVÄNGAR HÄR
+     for (int e = 0; e < rutt.size()-2; e++){
+         int uCount = rutt.size();
+         //Ersätt vvr med u
+        if (rutt.get(e).equals("v") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("r")){
+            System.out.println("1u.");
+             rutt.remove(e);     //Ta bort första r:et
+             rutt.remove(e);     //Ta bort andra r:et
+             rutt.remove(e);
+             rutt.add("u");
+             uCount = uCount - 3;
+         }
+        
+        //Ersätt rvvr med u
+        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("v") && rutt.get(e+3).equals("r")){
+            System.out.println("2u.");
+             rutt.remove(e);     //Ta bort första r:et
+             rutt.remove(e);     //Ta bort andra r:et
+             rutt.remove(e);
+             rutt.remove(e);
+             rutt.add("u");
+             uCount = uCount - 4;
+         }
+     }
+            
+            
      
                              //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
      for (int e = 0; e < rutt.size()-2; e++){
@@ -230,5 +260,3 @@ public class RobotRutt {
         System.out.println(" " + rutteN3);
     }
   }
-
-*/
