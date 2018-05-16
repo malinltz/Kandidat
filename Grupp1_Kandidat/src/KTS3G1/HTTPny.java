@@ -212,7 +212,7 @@ public class HTTPny implements Runnable {
                 //u++; //counter för antal uppdrag
 //                // ds.poang ++;
 //
-                //                 aterstall(1); //Behövs återställa?
+               aterstall(1); //Behövs återställa?
 //                break;
                 //}
                 //  }
@@ -465,9 +465,10 @@ public class HTTPny implements Runnable {
 
                             } else {
                                 passagerare = ds.Antal_passagerare;
-                            }
+                            
                             cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                     + ", Pass: " + passagerare + ", Grupp: 1");
+                            }
                             //om samakaning[j+1]=0
                             {  // remove(Object uppdrag_valt);
                                 break;
@@ -503,6 +504,7 @@ public class HTTPny implements Runnable {
 
                     passagerare = ds.Antal_passagerare;
                 }
+               //ds.visualPassenger = ds.visualPassenger + ds.Antal_passagerare;
             }
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
@@ -664,6 +666,10 @@ public class HTTPny implements Runnable {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        ds.visualPassenger = ds.visualPassenger + ds.Antal_passagerare;
+        ds.visualPassenger2 = String.valueOf(ds.visualPassenger);
+        cui.appendPassText(ds.visualPassenger2);
+        
         return utmessage;
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }

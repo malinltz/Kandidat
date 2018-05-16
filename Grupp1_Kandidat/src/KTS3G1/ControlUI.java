@@ -116,10 +116,16 @@ public class ControlUI extends javax.swing.JFrame {
         return p;
     }
 
-    //Används inte
-    public void appendOptText(String s) 
+    //Används.
+    public void appendPassText(String s) 
     {
-        statusuppdTextArea.append(s);
+        numberPassanger.setText(s);
+    }
+    
+    //Används.
+    public void appendPointsText(String s) 
+    {
+        numberPoints.setText(s);
     }
     
     void upphamtningsplats(String b) 
