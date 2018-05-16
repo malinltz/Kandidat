@@ -30,10 +30,14 @@ public class DataStore {
     public int kapacitet= 5;
     int[] arcColor;
     int totPoang;
+    int visualPoints;
+    String visualPoints2;
     int [] poang; 
     int Antal_passagerare=0; 
+    int visualPassenger=0;
+    String visualPassenger2;
     public int passeradenoder;
-     int starta=0; 
+    int starta=0; 
 
 
     public DataStore() {

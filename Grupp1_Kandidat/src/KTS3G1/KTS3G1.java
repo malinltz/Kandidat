@@ -18,10 +18,6 @@ public class KTS3G1 {
 
     KTS3G1() {
 
-        //tc= new Transceiver
-        //tm = new Transmitter();
-        //re = new Reciver()
-        
         /*
          * Initialize the DataStore call where all "global" data will be stored
          */
@@ -38,10 +34,6 @@ public class KTS3G1 {
          */
         cui = new ControlUI(ds);
         cui.setVisible(true);
-        
-
-      //  op = new OptPlan(ds);
-
     }
 
     public static void main(String[] args) {

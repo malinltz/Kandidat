@@ -16,7 +16,7 @@ String inskickat = "";
 String start = "s";
 String pickup = "p";
 private boolean anslut = false; 
-public static String utfort = "";
+public static volatile String utfort = "";
 //int ant_pass = 4;
 String antal_passagerare;
 RobotRutt RR;
@@ -105,7 +105,8 @@ public Transceiver (HTTPny http){
                          utfort = String.valueOf(listan.charAt(i));
                          System.out.println("Utfört = " + utfort);
                          if(utfort.equals("p")){
-                             http.test = true;
+                             //http.test = true;
+                             
                           //   System.out.println("pickUp i tc: " + http.pickUp);
                          }
                         break;

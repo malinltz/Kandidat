@@ -78,9 +78,9 @@ public class HTTPextern {
             }
         }
 
-        System.out.println("Grupp 1 Uppdrag" + uppdragG1);
-        System.out.println("Grupp 4 Uppdrag" + uppdragG4);
-        System.out.println("Grupp 5 Uppdrag" + uppdragG5);
+        System.out.println("Grupp 1 Uppdrag: " + uppdragG1);
+        System.out.println("Grupp 4 Uppdrag: " + uppdragG4);
+        System.out.println("Grupp 5 Uppdrag: " + uppdragG5);
 
         ejUppdrag.clear();
         for (int i = 0; i < 3; i++) { //Tre grupper

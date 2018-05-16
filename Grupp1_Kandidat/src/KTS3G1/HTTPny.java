@@ -16,24 +16,26 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class HTTPny implements Runnable {
+
     private boolean status;
     public String message;
     public String uppdragslista;
     public String narmstaPlats;
+    public String narmstaPlats1;
     public String narmstaPlats2;
     private String utmessage;
     public String inmessa;
-    
+
     public OptPlan op;
     OptPlan[] opt;
     public DataStore ds;
     public Transceiver tc;
-   // DataStore ds = new DataStore();
+    // DataStore ds = new DataStore();
     public ControlUI cui;
     public RobotRutt RR;
     public GuiUpdate gu;
     public HTTPextern httpex;
-  
+
     int NumberOfpassengers;
     int antal_passa = 0;
 
@@ -47,7 +49,7 @@ public class HTTPny implements Runnable {
     public int uppsizeInt;
     public int meddelandet;
     public String[] gruppmessage;
-    
+
     String[] paxplats;
     // String datum [];
     String[] tid;
@@ -61,15 +63,13 @@ public class HTTPny implements Runnable {
     public String allauppdrag;
     public int[] startlist;
     public int[] stopplist;
-    
-
 
     int[] uppdrag1;
     int[] uppdrag2;
     String datumer;
     public int[] uppdragsid;
     String[] destination;
-    
+
     String[] resten;
     String[] info;
     int[] nuPoints;
@@ -92,18 +92,16 @@ public class HTTPny implements Runnable {
     ArrayList<String> inmess; //meddelandet in från företagsguppen
     ArrayList<String> utmess; //meddelandet ut från oss till företagsgrupperna
     ArrayList<String> ater; //återsteller
-    
+
     public static volatile boolean test = false;
+
     public HTTPny(DataStore ds, OptPlan op, ControlUI cui) {
         this.ds = ds;
         this.op = op;
         this.cui = cui;
-      
-
-        
 
         sleepTime = 1000; //1000 millisekunder
-        
+
         ink = new ArrayList<String>(); //alla inkommande platser
         upp = new ArrayList<String>(); // 
         inmess = new ArrayList<String>();//meddelandet in från företagsguppen
@@ -118,11 +116,10 @@ public class HTTPny implements Runnable {
 
             while (u < 1) {
 
-
                 Thread.sleep(sleepTime); //Behöver vi fördröjning?            
 
                 Listaplats(); //Optimerar rutt till upphämtningsplats
-                
+
                 uppdrag_valt = listauppdrag(narmstaPlats); //Listar uppdragen på upphämtningsplatsen samt gör optimering
 
                 utmessages(); //Lägger upp vilken uppdragsplats vi vill ha.
@@ -142,85 +139,107 @@ public class HTTPny implements Runnable {
                     ds.arcColor[j] = 0;
                 }
 
-            cui.repaint(); //Repaintar
-            
-            op = new OptPlan(ds); //Optimerar till den plats vi blev tilldelade
-            op.createPlan();
-            
-            //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                cui.repaint(); //Repaintar
 
-            RR = new RobotRutt(ds, cui, op, this); 
-            RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
-            
-            gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
-            Thread t2 = new Thread(gu);
-            t2.start();
-            
-           // Thread.sleep(5000); //Behöver vi fördröjning?     
-            while(true){ //Letar efter en Pick-Up
-                
-               // System.out.println("INLÄST i HTTPny = " + Transceiver.utfort);
-       //    IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
-           
-           // if(ds.getBoolean()){
-           
-           if(test){
-                //if(Transceiver.utfort.equals("p")){
-                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
-                System.out.println("LÄST PICKUP + " + Transceiver.utfort);
-                System.out.println("Läst Utfört funkade inte");
-                
-                
-                uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
-                
-                //    Här tar vi uppdrag!!
-                String svaruppdrag = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+                op = new OptPlan(ds, cui); //Optimerar till den plats vi blev tilldelade
+                op.createPlan();
 
-                if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
-                    System.out.println("Svar från hemsida: " + svaruppdrag);
+                //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                RR = new RobotRutt(ds, cui, op, this);
+                RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
 
-                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
-                        ds.arcColor[j] = 0;
+                gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på kartan från startnod till slutnod
+                Thread t2 = new Thread(gu);
+                t2.start();
+
+                // Thread.sleep(5000); //Behöver vi fördröjning?     
+                while (true) { //Letar efter en Pick-Up
+
+                    //    IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+                    if (Transceiver.utfort.equals("p")) {
+                        //if(Transceiver.utfort.equals("p")){
+                        cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+
+                        uppdrag_valt = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+
+                        //    Här tar vi uppdrag!!
+                        String svaruppdrag = tauppdrag(httpex.platsViFick2, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+
+                        if (svaruppdrag.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
+                            System.out.println("Svar från hemsida: " + svaruppdrag);
+
+                            for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                                ds.arcColor[j] = 0;
+                            }
+                            cui.repaint(); //Repaintar
+
+                            ds.start = narmstaNod2; //Sätter nya startnod
+                            ds.slut = narmstaNod3; //Sätter ny slutnod
+
+                            op = new OptPlan(ds, cui); //Optimerar till det/dem uppdrag som vi valt
+                            op.createPlan();
+
+                            //  Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                            RR = new RobotRutt(ds, cui, op, this);
+                            RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+
+                            gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på
+
+                        } else { //OM VI INTE KAN TA UPPDRAGET
+                            System.out.println("Svar från hemsida: " + svaruppdrag);
+                        }
+
+                        ds.start = narmstaNod4; //Updaterat startnod
+
+                        uppdrag_valt2 = listauppdrag(httpex.platsViFick2);
                     }
-                    cui.repaint(); //Repaintar
 
-                    ds.start = narmstaNod2; //Sätter nya startnod
-                    ds.slut = narmstaNod3; //Sätter ny slutnod
+                    if (uppdrag_valt2 != 0) {
 
-                    op = new OptPlan(ds); //Optimerar till det/dem uppdrag som vi valt
-                    op.createPlan();
-                    
-                    //  Här kallas transiever, men den körs redan eftersom det är en TRÅD.
-                    RR = new RobotRutt(ds, cui, op, this);
-                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
-                    
-                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på
-                    
-                } else { //OM VI INTE KAN TA UPPDRAGET
-                    System.out.println("Svar från hemsida: " + svaruppdrag);
+                        while (true) { //Letar efter en Pick-Up
+
+                            //IF PICK-UP HAR HÄNT HÄR -> KÖR RESTEN AV RUN METODEN.
+                            if (Transceiver.utfort.equals("p")) {
+                                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+
+                                uppdrag_valt2 = listauppdrag(httpex.platsViFick2); //Listar uppdragen på upphämtningsplatsen samt gör optimering
+
+                                //Här tar vi uppdrag!!
+                                String svaruppdrag2 = tauppdrag(narmstaPlats, uppdrag_valt, passagerare, "1"); //Plats, ID, Passagerare, Grupp
+
+                                if (svaruppdrag2.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
+                                    System.out.println("Svar från hemsida: " + svaruppdrag2);
+
+                                    for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
+                                        ds.arcColor[j] = 0;
+                                    }
+                                    cui.repaint(); //Repaintar
+
+                                    ds.start = narmstaNod5; //Sätter nya startnod
+                                    ds.slut = narmstaNod6; //Sätter ny slutnod
+
+                                    op = new OptPlan(ds, cui); //Optimerar till det/dem uppdrag som vi valt
+                                    op.createPlan();
+
+                                    //Här kallas transiever, men den körs redan eftersom det är en TRÅD.
+                                    RR = new RobotRutt(ds, cui, op, this);
+                                    RR.goRobotrutt(); //Använder optimala rutten för att skicka kommandon till AGV:n
+
+                                    gu = new GuiUpdate(ds, cui, op, this); //Uppdaterar AGV:ns position på 
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
-
-                ds.start = narmstaNod4; //Updaterat startnod
-                u++; //counter för antal uppdrag
-                //ds.poang ++;
-
-                aterstall(1); //Behövs återställa?
-                
-             
-
-                
-                
-                break;
-            } else {
             }
-           }
-            } 
-
         } catch (InterruptedException e) {
             System.out.print(e.toString());
 
         }
     }
+
     public void Listaplats() { // lista på alla besöksplatser.
 
         try { // Kopplar upp till listan och hämtar info och returnerar
@@ -246,8 +265,7 @@ public class HTTPny implements Runnable {
             inkommande.close();
 
             for (int k = 0; k < ink.size(); k++) {
-                //System.out.println(ink.get(k));
-                cui.appendStatus3(ink.get(k));
+                cui.appendStatus3(ink.get(k)); //Denna är OK. /R
             }
 
             listaplats = ink.get(0); //delar upp infon i  en string
@@ -273,7 +291,7 @@ public class HTTPny implements Runnable {
 
                 ds.start = ds.robotPos;
                 ds.slut = startlist[j];
-                op = new OptPlan(ds);
+                op = new OptPlan(ds, cui);
                 op.createPlan();
 
                 if (op.pathCost < lagstaKostnad) {
@@ -298,24 +316,22 @@ public class HTTPny implements Runnable {
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt1.openConnection();
             System.out.println("\nAnropar: " + url);
             anslutning.setRequestMethod("GET");
-            //;
+
             int mottagen_status = anslutning.getResponseCode();
             System.out.println("Statuskod: " + mottagen_status);
 
             BufferedReader inkommande = new BufferedReader(new InputStreamReader(anslutning.getInputStream()));
             String inkommande_text;
             StringBuffer inkommande_samlat = new StringBuffer();
-         
 
             while ((inkommande_text = inkommande.readLine()) != null) {
                 inkommande_samlat.append(inkommande_text);
                 upp.add(inkommande_text);
             }
             inkommande.close();
-            
-            //while (upp.get(0) != null) { //Kollar så att det finns uppdrag på platsen
+
             uppdragslista = inkommande_samlat.toString();
-          
+
             //Variabler för uppdragslistan
             String uppsize = upp.get(0);
             uppsizeInt = Integer.parseInt(uppsize);
@@ -327,7 +343,7 @@ public class HTTPny implements Runnable {
             nuPoints = new int[uppsizeInt];
             destNod1 = new int[uppsizeInt];
             destNod2 = new int[uppsizeInt];
-            
+
             cui.hallplatsuppdrag("Uppdrag som finns kvar: ");
             //Delar upp uppdragslistan i ID,Destination,Passagerare,Samåkning,Poäng
             for (int k = 1; k < uppsizeInt + 1; k++) {
@@ -337,66 +353,61 @@ public class HTTPny implements Runnable {
                 pass[k - 1] = Integer.parseInt(slice[2]);
                 samakning[k - 1] = Integer.parseInt(slice[3]);
                 nuPoints[k - 1] = Integer.parseInt(slice[4]);
-               
+
                 //Skriver ut i Statusrutan alla uppdrag på just den hållplatsen
-                cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1]
+                cui.hallplatsuppdrag("ID: " + uppdragsid[k - 1] + ", Dest: " + destination[k - 1] //Denna är OK. /R
                         + ", Pass: " + pass[k - 1] + ", Sam: " + samakning[k - 1]
                         + ", P: " + nuPoints[k - 1] + "");
             }
-            
+
             for (int j = 0; j < uppsizeInt; j++) {
                 slice = destination[j].split(",");
                 destNod1[j] = Integer.parseInt(slice[0]);
                 destNod2[j] = Integer.parseInt(slice[1]);
-                System.out.println(destNod2[j]);
-               
             }
 
             narmstaNod3 = destNod1[0];
             narmstaNod4 = destNod2[0];
+            narmstaNod5 = destNod1[1];
+            narmstaNod6 = destNod2[1];
 
-            
+            //   System.out.println(destNod1[0]);
             for (int j = 0; j < uppsizeInt; j++) {
 
                 ds.start = ds.robotPos;
                 ds.slut = startlist[j];
-                op = new OptPlan(ds);
+                op = new OptPlan(ds, cui);
                 op.createPlan();
                 lagstaKostnad = op.pathCost;
-               
+
                 if (op.pathCost < lagstaKostnad) {
                     lagstaKostnad = op.pathCost;
-                    narmstaPlats = destination[j];
+                    narmstaPlats1 = destination[j];
                     narmstaNod3 = startlist[j];
                     narmstaNod4 = stopplist[j];
-                    
+                    narmstaPlats2 = destination[j + 1];
+                    narmstaNod5 = startlist[j + 1];
+                    narmstaNod6 = stopplist[j + 1];
                 }
+
             }
-
-            //Dessa nedan behöver inte användas
-            //cui.bastaPlats(":");
-            //cui.bastaPlats("Upp.Plats: " + destination[0] + " från " + ds.start + " till " + ds.slut + ", kostnad: " + op.pathCost);
-           
             for (int j = 0; j < uppsizeInt; j++) {
-
 
                 uppdrag_valt = uppdragsid[j];
                 uppdrag_valt2 = uppdragsid[j + 1];
 
                 if (samakning[j] == 0) {
 
-                    System.out.println("frfewewe");
-                    System.out.println("Samåkning0: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.totPoang = ds.totPoang + nuPoints[j]; //plussar på poängen 
-                        System.out.println("Totala poäng kap större 0: " + ds.totPoang);
+                        //System.out.println("Totala poäng kap större 0: " + ds.totPoang);
                         ds.kapacitet = ds.kapacitet - pass[j];
                         //uppdrag_valt2 = 0; //sätt den så den inte skrivs ut
-                        System.out.println(ds.kapacitet);
+                        //System.out.println(ds.kapacitet);
                         passagerare = ds.Antal_passagerare;
-                        cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
-                                + ", Pass: " + passagerare + ", Grupp: 1");
+                        //cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                        //        + ", Pass: " + passagerare + ", Grupp: 1");
 
                     } else if (pass[j] > ds.kapacitet && ds.kapacitet > 0)//kollar kapacitet jämfört med passagerare 
                     {
@@ -404,12 +415,12 @@ public class HTTPny implements Runnable {
 
                         ds.kapacitet = ds.kapacitet - ds.Antal_passagerare; //ska bli noll
 
-                        System.out.println(ds.kapacitet);
+                        //System.out.println(ds.kapacitet);
                         // System.out.println(pass[j] + "hlkasdjlfsk");
                         ds.totPoang = ds.Antal_passagerare;
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
-                        System.out.println("Totala poäng kap mindre 0: " + ds.totPoang);
-                        System.out.println(ds.Antal_passagerare);
+                        //System.out.println("Totala poäng kap mindre 0: " + ds.totPoang);
+                        //System.out.println(ds.Antal_passagerare);
                         passagerare = ds.Antal_passagerare;
                         cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
@@ -425,7 +436,7 @@ public class HTTPny implements Runnable {
 
                 } else if (samakning[j] == 1) {
 
-                    System.out.println("Samåkning1: " + samakning[j]);
+                    //System.out.println("Samåkning1: " + samakning[j]);
                     if (pass[j] <= ds.kapacitet)//kollar kapacitet jämfört med passagerare 
                     {
                         ds.Antal_passagerare = pass[j];
@@ -434,18 +445,18 @@ public class HTTPny implements Runnable {
 
                         ds.kapacitet = ds.kapacitet - pass[j];
 
-                        System.out.println("Kapacitet 1: " + ds.kapacitet);
-
-                        System.out.println("Totala poäng kap större 1: " + ds.totPoang);
+                        //System.out.println("Kapacitet 1: " + ds.kapacitet);
+                        //System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                         if (samakning[j + 1] == 1) {
-                            System.out.println("Samåkning 1.2: " + samakning[j + 1]);//1 
+                            // System.out.println("Samåkning 1.2: " + samakning[j + 1]);//1 
 
                             if (pass[j + 1] <= ds.kapacitet) {
+
                                 ds.Antal_passagerare = pass[j + 1] + pass[j];
 
                                 ds.kapacitet = ds.Antal_passagerare - ds.kapacitet;
                                 ds.totPoang = ds.Antal_passagerare;
-                                System.out.println("Totala poäng kap större 1: " + ds.totPoang);
+                                //System.out.println("Totala poäng kap större 1: " + ds.totPoang);
                                 passagerare = ds.Antal_passagerare;
 
                                 cui.tauppdrag(
@@ -454,17 +465,12 @@ public class HTTPny implements Runnable {
 
                             } else if (pass[j + 1] > ds.kapacitet && ds.kapacitet > 0) {
                                 ds.Antal_passagerare = pass[j] + ds.kapacitet;
-
                                 ds.kapacitet = ds.kapacitet - (ds.Antal_passagerare - pass[j]);//ska bli noll
-                                // System.out.println(nuPoints[j] + "hlkasdjlfsk");
-                                // System.out.println(pass[j] + "hlkasdjlfsk");
-                                ds.totPoang = ds.totPoang+ds.Antal_passagerare;
+
+                                ds.totPoang = ds.Antal_passagerare;
                                 //måste ta bort den andel passagerare som vi tagit från uppdraget
-                                System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
-
-                                passagerare=ds.totPoang;
-
-                             //   passagerare = ds.Antal_passagerare;
+                                //System.out.println("Totala poäng kap mindre 1 j+1: " + ds.totPoang);
+                                passagerare = ds.Antal_passagerare;
 
                                 cui.tauppdrag(
                                         "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
@@ -472,9 +478,10 @@ public class HTTPny implements Runnable {
 
                             } else {
                                 passagerare = ds.Antal_passagerare;
+
+                                cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
+                                        + ", Pass: " + passagerare + ", Grupp: 1");
                             }
-                            cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
-                                    + ", Pass: " + passagerare + ", Grupp: 1");
                             //om samakaning[j+1]=0
                             {  // remove(Object uppdrag_valt);
                                 break;
@@ -492,8 +499,8 @@ public class HTTPny implements Runnable {
                         // System.out.println(pass[j] + "hlkasdjlfsk");
                         ds.totPoang = ds.Antal_passagerare;
                         //måste ta bort den andel passagerare som vi tagit från uppdraget
-                        System.out.println("Totala poäng kap mindre 1: " + ds.totPoang);
-                        System.out.println(ds.Antal_passagerare);
+                        //System.out.println("Totala poäng kap mindre 1: " + ds.totPoang);
+                        //System.out.println(ds.Antal_passagerare);
 
                         cui.tauppdrag("Plats: " + plats + ", ID: " + uppdrag_valt
                                 + ", Pass: " + passagerare + ", Grupp: 1");
@@ -502,37 +509,20 @@ public class HTTPny implements Runnable {
                         break;
                     }
 
-                    System.out.println("slutkap" + ds.kapacitet);
-
-                    System.out.println("Antal passagerare: " + ds.Antal_passagerare);
-
-                    System.out.println("Totala poäng: " + ds.totPoang);
-
+                    //System.out.println("slutkap" + ds.kapacitet);
+                    //System.out.println("Antal passagerare: " + ds.Antal_passagerare);
+                    //System.out.println("Totala poäng: " + ds.totPoang);
                     passagerare = ds.Antal_passagerare;
-
                 }
 
-                // destination[j]<destination[j+1];
-                //kolla så den lägsta sträckan till destination j är mindre eller större än destination j+1
-                System.out.println("bä");
-
-                //Skriver ut vilket uppdrag vi har tagit i statusruta
-
+                //ds.visualPassenger = ds.visualPassenger + ds.Antal_passagerare;
             }
 
-
-            // cui.tauppdrag(//flyttar på den så den skriver ut rätt
-            //        "Plats: " + plats + ", ID: " + uppdrag_valt + "," + uppdrag_valt2
-            //        + ", Pass: " + passagerare + ", Grupp: 1");
-            //ds.Antal_passagerare = ds.Antal_passagerare + passagerare;
         } catch (Exception c) {
             System.out.print("Fel: " + c.toString());
 
         }
-        //går det att göra en string om vad som returnas ? 
         //om den går igenom första så händer det en greh och andra en annan? 
-        
-
 
         return uppdrag_valt;
 
@@ -566,11 +556,7 @@ public class HTTPny implements Runnable {
             //  String uppsize = upp.get(0);
             //  uppsizeInt = Integer.parseInt(uppsize);
             for (int k = 0; k < inmess.size(); k++) {
-                System.out.println("Ink: " + inmess.get(k));
-                cui.messagegrupper(inmess.get(k));
-                //sline = inmess.get(k).split(";");
-
-                //skriv ut i rutan
+                System.out.println("Hämtat från HTTP : " + inmess.get(k));
             }
 
             String[] sline;
@@ -609,20 +595,15 @@ public class HTTPny implements Runnable {
                 paxplats[f] = sline[0];
                 kostnad[f] = sline[1];
                 uppdrag[f] = sline[2];
-                // System.out.println(uppdrag[f]);
             }
 
             for (int f = 0; f < meddelandet; f++) {
                 sline = uppdrag[f].split(",");
-                System.out.println(uppdrag[f]);
-                //uppdrag1[f] = Integer.parseInt(sline[0]);
-                // uppdrag2[f] = Integer.parseInt(sline[1]);
-                cui.messagegrupper(iD[f] + " " + paxplats[f] + " " + kostnad[f] + " " + uppdrag[f]);
+                cui.messagegrupper("Grupp: " + iD[f] + " Plats: " + paxplats[f] + " Kost: " + kostnad[f] + " Uppd: " + uppdrag[f]); //Denna är OK. /R
             }
 
         } catch (Exception k) {
             System.out.print("HEJ MALIN " + k.toString());
-            //  System.out.print(meddelandet);
         }
     }
 
@@ -630,11 +611,10 @@ public class HTTPny implements Runnable {
 
         String inmessa = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt + "," + uppdrag_valt2; //Vi lägger upp vad vi önskar
 
-        String inmessa2 = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar med bara en 
-
+        //   String inmessa2 = narmstaPlats + "!" + lagstaKostnad + "!" + uppdrag_valt; //Vi lägger upp vad vi önskar med bara en 
         try { //vad vi hämtar hem från de anrda 
 
-            String url = ("http://tnk111.n7.se/putmessage.php?groupid=1&messagetype=1&message=" + inmessa);
+            String url = ("http://tnk111.n7.se/putmessage.php?groupid=5&messagetype=1&message=" + inmessa);
 
             URL urlobjekt3 = new URL(url);
             HttpURLConnection anslutning = (HttpURLConnection) urlobjekt3.openConnection();
@@ -653,10 +633,6 @@ public class HTTPny implements Runnable {
                 utmess.add(inkommande_text);
             }
             inkommande.close();
-
-            for (int k = 0; k < utmess.size(); k++) {
-                //System.out.println("Ink: " + utmess.get(k));
-            }
 
         } catch (Exception k) {
             System.out.print(k.toString());
@@ -703,6 +679,14 @@ public class HTTPny implements Runnable {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
+        ds.visualPassenger = ds.visualPassenger + ds.Antal_passagerare;
+        ds.visualPassenger2 = String.valueOf(ds.visualPassenger);
+        cui.appendPassText(ds.visualPassenger2);
+
+        ds.visualPoints = ds.visualPoints + ds.totPoang;
+        ds.visualPoints2 = String.valueOf(ds.visualPoints);
+        cui.appendPointsText(ds.visualPoints2);
+
         return utmessage;
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
@@ -745,10 +729,6 @@ public class HTTPny implements Runnable {
             }
 
             inkommande.close();
-            // for (int k = 0; k < utmess.size(); k++) {
-            //     System.out.println("Ink: " + utmess.get(k));
-            //  }
-            //  gruppmessage = inkommande_samlat.toString();
             System.out.print("Återställer");
 
         } catch (Exception k) {

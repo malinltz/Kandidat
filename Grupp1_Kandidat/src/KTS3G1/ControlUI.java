@@ -13,15 +13,13 @@ import java.util.concurrent.TimeUnit;
 
 
 public class ControlUI extends javax.swing.JFrame {
-    //Transceiver tc;
     DataStore ds;
     ControlUI cui;
     HTTPny http;
     OptPlan op;
-    // RobotRutt RR;
-    //GuiUpdate GU;
-   // HTTPextern hx;
+
     Transceiver tr;
+
 
     /**
      * Creates new form ControlUI
@@ -36,7 +34,6 @@ public class ControlUI extends javax.swing.JFrame {
     String allaUppdrag = "";
     String upphamtningsplats = "";
     String valtUppdrag = "";
-    boolean simon = false;
     
     //Används för listauppdrag metod i HTTPny
     void listauppdrag(ArrayList k)
@@ -57,10 +54,10 @@ public class ControlUI extends javax.swing.JFrame {
         statusuppdTextArea.append("Antal poäng " + p + "\n");
     }
 
-    //Används inte
+    //Används för att beskriva när optimering utförs
     void showStatus2(String p) 
     {
-        jTextArea2.append("Antal upphämtningsplatser " + p + "\n");
+        statusuppdTextArea.append("" + p + "\n");
     }
     
     //Används för listauppdrag i HTTP för att skriva ut alla uppdrag på en hållsplats
@@ -123,10 +120,16 @@ public class ControlUI extends javax.swing.JFrame {
         return p;
     }
 
-    //Används inte
-    public void appendOptText(String s) 
+    //Används.
+    public void appendPassText(String s) 
     {
-        statusuppdTextArea.append(s);
+        numberPassanger.setText(s);
+    }
+    
+    //Används.
+    public void appendPointsText(String s) 
+    {
+        numberPoints.setText(s);
     }
     
     void upphamtningsplats(String b) 
@@ -559,6 +562,8 @@ public class ControlUI extends javax.swing.JFrame {
         jTextArea3.setRows(5);
         jScrollPane5.setViewportView(jTextArea3);
 
+        numberPassanger.setFont(new java.awt.Font("Lucida Grande", 1, 8)); // NOI18N
+        numberPassanger.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         numberPassanger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numberPassangerActionPerformed(evt);
@@ -598,7 +603,7 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -611,7 +616,7 @@ public class ControlUI extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -641,8 +646,8 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -655,10 +660,10 @@ public class ControlUI extends javax.swing.JFrame {
                                 .addGap(14, 14, 14))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
+                                .addComponent(startStopp, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(startStopp, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(connectToWallE, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(numberPassanger, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -666,7 +671,10 @@ public class ControlUI extends javax.swing.JFrame {
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(numberPoints, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
+                                        .addComponent(numberPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -731,17 +739,15 @@ public class ControlUI extends javax.swing.JFrame {
            jTextField7.setText(badress);
 
           
+
            Transceiver b1 = new Transceiver(http);
            Thread t6 = new Thread(b1);
            t6.start();
 
 
-    /*    if (Transceiver.returnanslut()){ //om det finns anslutning 
 
-            jTextField1.setBackground(new java.awt.Color(0, 255, 0));
-       }else 
-            jTextField1.setBackground(new java.awt.Color(255, 0, 0));
-          */
+
+
     }//GEN-LAST:event_connectToWallEActionPerformed
 
     private void numberPassangerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberPassangerActionPerformed
