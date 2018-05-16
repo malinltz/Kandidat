@@ -53,7 +53,7 @@ public class OptPlan {
         dijkstra.execute(nodes.get(ds.start-1));
         path = dijkstra.getPath(nodes.get(ds.slut-1));
          
-        cui.showStatus2("Optimering av rutt utförs.");
+        cui.showStatus2("Optimering av rutt utförs från " +  (ds.start) + " till " + (ds.slut));
         
         // Get shortest path
         for (int i = 0; i < path.size(); i++) { 

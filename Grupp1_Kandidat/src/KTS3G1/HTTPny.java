@@ -670,6 +670,10 @@ public class HTTPny implements Runnable {
         ds.visualPassenger2 = String.valueOf(ds.visualPassenger);
         cui.appendPassText(ds.visualPassenger2);
         
+        ds.visualPoints = ds.visualPoints + ds.totPoang;
+        ds.visualPoints2 = String.valueOf(ds.visualPoints);
+        cui.appendPointsText(ds.visualPoints2);
+        
         return utmessage;
         //returnerar beviljas om uppdraget är kvar och annars nekas
     }
