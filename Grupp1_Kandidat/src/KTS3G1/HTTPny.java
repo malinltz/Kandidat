@@ -353,8 +353,11 @@ public class HTTPny implements Runnable {
 
             }
 
-            narmstaNod3 = destNod1[0];//varför
+            narmstaNod3 = destNod1[0];
             narmstaNod4 = destNod2[0];
+            narmstaNod5 = destNod1[1];
+            narmstaNod6 = destNod2[1];
+            
          //   System.out.println(destNod1[0]);
 
             for (int j = 0; j < uppsizeInt; j++) {
