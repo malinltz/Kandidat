@@ -164,44 +164,47 @@ public class RobotRutt {
             System.out.println(rutt);
             
             
-            
-                                            //GÖR U-SVÄNGAR HÄR
+     
+                             //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
      for (int e = 0; e < rutt.size()-2; e++){
-         int uCount = rutt.size();
-         //Ersätt vvr med u
+          int kCount = rutt.size();
+          
+          //Ersätt vvr med u
         if (rutt.get(e).equals("v") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("r")){
             System.out.println("1u.");
-             rutt.remove(e);     //Ta bort första r:et
-             rutt.remove(e);     //Ta bort andra r:et
-             rutt.remove(e);
-             rutt.add("u");
-             uCount = uCount - 3;
+            rutt.add(e,"u");
+             rutt.remove(e+1);     //Ta bort första r:et
+             rutt.remove(e+1);     //Ta bort andra r:et
+             rutt.remove(e+1);
+             
+             kCount = kCount - 3;
          }
         
         //Ersätt rvvr med u
         if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("v") && rutt.get(e+3).equals("r")){
             System.out.println("2u.");
-             rutt.remove(e);     //Ta bort första r:et
-             rutt.remove(e);     //Ta bort andra r:et
-             rutt.remove(e);
-             rutt.remove(e);
-             rutt.add("u");
-             uCount = uCount - 4;
-         }
-     }
-            
-            
-     
-                             //Gör så att VÄNSTERsvängarna funkar i ruttkommandonen.
-     for (int e = 0; e < rutt.size()-2; e++){
-          int kCount = rutt.size();
-        //Ersätt rvr med v
-        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("r")){
-            System.out.println("1v.");
-             rutt.remove(e);     //Ta bort första r:et
+            rutt.add(e,"u");
+             rutt.remove(e+1);     //Ta bort första r:et
              rutt.remove(e+1);     //Ta bort andra r:et
-             kCount = kCount - 2;
+             rutt.remove(e+1);
+             rutt.remove(e+1);
+             
+             kCount = kCount - 4;
          }
+        
+        //Ersätt rvvr med u
+        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v") &&  rutt.get(e+2).equals("v") && rutt.get(e+3).equals("r")){
+            System.out.println("2u.");
+            rutt.add(e,"u");
+             rutt.remove(e+1);     //Ta bort första r:et
+             rutt.remove(e+1);     //Ta bort andra r:et
+             rutt.remove(e+1);
+             rutt.remove(e+1);
+             
+             kCount = kCount - 4;
+         }
+          
+        
         //Ersätt rv med v
         else if (rutt.get(e).equals("r") && rutt.get(e+1).equals("v")){
              System.out.println("2v.");
@@ -241,7 +244,15 @@ public class RobotRutt {
               System.out.println("3h.");
               rutt.remove(e+1);   //Ta bort r:et
               kkCount = kkCount - 1;
-         } 
+         }
+        
+        //Ersätt rrr med r
+        if (rutt.get(e).equals("r") && rutt.get(e+1).equals("r") &&  rutt.get(e+2).equals("r")){
+            System.out.println("1r.");
+             rutt.remove(e);     //Ta bort första r:et
+             kkCount = kkCount - 1;
+         }
+        
         if (i == kkCount){            
                System.out.println("Breakat vid i 2 = " + i);
                break;

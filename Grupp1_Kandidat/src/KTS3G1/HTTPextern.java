@@ -59,6 +59,9 @@ public class HTTPextern {
     }
 
     public void exprotokoll() {
+        
+                //Gör om till ArrayList
+        List<String> wordList = Arrays.asList(http.platser);
 
         for (int i = 0; i < http.meddelandet; i++) {
             dummer = http.uppdrag[i].split(",");
@@ -84,71 +87,75 @@ public class HTTPextern {
 
         ejUppdrag.clear();
         for (int i = 0; i < 3; i++) { //Tre grupper
-
+            uppdragG1.clear();uppdragG4.clear();uppdragG5.clear();
             if (http.iD[i] != 1) //Får felmeddelande för att ID=1 (vår grupp) är den enda som ligger uppe.
             {
                 //JÄMFÖR UPPDRAGSPLATS SOM ALLA GRUPPER VILL HA
                 if (http.paxplats[i] == http.paxplats[1]) {
-
+                    System.out.println("ID1");
                     //JÄMFÖR KOSTNADER SOM ALLA GRUPPER HAR
                     if (Integer.parseInt(http.kostnad[i]) < Integer.parseInt(http.kostnad[0])) {
-
+                        System.out.println("ID12");
                         //Lägga till här att vi inte kan få den uppdragsplatsen.
                         if (i == 0) {
                             for (int j = 0; j < uppdragG4.size(); j++) {
                                 if (!ejUppdrag.contains(j)) {
                                     ejUppdrag.add(String.valueOf(j));
-
+                                    System.out.println("ID123");
                                 }
                             }
                         } else if (i == 2) {
                             for (int j = 0; j < uppdragG5.size(); j++) {
                                 if (!ejUppdrag.contains(Integer.parseInt(uppdragG5.get(j)))) {
                                     ejUppdrag.add(uppdragG5.get(j));
-
+                                    System.out.println("ID124");
                                 }
                             }
                         }
                     } else if (Integer.parseInt(http.kostnad[i]) == Integer.parseInt(http.kostnad[0])) {
-
+                        System.out.println("ID13");
                         //JÄMFÖR ANTAL UPPDRAG SOM EN GRUPP VILL HA
                         if (uppdragG5.size() == uppdragG1.size() || uppdragG4.size() == uppdragG1.size()) {
-
+                            System.out.println("ID131");
                             //JÄMFÖR KAPACITETEN FÖR ALLA GRUPPER HÄR
                             
                             
                         } else if (uppdragG5.size() > uppdragG1.size() || uppdragG4.size() > uppdragG1.size()) {
-
+                            System.out.println("ID132");
                             //Lägga till här att vi inte kan få den uppdragsplatsen.
                             if (i == 0) {
                                 for (int j = 0; j < uppdragG4.size(); j++) {
                                     if (!ejUppdrag.contains(j)) {
                                         ejUppdrag.add(String.valueOf(j));
-
+                                        System.out.println("ID1321");
                                     }
                                 }
                             } else if (i == 2) {
                                 for (int j = 0; j < uppdragG5.size(); j++) {
                                     if (!ejUppdrag.contains(Integer.parseInt(uppdragG5.get(j)))) {
                                         ejUppdrag.add(uppdragG5.get(j));
-
+                                        System.out.println("ID1322");
                                     }
                                 }
                             }
                         } else {
+                            System.out.println("ID133");
                             platsViFick2 = http.narmstaPlats;
+                            
                         }
                     } else {
+                        System.out.println("ID14");
                         platsViFick2 = http.narmstaPlats;
+                        
                     }
                 } else {
+                    System.out.println("ID2");
                     platsViFick2 = http.narmstaPlats;
                 }
             }
         }
-        //Gör om till ArrayList
-        List<String> wordList = Arrays.asList(http.platser);
 
+        if(!ejUppdrag.isEmpty()){
         //Här tar den bort de uppdrag som de andra grupperna fick
         for (int k = 0; k < wordList.size(); k++) {
             for (int j = 0; j < ejUppdrag.size(); j++) {
@@ -162,5 +169,6 @@ public class HTTPextern {
         platsViFick1 = wordList.stream().toArray(String[]::new);
 
         platsViFick2 = String.join(",", platsViFick1);
+        }
     }
 }

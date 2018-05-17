@@ -74,7 +74,7 @@ public Transceiver (HTTPny http){
               
                //while(true){
 
-                String listan =  pickup; // Ska vara String listan = lista + pickup; Har inga pickups under generalrep.
+                String listan =  lista + pickup; // Ska vara String listan = lista + pickup; Har inga pickups under generalrep.
                 for(int i = 0; i < listan.length(); i++) {
                     //Thread.sleep(2000);
                  
