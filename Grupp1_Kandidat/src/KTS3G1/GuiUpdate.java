@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.util.Random;
@@ -52,7 +52,7 @@ public class GuiUpdate implements Runnable{
                 i++;
                 cui.repaint();
 
-            }*/
+            }
         
             
             if(Transceiver.utfort.equals("p")){
@@ -66,3 +66,4 @@ public class GuiUpdate implements Runnable{
         }
     }
 }
+*/

@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.io.*;
@@ -134,3 +134,4 @@ public Transceiver (HTTPny http){
           }
         }
     }
+*/
