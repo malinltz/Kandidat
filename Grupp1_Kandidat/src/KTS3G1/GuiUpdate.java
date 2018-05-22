@@ -1,4 +1,4 @@
-
+/*
 package KTS3G1;
 
 import java.util.Random;
@@ -8,10 +8,10 @@ public class GuiUpdate implements Runnable{
 
     private int sleepTime;
     private static Random generator = new Random();
-    public ControlUI cui;
+ //   public ControlUI cui;
     public DataStore ds; 
     public OptPlan op;
-    public Transceiver tr;
+ //   public Transceiver tr;
     public HTTPny http;
     public RobotRutt RR;
     public int[] kortaste;
@@ -52,13 +52,13 @@ public class GuiUpdate implements Runnable{
                 i++;
                 cui.repaint();
 
-            }*/
+            }
         
             
-            if(Transceiver.utfort.equals("p")){
-                cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
+           if(Transceiver.utfort.equals("p")){
+               cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
                 
-                ds.robotX = (int) (ds.nodeX[ds.slut - 1]);
+               ds.robotX = (int) (ds.nodeX[ds.slut - 1]);
                 ds.robotY = (int) (ds.nodeY[ds.slut - 1]);
                 cui.repaint();
                 break;
@@ -66,3 +66,4 @@ public class GuiUpdate implements Runnable{
         }
     }
 }
+*/

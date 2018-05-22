@@ -14,11 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 public class ControlUI extends javax.swing.JFrame {
     DataStore ds;
-    ControlUI cui;
+   // ControlUI cui;
     HTTPny http;
     OptPlan op;
 
-    Transceiver tr;
+    //Transceiver tr;
 
 
     /**
@@ -740,9 +740,9 @@ public class ControlUI extends javax.swing.JFrame {
 
           
 
-           Transceiver b1 = new Transceiver(http);
-           Thread t6 = new Thread(b1);
-           t6.start();
+           //Transceiver b1 = new Transceiver(http);
+          // Thread t6 = new Thread(b1);
+          // t6.start();
 
 
 

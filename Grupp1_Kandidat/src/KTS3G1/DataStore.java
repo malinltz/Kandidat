@@ -23,11 +23,11 @@ public class DataStore {
     double robotX;
     double robotY;
     
-    public int start = 7; //Startposition. Måste ändras 
+    public int start = 51; //Startposition. Måste ändras 
     public int robotPos = start;
     public int slut;
     public int startnod=0; 
-    public int kapacitet= 9;
+    public int kapacitet= 4;
     int[] arcColor;
     int totPoang;
     int visualPoints;
