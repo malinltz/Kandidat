@@ -740,6 +740,7 @@ public class ControlUI extends javax.swing.JFrame {
 
           
 
+
            //Transceiver b1 = new Transceiver(http);
           // Thread t6 = new Thread(b1);
           // t6.start();

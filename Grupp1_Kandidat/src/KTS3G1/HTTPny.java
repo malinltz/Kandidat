@@ -220,9 +220,6 @@ public class HTTPny implements Runnable {
                           //  if (Transceiver.utfort.equals("p")) {
                                 cui.appendStatus("Wall-E har nu lämnat/plockat upp passagerare");
                 
-                                if (svaruppdrag2.equals("beviljas")) { //OM VI KAN TA UPPDRAGET
-                                    System.out.println("Svar från hemsida: " + svaruppdrag2);
-
                                     for (int j = 0; j < 128; j++) {    //Sätter alla 128 stycken bågar totalt till 0. För repaint grejen.
                                         ds.arcColor[j] = 0;
                                     }
@@ -246,20 +243,20 @@ public class HTTPny implements Runnable {
                              
                        // }
                           ds.start = narmstaNod6;//daterat startnod
-                          
+                        //OM VI INTE KAN TA UPPDRAGET
+                            System.out.println("Svar från hemsida: " + svaruppdrag);  
                     }
 
                         break;
 
-                        } else { //OM VI INTE KAN TA UPPDRAGET
-                            System.out.println("Svar från hemsida: " + svaruppdrag);
+                        
                         }
 
                    // }
-                }
+                
                 u++;
                 aterstall(1);
-                }
+            }   
         } catch (InterruptedException e) {
             System.out.print(e.toString());
 
